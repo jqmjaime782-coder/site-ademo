@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teatro, Cultura &amp; Turismo Inclusivo — ADEMO</title>
+<meta name="description" content="A ADEMO usa o teatro participativo e a cultura como ferramentas de transformação social — 15.000 pessoas alcançadas, grupos teatrais comunitários, turismo inclusivo em Sofala.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CC0000;--red-dk:#a00000;
+  --gold:#C9993A;--gold-lt:#e5c07a;--gold-dim:rgba(201,153,58,.18);
+  --dark:#1A1008;--dark2:#2d1f0e;
+  --text:#1e1408;--muted:#5c4e38;
+  --white:#fff;--cream:#F8F3EC;--hh:80px;
+  /* CULTURA: bordô-teatro + âmbar cálido + verde-turismo */
+  --ac:#8a1a3a;--ac-dk:#620d28;--ac-lt:#f07a9a;--ac-pale:rgba(138,26,58,.1);
+  --amber:#c97a1a;--amber-lt:#f5c06a;
+  --teal:#1a6a5a;--teal-lt:#6adcc8;
+}
+html{font-size:18px;scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.75;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.skip{position:absolute;top:-120px;left:1rem;background:var(--red);color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:9999;transition:top .2s;font-size:.85rem;}
+.skip:focus{top:1rem;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+
+/* ══ HEADER ══ */
+#hdr{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--hh);display:flex;align-items:center;padding:0 5vw;transition:background .4s,box-shadow .4s;}
+#hdr.t{background:transparent;}
+#hdr.s{background:rgba(26,16,8,.97);box-shadow:0 2px 28px rgba(0,0,0,.45);backdrop-filter:blur(14px);}
+.hin{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.logo{display:flex;align-items:center;gap:.85rem;}
+.logo-img{height:46px;width:auto;object-fit:contain;flex-shrink:0;}
+.logo-fall{display:none;width:46px;height:46px;border-radius:50%;background:var(--red);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;flex-shrink:0;}
+.logo-w{display:flex;flex-direction:column;line-height:1.1;justify-content:center;gap:.1rem;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;letter-spacing:.08em;}
+.logo-t{font-size:.54rem;color:var(--gold-lt);letter-spacing:.16em;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:1.6rem;}
+nav>a,.dd>a{color:rgba(255,255,255,.8);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:2px;transition:color .3s;}
+nav>a::after,.dd>a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav>a:hover,.dd>a:hover{color:#fff;}
+nav>a:hover::after,.dd>a:hover::after{width:100%;}
+.dd{position:relative;}
+.ddm{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--dark);border:1px solid var(--gold-dim);min-width:240px;padding:.5rem 0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
+.dd:hover .ddm,.dd:focus-within .ddm{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.ddm a{display:block;padding:.55rem 1.3rem;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.7);text-transform:uppercase;transition:color .2s,background .2s;}
+.ddm a:hover{color:var(--gold-lt);background:rgba(201,153,58,.08);}
+.navcta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.25rem;border-radius:2px;transition:background .3s!important;}
+.navcta:hover{background:var(--red-dk)!important;}
+.navcta::after{display:none!important;}
+.hbg{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:1001;}
+.hbg span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.hbg[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hbg[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* ══ UTILS ══ */
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac);margin-bottom:.85rem;display:block;}
+.lbl-amber{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--amber-lt);margin-bottom:.85rem;display:block;}
+.lbl-teal{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:.85rem;display:block;}
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease;}
+.js-rdy .rv{opacity:0;transform:translateY(22px);}
+.js-rdy .rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.15s;}.d2{transition-delay:.3s;}.d3{transition-delay:.45s;}
+.arr{display:inline-block;transition:transform .3s;}
+.btn-ac{display:inline-flex;align-items:center;gap:.6rem;background:var(--ac);color:#fff;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:500;transition:background .3s,transform .2s;}
+.btn-ac:hover{background:var(--ac-dk);transform:translateY(-2px);}
+.btn-ac:hover .arr{transform:translateX(5px);}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--ac);padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:600;transition:background .3s,transform .2s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,border-color .3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff;}
+
+/* ══ HERO ══ */
+#ph{position:relative;height:88vh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden;background:#1a0810;}
+.ph-bg{position:absolute;inset:0;background-image:url('foto-cultura-hero.jpg');background-size:cover;background-position:center 35%;transform:scale(1.04);transition:transform 10s ease;}
+.ph-bg.loaded{transform:scale(1);}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,8,16,.05) 0%,rgba(26,8,16,.2) 35%,rgba(26,8,16,.8) 60%,rgba(26,8,16,.97) 100%);}
+.ph-accent{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ac) 0%,var(--amber) 50%,var(--teal) 100%);z-index:3;}
+.ph-body{position:relative;z-index:2;padding:calc(var(--hh) + 1rem) 5vw 5.5rem;width:100%;display:flex;flex-direction:column;justify-content:flex-end;min-height:inherit;}
+.ph-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.8vw,2.9rem);font-weight:300;color:#fff;line-height:1.08;letter-spacing:-.02em;max-width:820px;margin-bottom:1.2rem;}
+.ph-h1 em{font-style:italic;color:var(--ac-lt);}
+.ph-lead{font-size:clamp(.9rem,1.2vw,1rem);color:rgba(255,255,255,.65);max-width:620px;line-height:1.85;}
+.ph-pilares{display:flex;gap:.8rem;margin-top:2rem;flex-wrap:wrap;}
+.ph-pilar{display:flex;align-items:center;gap:.55rem;background:rgba(255,255,255,.07);border:1px solid rgba(240,122,154,.2);border-radius:4px;padding:.5rem .85rem;}
+.ph-pilar-ico{font-size:1rem;line-height:1;flex-shrink:0;}
+.ph-pilar-txt{font-size:.7rem;color:rgba(255,255,255,.72);letter-spacing:.04em;}
+
+/* ══ FAIXA 15.000 ══ */
+#faixa-num{
+  background:linear-gradient(90deg,var(--ac) 0%,var(--ac-dk) 100%);
+  padding:2.2rem 5vw;
+  display:flex;align-items:center;gap:3rem;flex-wrap:wrap;
+}
+.fn-num{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:300;color:#fff;line-height:1;letter-spacing:-.04em;flex-shrink:0;}
+.fn-body{flex:1;min-width:240px;}
+.fn-titulo{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.65rem);font-weight:300;color:#fff;line-height:1.2;}
+.fn-titulo em{font-style:italic;color:rgba(255,255,255,.72);}
+.fn-desc{font-size:.88rem;color:rgba(255,255,255,.65);margin-top:.4rem;line-height:1.65;}
+.fn-desde{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.5rem;}
+
+/* ══ MÉTODO PARTICIPATIVO ══ */
+#metodo{
+  background:var(--white);
+  padding:7rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;
+}
+.met-img{position:relative;}
+.met-img img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px 120px 20px 120px;box-shadow:0 36px 80px rgba(138,26,58,.2);transition:border-radius .7s;display:block;}
+.met-img img:hover{border-radius:120px 20px 120px 20px;}
+.met-img-fb{display:none;width:100%;aspect-ratio:4/5;border-radius:20px 120px 20px 120px;background:linear-gradient(145deg,#8a1a3a,#3a0818);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+.met-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.met-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.met-h2 em{font-style:italic;color:var(--ac);}
+.met-p{font-size:1rem;color:var(--muted);line-height:1.88;}
+/* Citação do método */
+.met-citacao{background:var(--ac-pale);border-left:3px solid var(--ac);padding:1.3rem 1.6rem;border-radius:0 8px 8px 0;}
+.met-citacao-txt{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--dark);line-height:1.55;}
+.met-citacao-txt::before{content:'\201C';font-size:2.2rem;color:var(--ac);line-height:.35;display:block;margin-bottom:.3rem;font-style:normal;}
+.met-citacao-src{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.7rem;}
+/* 3 pilares método */
+.met-pilares{display:flex;flex-direction:column;gap:.7rem;}
+.mp{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1rem;border-radius:6px;background:var(--cream);border-left:3px solid var(--ac);transition:transform .3s,box-shadow .3s;}
+.mp:hover{transform:translateX(5px);box-shadow:2px 0 14px rgba(138,26,58,.1);}
+.mp-ico{font-size:1.3rem;flex-shrink:0;line-height:1.4;}
+.mp-txt{font-size:.9rem;color:var(--muted);line-height:1.65;}
+.mp-txt strong{color:var(--dark);}
+
+/* ══ PROCESSO DE INTERVENÇÃO ══ */
+#processo{
+  background:linear-gradient(160deg,#1a0810 0%,#2a1020 100%);
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#processo::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(138,26,58,.2) 0%,transparent 68%);pointer-events:none;}
+#processo::after{content:'';position:absolute;bottom:-60px;left:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(201,122,26,.1) 0%,transparent 68%);pointer-events:none;}
+.proc-hd{text-align:center;max-width:680px;margin:0 auto 4rem;}
+.proc-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.proc-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.proc-hd p{font-size:.97rem;color:rgba(255,255,255,.5);line-height:1.82;margin-top:.85rem;}
+/* Grid das atividades */
+.proc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;position:relative;z-index:1;}
+.pg{background:rgba(255,255,255,.04);border:1px solid rgba(240,122,154,.12);border-radius:10px;padding:2rem 1.6rem;display:flex;flex-direction:column;gap:.85rem;transition:background .35s,border-color .35s,transform .35s;position:relative;overflow:hidden;}
+.pg::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ac),var(--ac-lt));transform:scaleX(0);transition:transform .45s;transform-origin:left;}
+.pg:hover{background:rgba(138,26,58,.12);border-color:rgba(240,122,154,.3);transform:translateY(-6px);}
+.pg:hover::before{transform:scaleX(1);}
+.pg-ico{font-size:2.2rem;line-height:1;}
+.pg-h3{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:400;color:var(--cream);line-height:1.2;}
+.pg-p{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.72;}
+
+/* ══ GRUPOS TEATRAIS — MENSAGENS COMUNIDADE ══ */
+#mensagens{
+  background:var(--cream);
+  padding:7rem 5vw;
+}
+.mens-hd{max-width:680px;margin:0 auto 4rem;text-align:center;}
+.mens-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.1;color:var(--dark);}
+.mens-hd h2 em{font-style:italic;color:var(--ac);}
+.mens-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.85rem;}
+/* Grid mensagens-chave */
+.mens-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+.mc{background:var(--white);border-radius:10px;padding:1.8rem 1.5rem;display:flex;flex-direction:column;gap:.8rem;border-top:4px solid var(--ac);transition:box-shadow .35s,transform .35s;}
+.mc:hover{box-shadow:0 14px 44px rgba(138,26,58,.12);transform:translateY(-6px);}
+.mc-ico{font-size:2rem;line-height:1;}
+.mc-h3{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:400;color:var(--dark);line-height:1.2;}
+.mc-p{font-size:.86rem;color:var(--muted);line-height:1.7;flex:1;}
+/* Visão central */
+.mens-visao{
+  background:linear-gradient(135deg,var(--ac),var(--ac-dk));
+  border-radius:14px;padding:3.5rem 5vw;
+  text-align:center;margin-top:3.5rem;
+  position:relative;overflow:hidden;
+}
+.mens-visao::before{content:'"';font-family:'Cormorant Garamond',serif;font-size:12rem;color:rgba(255,255,255,.06);position:absolute;top:-3rem;left:3vw;line-height:1;pointer-events:none;}
+.mv-lbl{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1rem;display:block;}
+.mv-txt{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3vw,2.2rem);font-weight:300;font-style:italic;color:#fff;line-height:1.42;max-width:760px;margin:0 auto;}
+.mv-src{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:1.3rem;}
+
+/* ══ MULTIPLICADORES ══ */
+#multiplicadores{
+  background:var(--dark);
+  padding:7rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;
+  position:relative;overflow:hidden;
+}
+#multiplicadores::before{content:'';position:absolute;top:-80px;left:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,122,26,.1) 0%,transparent 68%);pointer-events:none;}
+.mult-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.mult-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.12;}
+.mult-h2 em{font-style:italic;color:var(--amber-lt);}
+.mult-p{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.9;}
+.mult-highlight{background:rgba(201,122,26,.08);border-left:3px solid var(--amber-lt);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:rgba(255,255,255,.78);line-height:1.58;}
+/* O que são multiplicadores */
+.mult-cards{display:flex;flex-direction:column;gap:.7rem;}
+.mlt{background:rgba(255,255,255,.04);border:1px solid rgba(201,122,26,.15);border-radius:8px;padding:1.1rem 1.3rem;display:flex;align-items:flex-start;gap:1rem;transition:background .3s,border-color .3s,transform .3s;}
+.mlt:hover{background:rgba(201,122,26,.08);border-color:rgba(201,122,26,.3);transform:translateX(5px);}
+.mlt-ico{font-size:1.7rem;flex-shrink:0;line-height:1.1;}
+.mlt-body{display:flex;flex-direction:column;gap:.2rem;}
+.mlt-title{font-size:.9rem;font-weight:600;color:var(--cream);}
+.mlt-desc{font-size:.84rem;color:rgba(255,255,255,.47);line-height:1.65;}
+.mult-img{position:relative;}
+.mult-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.4);display:block;}
+.mult-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#3a1808,#1a0808);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+
+/* ══ TURISMO INCLUSIVO ══ */
+#turismo{
+  background:linear-gradient(160deg,#061a14 0%,#0a2018 100%);
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#turismo::before{content:'';position:absolute;top:-100px;right:-100px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(26,106,90,.2) 0%,transparent 68%);pointer-events:none;}
+.tur-inner{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.tur-img{position:relative;}
+.tur-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.5);display:block;}
+.tur-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#1a5a4a,#062a20);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+.tur-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.tur-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.12;}
+.tur-h2 em{font-style:italic;color:var(--teal-lt);}
+.tur-p{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.9;}
+.tur-highlight{background:rgba(26,106,90,.1);border-left:3px solid var(--teal-lt);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:rgba(255,255,255,.78);line-height:1.58;}
+/* Pilares do turismo */
+.tur-pilares{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
+.tp{background:rgba(255,255,255,.04);border:1px solid rgba(106,220,200,.12);border-radius:8px;padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.5rem;transition:background .3s,border-color .3s,transform .3s;}
+.tp:hover{background:rgba(26,106,90,.15);border-color:rgba(106,220,200,.28);transform:translateY(-3px);}
+.tp-ico{font-size:1.5rem;line-height:1;}
+.tp-h{font-size:.85rem;font-weight:600;color:var(--cream);}
+.tp-p{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.6;}
+
+/* ══ AUTONOMIA E SUSTENTABILIDADE ══ */
+#autonomia{
+  background:var(--cream);
+  padding:7rem 5vw;
+}
+.auto-hd{max-width:700px;margin:0 auto 4rem;text-align:center;}
+.auto-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.1;color:var(--dark);}
+.auto-hd h2 em{font-style:italic;color:var(--ac);}
+.auto-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.85rem;}
+.auto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.ag{background:var(--white);border-radius:10px;padding:2rem 1.7rem;display:flex;flex-direction:column;gap:1rem;border-bottom:4px solid transparent;transition:box-shadow .35s,transform .35s,border-color .35s;}
+.ag.bordeau{border-color:var(--ac);}
+.ag.amber{border-color:var(--amber);}
+.ag.teal{border-color:var(--teal);}
+.ag:hover{box-shadow:0 14px 44px rgba(0,0,0,.09);transform:translateY(-6px);}
+.ag-ico{font-size:2.2rem;line-height:1;}
+.ag-h3{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:400;color:var(--dark);line-height:1.2;}
+.ag-p{font-size:.88rem;color:var(--muted);line-height:1.72;flex:1;}
+
+/* ══ NÚMEROS ══ */
+#nums{
+  background:linear-gradient(160deg,#1a0810 0%,#1e1020 100%);
+  padding:6rem 5vw;position:relative;overflow:hidden;
+}
+#nums::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(138,26,58,.18) 0%,transparent 68%);pointer-events:none;}
+.nums-hd{text-align:center;margin-bottom:4rem;}
+.nums-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.nums-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ngrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.nit{background:rgba(26,8,16,.85);padding:2.8rem 1rem;text-align:center;position:relative;transition:background .35s;}
+.nit:hover{background:rgba(138,26,58,.12);}
+.nit::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--ac-lt);transform:scaleX(0);transition:transform .45s;}
+.nit:hover::after{transform:scaleX(1);}
+.nit-ico{width:44px;height:44px;border-radius:50%;background:rgba(240,122,154,.08);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;font-size:1.4rem;}
+.nit-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.8vw,3.2rem);font-weight:300;color:var(--ac-lt);line-height:1;letter-spacing:-.02em;}
+.nit-l{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.5rem;line-height:1.55;}
+
+/* ══ DEPOIMENTOS ══ */
+#depoimentos{background:var(--dark2);padding:6rem 5vw;}
+.dep-hd{max-width:560px;margin-bottom:3rem;}
+.dep-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.15;color:var(--cream);}
+.dep-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.dc{background:rgba(255,255,255,.04);border-radius:8px;padding:2rem 1.8rem;border-left:4px solid var(--ac);display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s,transform .3s;}
+.dc:hover{box-shadow:0 12px 36px rgba(138,26,58,.18);transform:translateY(-5px);}
+.dc-q{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:var(--cream);line-height:1.6;font-weight:300;}
+.dc-q::before{content:'\201C';font-size:2.4rem;color:var(--ac-lt);line-height:.35;display:block;margin-bottom:.35rem;font-style:normal;}
+.dc-au{display:flex;align-items:center;gap:.8rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);}
+.dc-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac-dk));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;flex-shrink:0;}
+.dc-name{font-size:.85rem;font-weight:500;color:var(--cream);}
+.dc-role{font-size:.72rem;color:rgba(255,255,255,.45);}
+
+/* ══ GALERIA ══ */
+#galeria{background:var(--dark);padding:5rem 5vw;}
+.gal-hd{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.gal-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:var(--cream);}
+.gal-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ggrid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:220px 220px;gap:.6rem;}
+.gi{overflow:hidden;border-radius:4px;background:#1a0810;position:relative;}
+.gi:first-child{grid-row:span 2;}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .65s ease;}
+.gi:hover img{transform:scale(1.08);}
+.gi-fb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.14;color:#fff;}
+.gi::after{content:attr(data-label);position:absolute;inset:0;background:rgba(138,26,58,.78);color:#fff;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;text-align:center;padding:1rem;}
+.gi:hover::after{opacity:1;}
+
+/* ══ CTA FINAL ══ */
+#cta-final{
+  background:linear-gradient(145deg,var(--ac) 0%,var(--ac-dk) 50%,#1a0810 100%);
+  padding:8rem 5vw;text-align:center;
+  position:relative;overflow:hidden;
+}
+#cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+#cta-final::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta-lbl{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1rem;display:block;}
+.cta-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:300;color:#fff;line-height:1.1;margin-bottom:1.3rem;}
+.cta-h2 em{font-style:italic;color:rgba(255,255,255,.72);}
+.cta-p{font-size:1rem;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto 2.8rem;line-height:1.85;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
+
+/* ══ NAV ÁREAS ══ */
+#nav-areas{background:var(--dark2);padding:4rem 5vw;}
+.na-hd{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;}
+.na-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.8rem;}
+.na-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1rem .8rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;transition:background .3s,border-color .3s,transform .3s;}
+.na-item:hover{background:rgba(255,255,255,.09);border-color:rgba(201,153,58,.3);transform:translateY(-3px);}
+.na-item.active{background:rgba(138,26,58,.15);border-color:rgba(138,26,58,.45);}
+.na-ico{font-size:1.3rem;line-height:1;}
+.na-lbl{font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.3;}
+.na-item:hover .na-lbl,.na-item.active .na-lbl{color:rgba(255,255,255,.8);}
+.na-item.active .na-lbl{color:var(--ac-lt);}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark);padding:4rem 5vw 2rem;border-top:1px solid rgba(201,153,58,.08);}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.ftnm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:.65rem;}
+.ftdc{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ftcol h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.ftcol a{display:block;font-size:.85rem;color:rgba(255,255,255,.42);margin-bottom:.48rem;transition:color .2s;}
+.ftcol a:hover{color:rgba(255,255,255,.8);}
+.ftsoc{display:flex;gap:.6rem;margin-top:1.4rem;}
+.ftsi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.ftsi:hover{background:var(--red);}
+.ftsi svg{width:14px;height:14px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ftsi:hover svg{stroke:#fff;}
+.ftbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.8rem;color:rgba(255,255,255,.22);}
+.ftgo{color:var(--gold);}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .mens-grid{grid-template-columns:repeat(2,1fr);}
+  .proc-grid{grid-template-columns:repeat(2,1fr);}
+  .na-grid{grid-template-columns:repeat(4,1fr);}
+}
+@media(max-width:900px){
+  #metodo{grid-template-columns:1fr;gap:3rem;}.met-img{max-width:440px;margin:0 auto;}
+  #multiplicadores{grid-template-columns:1fr;gap:3rem;}
+  .tur-inner{grid-template-columns:1fr;gap:3rem;}
+  .auto-grid{grid-template-columns:1fr 1fr;}
+  .dep-grid{grid-template-columns:1fr;}
+  .ggrid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}.gi:first-child{grid-row:auto;}
+  .ftgrid{grid-template-columns:1fr 1fr;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .na-grid{grid-template-columns:repeat(4,1fr);}
+  .tur-pilares{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .hbg{display:flex;}
+  nav.desk{position:fixed;inset:0;background:var(--dark);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.18,1);z-index:999;padding:2rem 8vw;}
+  nav.desk.open{transform:translateX(0);}
+  nav.desk>a,.desk .dd>a{font-size:1.2rem;}
+  .ddm{position:static;opacity:1;pointer-events:all;transform:none;background:transparent;border:none;padding:0;}
+  .ddm a{padding:.35rem 0;font-size:.9rem;}
+  .ggrid{grid-template-columns:1fr;}
+  .na-grid{grid-template-columns:repeat(3,1fr);}
+  .ftgrid{grid-template-columns:1fr;gap:2rem;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-white,.btn-ghost{justify-content:center;}
+  #ph{height:auto;min-height:auto;}
+  .ph-body{padding-bottom:3.5rem;}
+  .mens-grid{grid-template-columns:1fr 1fr;}
+  .proc-grid{grid-template-columns:1fr;}
+  .auto-grid{grid-template-columns:1fr;}
+  .ph-pilares{flex-direction:column;gap:.6rem;}
+  .fn-num{font-size:clamp(2.5rem,8vw,4rem);}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:480px){
+  .mens-grid{grid-template-columns:1fr;}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar para o conteúdo principal</a>
+
+<header id="hdr" class="s" role="banner">
+<div class="hin">
+  <a href="index.html" class="logo" aria-label="ADEMO — Página Principal">
+    <img class="logo-img" src="logo-ademo.png" alt="Logótipo ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="logo-fall" aria-hidden="true">A</div>
+    <div class="logo-w"><span class="logo-n">ADEMO</span><span class="logo-t">Moçambique · Desde 1990</span></div>
+  </a>
+  <button class="hbg" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainnav"><span></span><span></span><span></span></button>
+  <nav id="mainnav" class="desk" role="navigation" aria-label="Menu principal">
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre Nós</a>
+    <div class="dd">
+      <a href="index.html#areas" aria-haspopup="true">Áreas ▾</a>
+      <div class="ddm" role="menu">
+        <a href="saude.html" role="menuitem">Saúde Sexual e Reprodutiva</a>
+        <a href="educacao.html" role="menuitem">Educação Inclusiva</a>
+        <a href="reabilitacao.html" role="menuitem">Reabilitação</a>
+        <a href="genero.html" role="menuitem">Equidade de Género</a>
+        <a href="futebol.html" role="menuitem">Futebol Inclusivo</a>
+        <a href="climatica.html" role="menuitem">Resiliência Climática</a>
+        <a href="economico.html" role="menuitem">Empoderamento Económico</a>
+        <a href="cultura.html" role="menuitem" aria-current="page">Teatro &amp; Cultura</a>
+      </div>
+    </div>
+    <a href="transparencia.html">Transparência</a>
+    <a href="index.html#contactos">Contactos</a>
+    <a href="mailto:ademoorg@gmail.com" class="navcta">Apoie-nos</a>
+  </nav>
+</div>
+</header>
+
+<main id="main">
+
+<!-- ═══ HERO ═══ -->
+<section id="ph" aria-label="Teatro, Cultura e Turismo Inclusivo ADEMO">
+  <div class="ph-accent" aria-hidden="true"></div>
+  <div class="ph-bg" id="phbg"></div>
+  <div class="ph-ov"></div>
+  <div class="ph-body">
+    <h1 class="ph-h1">A Arte como Voz.<br>A Cultura como <em>Transformação.</em></h1>
+    <p class="ph-lead">A ADEMO usa o teatro, a cultura e o turismo inclusivo como ferramentas poderosas de mudança social — levando mensagens de saúde, direitos e dignidade às comunidades mais remotas de Sofala, através da linguagem universal da arte.</p>
+    <div class="ph-pilares">
+      <div class="ph-pilar"><span class="ph-pilar-ico" aria-hidden="true">🎭</span><span class="ph-pilar-txt">Teatro participativo</span></div>
+      <div class="ph-pilar"><span class="ph-pilar-ico" aria-hidden="true">👥</span><span class="ph-pilar-txt">15.000 pessoas alcançadas</span></div>
+      <div class="ph-pilar"><span class="ph-pilar-ico" aria-hidden="true">🎪</span><span class="ph-pilar-txt">Programa Multiplicadores</span></div>
+      <div class="ph-pilar"><span class="ph-pilar-ico" aria-hidden="true">🌍</span><span class="ph-pilar-txt">Turismo inclusivo</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAIXA 15.000 ═══ -->
+<div id="faixa-num" role="complementary">
+  <div class="fn-num" aria-label="15.000 pessoas alcançadas">15.000</div>
+  <div class="fn-body rv">
+    <div class="fn-titulo">Pessoas alcançadas pelo grupo teatral da ADEMO — <em>e o número continua a crescer.</em></div>
+    <div class="fn-desc">Desde 2019, o teatro participativo da ADEMO chegou a 15.000 pessoas em Sofala — em bairros, aldeias remotas, centros comunitários e escolas — com mensagens que mudam comportamentos e salvam vidas.</div>
+    <div class="fn-desde">Desde 2019 · Sofala, Moçambique</div>
+  </div>
+</div>
+
+<!-- ═══ MÉTODO PARTICIPATIVO ═══ -->
+<section id="metodo" aria-labelledby="met-h">
+  <div class="met-img rv">
+    <img src="foto-cultura-teatro.jpg" loading="lazy" alt="Grupo teatral da ADEMO em apresentação comunitária" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="met-img-fb" aria-hidden="true">🎭</div>
+  </div>
+  <div class="met-txt">
+    <span class="lbl rv">Método Participativo</span>
+    <h2 class="met-h2 rv d1" id="met-h">Teatro que <em>Ensina a Encontrar<br>as Próprias Soluções</em></h2>
+    <p class="met-p rv d1">A ADEMO adoptou o método teatral participativo como ferramenta central de intervenção comunitária. Este método não impõe mensagens de fora para dentro — convida as próprias comunidades a explorar os seus problemas, a representá-los e a descobrir, em conjunto, as soluções que fazem sentido para as suas vidas. É teatro que empodera, não que instrui.</p>
+    <div class="met-citacao rv d2">
+      <div class="met-citacao-txt">Ensina as pessoas a procurarem as suas próprias soluções para os seus problemas.</div>
+      <div class="met-citacao-src">Sobre o método participativo adoptado pela ADEMO · Sofala</div>
+    </div>
+    <div class="met-pilares rv d2">
+      <div class="mp">
+        <span class="mp-ico" aria-hidden="true">🪞</span>
+        <div class="mp-txt"><strong>Teatro-fórum</strong> — os espectadores tornam-se actores, intervindo na cena para experimentar soluções diferentes para os problemas representados.</div>
+      </div>
+      <div class="mp">
+        <span class="mp-ico" aria-hidden="true">💬</span>
+        <div class="mp-txt"><strong>Diálogo aberto</strong> — cada espectáculo abre espaço de debate comunitário sobre os temas abordados — saúde, direitos, violência, género.</div>
+      </div>
+      <div class="mp">
+        <span class="mp-ico" aria-hidden="true">🌱</span>
+        <div class="mp-txt"><strong>Mudança sustentável</strong> — quando a comunidade encontra as suas próprias soluções, a mudança de comportamento é mais profunda e duradoura do que qualquer campanha externa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESSO DE INTERVENÇÃO ═══ -->
+<section id="processo" aria-labelledby="proc-h">
+  <div class="proc-hd rv">
+    <span class="lbl" style="color:var(--ac-lt);">Processo de Intervenção</span>
+    <h2 id="proc-h">O Que Fazemos:<br><em>Da Preparação ao Palco Comunitário</em></h2>
+    <p>O processo de intervenção cultural da ADEMO é diversificado e integrado — combinando preparação artística rigorosa com impacto comunitário real, desde os ensaios iniciais até aos projectos de autonomia dos grupos.</p>
+  </div>
+  <div class="proc-grid">
+    <div class="pg rv">
+      <div class="pg-ico" aria-hidden="true">🔁</div>
+      <h3 class="pg-h3">Ensaios Regulares</h3>
+      <p class="pg-p">Os grupos teatrais da ADEMO ensaiam regularmente — desenvolvendo competências artísticas, trabalhando as mensagens e criando uma coesão de grupo que se reflecte na qualidade dos espectáculos e na confiança dos actores com deficiência.</p>
+    </div>
+    <div class="pg rv d1">
+      <div class="pg-ico" aria-hidden="true">🎭</div>
+      <h3 class="pg-h3">Apresentações de Espectáculos</h3>
+      <p class="pg-p">Espectáculos apresentados directamente nas comunidades — escolas, mercados, centros comunitários e praças — onde o público encontra o teatro sem barreiras de acesso, físicas ou financeiras.</p>
+    </div>
+    <div class="pg rv d2">
+      <div class="pg-ico" aria-hidden="true">🎓</div>
+      <h3 class="pg-h3">Workshops e Formação</h3>
+      <p class="pg-p">Workshops de expressão dramática, teatro aplicado e comunicação para membros da comunidade — formando novos actores e expandindo o alcance do método participativo a mais pessoas.</p>
+    </div>
+    <div class="pg rv">
+      <div class="pg-ico" aria-hidden="true">🎪</div>
+      <h3 class="pg-h3">Espectáculos Profissionais</h3>
+      <p class="pg-p">Produção de espectáculos de qualidade profissional com actores com deficiência — desconstruindo o mito de que arte e deficiência são incompatíveis, e abrindo portas a palcos mais exigentes.</p>
+    </div>
+    <div class="pg rv d1">
+      <div class="pg-ico" aria-hidden="true">🌍</div>
+      <h3 class="pg-h3">Programa Multiplicadores</h3>
+      <p class="pg-p">Dinamização do Programa Multiplicadores — formando animadores culturais nas comunidades para que o impacto do teatro se multiplique mesmo quando a ADEMO não está presencialmente.</p>
+    </div>
+    <div class="pg rv d2">
+      <div class="pg-ico" aria-hidden="true">🚀</div>
+      <h3 class="pg-h3">Projectos de Autonomia</h3>
+      <p class="pg-p">Facilitação de projectos de autonomia para os grupos teatrais — apoiando a criação de grupos independentes que continuam a missão de transformação cultural sem dependência permanente da ADEMO.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MENSAGENS-CHAVE ═══ -->
+<section id="mensagens" aria-labelledby="mens-h">
+  <div class="mens-hd rv">
+    <span class="lbl">Grupos Teatrais nas Comunidades</span>
+    <h2 id="mens-h">O Palco como <em>Sala de Aula Comunitária</em></h2>
+    <p>Os grupos teatrais da ADEMO levam mensagens-chave às comunidades mais remotas de Sofala — onde os serviços de saúde e informação raramente chegam. O teatro é o veículo mais eficaz porque envolve, emociona e fica na memória de forma que panfletos e palestras não conseguem.</p>
+  </div>
+  <div class="mens-grid">
+    <div class="mc rv">
+      <div class="mc-ico" aria-hidden="true">🏥</div>
+      <h3 class="mc-h3">Saúde e Nutrição</h3>
+      <p class="mc-p">Mensagens sobre nutrição infantil, prevenção de doenças, cuidados maternos e acesso a serviços de saúde — dramatizadas de forma a que toda a comunidade, incluindo pessoas com baixa escolaridade, compreenda e retenha.</p>
+    </div>
+    <div class="mc rv d1">
+      <div class="mc-ico" aria-hidden="true">💧</div>
+      <h3 class="mc-h3">WASH — Água e Saneamento</h3>
+      <p class="mc-p">Peças sobre água segura, higiene das mãos, saneamento e gestão de resíduos — especialmente importantes em zonas remotas onde a diarreia e as doenças de veiculação hídrica são ainda causas principais de morte infantil.</p>
+    </div>
+    <div class="mc rv d2">
+      <div class="mc-ico" aria-hidden="true">♿</div>
+      <h3 class="mc-h3">Direitos das PcD</h3>
+      <p class="mc-p">Teatro que representa pessoas com deficiência como protagonistas plenos — combatendo estigmas, informando sobre direitos legais e mostrando que a deficiência não define nem limita o que uma pessoa pode ser e fazer.</p>
+    </div>
+    <div class="mc rv d3">
+      <div class="mc-ico" aria-hidden="true">⚤</div>
+      <h3 class="mc-h3">Género e Igualdade</h3>
+      <p class="mc-p">Peças que questionam normas de género prejudiciais — casamento prematuro, violência doméstica, exclusão da mulher da tomada de decisão — criando espaço para reflexão colectiva e mudança cultural gradual.</p>
+    </div>
+  </div>
+  <div class="mens-visao rv d1">
+    <span class="mv-lbl">Visão ADEMO · Teatro &amp; Cultura</span>
+    <div class="mv-txt">"Uma sociedade mais justa e plural, onde cada cidadã/o participa de forma activa e consciente nos processos de tomada de decisão que afectam a sua vida."</div>
+    <div class="mv-src">Visão do Programa Cultural da ADEMO · Sofala, Moçambique</div>
+  </div>
+</section>
+
+<!-- ═══ MULTIPLICADORES ═══ -->
+<section id="multiplicadores" aria-labelledby="mult-h">
+  <div class="mult-txt rv">
+    <span class="lbl-amber">Programa Multiplicadores</span>
+    <h2 class="mult-h2" id="mult-h">Formamos Quem Forma:<br><em>O Impacto que se Multiplica</em></h2>
+    <p class="mult-p">O Programa Multiplicadores é a garantia de que o impacto do teatro comunitário da ADEMO não depende da presença permanente da organização. Formamos animadores culturais e líderes comunitários que passam a usar as ferramentas do teatro participativo de forma autónoma — multiplicando as mensagens para muito além do que a ADEMO sozinha alcançaria.</p>
+    <div class="mult-highlight">"Cada multiplicador formado é um novo centro de irradiação de mudança — capaz de usar o teatro para abordar os problemas específicos da sua comunidade, com as suas pessoas, na sua língua e no seu contexto."</div>
+    <div class="mult-cards">
+      <div class="mlt">
+        <span class="mlt-ico" aria-hidden="true">🎓</span>
+        <div class="mlt-body">
+          <div class="mlt-title">Formação em Teatro Participativo</div>
+          <div class="mlt-desc">Cada multiplicador recebe formação completa em técnicas de teatro-fórum, facilitação de debates e criação de peças baseadas em problemas reais da comunidade.</div>
+        </div>
+      </div>
+      <div class="mlt">
+        <span class="mlt-ico" aria-hidden="true">🌍</span>
+        <div class="mlt-body">
+          <div class="mlt-title">Alcance nas Zonas Mais Remotas</div>
+          <div class="mlt-desc">Os multiplicadores vivem nas próprias comunidades — chegando a aldeias onde a ADEMO não consegue estar presencialmente com regularidade, mas onde a necessidade de informação e transformação é igual.</div>
+        </div>
+      </div>
+      <div class="mlt">
+        <span class="mlt-ico" aria-hidden="true">🔄</span>
+        <div class="mlt-body">
+          <div class="mlt-title">Autonomia e Sustentabilidade</div>
+          <div class="mlt-desc">Após a formação, os multiplicadores operam de forma autónoma — tornando o programa sustentável a longo prazo e criando grupos teatrais comunitários independentes que pertencem às próprias comunidades.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mult-img rv d1">
+    <img src="foto-cultura-multiplicadores.jpg" loading="lazy" alt="Programa Multiplicadores — animadores culturais em formação" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="mult-img-fb" aria-hidden="true">🌍</div>
+  </div>
+</section>
+
+<!-- ═══ TURISMO INCLUSIVO ═══ -->
+<section id="turismo" aria-labelledby="tur-h">
+  <div class="tur-inner">
+    <div class="tur-img rv">
+      <img src="foto-cultura-turismo.jpg" loading="lazy" alt="Turismo inclusivo e identidade cultural em Sofala" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="tur-img-fb" aria-hidden="true">🌿</div>
+    </div>
+    <div class="tur-txt rv d1">
+      <span class="lbl-teal">Turismo Inclusivo · Sofala</span>
+      <h2 class="tur-h2" id="tur-h">Turismo que <em>Inclui,<br>Empodera e Conserva</em></h2>
+      <p class="tur-p">A ADEMO promove um turismo inclusivo que fortalece a identidade cultural de Sofala, empodera pessoas com deficiência e outros grupos vulneráveis como agentes activos do sector turístico, e integra práticas sustentáveis de conservação ambiental. O turismo não é apenas uma actividade económica — é uma afirmação de identidade e pertença.</p>
+      <div class="tur-highlight">"Promovemos um turismo inclusivo que fortaleça a identidade cultural, empodere pessoas com deficiência e outros grupos vulneráveis e integre práticas sustentáveis e conservação ambiental."</div>
+      <div class="tur-pilares">
+        <div class="tp">
+          <span class="tp-ico" aria-hidden="true">🏛️</span>
+          <div class="tp-h">Identidade Cultural</div>
+          <div class="tp-p">Turismo que valoriza e preserva a cultura, tradições e história de Sofala — tornando as comunidades locais protagonistas da experiência turística.</div>
+        </div>
+        <div class="tp">
+          <span class="tp-ico" aria-hidden="true">♿</span>
+          <div class="tp-h">Acessibilidade Turística</div>
+          <div class="tp-p">Percursos, espaços e experiências turísticas desenhadas para serem acessíveis a pessoas com todos os tipos de deficiência — porque o turismo é um direito universal.</div>
+        </div>
+        <div class="tp">
+          <span class="tp-ico" aria-hidden="true">💼</span>
+          <div class="tp-h">PcD como Agentes Turísticos</div>
+          <div class="tp-p">Formação e integração de pessoas com deficiência como guias, artesãos, artistas e empreendedores do sector turístico — criando emprego inclusivo e sustentável.</div>
+        </div>
+        <div class="tp">
+          <span class="tp-ico" aria-hidden="true">🌱</span>
+          <div class="tp-h">Conservação Ambiental</div>
+          <div class="tp-p">Práticas turísticas que respeitam e conservam o ambiente natural de Sofala — integrando sustentabilidade ecológica como valor central de todas as iniciativas turísticas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AUTONOMIA E SUSTENTABILIDADE ═══ -->
+<section id="autonomia" aria-labelledby="auto-h">
+  <div class="auto-hd rv">
+    <span class="lbl">Sustentabilidade do Programa</span>
+    <h2 id="auto-h">Arte que <em>Sobrevive e Cresce</em> por Si Própria</h2>
+    <p>A ADEMO não quer grupos teatrais dependentes para sempre. O nosso objectivo é criar condições para que cada grupo alcance plena autonomia artística, financeira e organizacional — tornando-se agentes culturais independentes que continuam a transformar as suas comunidades.</p>
+  </div>
+  <div class="auto-grid">
+    <div class="ag bordeau rv">
+      <div class="ag-ico" aria-hidden="true">🏛️</div>
+      <h3 class="ag-h3">Autonomia Artística</h3>
+      <p class="ag-p">Cada grupo aprende a criar as suas próprias peças, baseadas nos problemas reais da sua comunidade — com a sua própria linguagem, personagens e contexto. A ADEMO fornece as ferramentas; a arte pertence ao grupo.</p>
+    </div>
+    <div class="ag amber rv d1">
+      <div class="ag-ico" aria-hidden="true">💰</div>
+      <h3 class="ag-h3">Autonomia Financeira</h3>
+      <p class="ag-p">Apoiamos os grupos a desenvolver modelos de sustentabilidade — desde apresentações pagas e workshops remunerados até parcerias com municípios e organizações que valorizam o teatro comunitário.</p>
+    </div>
+    <div class="ag teal rv d2">
+      <div class="ag-ico" aria-hidden="true">🤝</div>
+      <h3 class="ag-h3">Autonomia Organizacional</h3>
+      <p class="ag-p">Formação em gestão de grupos culturais, planeamento de actividades e comunicação — para que cada grupo possa funcionar como uma organização cultural séria, independente e com visão de futuro.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NÚMEROS ═══ -->
+<section id="nums" aria-labelledby="nums-h">
+  <div class="nums-hd rv">
+    <span class="lbl-amber">Impacto Cultural Mensurável</span>
+    <h2 id="nums-h">Teatro &amp; Cultura <em>em Números</em></h2>
+  </div>
+  <div class="ngrid">
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">👥</div>
+      <div class="nit-n" data-target="15000" data-suffix="">15.000</div>
+      <div class="nit-l">Pessoas alcançadas<br>desde 2019</div>
+    </div>
+    <div class="nit rv d1">
+      <div class="nit-ico" aria-hidden="true">🎭</div>
+      <div class="nit-n" data-target="4" data-suffix="">4</div>
+      <div class="nit-l">Mensagens-chave<br>nas comunidades</div>
+    </div>
+    <div class="nit rv d2">
+      <div class="nit-ico" aria-hidden="true">🌍</div>
+      <div class="nit-n" data-target="6" data-suffix="">6</div>
+      <div class="nit-l">Distritos de Sofala<br>com presença activa</div>
+    </div>
+    <div class="nit rv d3">
+      <div class="nit-ico" aria-hidden="true">🚀</div>
+      <div class="nit-n" data-target="3" data-suffix="">3</div>
+      <div class="nit-l">Grupos autónomos<br>criados</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEPOIMENTOS ═══ -->
+<section id="depoimentos" aria-labelledby="dep-h">
+  <div class="dep-hd rv">
+    <span class="lbl" style="color:var(--ac-lt);">Vozes da Comunidade</span>
+    <h2 id="dep-h">O Teatro que <em>Mudou Algo em Mim</em></h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dc rv">
+      <p class="dc-q">Nunca tinha visto teatro na minha aldeia. Quando vi o espectáculo da ADEMO sobre os direitos das pessoas com deficiência, pela primeira vez senti que havia algo a dizer sobre mim — e que eu tinha o direito de dizer. Depois do espectáculo, falei com a minha família pela primeira vez sobre o que precisava.</p>
+      <div class="dc-au">
+        <div class="dc-av" aria-hidden="true">C</div>
+        <div><div class="dc-name">Celestina J.</div><div class="dc-role">Espectadora e activista · Dondo, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dc rv d1">
+      <p class="dc-q">Faço parte do grupo teatral há três anos. Antes tinha vergonha de falar em público porque uso cadeira de rodas e achava que as pessoas não me levavam a sério. O teatro ensinou-me que a minha voz tem peso — no palco e na vida. Agora sou eu que formo os novos actores.</p>
+      <div class="dc-au">
+        <div class="dc-av" aria-hidden="true">H</div>
+        <div><div class="dc-name">Hélio M.</div><div class="dc-role">Actor e multiplicador · Beira, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dc rv d2">
+      <p class="dc-q">O espectáculo sobre a água e a higiene que a ADEMO fez no bairro mudou o comportamento das pessoas mais do que anos de campanhas de saúde. As mães passaram a lavar as mãos porque viram os filhos a morrer no palco. Isso fica. Os folhetos não ficam.</p>
+      <div class="dc-au">
+        <div class="dc-av" aria-hidden="true">R</div>
+        <div><div class="dc-name">Rosa F.</div><div class="dc-role">Trabalhadora de saúde comunitária · Sofala</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALERIA ═══ -->
+<section id="galeria" aria-labelledby="gal-h">
+  <div class="gal-hd rv">
+    <div><span class="lbl-amber">Galeria</span><h2 id="gal-h">Teatro &amp; Cultura <em>em Imagens</em></h2></div>
+  </div>
+  <div class="ggrid rv d1">
+    <div class="gi" data-label="Espectáculo Comunitário · Sofala">
+      <img src="foto-cultura-teatro.jpg" loading="lazy" alt="Espectáculo de teatro comunitário" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">🎭</div>
+    </div>
+    <div class="gi" data-label="Workshop de Teatro">
+      <img src="foto-cultura-workshop.jpg" loading="lazy" alt="Workshop de teatro participativo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">🎓</div>
+    </div>
+    <div class="gi" data-label="Programa Multiplicadores">
+      <img src="foto-cultura-multiplicadores.jpg" loading="lazy" alt="Multiplicadores em formação" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">🌍</div>
+    </div>
+    <div class="gi" data-label="Turismo Inclusivo · Sofala">
+      <img src="foto-cultura-turismo.jpg" loading="lazy" alt="Turismo inclusivo em Sofala" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">🌿</div>
+    </div>
+    <div class="gi" data-label="Arte e Expressão · PcD">
+      <img src="foto-cultura-arte.jpg" loading="lazy" alt="Expressão artística inclusiva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">🎨</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section id="cta-final" aria-label="Apoiar teatro e cultura inclusiva">
+  <div class="cta-inner">
+    <span class="cta-lbl rv">A Arte Transforma</span>
+    <h2 class="cta-h2 rv d1">Cada Espectáculo é uma Semente.<br><em>Ajude-nos a Plantá-la.</em></h2>
+    <p class="cta-p rv d2">Com o seu apoio, chegamos a mais comunidades, formamos mais multiplicadores, produzimos mais espectáculos e construímos um turismo inclusivo que coloca pessoas com deficiência no centro — como artistas, guias, empreendedores e protagonistas da sua própria história.</p>
+    <div class="cta-btns rv d3">
+      <a href="mailto:ademoorg@gmail.com" class="btn-white">Apoiar este Programa <span class="arr">→</span></a>
+      <a href="transparencia.html" class="btn-ghost">Ver Relatórios de Impacto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NAV ÁREAS ═══ -->
+<nav id="nav-areas" aria-label="Todas as áreas ADEMO">
+  <span class="na-hd">Explorar Todas as Áreas</span>
+  <div class="na-grid">
+    <a href="saude.html" class="na-item"><span class="na-ico">🏥</span><span class="na-lbl">Saúde</span></a>
+    <a href="educacao.html" class="na-item"><span class="na-ico">📚</span><span class="na-lbl">Educação</span></a>
+    <a href="reabilitacao.html" class="na-item"><span class="na-ico">♿</span><span class="na-lbl">Reabilitação</span></a>
+    <a href="genero.html" class="na-item"><span class="na-ico">⚤</span><span class="na-lbl">Género</span></a>
+    <a href="futebol.html" class="na-item"><span class="na-ico">⚽</span><span class="na-lbl">Futebol</span></a>
+    <a href="climatica.html" class="na-item"><span class="na-ico">🌿</span><span class="na-lbl">Clima</span></a>
+    <a href="economico.html" class="na-item"><span class="na-ico">💜</span><span class="na-lbl">Económico</span></a>
+    <a href="cultura.html" class="na-item active" aria-current="page"><span class="na-ico">🎭</span><span class="na-lbl">Teatro</span></a>
+  </div>
+</nav>
+</main>
+
+<footer role="contentinfo">
+  <div class="ftgrid">
+    <div>
+      <div class="ftnm">ADEMO</div>
+      <p class="ftdc">Associação dos Deficientes Moçambicanos — desde 1990, promovendo dignidade, direitos e inclusão em todo o país.</p>
+      <div class="ftsoc">
+        <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="ftsi" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="ftsi" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="mailto:ademoorg@gmail.com" class="ftsi" aria-label="E-mail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <nav class="ftcol"><h4>Navegação</h4><a href="index.html">Home</a><a href="sobre.html">Sobre Nós</a><a href="index.html#areas">Áreas</a><a href="transparencia.html">Transparência</a><a href="index.html#contactos">Contactos</a></nav>
+    <nav class="ftcol"><h4>O Que Fazemos</h4><a href="saude.html">Saúde</a><a href="educacao.html">Educação</a><a href="genero.html">Género</a><a href="futebol.html">Futebol</a><a href="climatica.html">Clima</a><a href="economico.html">Económico</a><a href="cultura.html">Teatro</a></nav>
+    <div class="ftcol"><h4>Contacto</h4><a href="mailto:ademoorg@gmail.com">ademoorg@gmail.com</a><a href="tel:+258849371782">(+258) 849 371 782</a><a href="https://www.ademosofala.site" target="_blank">www.ademosofala.site</a></div>
+  </div>
+  <div class="ftbot">
+    <span>© 2025 <span class="ftgo">ADEMO</span>. Todos os direitos reservados.</span>
+    <span>Feito com dedicação para um Moçambique inclusivo</span>
+  </div>
+</footer>
+
+<script>
+(function(){var h=document.getElementById('hdr');function s(){h.classList.toggle('s',scrollY>60);h.classList.toggle('t',scrollY<=60);}window.addEventListener('scroll',s,{passive:true});s();})();
+(function(){var hbg=document.querySelector('.hbg'),nav=document.getElementById('mainnav');if(!hbg||!nav)return;hbg.addEventListener('click',function(){var o=hbg.getAttribute('aria-expanded')==='true';hbg.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';});});})();
+(function(){var bg=document.getElementById('phbg');if(!bg)return;bg.classList.add('loaded');window.addEventListener('scroll',function(){bg.style.transform='translateY('+scrollY*.22+'px) scale(1.04)';},{passive:true});})();
+(function(){if(!('IntersectionObserver' in window))return;document.body.classList.add('js-rdy');var obs=new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});})();
+(function(){function run(el){var raw=el.dataset.target,tgt=parseInt(raw)||0,sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);var v=Math.floor(e*tgt);el.textContent=(tgt>=1000?v.toLocaleString('pt-PT'):v)+sfx;if(p<1)requestAnimationFrame(step);else el.textContent=(tgt>=1000?tgt.toLocaleString('pt-PT'):tgt)+sfx;}requestAnimationFrame(step);}document.querySelectorAll('[data-target]').forEach(function(el){new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){run(e.target);o.unobserve(e.target);}});},{threshold:.5}).observe(el);});})();
+</script>
+</body>
+</html>

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADEMO &mdash; Associa&ccedil;&atilde;o dos Deficientes Mo&ccedil;ambicanos</title>
+<meta name="description" content="A ADEMO promove os direitos, inclus&atilde;o e dignidade das pessoas com defici&ecirc;ncia em Mo&ccedil;ambique desde 1990.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CC0000;--red-dk:#a00000;
+  --gold:#C9993A;--gold-lt:#e5c07a;--gold-dim:rgba(201,153,58,.18);
+  --dark:#1A1008;--dark2:#2d1f0e;
+  --text:#1e1408;--muted:#5c4e38;
+  --white:#fff;--cream:#F8F3EC;--hh:80px;
+}
+html{font-size:18px;scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.75;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.skip{position:absolute;top:-120px;left:1rem;background:var(--red);color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:9999;transition:top .2s;font-size:.85rem;}
+.skip:focus{top:1rem;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+
+/* HEADER */
+#hdr{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--hh);display:flex;align-items:center;padding:0 5vw;transition:background .4s,box-shadow .4s;}
+#hdr.t{background:transparent;}
+#hdr.s{background:rgba(26,16,8,.97);box-shadow:0 2px 28px rgba(0,0,0,.45);backdrop-filter:blur(14px);}
+.hin{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.logo{display:flex;align-items:center;gap:.65rem;}
+.logo-img{height:46px;width:auto;object-fit:contain;flex-shrink:0;}
+.logo-fall{display:none;width:46px;height:46px;border-radius:50%;background:var(--red);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;flex-shrink:0;}
+.logo-w{display:flex;flex-direction:column;line-height:1.1;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;letter-spacing:.08em;}
+.logo-t{font-size:.54rem;color:var(--gold-lt);letter-spacing:.16em;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:1.6rem;}
+nav>a,.dd>a{color:rgba(255,255,255,.8);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:2px;transition:color .3s;}
+nav>a::after,.dd>a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav>a:hover,.dd>a:hover{color:#fff;}
+nav>a:hover::after,.dd>a:hover::after{width:100%;}
+.dd{position:relative;}
+.ddm{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--dark);border:1px solid var(--gold-dim);min-width:240px;padding:.5rem 0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
+.dd:hover .ddm,.dd:focus-within .ddm{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.ddm a{display:block;padding:.55rem 1.3rem;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.7);text-transform:uppercase;transition:color .2s,background .2s;}
+.ddm a:hover{color:var(--gold-lt);background:rgba(201,153,58,.08);}
+.navcta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.25rem;border-radius:2px;transition:background .3s!important;}
+.navcta:hover{background:var(--red-dk)!important;}
+.navcta::after{display:none!important;}
+.hbg{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:1001;}
+.hbg span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.hbg[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hbg[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* HERO */
+#hero{position:relative;height:100vh;min-height:620px;overflow:hidden;}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 1.2s ease;}
+.slide.on{opacity:1;}
+#hero .slide:first-child{opacity:1;}
+.js-rdy #hero .slide:first-child:not(.on){opacity:0;}
+.sbg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);transition:transform 9s ease;}
+.slide.on .sbg,#hero .slide:first-child .sbg{transform:scale(1);}
+.sov{position:absolute;inset:0;background:linear-gradient(158deg,rgba(26,16,8,.84) 0%,rgba(26,16,8,.5) 55%,rgba(180,0,0,.18) 100%);}
+.sc{position:relative;z-index:2;text-align:center;padding:2rem 6vw;max-width:960px;}
+.seye{display:inline-block;font-size:.67rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:1.1rem;border-bottom:1px solid var(--gold);padding-bottom:.4rem;}
+.ssub{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.6vw,1.9rem);font-weight:300;color:var(--gold-lt);margin-bottom:.3rem;}
+.sh1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,7vw,5rem);font-weight:300;color:#fff;line-height:1.04;letter-spacing:-.02em;margin-bottom:1.4rem;}
+.sh1 em{font-style:italic;color:var(--gold-lt);}
+.sp{font-size:clamp(.94rem,1.4vw,1.05rem);color:rgba(255,255,255,.72);max-width:640px;margin:0 auto;line-height:1.78;}
+.cdots{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:.75rem;z-index:10;}
+.cdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);border:none;cursor:pointer;padding:0;transition:background .3s,transform .3s;}
+.cdot.on{background:var(--gold);transform:scale(1.4);}
+.scue{position:absolute;bottom:2.5rem;right:5vw;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.38);font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;z-index:10;pointer-events:none;}
+.sline{width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--gold));animation:sla 2.2s ease-in-out infinite;}
+@keyframes sla{0%,100%{opacity:.3;transform:scaleY(.5) translateY(-8px);}50%{opacity:1;transform:scaleY(1);}}
+
+/* UTILITARIOS */
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem;display:block;}
+.h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:300;line-height:1.1;}
+.h2 em{font-style:italic;color:var(--red);}
+.sub{margin-top:.85rem;font-size:1rem;color:var(--muted);max-width:560px;line-height:1.78;}
+/* CONTEUDO SEMPRE VISIVEL - JS activa animacoes progressivas */
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease;}
+.js-rdy .rv{opacity:0;transform:translateY(22px);}
+.js-rdy .rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.15s;}.d2{transition-delay:.3s;}.d3{transition-delay:.45s;}
+.arr{display:inline-block;transition:transform .3s;}
+.btn-r{display:inline-flex;align-items:center;gap:.6rem;background:var(--red);color:#fff;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:500;transition:background .3s,transform .2s;}
+.btn-r:hover{background:var(--red-dk);transform:translateY(-2px);}
+.btn-r:hover .arr{transform:translateX(5px);}
+.btn-g{display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:1px solid rgba(204,0,0,.35);color:var(--red);padding:.7rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;border-radius:2px;transition:background .3s,color .3s,border-color .3s;}
+.btn-g:hover{background:var(--red);border-color:var(--red);color:#fff;}
+.btn-g:hover .arr{transform:translateX(5px);}
+.btn-go{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid var(--gold);color:var(--gold-lt);padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;white-space:nowrap;transition:background .3s,color .3s;}
+.btn-go:hover{background:var(--gold);color:var(--dark);}
+.btn-go:hover .arr{transform:translateX(5px);}
+
+/* SOBRE */
+#sobre{background:var(--white);padding:7rem 5vw;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.sb-foto{position:relative;}
+.sb-foto img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border-radius:150px 20px 150px 20px;box-shadow:0 40px 90px rgba(26,16,8,.22);transition:border-radius .7s ease;}
+.sb-foto img:hover{border-radius:20px 150px 20px 150px;}
+.sb-ph{display:none;width:100%;aspect-ratio:4/5;border-radius:150px 20px 150px 20px;background:linear-gradient(145deg,#c8a87a 0%,#7a5230 100%);flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:rgba(255,255,255,.3);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;}
+.badge{position:absolute;top:-1.2rem;right:-1.2rem;width:120px;height:120px;border-radius:50%;background:var(--red);box-shadow:0 8px 28px rgba(204,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:2;pointer-events:none;}
+.badge .bano{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;line-height:1;}
+.badge .blbl{font-size:.4rem;letter-spacing:.12em;text-transform:uppercase;opacity:.85;text-align:center;padding:0 .5rem;margin-top:.2rem;}
+.sb-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.sb-ano{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,4.8rem);font-weight:300;color:var(--red);line-height:1;letter-spacing:-.02em;}
+.sb-ano small{display:block;font-family:'DM Sans',sans-serif;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:.25rem;}
+.sb-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.45rem,2.8vw,2.2rem);font-weight:300;line-height:1.2;color:var(--dark);}
+.sb-h2 em{font-style:italic;color:var(--red);}
+.sb-p{font-size:1rem;color:var(--muted);line-height:1.85;}
+
+/* BLOCO DE TRANSICAO */
+#transicao{background:var(--cream);padding:5rem 5vw;display:grid;grid-template-columns:auto 1fr;gap:4vw;align-items:center;border-top:1px solid rgba(201,153,58,.15);border-bottom:1px solid rgba(201,153,58,.15);}
+.tr-foto-wrap{position:relative;flex-shrink:0;}
+.tr-foto{width:clamp(160px,20vw,270px);height:clamp(160px,20vw,270px);border-radius:50%;object-fit:cover;display:block;border:5px solid var(--gold);box-shadow:0 0 0 12px rgba(201,153,58,.12),0 24px 60px rgba(26,16,8,.18);transition:transform .7s ease;}
+.tr-foto:hover{transform:scale(1.04);}
+.tr-foto-fb{display:none;width:clamp(160px,20vw,270px);height:clamp(160px,20vw,270px);border-radius:50%;background:linear-gradient(145deg,#d4b07a 0%,#8a6238 100%);border:5px solid var(--gold);box-shadow:0 0 0 12px rgba(201,153,58,.12),0 24px 60px rgba(26,16,8,.18);align-items:center;justify-content:center;font-size:3rem;opacity:.22;}
+.tr-foto-wrap::before{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px dashed rgba(201,153,58,.32);animation:trSpin 24s linear infinite;}
+@keyframes trSpin{to{transform:rotate(360deg);}}
+.tr-txt{display:flex;flex-direction:column;gap:1.2rem;}
+.tr-linha{display:flex;align-items:center;gap:1rem;margin-bottom:.1rem;}
+.tr-linha::before{content:'';flex-shrink:0;width:40px;height:2px;background:var(--gold);border-radius:2px;}
+.tr-frase{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.8vw,2.4rem);font-weight:300;color:var(--dark);line-height:1.18;letter-spacing:-.01em;}
+.tr-frase em{font-style:italic;color:var(--red);}
+.tr-sub{font-size:.95rem;color:var(--muted);max-width:480px;line-height:1.8;}
+.tr-stats{display:flex;flex-wrap:wrap;gap:2rem;margin-top:.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,153,58,.2);}
+.tr-sn{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--red);line-height:1;}
+.tr-sl{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:.2rem;}
+
+/* AREAS */
+#areas{background:var(--white);}
+.areas-intro{padding:5.5rem 5vw 2.5rem;}
+.arow{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(30,20,8,.08);}
+.arow:last-child{border-bottom:1px solid rgba(30,20,8,.08);}
+.arow:hover{background:rgba(248,245,240,.7);}
+.arow:nth-child(even) .aph{order:2;}
+.arow:nth-child(even) .abod{order:1;}
+.aph{position:relative;min-height:420px;overflow:hidden;background:#d8cfc4;}
+.aph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s ease;}
+.arow:hover .aph img{transform:scale(1.04);}
+.aphfb{width:100%;height:100%;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;background:#cec5b8;}
+.aphfb span{font-size:2.8rem;opacity:.22;}
+.aphfb small{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(30,20,8,.28);}
+.abod{padding:3.5rem;display:flex;flex-direction:column;justify-content:center;gap:1rem;}
+.anum{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:rgba(201,153,58,.14);line-height:1;font-weight:300;}
+.atag{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(201,153,58,.28);padding-bottom:3px;display:inline-block;}
+.ah3{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--dark);font-weight:400;line-height:1.2;}
+.ap{font-size:.97rem;color:var(--muted);line-height:1.82;}
+
+/* CABECALHO ADVOCACIA */
+#adv-header{background:var(--dark2);padding:4.5rem 5vw 3.5rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.adv-hd-txt{display:flex;flex-direction:column;gap:.6rem;}
+.adv-hd-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.2vw,2.5rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.adv-hd-title em{font-style:italic;color:var(--gold-lt);}
+.adv-hd-sub{font-size:.9rem;color:rgba(255,255,255,.45);max-width:520px;line-height:1.7;}
+
+/* BANNER ADVOCACIA */
+#advocacia{position:relative;height:520px;overflow:hidden;background:var(--dark);}
+.adv-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.3s ease;z-index:0;}
+.adv-bg.on{opacity:1;}
+#advocacia .adv-bg:first-of-type{opacity:1;}
+.js-rdy #advocacia .adv-bg:first-of-type:not(.on){opacity:0;}
+.adv-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(10,5,2,.93) 0%,rgba(10,5,2,.70) 50%,rgba(10,5,2,.15) 100%);}
+.adv-content{position:absolute;inset:0;z-index:2;display:flex;align-items:center;padding:0 8vw;}
+.adv-block{position:absolute;left:8vw;right:42%;display:flex;flex-direction:column;gap:1.2rem;opacity:0;transform:translateX(36px);transition:opacity .65s ease,transform .65s ease;pointer-events:none;}
+.adv-block.on{opacity:1;transform:translateX(0);pointer-events:auto;transition-delay:.3s;}
+#advocacia .adv-content .adv-block:first-child{opacity:1;transform:translateX(0);pointer-events:auto;}
+.js-rdy #advocacia .adv-content .adv-block:first-child:not(.on){opacity:0;transform:translateX(36px);pointer-events:none;}
+.adv-tag{display:inline-block;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);border-left:3px solid var(--gold);padding-left:.75rem;line-height:1.5;}
+.adv-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.75rem,3.8vw,3rem);font-weight:300;color:#fff;line-height:1.1;letter-spacing:-.01em;}
+.adv-title em{font-style:italic;color:var(--gold-lt);}
+.adv-desc{font-size:.95rem;color:rgba(255,255,255,.62);max-width:460px;line-height:1.82;}
+/* BOTAO ADVOCACY + ESTUDO: estilo unificado - outline dourado */
+.adv-cta,.ev-cta{
+  display:inline-flex;align-items:center;gap:.6rem;
+  width:fit-content;
+  background:transparent;
+  border:1px solid rgba(201,153,58,.55);
+  color:var(--gold-lt);
+  padding:.72rem 1.7rem;
+  font-family:'DM Sans',sans-serif;font-size:.75rem;
+  letter-spacing:.14em;text-transform:uppercase;
+  border-radius:2px;font-weight:500;
+  transition:background .3s,border-color .3s,color .3s;
+  cursor:pointer;
+}
+.adv-cta:hover,.ev-cta:hover{background:var(--gold);border-color:var(--gold);color:var(--dark);}
+.adv-cta span,.ev-cta span{display:inline-block;transition:transform .3s;}
+.adv-cta:hover span,.ev-cta:hover span{transform:translateX(5px);}
+.adv-progress{position:absolute;bottom:0;left:0;height:3px;width:0%;background:var(--gold);z-index:5;}
+.adv-nav{position:absolute;bottom:1.8rem;right:8vw;display:flex;align-items:center;gap:.7rem;z-index:4;}
+.adv-btn{width:40px;height:40px;border:1px solid rgba(201,153,58,.4);background:rgba(10,5,2,.55);color:var(--gold-lt);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:2px;transition:background .3s,border-color .3s;}
+.adv-btn:hover{background:var(--red);border-color:var(--red);}
+.adv-dots{display:flex;gap:.55rem;align-items:center;}
+.adv-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.22);border:none;cursor:pointer;padding:0;transition:background .3s,transform .3s;}
+.adv-dot.on{background:var(--gold);transform:scale(1.45);}
+
+/* ══════════════════════════════════════════
+   ESTUDO DE EVIDENCIA - "Research Highlight"
+   Fundo diferenciado: escuro quente + borda
+   dourada lateral esquerda de 4px
+   Linha divisora dourada no topo do bloco
+   Indicadores em grelha 2x2 com card style
+   Botao unificado com banner advocacy
+   ══════════════════════════════════════════ */
+#evidencia{
+  background:#1c1408;
+  border-left:4px solid var(--gold);
+  padding:7rem 5vw;
+  position:relative;
+  overflow:hidden;
+}
+/* Brilho ambiental dourado subtil no canto superior direito */
+#evidencia::before{
+  content:'';position:absolute;top:-100px;right:-100px;
+  width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,153,58,.09) 0%,transparent 68%);
+  pointer-events:none;
+}
+/* Marcador de pesquisa no canto superior esquerdo */
+#evidencia::after{
+  content:'"';
+  position:absolute;top:2rem;left:5vw;
+  font-family:'Cormorant Garamond',serif;
+  font-size:12rem;line-height:1;
+  color:rgba(201,153,58,.06);
+  pointer-events:none;
+  font-style:italic;
+  font-weight:600;
+}
+.ev-divider{
+  width:56px;height:3px;
+  background:linear-gradient(to right,var(--gold),rgba(201,153,58,.2));
+  border-radius:2px;margin-bottom:3.5rem;
+}
+.ev-inner{
+  max-width:960px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5vw;align-items:start;
+}
+.ev-left{display:flex;flex-direction:column;gap:1.4rem;}
+.ev-titulo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.6rem,3vw,2.5rem);
+  font-weight:300;color:var(--cream);
+  line-height:1.15;letter-spacing:-.01em;
+}
+.ev-titulo em{font-style:italic;color:var(--gold-lt);}
+.ev-desc{
+  font-size:.97rem;color:rgba(255,255,255,.55);
+  line-height:1.87;max-width:480px;
+}
+.ev-right{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.ev-stat{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(201,153,58,.16);
+  border-radius:6px;padding:1.6rem 1.4rem;
+  display:flex;flex-direction:column;gap:.5rem;
+  position:relative;
+  transition:background .3s,border-color .3s,transform .3s;
+}
+.ev-stat::before{
+  content:'';display:block;width:28px;height:2px;
+  background:var(--gold);border-radius:2px;margin-bottom:.3rem;
+}
+.ev-stat:hover{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(201,153,58,.4);
+  transform:translateY(-3px);
+}
+.ev-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:300;color:var(--gold-lt);
+  line-height:1;letter-spacing:-.02em;
+}
+.ev-nl{
+  font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.42);line-height:1.4;
+}
+
+/* ATIVIDADES */
+#atividades{background:var(--dark);padding:6rem 5vw;}
+.atvhd{margin-bottom:3rem;}
+.atvhd .h2{color:var(--cream);}
+.atvhd .sub{color:rgba(255,255,255,.44);}
+.atvgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+.acard{position:relative;height:560px;border-radius:4px;overflow:hidden;background:#0f0a04;cursor:default;}
+.abg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .75s ease;}
+.acard:hover .abg{transform:scale(1.05);}
+.aov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,4,0,.97) 0%,rgba(8,4,0,.55) 45%,rgba(8,4,0,.06) 100%);transition:background .4s;}
+.acard:hover .aov{background:linear-gradient(to top,rgba(8,4,0,.98) 0%,rgba(8,4,0,.68) 52%,rgba(8,4,0,.18) 100%);}
+.abody{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.8rem;z-index:2;}
+.actag{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:.6rem;}
+.acnam{font-family:'Cormorant Garamond',serif;font-size:1.75rem;color:#fff;font-weight:400;line-height:1.2;margin-bottom:.45rem;}
+.acdesc{font-size:.87rem;color:rgba(255,255,255,.6);line-height:1.7;max-height:0;overflow:hidden;opacity:0;transition:max-height .5s ease,opacity .4s;}
+.acard:hover .acdesc{max-height:120px;opacity:1;}
+.acword{font-family:'Cormorant Garamond',serif;font-size:2.9rem;color:var(--gold);font-style:italic;font-weight:300;line-height:1;transform:translateY(6px);opacity:.65;transition:transform .45s,opacity .45s;}
+.acard:hover .acword{transform:translateY(0);opacity:1;}
+
+/* IMPACTOS */
+#impacto{background:var(--dark);border-top:1px solid rgba(201,153,58,.1);padding:5.5rem 5vw 6.5rem;}
+.imp-hd{text-align:center;margin-bottom:3.5rem;}
+.imp-hd .lbl{display:block;text-align:center;}
+.imp-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.imp-hd h2 em{font-style:italic;color:var(--gold-lt);}
+.imp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.imp-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:2.25rem 2rem;display:flex;flex-direction:column;gap:.9rem;position:relative;overflow:hidden;transition:border-color .35s,background .35s,transform .3s;}
+.imp-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.imp-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.07);}
+.imp-card:hover::after{transform:scaleX(1);}
+.imp-card.edu{color:#3fb8f5;}.imp-card.edu:hover{border-color:rgba(63,184,245,.35);}
+.imp-card.sau{color:#2ee8a0;}.imp-card.sau:hover{border-color:rgba(46,232,160,.35);}
+.imp-card.mob{color:#b09fff;}.imp-card.mob:hover{border-color:rgba(176,159,255,.35);}
+.imp-card.cli{color:#5ddd6b;}.imp-card.cli:hover{border-color:rgba(93,221,107,.35);}
+.imp-card.gen{color:#f97ec0;}.imp-card.gen:hover{border-color:rgba(249,126,192,.35);}
+.imp-card.des{color:#f0c060;}.imp-card.des:hover{border-color:rgba(240,192,96,.35);}
+.imp-ico{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.07);flex-shrink:0;}
+.imp-ico svg{width:22px;height:22px;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke:currentColor;}
+.imp-num{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,4.2rem);font-weight:300;color:currentColor;line-height:1;letter-spacing:-.02em;}
+.imp-area{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.imp-desc{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.72;border-top:1px solid rgba(255,255,255,.07);padding-top:.85rem;}
+
+/* ODS */
+#ods{background:var(--white);padding:6rem 5vw;}
+.ods-intro{max-width:720px;margin-bottom:3rem;}
+.odsq{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,2.4vw,1.75rem);color:var(--muted);font-weight:300;font-style:italic;line-height:1.45;margin-top:1.1rem;border-left:3px solid var(--gold);padding-left:1.25rem;}
+.odsgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:.9rem;}
+.odsit{aspect-ratio:1;border-radius:6px;overflow:hidden;position:relative;cursor:default;transition:transform .3s,box-shadow .3s;}
+.odsit:hover{transform:translateY(-6px) scale(1.06);box-shadow:0 18px 44px rgba(0,0,0,.22);z-index:2;}
+.odsit img{width:100%;height:100%;object-fit:cover;display:block;}
+.o1{background:#E5243B;}.o3{background:#4C9F38;}.o4{background:#C5192D;}.o5{background:#FF3A21;}.o10{background:#DD1367;}.o11{background:#FD9D24;}.o13{background:#3F7E44;}.o16{background:#00689D;}.o17{background:#19486A;}
+.odslb{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.4rem;text-align:center;}
+.odsn{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:600;color:#fff;line-height:1;}
+.odst{font-size:.5rem;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.88);margin-top:.2rem;line-height:1.3;}
+
+/* TRANSPARENCIA */
+#transp{background:var(--dark2);padding:4.5rem 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem;}
+.treye{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.6rem;}
+.trh{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.3rem);font-weight:300;color:var(--cream);line-height:1.2;}
+
+/* PARCEIROS */
+#parceiros{background:var(--dark);padding:5rem 0;}
+.pachd{text-align:center;margin-bottom:2.5rem;padding:0 5vw;}
+.pachd .h2{color:var(--cream);font-size:1.75rem;}
+.slwrap{overflow:hidden;position:relative;}
+.slwrap::before,.slwrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;}
+.slwrap::before{left:0;background:linear-gradient(to right,var(--dark),transparent);}
+.slwrap::after{right:0;background:linear-gradient(to left,var(--dark),transparent);}
+.sltrack{display:flex;gap:1.4rem;padding:.75rem 0;animation:mslide 28s linear infinite;width:max-content;align-items:center;}
+.sltrack:hover{animation-play-state:paused;}
+@keyframes mslide{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.plogo{width:180px;height:160px;flex-shrink:0;background:#fff;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:box-shadow .3s,transform .3s;}
+.plogo:hover{box-shadow:0 10px 32px rgba(0,0,0,.4);transform:translateY(-4px);}
+.plogo img{width:100%;height:100%;object-fit:contain;padding:1.1rem 1.3rem;display:block;transition:transform .35s;}
+.plogo:hover img{transform:scale(1.06);}
+
+/* CONTACTOS */
+#contactos{background:var(--white);display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start;padding:6rem 5vw;}
+.ctdet{display:flex;align-items:flex-start;gap:1rem;margin-top:1.8rem;}
+.ctico{width:38px;height:38px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;flex-shrink:0;margin-top:.1rem;}
+.ctlb{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;}
+.ctval{font-size:1rem;color:var(--text);line-height:1.72;}
+.ctval a{color:var(--red);}
+.ctval a:hover{text-decoration:underline;}
+.socrow{display:flex;gap:.75rem;margin-top:2.5rem;flex-wrap:wrap;}
+.socbtn{display:inline-flex;align-items:center;gap:.5rem;background:var(--dark);color:rgba(255,255,255,.7);padding:.6rem 1.1rem;border-radius:3px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;transition:background .3s,color .3s;}
+.socbtn:hover{background:var(--red);color:#fff;}
+.socbtn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.fg{margin-bottom:1.2rem;}
+.fg label{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;}
+.fg input,.fg textarea{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(30,20,8,.2);padding:.75rem 0;font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--text);outline:none;resize:none;transition:border-color .25s;}
+.fg input:focus,.fg textarea:focus{border-bottom-color:var(--red);}
+.fg textarea{min-height:120px;}
+.btnsend{background:var(--red);color:#fff;border:none;padding:1rem 2.5rem;font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:background .3s,transform .2s;}
+.btnsend:hover{background:var(--red-dk);transform:translateY(-1px);}
+
+/* FOOTER */
+footer{background:var(--dark);padding:4rem 5vw 2rem;}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.ftnm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:.65rem;}
+.ftdc{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ftcol h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.ftcol a{display:block;font-size:.85rem;color:rgba(255,255,255,.42);margin-bottom:.48rem;transition:color .2s;}
+.ftcol a:hover{color:rgba(255,255,255,.8);}
+.ftsoc{display:flex;gap:.6rem;margin-top:1.4rem;}
+.ftsi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.ftsi:hover{background:var(--red);}
+.ftsi svg{width:14px;height:14px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ftsi:hover svg{stroke:#fff;}
+.ftbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.8rem;color:rgba(255,255,255,.22);}
+.ftgo{color:var(--gold);}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.atvgrid{grid-template-columns:repeat(2,1fr);}.imp-grid{grid-template-columns:repeat(2,1fr);}.ftgrid{grid-template-columns:1fr 1fr;}.ev-inner{grid-template-columns:1fr;}}
+@media(max-width:900px){
+  #sobre{grid-template-columns:1fr;gap:3rem;}.sb-foto{max-width:460px;margin:0 auto;}.badge{top:-.8rem;right:-.8rem;width:90px;height:90px;}.badge .bano{font-size:1.5rem;}
+  .arow{grid-template-columns:1fr;}.arow:nth-child(even) .aph,.arow:nth-child(even) .abod{order:unset;}.aph,.aphfb{min-height:280px;}
+  #contactos{grid-template-columns:1fr;gap:3rem;}#advocacia{height:auto;min-height:460px;padding-bottom:4.5rem;}.adv-block{right:5%;}
+  #transicao{grid-template-columns:1fr;justify-items:center;text-align:center;gap:2.5rem;}.tr-linha{justify-content:center;}.tr-stats{justify-content:center;}.tr-sub{margin:0 auto;}
+  .ev-right{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .hbg{display:flex;}
+  nav.desk{position:fixed;inset:0;background:var(--dark);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.18,1);z-index:999;padding:2rem 8vw;}
+  nav.desk.open{transform:translateX(0);}
+  nav.desk>a,.desk .dd>a{font-size:1.2rem;letter-spacing:.04em;}
+  .ddm{position:static;opacity:1;pointer-events:all;transform:none;background:transparent;border:none;padding:0;}.ddm a{padding:.35rem 0;font-size:.9rem;}
+  .imp-grid{grid-template-columns:1fr;}.atvgrid{grid-template-columns:1fr 1fr;}.acard{height:420px;}
+  .odsgrid{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));}.ftgrid{grid-template-columns:1fr;gap:2rem;}.abod{padding:2rem;}
+  #transp{flex-direction:column;align-items:flex-start;}#advocacia{min-height:420px;}.adv-block{left:6vw;right:6vw;}.adv-nav{right:6vw;}
+  .plogo{width:140px;height:120px;}#adv-header{padding:3rem 5vw 2.5rem;flex-direction:column;}#transicao{padding:3.5rem 5vw;}
+  .ev-right{grid-template-columns:1fr 1fr;}#evidencia{border-left:none;border-top:4px solid var(--gold);}
+  #evidencia::after{font-size:7rem;}
+}
+@media(max-width:480px){.atvgrid{grid-template-columns:1fr;}.acard{height:380px;}.imp-grid{grid-template-columns:1fr;}.plogo{width:120px;height:110px;}.ev-right{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar para o conte&uacute;do principal</a>
+
+<header id="hdr" class="t" role="banner">
+<div class="hin">
+  <a href="index.html" class="logo" aria-label="ADEMO">
+    <img class="logo-img" src="logo-ademo.png" alt="Log&oacute;tipo ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="logo-fall" aria-hidden="true">A</div>
+    <div class="logo-w"><span class="logo-n">ADEMO</span><span class="logo-t">Mo&ccedil;ambique &middot; Desde 1990</span></div>
+  </a>
+  <button class="hbg" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainnav"><span></span><span></span><span></span></button>
+  <nav id="mainnav" class="desk" role="navigation" aria-label="Menu principal">
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre N&oacute;s</a>
+    <div class="dd">
+      <a href="#areas" aria-haspopup="true">&Aacute;reas &#9660;</a>
+      <div class="ddm" role="menu">
+        <a href="saude.html" role="menuitem">Sa&uacute;de Sexual e Reprodutiva</a>
+        <a href="educacao.html" role="menuitem">Educa&ccedil;&atilde;o Inclusiva</a>
+        <a href="reabilitacao.html" role="menuitem">Reabilita&ccedil;&atilde;o</a>
+        <a href="genero.html" role="menuitem">Equidade de G&eacute;nero</a>
+        <a href="futebol.html" role="menuitem">Futebol Inclusivo</a>
+        <a href="climatica.html" role="menuitem">Resili&ecirc;ncia Clim&aacute;tica</a>
+      </div>
+    </div>
+    <a href="transparencia.html">Transpar&ecirc;ncia</a>
+    <a href="#contactos">Contactos</a>
+    <a href="mailto:ademoorg@gmail.com" class="navcta">Apoie-nos</a>
+  </nav>
+</div>
+</header>
+
+<main id="main">
+
+<section id="hero" aria-label="Destaques">
+  <div class="slide on">
+    <div class="sbg" style="background-image:url('hero-climatica.jpg');background-color:#0d2010"></div>
+    <div class="sov"></div>
+    <div class="sc"><span class="seye">Justi&ccedil;a Clim&aacute;tica &middot; Mo&ccedil;ambique</span><div class="ssub">O Clima Afeta Todos &mdash;</div><h1 class="sh1"><em>PcD Primeiro</em></h1><p class="sp">As pessoas com defici&ecirc;ncia s&atilde;o as mais vulner&aacute;veis &agrave;s altera&ccedil;&otilde;es clim&aacute;ticas. A ADEMO exige que a resposta clim&aacute;tica seja inclusiva, acess&iacute;vel e justa para todos.</p></div>
+  </div>
+  <div class="slide">
+    <div class="sbg" style="background-image:url('hero-saude.jpg');background-color:#1A1008"></div>
+    <div class="sov"></div>
+    <div class="sc"><span class="seye">Sa&uacute;de e Direitos &middot; Sofala</span><div class="ssub">Sa&uacute;de Inclusiva &mdash;</div><h1 class="sh1"><em>Dignidade Sem Barreiras</em></h1><p class="sp">O acesso &agrave; sa&uacute;de n&atilde;o pode ser um obst&aacute;culo. Lutamos por servi&ccedil;os m&eacute;dicos acess&iacute;veis e humanizados para todas as pessoas com defici&ecirc;ncia.</p></div>
+  </div>
+  <div class="slide">
+    <div class="sbg" style="background-image:url('hero-educacao.jpg');background-color:#1A1008"></div>
+    <div class="sov"></div>
+    <div class="sc"><span class="seye">Educa&ccedil;&atilde;o Inclusiva &middot; Sofala</span><div class="ssub">Educa&ccedil;&atilde;o para Todos &mdash;</div><h1 class="sh1"><em>Potencial Ilimitado</em></h1><p class="sp">Uma sala de aula sem barreiras constr&oacute;i um futuro de autonomia. Garantimos que nenhuma crian&ccedil;a seja deixada para tr&aacute;s.</p></div>
+  </div>
+  <div class="slide">
+    <div class="sbg" style="background-image:url('hero-genero.jpg');background-color:#1A1008"></div>
+    <div class="sov"></div>
+    <div class="sc"><span class="seye">G&eacute;nero &amp; Defici&ecirc;ncia &middot; Sofala</span><div class="ssub">Igualdade &mdash;</div><h1 class="sh1"><em>Empoderamento Feminino</em></h1><p class="sp">Mulheres com defici&ecirc;ncia enfrentam duplas barreiras. A ADEMO trabalha para garantir voz, vez e lideran&ccedil;a feminina em Sofala.</p></div>
+  </div>
+  <div class="cdots" role="tablist">
+    <button class="cdot on" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+    <button class="cdot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+    <button class="cdot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+    <button class="cdot" role="tab" aria-selected="false" aria-label="Slide 4"></button>
+  </div>
+  <div class="scue" aria-hidden="true"><span>Explorar</span><div class="sline"></div></div>
+</section>
+
+<section id="sobre" aria-labelledby="sb-h">
+  <div class="sb-foto rv">
+    <img src="foto-historia.jpg" loading="lazy" alt="ADEMO &mdash; 35 anos de luta pela inclus&atilde;o" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="sb-ph" aria-hidden="true"><span style="font-size:3rem;opacity:.18">&#128247;</span><span>foto-historia.jpg</span></div>
+    <div class="badge" aria-hidden="true"><span class="bano">35</span><span class="blbl">anos de impacto</span></div>
+  </div>
+  <div class="sb-txt">
+    <span class="lbl rv">A Nossa Hist&oacute;ria</span>
+    <div class="sb-ano rv d1"><small>Funda&ccedil;&atilde;o</small>1990</div>
+    <h2 class="sb-h2 rv d2" id="sb-h">Trinta e cinco anos de <em>Luta pelos Direitos das Pessoas com Defici&ecirc;ncia</em></h2>
+    <p class="sb-p rv d2">A ADEMO &mdash; Associa&ccedil;&atilde;o dos Deficientes Mo&ccedil;ambicanos &mdash; &eacute; uma organiza&ccedil;&atilde;o da sociedade civil que, desde 1990, trabalha para garantir os direitos, a inclus&atilde;o e a dignidade das pessoas com defici&ecirc;ncia na prov&iacute;ncia de Sofala e em todo o Mo&ccedil;ambique. Atuamos nas &aacute;reas da educa&ccedil;&atilde;o inclusiva, sa&uacute;de e reabilita&ccedil;&atilde;o, g&eacute;nero e defici&ecirc;ncia, adapta&ccedil;&atilde;o clim&aacute;tica, desporto e cultura &mdash; sempre com a convic&ccedil;&atilde;o de que ningu&eacute;m deve ser deixado para tr&aacute;s.</p>
+    <div class="rv d3"><a href="sobre.html" class="btn-r">Conhecer a Nossa Hist&oacute;ria <span class="arr">&#8594;</span></a></div>
+  </div>
+</section>
+
+<section id="transicao" aria-label="Compromisso da ADEMO">
+  <div class="tr-foto-wrap rv">
+    <img class="tr-foto" src="foto-circular-impacto.jpg" loading="lazy" alt="ADEMO &mdash; trabalho comunit&aacute;rio em Sofala" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="tr-foto-fb" aria-hidden="true">&#128247;</div>
+  </div>
+  <div class="tr-txt rv d1">
+    <span class="lbl">O Nosso Compromisso</span>
+    <div class="tr-linha"></div>
+    <p class="tr-frase">Transformando barreiras em oportunidades: <em>autonomia plena</em> em cada distrito de Sofala.</p>
+    <p class="tr-sub">H&aacute; 35 anos trabalhamos lado a lado com as comunidades &mdash; porque acreditamos que a defici&ecirc;ncia n&atilde;o define limites, apenas exige caminhos mais criativos e solid&aacute;rios.</p>
+    <div class="tr-stats">
+      <div class="tr-stat"><div class="tr-sn">35</div><div class="tr-sl">Anos de atua&ccedil;&atilde;o</div></div>
+      <div class="tr-stat"><div class="tr-sn">11</div><div class="tr-sl">Prov&iacute;ncias abrangidas</div></div>
+      <div class="tr-stat"><div class="tr-sn">6</div><div class="tr-sl">&Aacute;reas de interven&ccedil;&atilde;o</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="areas" aria-labelledby="ar-h">
+  <div class="areas-intro">
+    <span class="lbl">O Que Fazemos</span>
+    <h2 class="h2 rv" id="ar-h">As nossas <em>&aacute;reas de atua&ccedil;&atilde;o</em></h2>
+    <p class="sub rv d1">Trabalhamos de forma integrada, unindo sa&uacute;de, educa&ccedil;&atilde;o, reabilita&ccedil;&atilde;o e desporto para transformar vidas em Sofala.</p>
+  </div>
+  <div role="list">
+    <article class="arow rv" role="listitem">
+      <div class="aph"><img src="foto-saude.jpg" alt="Sa&uacute;de inclusiva" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="aphfb"><span>&#127973;</span><small>foto-saude.jpg</small></div></div>
+      <div class="abod"><div class="anum">01</div><span class="atag">Sa&uacute;de &middot; Direitos Reprodutivos</span><h3 class="ah3">Sa&uacute;de Sexual e Reprodutiva</h3><p class="ap">Treinamos agentes comunit&aacute;rios e profissionais de sa&uacute;de para garantir acesso a servi&ccedil;os de qualidade para mulheres e meninas em situa&ccedil;&atilde;o de vulnerabilidade.</p><a href="saude.html" class="btn-g">Saiba Mais <span class="arr">&#8594;</span></a></div>
+    </article>
+    <article class="arow rv" role="listitem">
+      <div class="aph"><img src="foto-educacao.jpg" alt="Educa&ccedil;&atilde;o inclusiva" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="aphfb"><span>&#128218;</span><small>foto-educacao.jpg</small></div></div>
+      <div class="abod"><div class="anum">02</div><span class="atag">Educa&ccedil;&atilde;o &middot; Inclus&atilde;o</span><h3 class="ah3">Educa&ccedil;&atilde;o Inclusiva</h3><p class="ap">A nossa escolinha &eacute; modelo de inclus&atilde;o. Formamos professores, transformamos escolas e distribu&iacute;mos material escolar a crian&ccedil;as com defici&ecirc;ncia da 1.&ordf; &agrave; 10.&ordf; classe.</p><a href="educacao.html" class="btn-g">Saiba Mais <span class="arr">&#8594;</span></a></div>
+    </article>
+    <article class="arow rv" role="listitem">
+      <div class="aph"><img src="foto-reabilitacao.jpg" alt="Reabilita&ccedil;&atilde;o" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="aphfb"><span>&#9851;</span><small>foto-reabilitacao.jpg</small></div></div>
+      <div class="abod"><div class="anum">03</div><span class="atag">Reabilita&ccedil;&atilde;o &middot; Mobilidade</span><h3 class="ah3">Reabilita&ccedil;&atilde;o</h3><p class="ap">Promovemos acesso a cuidados de reabilita&ccedil;&atilde;o, sa&uacute;de mental e apoio psicossocial, fornecendo auxiliares de mobilidade e formando equipas de sa&uacute;de.</p><a href="reabilitacao.html" class="btn-g">Saiba Mais <span class="arr">&#8594;</span></a></div>
+    </article>
+    <article class="arow rv" role="listitem">
+      <div class="aph"><img src="foto-genero.jpg" alt="Equidade de g&eacute;nero" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="aphfb"><span>&#9892;</span><small>foto-genero.jpg</small></div></div>
+      <div class="abod"><div class="anum">04</div><span class="atag">G&eacute;nero &middot; Empoderamento</span><h3 class="ah3">Equidade de G&eacute;nero</h3><p class="ap">Garantimos que raparigas, rapazes, mulheres e homens com defici&ecirc;ncia sejam plenamente empoderados com participa&ccedil;&atilde;o ativa nos processos de decis&atilde;o.</p><a href="genero.html" class="btn-g">Saiba Mais <span class="arr">&#8594;</span></a></div>
+    </article>
+    <article class="arow rv" role="listitem">
+      <div class="aph"><img src="foto-futebol.jpg" alt="Futebol inclusivo" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="aphfb"><span>&#9917;</span><small>foto-futebol.jpg</small></div></div>
+      <div class="abod"><div class="anum">05</div><span class="atag">Desporto &middot; Comunidade</span><h3 class="ah3">Futebol Inclusivo</h3><p class="ap">O futebol como plataforma de inclus&atilde;o social &mdash; integrando pessoas com defici&ecirc;ncia, mulheres e jovens em risco num ambiente saud&aacute;vel e transformador.</p><a href="futebol.html" class="btn-g">Saiba Mais <span class="arr">&#8594;</span></a></div>
+    </article>
+    <article class="arow rv" role="listitem">
+      <div class="aph"><img src="foto-climatica.jpg" alt="Resili&ecirc;ncia clim&aacute;tica" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="aphfb"><span>&#127807;</span><small>foto-climatica.jpg</small></div></div>
+      <div class="abod"><div class="anum">06</div><span class="atag">Clima &middot; Humanit&aacute;rio</span><h3 class="ah3">Resili&ecirc;ncia Clim&aacute;tica</h3><p class="ap">Reparamos escolas afetadas por desastres e garantimos que pessoas com defici&ecirc;ncia sejam inclu&iacute;das nas respostas humanit&aacute;rias e de adapta&ccedil;&atilde;o clim&aacute;tica.</p><a href="climatica.html" class="btn-g">Saiba Mais <span class="arr">&#8594;</span></a></div>
+    </article>
+  </div>
+</section>
+
+<div id="adv-header" role="complementary" aria-label="Advocacia em movimento">
+  <div class="adv-hd-txt rv">
+    <span class="lbl">Vozes da Mudan&ccedil;a</span>
+    <h2 class="adv-hd-title">Advocacia: <em>Defendendo o Futuro de Todos</em></h2>
+    <p class="adv-hd-sub">Da sala de aula ao campo de futebol, da cl&iacute;nica ao palco &mdash; a ADEMO est&aacute; onde a mudan&ccedil;a acontece. Conhe&ccedil;a as frentes onde a nossa luta ganha voz.</p>
+  </div>
+</div>
+
+<section id="advocacia" aria-label="Mensagens de advocacia">
+  <div class="adv-bg on" style="background-image:url('banner-genero.jpg');background-color:#1a0d18;"></div>
+  <div class="adv-bg" style="background-image:url('banner-desporto.jpg');background-color:#0d1a10;"></div>
+  <div class="adv-bg" style="background-image:url('banner-cultura.jpg');background-color:#12090d;"></div>
+  <div class="adv-ov"></div>
+  <div class="adv-content">
+    <div class="adv-block on">
+      <span class="adv-tag">G&eacute;nero &amp; Defici&ecirc;ncia</span>
+      <h2 class="adv-title">Empoderamento econ&oacute;mico <em>da mulher</em></h2>
+      <p class="adv-desc">Promovemos a inclus&atilde;o da mulher com defici&ecirc;ncia nos movimentos de reflex&atilde;o e na economia ativa &mdash; porque igualdade real come&ccedil;a com participa&ccedil;&atilde;o plena.</p>
+      <a href="genero.html" class="adv-cta">Saiba Mais <span>&#8594;</span></a>
+    </div>
+    <div class="adv-block">
+      <span class="adv-tag">Desporto &middot; Skillz</span>
+      <h2 class="adv-title">Mude o jogo: <em>futebol como inclus&atilde;o</em></h2>
+      <p class="adv-desc">A Skillz utiliza o futebol como uma ferramenta poderosa para a inclus&atilde;o de adolescentes e jovens com defici&ecirc;ncia, promovendo sa&uacute;de, coes&atilde;o e oportunidade.</p>
+      <a href="futebol.html" class="adv-cta">Saiba Mais <span>&#8594;</span></a>
+    </div>
+    <div class="adv-block">
+      <span class="adv-tag">Cultura &amp; Teatro</span>
+      <h2 class="adv-title">A arte como <em>voz de direitos</em></h2>
+      <p class="adv-desc">A express&atilde;o art&iacute;stica e o teatro s&atilde;o ferramentas de reivindica&ccedil;&atilde;o de direitos e de quebra de estigmas &mdash; transformando narrativas e construindo empatia na sociedade.</p>
+      <a href="sobre.html" class="adv-cta">Saiba Mais <span>&#8594;</span></a>
+    </div>
+  </div>
+  <div class="adv-progress" id="adv-prog"></div>
+  <div class="adv-nav">
+    <button class="adv-btn" id="adv-prev" aria-label="Slide anterior">&#8592;</button>
+    <div class="adv-dots" role="tablist">
+      <button class="adv-dot on" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+      <button class="adv-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+      <button class="adv-dot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+    </div>
+    <button class="adv-btn" id="adv-next" aria-label="Pr&oacute;ximo slide">&#8594;</button>
+  </div>
+</section>
+
+<!-- ESTUDO DE EVIDENCIA — Research Highlight -->
+<section id="evidencia" aria-labelledby="ev-h">
+  <div class="ev-divider" aria-hidden="true"></div>
+  <div class="ev-inner">
+    <div class="ev-left rv">
+      <span class="lbl">Estudo T&eacute;cnico &middot; Setembro 2025</span>
+      <h2 class="ev-titulo" id="ev-h">
+        Levantamento de Barreiras:<br>
+        <em>O Acesso das PcD aos Servi&ccedil;os de Sa&uacute;de na Beira</em>
+      </h2>
+      <p class="ev-desc">Um estudo sistem&aacute;tico desenvolvido pela ADEMO para identificar os obst&aacute;culos que impedem o acesso pleno das pessoas com defici&ecirc;ncia aos cuidados de sa&uacute;de. Os resultados oferecem uma base de evid&ecirc;ncia para a reforma das pol&iacute;ticas de inclus&atilde;o nos centros de sa&uacute;de da Cidade da Beira.</p>
+      <a href="transparencia.html" class="ev-cta">Ver Relat&oacute;rio Completo <span>&#8594;</span></a>
+    </div>
+    <div class="ev-right rv d1">
+      <div class="ev-stat">
+        <div class="ev-n">152</div>
+        <div class="ev-nl">Profissionais de sa&uacute;de inquiridos</div>
+      </div>
+      <div class="ev-stat">
+        <div class="ev-n">3</div>
+        <div class="ev-nl">Centros de Sa&uacute;de de refer&ecirc;ncia analisados</div>
+      </div>
+      <div class="ev-stat">
+        <div class="ev-n">71,7%</div>
+        <div class="ev-nl">Dos profissionais sem forma&ccedil;&atilde;o em atendimento inclusivo</div>
+      </div>
+      <div class="ev-stat">
+        <div class="ev-n">98%</div>
+        <div class="ev-nl">Demonstram interesse em forma&ccedil;&atilde;o especializada</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="atividades" aria-labelledby="atv-h">
+  <div class="atvhd">
+    <span class="lbl rv" style="color:var(--gold)">Atividades em Destaque</span>
+    <h2 class="h2 rv d1" id="atv-h">O nosso trabalho <em style="color:var(--gold-lt)">em a&ccedil;&atilde;o</em></h2>
+    <p class="sub rv d2">Cada atividade &eacute; um passo em dire&ccedil;&atilde;o a uma comunidade mais justa e inclusiva em Sofala.</p>
+  </div>
+  <div class="atvgrid" role="list">
+    <article class="acard rv" role="listitem"><div class="abg" style="background-image:url('card-desporto.jpg');background-color:#152010"></div><div class="aov"></div><div class="abody"><span class="actag">Desporto</span><div class="acnam">Futebol Inclusivo</div><p class="acdesc">Integramos pessoas com defici&ecirc;ncia, mulheres e jovens atrav&eacute;s do desporto mais popular de Mo&ccedil;ambique.</p><span class="acword">Unidade</span></div></article>
+    <article class="acard rv d1" role="listitem"><div class="abg" style="background-image:url('card-advocacia.jpg');background-color:#1a1008"></div><div class="aov"></div><div class="abody"><span class="actag">Advocacia</span><div class="acnam">Direitos das PcD</div><p class="acdesc">Defendemos os direitos das pessoas com defici&ecirc;ncia junto do Estado, parceiros e comunidade em toda a Sofala.</p><span class="acword">Justi&ccedil;a</span></div></article>
+    <article class="acard rv d2" role="listitem"><div class="abg" style="background-image:url('card-economico.jpg');background-color:#0d1a0d"></div><div class="aov"></div><div class="abody"><span class="actag">Econ&oacute;mico</span><div class="acnam">Empoderamento Econ&oacute;mico</div><p class="acdesc">Forma&ccedil;&atilde;o vocacional e gera&ccedil;&atilde;o de rendimento para fam&iacute;lias em situa&ccedil;&atilde;o de vulnerabilidade.</p><span class="acword">Autonomia</span></div></article>
+    <article class="acard rv d3" role="listitem"><div class="abg" style="background-image:url('card-cultura.jpg');background-color:#150d1a"></div><div class="aov"></div><div class="abody"><span class="actag">Cultura</span><div class="acnam">Cultura e Teatro</div><p class="acdesc">A express&atilde;o art&iacute;stica como ferramenta de inclus&atilde;o, transforma&ccedil;&atilde;o social e visibilidade das PcD.</p><span class="acword">Express&atilde;o</span></div></article>
+  </div>
+</section>
+
+<div id="impacto" role="region" aria-labelledby="imp-h">
+  <div class="imp-hd rv">
+    <span class="lbl">Resultados Reais &middot; Sofala</span>
+    <h2 id="imp-h">Os Nossos <em>Impactos</em></h2>
+  </div>
+  <div class="imp-grid">
+    <div class="imp-card edu rv"><div class="imp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><span class="imp-area">Educa&ccedil;&atilde;o Inclusiva</span><div class="imp-num" data-target="2500" data-suffix="+">2.500+</div><p class="imp-desc">Crian&ccedil;as com defici&ecirc;ncia integradas no ensino geral com apoio de material escolar adaptado e professores formados.</p></div>
+    <div class="imp-card sau rv d1"><div class="imp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="imp-area">Sa&uacute;de Sexual e Reprodutiva</span><div class="imp-num" data-target="1800" data-suffix="+">1.800+</div><p class="imp-desc">Mulheres e raparigas com defici&ecirc;ncia com acesso garantido a servi&ccedil;os de sa&uacute;de sexual e reprodutiva de qualidade.</p></div>
+    <div class="imp-card mob rv d2"><div class="imp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="18" cy="20" r="2"/><circle cx="10" cy="20" r="2"/><path d="M7 18v-6a6 6 0 0 1 6-6h3"/><path d="M7 12h7l2 6"/><circle cx="17" cy="4" r="1"/></svg></div><span class="imp-area">Mobilidade &amp; Reabilita&ccedil;&atilde;o</span><div class="imp-num" data-target="1200" data-suffix="+">1.200+</div><p class="imp-desc">Pessoas com defici&ecirc;ncia que receberam meios auxiliares de locomo&ccedil;&atilde;o e reabilita&ccedil;&atilde;o f&iacute;sica e psicossocial.</p></div>
+    <div class="imp-card cli rv"><div class="imp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-8 2"/></svg></div><span class="imp-area">Justi&ccedil;a Clim&aacute;tica</span><div class="imp-num" data-target="320" data-suffix="+">320+</div><p class="imp-desc">Pessoas com defici&ecirc;ncia capacitadas em resili&ecirc;ncia e adapta&ccedil;&atilde;o &agrave;s mudan&ccedil;as clim&aacute;ticas em Sofala.</p></div>
+    <div class="imp-card gen rv d1"><div class="imp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="9" y1="18" x2="15" y2="18"/></svg></div><span class="imp-area">Empoderamento Feminino</span><div class="imp-num" data-target="750" data-suffix="+">750+</div><p class="imp-desc">Mulheres com defici&ecirc;ncia empoderadas nos processos econ&oacute;micos e de tomada de decis&atilde;o nas comunidades.</p></div>
+    <div class="imp-card des rv d2"><div class="imp-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg></div><span class="imp-area">Desporto Inclusivo</span><div class="imp-num" data-target="480" data-suffix="+">480+</div><p class="imp-desc">Desportistas com defici&ecirc;ncia inclu&iacute;dos em torneios, ligas e programas Skillz de futebol inclusivo.</p></div>
+  </div>
+</div>
+
+<section id="ods" aria-labelledby="ods-h">
+  <div class="ods-intro rv">
+    <span class="lbl">Agenda 2030</span>
+    <h2 class="h2 rv d1" id="ods-h">Objetivos que <em>apoiamos</em></h2>
+    <p class="odsq rv d2">&ldquo;Alinhamos as nossas a&ccedil;&otilde;es locais com os objetivos globais &mdash; porque a inclus&atilde;o das pessoas com defici&ecirc;ncia &eacute; indispens&aacute;vel para o desenvolvimento sustent&aacute;vel de Mo&ccedil;ambique.&rdquo;</p>
+  </div>
+  <div class="odsgrid rv d2" role="list">
+    <div class="odsit o1" role="listitem"><img src="ods1.png" alt="ODS 1" loading="lazy" onerror="this.style.display='none'"><div class="odslb"><span class="odsn">1</span><span class="odst">Sem Pobreza</span></div></div>
+    <div class="odsit o3" role="listitem"><img src="ods3.png" alt="ODS 3" loading="lazy" onerror="this.style.display='none'"><div class="odslb"><span class="odsn">3</span><span class="odst">Sa&uacute;de</span></div></div>
+    <div class="odsit o4" role="listitem"><img src="ods4.png" alt="ODS 4" loading="lazy" onerror="this.style.display='none'"><div class="odslb"><span class="odsn">4</span><span class="odst">Educa&ccedil;&atilde;o</span></div></div>
+    <div class="odsit o5" role="listitem"><img src="ods5.png" alt="ODS 5" loading="lazy" onerror="this.style.display='none'"><div class="odslb"><span class="odsn">5</span><span class="odst">G&eacute;nero</span></div></div>
+    <div class="odsit o10" role="listitem"><img src="ods10.png" alt="ODS 10" loading="lazy" onerror="this.style.display='none'"><div class="odslb"><span class="odsn">10</span><span class="odst">Desigualdades</span></div></div>
+    <div class="odsit o11" role="listitem"><img src="ods11.png" alt="ODS 11" loading="lazy" onerror="this.style.display='none'"><div class="odslb"><span class="odsn">11</span><span class="odst">Cidades</span></div></div>
+    <div class="odsit o13" role="listitem"><img src="ods13.png" alt="ODS 13" loading="lazy" onerror="this.style.display='none'"><div class="odslb"><span class="odsn">13</span><span class="odst">Clima</span></div></div>
+    <div class="odsit o16" role="listitem"><img src="ods16.png" alt="ODS 16" loading="lazy" onerror="this.style.display='none'"><div class="odslb"><span class="odsn">16</span><span class="odst">Paz &amp; Justi&ccedil;a</span></div></div>
+    <div class="odsit o17" role="listitem"><img src="ods17.png" alt="ODS 17" loading="lazy" onerror="this.style.display='none'"><div class="odslb"><span class="odsn">17</span><span class="odst">Parcerias</span></div></div>
+  </div>
+</section>
+
+<div id="transp" role="complementary">
+  <div class="rv"><span class="treye">Transpar&ecirc;ncia Financeira</span><h2 class="trh">Comprometidos com a Transpar&ecirc;ncia Total</h2></div>
+  <a href="transparencia.html" class="btn-go rv d1">Aceder aos Relat&oacute;rios <span class="arr">&#8594;</span></a>
+</div>
+
+<section id="parceiros" aria-labelledby="pac-h">
+  <div class="pachd">
+    <span class="lbl" style="color:var(--gold)">Parceiros e Financiadores</span>
+    <h2 class="h2" id="pac-h" style="color:var(--cream)">Juntos <em style="color:var(--gold-lt)">tornamos poss&iacute;vel</em></h2>
+  </div>
+  <div class="slwrap">
+    <div class="sltrack">
+      <div class="plogo"><img src="logo-unicef.png" alt="UNICEF" loading="lazy"></div>
+      <div class="plogo"><img src="logo-oms.png" alt="WHO / OMS" loading="lazy"></div>
+      <div class="plogo"><img src="logo-usaid.png" alt="USAID" loading="lazy"></div>
+      <div class="plogo"><img src="logo-ue.png" alt="Uni&atilde;o Europeia" loading="lazy"></div>
+      <div class="plogo"><img src="logo-unfpa.png" alt="UNFPA" loading="lazy"></div>
+      <div class="plogo"><img src="logo-banco-mundial.png" alt="Banco Mundial" loading="lazy"></div>
+      <div class="plogo" aria-hidden="true"><img src="logo-unicef.png" alt="" loading="lazy"></div>
+      <div class="plogo" aria-hidden="true"><img src="logo-oms.png" alt="" loading="lazy"></div>
+      <div class="plogo" aria-hidden="true"><img src="logo-usaid.png" alt="" loading="lazy"></div>
+      <div class="plogo" aria-hidden="true"><img src="logo-ue.png" alt="" loading="lazy"></div>
+      <div class="plogo" aria-hidden="true"><img src="logo-unfpa.png" alt="" loading="lazy"></div>
+      <div class="plogo" aria-hidden="true"><img src="logo-banco-mundial.png" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="contactos" aria-labelledby="ct-h">
+  <div>
+    <span class="lbl rv">Fale Connosco</span>
+    <h2 class="h2 rv d1" id="ct-h">Estamos aqui para <em>si</em></h2>
+    <p class="sub rv d2">Junte-se a n&oacute;s na constru&ccedil;&atilde;o de uma Mo&ccedil;ambique mais inclusiva e acess&iacute;vel para todos.</p>
+    <address>
+      <div class="ctdet rv d1"><div class="ctico">&#128205;</div><div><div class="ctlb">Endere&ccedil;o</div><div class="ctval">Estrada Nacional N.&ordm; 06, ao lado da CELMOQUE<br>13.&ordm; Bairro Alto da Manga &mdash; Beira, Sofala</div></div></div>
+      <div class="ctdet rv d2"><div class="ctico">&#128222;</div><div><div class="ctlb">Telefone</div><div class="ctval"><a href="tel:+258849371782">(+258) 849 371 782</a><br><a href="tel:+258849427421">(+258) 849 427 421</a><br><a href="tel:+258869192505">(+258) 869 192 505</a></div></div></div>
+      <div class="ctdet rv d3"><div class="ctico">&#9993;</div><div><div class="ctlb">E-mail</div><div class="ctval"><a href="mailto:ademoorg@gmail.com">ademoorg@gmail.com</a></div></div></div>
+    </address>
+    <div class="socrow rv">
+      <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="socbtn" aria-label="Facebook da ADEMO"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a>
+      <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="socbtn" aria-label="Instagram da ADEMO"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>Instagram</a>
+      <a href="mailto:ademoorg@gmail.com" class="socbtn" aria-label="E-mail da ADEMO"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>E-mail</a>
+    </div>
+  </div>
+  <div class="rv d1">
+    <form action="#" method="post" novalidate>
+      <div class="fg"><label for="fn">Nome completo *</label><input type="text" id="fn" name="name" required placeholder="O seu nome"></div>
+      <div class="fg"><label for="fe">E-mail *</label><input type="email" id="fe" name="email" required placeholder="email@exemplo.com"></div>
+      <div class="fg"><label for="fs">Assunto</label><input type="text" id="fs" name="subject" placeholder="Como podemos ajudar?"></div>
+      <div class="fg"><label for="fm">Mensagem *</label><textarea id="fm" name="message" required placeholder="Escreva a sua mensagem aqui&hellip;"></textarea></div>
+      <button type="submit" class="btnsend">Enviar Mensagem</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo">
+  <div class="ftgrid">
+    <div>
+      <div class="ftnm">ADEMO</div>
+      <p class="ftdc">Associa&ccedil;&atilde;o dos Deficientes Mo&ccedil;ambicanos &mdash; desde 1990, promovendo dignidade, direitos e inclus&atilde;o em todo o pa&iacute;s.</p>
+      <div class="ftsoc">
+        <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="ftsi" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="ftsi" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="mailto:ademoorg@gmail.com" class="ftsi" aria-label="E-mail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <nav class="ftcol" aria-label="Navega&ccedil;&atilde;o"><h4>Navega&ccedil;&atilde;o</h4><a href="index.html">Home</a><a href="sobre.html">Sobre N&oacute;s</a><a href="#areas">&Aacute;reas de Atua&ccedil;&atilde;o</a><a href="transparencia.html">Transpar&ecirc;ncia</a><a href="#contactos">Contactos</a></nav>
+    <nav class="ftcol" aria-label="O que fazemos"><h4>O Que Fazemos</h4><a href="saude.html">Sa&uacute;de</a><a href="educacao.html">Educa&ccedil;&atilde;o</a><a href="reabilitacao.html">Reabilita&ccedil;&atilde;o</a><a href="genero.html">G&eacute;nero</a><a href="futebol.html">Futebol</a><a href="climatica.html">Clima</a></nav>
+    <div class="ftcol"><h4>Contacto</h4><a href="mailto:ademoorg@gmail.com">ademoorg@gmail.com</a><a href="tel:+258849371782">(+258) 849 371 782</a><a href="https://www.ademosofala.site" target="_blank">www.ademosofala.site</a></div>
+  </div>
+  <div class="ftbot">
+    <span>&copy; 2025 <span class="ftgo">ADEMO</span>. Todos os direitos reservados.</span>
+    <span>Feito com dedica&ccedil;&atilde;o para um Mo&ccedil;ambique inclusivo</span>
+  </div>
+</footer>
+
+<script>
+(function(){var h=document.getElementById('hdr');function s(){h.classList.toggle('s',scrollY>60);h.classList.toggle('t',scrollY<=60);}window.addEventListener('scroll',s,{passive:true});s();})();
+(function(){var hbg=document.querySelector('.hbg'),nav=document.getElementById('mainnav');if(!hbg||!nav)return;hbg.addEventListener('click',function(){var o=hbg.getAttribute('aria-expanded')==='true';hbg.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';});});})();
+(function(){var slides=Array.from(document.querySelectorAll('#hero .slide')),dots=Array.from(document.querySelectorAll('#hero .cdot'));if(!slides.length)return;var cur=0,tmr;function goTo(i){slides[cur].classList.remove('on');dots[cur].classList.remove('on');dots[cur].setAttribute('aria-selected','false');cur=(i+slides.length)%slides.length;slides[cur].classList.add('on');dots[cur].classList.add('on');dots[cur].setAttribute('aria-selected','true');}function play(){tmr=setInterval(function(){goTo(cur+1);},5000);}function stop(){clearInterval(tmr);}dots.forEach(function(d,i){d.addEventListener('click',function(){stop();goTo(i);play();});});var hero=document.getElementById('hero');if(hero){hero.addEventListener('mouseenter',stop);hero.addEventListener('mouseleave',play);}play();})();
+(function(){var IV=6000,bgs=Array.from(document.querySelectorAll('#advocacia .adv-bg')),blocks=Array.from(document.querySelectorAll('#advocacia .adv-block')),dots=Array.from(document.querySelectorAll('#advocacia .adv-dot')),prog=document.getElementById('adv-prog'),btnP=document.getElementById('adv-prev'),btnN=document.getElementById('adv-next');if(!bgs.length)return;var cur=0,total=bgs.length,tmr,paused=false;function bar(){if(!prog)return;prog.style.transition='none';prog.style.width='0%';void prog.offsetWidth;prog.style.transition='width '+IV+'ms linear';prog.style.width='100%';}function goTo(i){bgs[cur].classList.remove('on');blocks[cur].classList.remove('on');dots[cur].classList.remove('on');dots[cur].setAttribute('aria-selected','false');cur=(i+total)%total;bgs[cur].classList.add('on');setTimeout(function(){blocks[cur].classList.add('on');},150);dots[cur].classList.add('on');dots[cur].setAttribute('aria-selected','true');bar();}function play(){if(paused)return;tmr=setInterval(function(){goTo(cur+1);},IV);}function stop(){clearInterval(tmr);}if(btnP)btnP.addEventListener('click',function(){stop();goTo(cur-1);play();});if(btnN)btnN.addEventListener('click',function(){stop();goTo(cur+1);play();});dots.forEach(function(d,i){d.addEventListener('click',function(){stop();goTo(i);play();});});var sec=document.getElementById('advocacia');if(sec){sec.addEventListener('mouseenter',function(){paused=true;stop();if(prog)prog.style.transition='none';});sec.addEventListener('mouseleave',function(){paused=false;bar();play();});}bar();play();})();
+(function(){if(!('IntersectionObserver' in window))return;document.body.classList.add('js-rdy');var obs=new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});})();
+(function(){function run(el){var tgt=parseInt(el.dataset.target)||0,sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*tgt).toLocaleString('pt-PT')+sfx;if(p<1)requestAnimationFrame(step);else el.textContent=tgt.toLocaleString('pt-PT')+sfx;}requestAnimationFrame(step);}document.querySelectorAll('.imp-num').forEach(function(el){new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){run(e.target);o.unobserve(e.target);}});},{threshold:.4}).observe(el);});})();
+(function(){var form=document.querySelector('form');if(!form)return;form.addEventListener('submit',function(e){e.preventDefault();var btn=form.querySelector('.btnsend');btn.textContent='Mensagem Enviada \u2713';btn.style.background='#2d7a2d';setTimeout(function(){btn.textContent='Enviar Mensagem';btn.style.background='';form.reset();},3500);});})();
+</script>
+</body>
+</html>

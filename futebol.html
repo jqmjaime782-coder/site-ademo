@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futebol Inclusivo &mdash; ADEMO</title>
+<meta name="description" content="A ADEMO usa o futebol como plataforma de inclus&atilde;o social em Sofala &mdash; abordagem SKILLZ, campeonato comunitário com 20 equipas, treinadoras mulheres e preven&ccedil;&atilde;o do casamento prematuro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CC0000;--red-dk:#a00000;
+  --gold:#C9993A;--gold-lt:#e5c07a;--gold-dim:rgba(201,153,58,.18);
+  --dark:#1A1008;--dark2:#2d1f0e;
+  --text:#1e1408;--muted:#5c4e38;
+  --white:#fff;--cream:#F8F3EC;--hh:80px;
+  /* FUTEBOL: verde-lima vibrante — energia, campo, vida */
+  --ac:#1a7a2a;--ac-dk:#145e20;--ac-lt:#72e888;--ac-pale:rgba(26,122,42,.1);
+  --ac2:#e8a020;/* laranja campo/bola */
+}
+html{font-size:18px;scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.75;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.skip{position:absolute;top:-120px;left:1rem;background:var(--red);color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:9999;transition:top .2s;font-size:.85rem;}
+.skip:focus{top:1rem;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+
+/* ══ HEADER ══ */
+#hdr{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--hh);display:flex;align-items:center;padding:0 5vw;transition:background .4s,box-shadow .4s;}
+#hdr.t{background:transparent;}
+#hdr.s{background:rgba(26,16,8,.97);box-shadow:0 2px 28px rgba(0,0,0,.45);backdrop-filter:blur(14px);}
+.hin{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.logo{display:flex;align-items:center;gap:.65rem;}
+.logo-img{height:46px;width:auto;object-fit:contain;flex-shrink:0;}
+.logo-fall{display:none;width:46px;height:46px;border-radius:50%;background:var(--red);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;flex-shrink:0;}
+.logo-w{display:flex;flex-direction:column;line-height:1.1;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;letter-spacing:.08em;}
+.logo-t{font-size:.54rem;color:var(--gold-lt);letter-spacing:.16em;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:1.6rem;}
+nav>a,.dd>a{color:rgba(255,255,255,.8);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:2px;transition:color .3s;}
+nav>a::after,.dd>a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav>a:hover,.dd>a:hover{color:#fff;}
+nav>a:hover::after,.dd>a:hover::after{width:100%;}
+.dd{position:relative;}
+.ddm{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--dark);border:1px solid var(--gold-dim);min-width:240px;padding:.5rem 0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
+.dd:hover .ddm,.dd:focus-within .ddm{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.ddm a{display:block;padding:.55rem 1.3rem;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.7);text-transform:uppercase;transition:color .2s,background .2s;}
+.ddm a:hover{color:var(--gold-lt);background:rgba(201,153,58,.08);}
+.navcta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.25rem;border-radius:2px;transition:background .3s!important;}
+.navcta:hover{background:var(--red-dk)!important;}
+.navcta::after{display:none!important;}
+.hbg{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:1001;}
+.hbg span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.hbg[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hbg[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* ══ UTILS ══ */
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac);margin-bottom:.85rem;display:block;}
+.lbl-gold{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem;display:block;}
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease;}
+.js-rdy .rv{opacity:0;transform:translateY(22px);}
+.js-rdy .rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.15s;}.d2{transition-delay:.3s;}.d3{transition-delay:.45s;}
+.arr{display:inline-block;transition:transform .3s;}
+.btn-ac{display:inline-flex;align-items:center;gap:.6rem;background:var(--ac);color:#fff;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:500;transition:background .3s,transform .2s;}
+.btn-ac:hover{background:var(--ac-dk);transform:translateY(-2px);}
+.btn-ac:hover .arr{transform:translateX(5px);}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--ac);padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:600;transition:background .3s,transform .2s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,border-color .3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+
+/* ══ HERO ══ */
+#ph{position:relative;height:88vh;min-height:580px;display:flex;align-items:flex-end;overflow:hidden;background:#081a0a;}
+.ph-bg{position:absolute;inset:0;background-image:url('foto-fut-hero.jpg');background-size:cover;background-position:center 40%;transform:scale(1.04);transition:transform 9s ease;}
+.ph-bg.loaded{transform:scale(1);}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,26,10,.1) 0%,rgba(8,26,10,.18) 35%,rgba(8,26,10,.78) 60%,rgba(8,26,10,.97) 100%);}
+.ph-accent{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ac) 0%,var(--ac2) 50%,var(--gold) 100%);z-index:3;}
+.ph-body{position:relative;z-index:2;padding:calc(var(--hh) + 3rem) 5vw 5rem;width:100%;}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.6rem;flex-wrap:wrap;}
+.breadcrumb a{color:rgba(255,255,255,.45);transition:color .2s;}
+.breadcrumb a:hover{color:var(--gold-lt);}
+.breadcrumb span{color:rgba(255,255,255,.22);}
+.breadcrumb strong{color:var(--ac-lt);}
+.ph-tag{display:inline-flex;align-items:center;gap:.55rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ac-lt);border:1px solid rgba(114,232,136,.3);padding:.35rem .9rem;border-radius:2px;margin-bottom:1.1rem;}
+.ph-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--ac-lt);flex-shrink:0;}
+.ph-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5.5vw,3.8rem);font-weight:300;color:#fff;line-height:1.08;letter-spacing:-.02em;max-width:820px;margin-bottom:1.1rem;}
+.ph-h1 em{font-style:italic;color:var(--ac-lt);}
+.ph-lead{font-size:clamp(.92rem,1.3vw,1rem);color:rgba(255,255,255,.68);max-width:640px;line-height:1.82;}
+
+/* ══ CAMPEONATO — NUMERO DESTAQUE ══ */
+#campeonato{
+  background:var(--ac);
+  padding:5rem 5vw;
+  display:grid;grid-template-columns:auto 1fr auto;
+  gap:4vw;align-items:center;
+  position:relative;overflow:hidden;
+}
+#campeonato::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none;}
+.camp-bola{font-size:clamp(4rem,8vw,7rem);flex-shrink:0;line-height:1;opacity:.7;animation:gira 8s linear infinite;}
+@keyframes gira{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+.camp-txt{display:flex;flex-direction:column;gap:.75rem;}
+.camp-lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.65);display:block;}
+.camp-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:300;color:#fff;line-height:1.2;}
+.camp-h2 em{font-style:italic;color:rgba(255,255,255,.78);}
+.camp-p{font-size:.95rem;color:rgba(255,255,255,.65);line-height:1.72;max-width:520px;}
+/* Equipas contadores lado a lado */
+.camp-eq{display:flex;gap:2.5rem;flex-wrap:wrap;flex-shrink:0;}
+.camp-eq-item{text-align:center;background:rgba(255,255,255,.12);border-radius:8px;padding:1.4rem 2rem;border:1px solid rgba(255,255,255,.2);}
+.camp-eq-n{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:#fff;line-height:1;}
+.camp-eq-l{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-top:.3rem;}
+
+/* ══ SKILLZ — SECAO DESTAQUE ══ */
+#skillz{
+  background:var(--dark);
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#skillz::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='36' fill='none' stroke='%231a7a2a' stroke-opacity='0.04' stroke-width='2'/%3E%3C/svg%3E") center;pointer-events:none;}
+#skillz::after{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,42,.12) 0%,transparent 70%);pointer-events:none;}
+.skillz-inner{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.skillz-img{position:relative;}
+.skillz-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.4);display:block;}
+.skillz-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#1a4a1a,#0a2010);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+/* Logo SKILLZ em texto grande */
+.skillz-logo-txt{
+  position:absolute;top:-1.4rem;left:50%;transform:translateX(-50%);
+  background:var(--ac);color:#fff;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:600;letter-spacing:.12em;
+  padding:.4rem 1.6rem;border-radius:4px;
+  white-space:nowrap;
+  box-shadow:0 8px 24px rgba(26,122,42,.5);
+}
+/* Pills das conexoes futebol/vida */
+.skillz-pills{position:absolute;bottom:-1rem;left:0;right:0;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:0 1rem;}
+.skillz-pill{background:rgba(114,232,136,.12);border:1px solid rgba(114,232,136,.3);color:var(--ac-lt);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .8rem;border-radius:20px;white-space:nowrap;}
+.skillz-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.skillz-lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac-lt);display:block;margin-bottom:.2rem;}
+.skillz-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.12;}
+.skillz-h2 em{font-style:italic;color:var(--ac-lt);}
+.skillz-p{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.87;}
+.skillz-highlight{background:rgba(26,122,42,.1);border-left:3px solid var(--ac-lt);padding:1.1rem 1.4rem;border-radius:0 6px 6px 0;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:rgba(255,255,255,.75);line-height:1.55;}
+/* Grid de objectivos SKILLZ */
+.skillz-objetivos{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.3rem;}
+.skillz-obj{background:rgba(255,255,255,.04);border:1px solid rgba(114,232,136,.1);border-radius:6px;padding:.85rem 1rem;display:flex;align-items:flex-start;gap:.7rem;transition:background .3s,border-color .3s,transform .3s;}
+.skillz-obj:hover{background:rgba(26,122,42,.1);border-color:rgba(114,232,136,.3);transform:translateX(4px);}
+.skillz-obj-ico{font-size:1.1rem;flex-shrink:0;line-height:1.4;}
+.skillz-obj-txt{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6;}
+.skillz-obj-txt strong{color:rgba(255,255,255,.85);}
+
+/* ══ TREINADORAS — SECAO PROTAGONISTA ══ */
+#treinadoras{
+  background:var(--white);
+  padding:7rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5vw;align-items:center;
+}
+.trei-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.trei-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.trei-h2 em{font-style:italic;color:var(--ac);}
+.trei-p{font-size:1rem;color:var(--muted);line-height:1.87;}
+.trei-insight{
+  background:linear-gradient(135deg,var(--ac-pale),rgba(232,160,32,.08));
+  border:1px solid rgba(26,122,42,.2);
+  border-radius:8px;padding:1.3rem 1.4rem;
+  display:flex;align-items:flex-start;gap:1rem;
+}
+.trei-insight-ico{font-size:1.8rem;flex-shrink:0;line-height:1.2;}
+.trei-insight-txt{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);line-height:1.55;}
+.trei-feats{display:flex;flex-direction:column;gap:.75rem;margin-top:.2rem;}
+.trei-feat{display:flex;align-items:flex-start;gap:.9rem;padding:.8rem 1rem;border-radius:6px;border-left:3px solid var(--ac);background:var(--cream);transition:transform .3s,box-shadow .3s;}
+.trei-feat:hover{transform:translateX(5px);box-shadow:2px 0 16px rgba(26,122,42,.1);}
+.trei-feat-ico{font-size:1.2rem;flex-shrink:0;line-height:1.5;}
+.trei-feat-txt{font-size:.9rem;color:var(--muted);line-height:1.65;}
+.trei-feat-txt strong{color:var(--dark);}
+.trei-img{position:relative;}
+.trei-img img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:16px 120px 16px 120px;box-shadow:0 32px 80px rgba(26,122,42,.18);transition:border-radius .7s;display:block;}
+.trei-img img:hover{border-radius:120px 16px 120px 16px;}
+.trei-img-fb{display:none;width:100%;aspect-ratio:3/4;border-radius:16px 120px 16px 120px;background:linear-gradient(145deg,#4a9a4a,#1a4a1a);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+.trei-badge{position:absolute;bottom:-1rem;right:-1rem;background:var(--ac2);color:var(--dark);width:110px;height:110px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(232,160,32,.45);font-family:'Cormorant Garamond',serif;z-index:2;}
+.trei-badge-n{font-size:2rem;font-weight:600;line-height:1;}
+.trei-badge-l{font-size:.38rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dark2);text-align:center;padding:0 .4rem;margin-top:.1rem;line-height:1.3;}
+
+/* ══ CAMPEONATO DETALHES ══ */
+#camp-detalhe{background:var(--cream);padding:7rem 5vw;}
+.camp-hd{max-width:700px;margin-bottom:4rem;}
+.camp-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.1;color:var(--dark);}
+.camp-hd h2 em{font-style:italic;color:var(--ac);}
+.camp-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.8rem;}
+/* Grid de pilares do campeonato */
+.camp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.camp-card{background:var(--white);border-radius:10px;overflow:hidden;border:1px solid rgba(26,122,42,.1);transition:box-shadow .3s,transform .3s,border-color .3s;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(26,122,42,.07);}
+.camp-card:hover{box-shadow:0 20px 56px rgba(26,122,42,.16);transform:translateY(-6px);border-color:rgba(26,122,42,.28);}
+/* Contentor com aspect-ratio: foto nunca fica cortada */
+.camp-card-img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0;background:#2a5a2a;}
+.camp-card-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+.camp-card:hover .camp-card-img{transform:scale(1.05);}
+.camp-card-img-fb{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.2;}
+.camp-card-body{padding:1.6rem 1.8rem 2rem;display:flex;flex-direction:column;gap:.7rem;flex:1;}
+.camp-card-n{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);}
+.camp-card-h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--dark);line-height:1.2;}
+.camp-card-p{font-size:.9rem;color:var(--muted);line-height:1.75;flex:1;}
+.camp-card-tag{display:inline-block;background:var(--ac-pale);color:var(--ac);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .65rem;border-radius:20px;margin-top:.3rem;}
+
+/* ══ JOGO COMO PLATAFORMA ══ */
+#jogo-plataforma{
+  background:var(--dark);
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#jogo-plataforma::before{content:'';position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,32,.08) 0%,transparent 70%);pointer-events:none;}
+.jp-hd{text-align:center;max-width:680px;margin:0 auto 4.5rem;}
+.jp-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.jp-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.jp-hd p{font-size:.97rem;color:rgba(255,255,255,.5);line-height:1.82;margin-top:.8rem;}
+/* CAMPO DE FUTEBOL visual com materiais distribuidos */
+.jp-campo{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+  position:relative;
+  padding:3rem 2rem;
+  background:rgba(26,122,42,.05);
+  border:1px solid rgba(114,232,136,.1);
+  border-radius:12px;
+  overflow:hidden;
+}
+/* linhas do campo */
+.jp-campo::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(114,232,136,.08);}
+.jp-campo::after{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(114,232,136,.08);}
+.jp-item{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(114,232,136,.1);
+  border-radius:8px;padding:1.6rem 1.4rem;
+  display:flex;flex-direction:column;align-items:center;
+  gap:.7rem;text-align:center;
+  transition:background .3s,border-color .3s,transform .3s;
+  position:relative;z-index:1;
+}
+.jp-item:hover{background:rgba(26,122,42,.12);border-color:rgba(114,232,136,.3);transform:translateY(-4px);}
+.jp-item-ico{font-size:2rem;line-height:1;}
+.jp-item-h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--cream);font-weight:400;line-height:1.2;}
+.jp-item-p{font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.65;}
+/* tag de acção no campo */
+.jp-tag{display:inline-block;background:rgba(232,160,32,.15);color:var(--gold-lt);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px;margin-top:.2rem;}
+
+/* ══ PROTECAO CRIANCAS E ESCOLA ══ */
+#criancas{
+  background:var(--white);
+  padding:7rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5vw;align-items:start;
+}
+.cri-img{position:relative;}
+.cri-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 24px 60px rgba(26,122,42,.15);display:block;}
+.cri-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#4a9a4a,#1a5a1a);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.18;color:#fff;}
+.cri-img-badge{position:absolute;top:-1rem;left:-1rem;background:var(--red);color:#fff;border-radius:50%;width:90px;height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;text-align:center;box-shadow:0 8px 20px rgba(204,0,0,.4);line-height:1.2;padding:.3rem;z-index:2;}
+.cri-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.cri-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.cri-h2 em{font-style:italic;color:var(--ac);}
+.cri-p{font-size:1rem;color:var(--muted);line-height:1.87;}
+.cri-alerta{background:rgba(204,0,0,.06);border:1px solid rgba(204,0,0,.2);border-radius:8px;padding:1.1rem 1.4rem;display:flex;align-items:flex-start;gap:.8rem;}
+.cri-alerta-ico{font-size:1.4rem;flex-shrink:0;line-height:1.3;}
+.cri-alerta-txt{font-size:.88rem;color:var(--text);line-height:1.65;}
+.cri-alerta-txt strong{color:var(--red);}
+.cri-acoes{display:flex;flex-direction:column;gap:.7rem;}
+.cri-acao{display:flex;align-items:flex-start;gap:.9rem;padding:.85rem 1rem;border-radius:6px;background:var(--cream);border-left:3px solid var(--ac);transition:transform .3s,box-shadow .3s;}
+.cri-acao:hover{transform:translateX(5px);box-shadow:2px 0 12px rgba(26,122,42,.1);}
+.cri-acao-ico{font-size:1.2rem;flex-shrink:0;line-height:1.4;}
+.cri-acao-txt{font-size:.9rem;color:var(--muted);line-height:1.65;}
+.cri-acao-txt strong{color:var(--dark);}
+
+/* ══ CASAMENTO PREMATURO ══ */
+#casamento{
+  background:linear-gradient(135deg,#0a1a08 0%,#0d2010 100%);
+  padding:6rem 5vw;
+  position:relative;overflow:hidden;
+}
+#casamento::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--ac),var(--gold));}
+#casamento::after{content:'';position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,42,.12) 0%,transparent 70%);pointer-events:none;}
+.cas-inner{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.cas-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.cas-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.12;}
+.cas-h2 em{font-style:italic;color:var(--ac-lt);}
+.cas-p{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.87;}
+.cas-quote{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-style:italic;color:rgba(255,255,255,.78);border-left:3px solid var(--ac-lt);padding-left:1.2rem;line-height:1.55;}
+/* Porque o futebol funciona contra o casamento prematuro */
+.cas-razoes{display:flex;flex-direction:column;gap:.7rem;margin-top:.3rem;}
+.cas-razao{background:rgba(255,255,255,.04);border:1px solid rgba(114,232,136,.1);border-radius:6px;padding:.9rem 1.1rem;display:flex;align-items:flex-start;gap:.85rem;transition:background .3s,border-color .3s,transform .3s;}
+.cas-razao:hover{background:rgba(26,122,42,.1);border-color:rgba(114,232,136,.28);transform:translateX(5px);}
+.cas-razao-ico{font-size:1.2rem;flex-shrink:0;line-height:1.4;}
+.cas-razao-txt{font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.65;}
+.cas-razao-txt strong{color:rgba(255,255,255,.85);}
+.cas-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,.4);display:block;}
+.cas-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#1a4a1a,#0a2010);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.18;color:#fff;}
+
+/* ══ COESAO SOCIAL — ZONAS REMOTAS ══ */
+#coesao{
+  background:var(--cream);
+  padding:7rem 5vw;
+}
+.coe-hd{max-width:680px;margin:0 auto 4rem;text-align:center;}
+.coe-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--dark);line-height:1.1;}
+.coe-hd h2 em{font-style:italic;color:var(--ac);}
+.coe-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.8rem;}
+/* Quote do bairro */
+.coe-bairro{
+  background:var(--ac);
+  border-radius:16px;
+  padding:3rem 4vw;
+  text-align:center;
+  margin-bottom:4rem;
+  position:relative;overflow:hidden;
+}
+.coe-bairro::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none;}
+.coe-bairro-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,2.8vw,2rem);font-weight:300;font-style:italic;color:#fff;line-height:1.42;max-width:700px;margin:0 auto;}
+.coe-bairro-src{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:1.2rem;}
+/* 3 colunas de impacto social */
+.coe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.coe-item{background:var(--white);border-radius:8px;padding:2rem 1.8rem;border-bottom:4px solid var(--ac);display:flex;flex-direction:column;gap:.8rem;transition:box-shadow .3s,transform .3s;}
+.coe-item:hover{box-shadow:0 12px 36px rgba(26,122,42,.1);transform:translateY(-5px);}
+.coe-item-ico{font-size:2.2rem;line-height:1;}
+.coe-item-h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--dark);line-height:1.2;}
+.coe-item-p{font-size:.9rem;color:var(--muted);line-height:1.72;}
+
+/* ══ NUMEROS ══ */
+#nums{background:var(--dark);padding:6rem 5vw;position:relative;overflow:hidden;}
+#nums::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,42,.15) 0%,transparent 70%);pointer-events:none;}
+.nums-hd{text-align:center;margin-bottom:4rem;}
+.nums-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.nums-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ngrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.nit{background:var(--dark);padding:2.5rem 1.2rem;text-align:center;position:relative;transition:background .3s;}
+.nit:hover{background:rgba(26,122,42,.1);}
+.nit::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--ac);transform:scaleX(0);transition:transform .4s;}
+.nit:hover::after{transform:scaleX(1);}
+.nit-ico{font-size:1.4rem;width:40px;height:40px;border-radius:50%;background:rgba(114,232,136,.08);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;}
+.nit-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3rem);font-weight:300;color:var(--ac-lt);line-height:1;letter-spacing:-.02em;}
+.nit-l{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:.5rem;line-height:1.5;}
+
+/* ══ DEPOIMENTOS ══ */
+#depoimentos{background:var(--white);padding:6rem 5vw;}
+.dep-hd{max-width:560px;margin-bottom:3rem;}
+.dep-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.15;color:var(--dark);}
+.dep-hd h2 em{font-style:italic;color:var(--ac);}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.dep-card{background:var(--cream);border-radius:8px;padding:2rem 1.8rem;border-left:4px solid var(--ac);display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s,transform .3s;}
+.dep-card:hover{box-shadow:0 12px 36px rgba(26,122,42,.1);transform:translateY(-4px);}
+.dep-quote{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dark);line-height:1.58;font-weight:300;}
+.dep-quote::before{content:'\201C';font-size:2.2rem;color:var(--ac);line-height:.4;display:block;margin-bottom:.3rem;font-style:normal;}
+.dep-author{display:flex;align-items:center;gap:.8rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(0,0,0,.07);}
+.dep-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac-dk));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;flex-shrink:0;}
+.dep-name{font-size:.85rem;font-weight:500;color:var(--dark);}
+.dep-role{font-size:.72rem;color:var(--muted);letter-spacing:.04em;}
+
+/* ══ GALERIA ══ */
+#galeria{background:var(--dark2);padding:5rem 5vw;}
+.gal-hd{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.gal-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:var(--cream);}
+.gal-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ggrid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:220px 220px;gap:.6rem;}
+.gitem{overflow:hidden;border-radius:4px;background:#081a08;position:relative;}
+.gitem:first-child{grid-row:span 2;}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.gitem:hover img{transform:scale(1.07);}
+.gfb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.15;color:#fff;}
+.gitem::after{content:attr(data-label);position:absolute;inset:0;background:rgba(26,122,42,.78);color:#fff;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;text-align:center;padding:1rem;}
+.gitem:hover::after{opacity:1;}
+
+/* ══ CTA FINAL ══ */
+#cta-final{background:linear-gradient(135deg,var(--ac) 0%,var(--ac-dk) 100%);padding:7rem 5vw;text-align:center;position:relative;overflow:hidden;}
+#cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+.cta-lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1rem;display:block;}
+.cta-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.12;margin-bottom:1.2rem;}
+.cta-h2 em{font-style:italic;color:rgba(255,255,255,.75);}
+.cta-p{font-size:1rem;color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 2.5rem;line-height:1.82;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
+
+/* ══ NAV AREAS ══ */
+#nav-areas{background:var(--dark);padding:4rem 5vw;}
+.na-hd{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;}
+.na-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;}
+.na-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;transition:background .3s,border-color .3s,transform .3s;}
+.na-item:hover{background:rgba(255,255,255,.09);border-color:rgba(201,153,58,.3);transform:translateY(-3px);}
+.na-item.active{background:rgba(26,122,42,.15);border-color:rgba(26,122,42,.45);}
+.na-ico{font-size:1.4rem;line-height:1;}
+.na-lbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.3;}
+.na-item:hover .na-lbl,.na-item.active .na-lbl{color:rgba(255,255,255,.8);}
+.na-item.active .na-lbl{color:var(--ac-lt);}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark);padding:4rem 5vw 2rem;border-top:1px solid rgba(201,153,58,.08);}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.ftnm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:.65rem;}
+.ftdc{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ftcol h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.ftcol a{display:block;font-size:.85rem;color:rgba(255,255,255,.42);margin-bottom:.48rem;transition:color .2s;}
+.ftcol a:hover{color:rgba(255,255,255,.8);}
+.ftsoc{display:flex;gap:.6rem;margin-top:1.4rem;}
+.ftsi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.ftsi:hover{background:var(--red);}
+.ftsi svg{width:14px;height:14px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ftsi:hover svg{stroke:#fff;}
+.ftbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.8rem;color:rgba(255,255,255,.22);}
+.ftgo{color:var(--gold);}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  #campeonato{grid-template-columns:1fr;}.camp-bola{display:none;}
+  .jp-campo{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:900px){
+  .skillz-inner{grid-template-columns:1fr;gap:4rem;}.skillz-img{max-width:520px;margin:0 auto;}
+  #treinadoras{grid-template-columns:1fr;gap:3rem;}.trei-img{max-width:420px;margin:0 auto;}
+  .camp-grid{grid-template-columns:1fr;}
+  #criancas{grid-template-columns:1fr;gap:3rem;}
+  .cas-inner{grid-template-columns:1fr;gap:3rem;}
+  .coe-grid{grid-template-columns:1fr 1fr;}
+  .dep-grid{grid-template-columns:1fr;}
+  .ggrid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}.gitem:first-child{grid-row:auto;}
+  .ftgrid{grid-template-columns:1fr 1fr;}
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  .na-grid{grid-template-columns:repeat(3,1fr);}
+  .skillz-objetivos{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .hbg{display:flex;}
+  nav.desk{position:fixed;inset:0;background:var(--dark);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.18,1);z-index:999;padding:2rem 8vw;}
+  nav.desk.open{transform:translateX(0);}
+  nav.desk>a,.desk .dd>a{font-size:1.2rem;}
+  .ddm{position:static;opacity:1;pointer-events:all;transform:none;background:transparent;border:none;padding:0;}
+  .ddm a{padding:.35rem 0;font-size:.9rem;}
+  .jp-campo{grid-template-columns:1fr;}
+  .coe-grid{grid-template-columns:1fr;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .ggrid{grid-template-columns:1fr;}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .ftgrid{grid-template-columns:1fr;gap:2rem;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-white,.btn-ghost{justify-content:center;}
+  #ph{height:auto;min-height:auto;}
+  .ph-body{padding-top:calc(var(--hh) + 2rem);padding-bottom:3.5rem;}
+  .camp-eq{justify-content:center;}
+}
+@media(max-width:480px){
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar para o conte&uacute;do principal</a>
+
+<header id="hdr" class="s" role="banner">
+<div class="hin">
+  <a href="index.html" class="logo" aria-label="ADEMO &mdash; P&aacute;gina Principal">
+    <img class="logo-img" src="logo-ademo.png" alt="Log&oacute;tipo ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="logo-fall" aria-hidden="true">A</div>
+    <div class="logo-w"><span class="logo-n">ADEMO</span><span class="logo-t">Mo&ccedil;ambique &middot; Desde 1990</span></div>
+  </a>
+  <button class="hbg" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainnav"><span></span><span></span><span></span></button>
+  <nav id="mainnav" class="desk" role="navigation" aria-label="Menu principal">
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre N&oacute;s</a>
+    <div class="dd">
+      <a href="index.html#areas" aria-haspopup="true">&Aacute;reas &#9660;</a>
+      <div class="ddm" role="menu">
+        <a href="saude.html" role="menuitem">Sa&uacute;de Sexual e Reprodutiva</a>
+        <a href="educacao.html" role="menuitem">Educa&ccedil;&atilde;o Inclusiva</a>
+        <a href="reabilitacao.html" role="menuitem">Reabilita&ccedil;&atilde;o</a>
+        <a href="genero.html" role="menuitem">Equidade de G&eacute;nero</a>
+        <a href="futebol.html" role="menuitem" aria-current="page">Futebol Inclusivo</a>
+        <a href="climatica.html" role="menuitem">Resili&ecirc;ncia Clim&aacute;tica</a>
+      </div>
+    </div>
+    <a href="transparencia.html">Transpar&ecirc;ncia</a>
+    <a href="index.html#contactos">Contactos</a>
+    <a href="/cdn-cgi/l/email-protection#a1c0c5c4ccceced3c6e1c6ccc0c8cd8fc2cecc" class="navcta">Apoie-nos</a>
+  </nav>
+</div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section id="ph" aria-label="Futebol Inclusivo ADEMO">
+  <div class="ph-accent"></div>
+  <div class="ph-bg" id="phbg"></div>
+  <div class="ph-ov"></div>
+  <div class="ph-body">
+    <nav class="breadcrumb"><a href="index.html">ADEMO</a><span>/</span><a href="index.html#areas">&Aacute;reas</a><span>/</span><strong>Futebol Inclusivo</strong></nav>
+    <div class="ph-tag">Desporto &amp; Inclus&atilde;o Social &middot; Sofala</div>
+    <h1 class="ph-h1">Futebol que <em>Transforma Vidas,</em><br>Constr&oacute;i Comunidades</h1>
+    <p class="ph-lead">Na ADEMO, o futebol &eacute; muito mais do que um desporto &mdash; &eacute; uma linguagem universal que abre portas, quebra tabus, protege raparigas e conecta jovens a um futuro melhor nas comunidades mais remotas de Sofala.</p>
+  </div>
+</section>
+
+<!-- CAMPEONATO FAIXA -->
+<div id="campeonato" role="complementary">
+  <div class="camp-bola" aria-hidden="true">&#9917;</div>
+  <div class="camp-txt rv">
+    <span class="camp-lbl">Campeonato Comunit&aacute;rio Inclusivo &middot; Sofala</span>
+    <h2 class="camp-h2">20 Equipas. Uma &Uacute;nica Miss&atilde;o:<br><em>Futebol para Mudar Mo&ccedil;ambique</em></h2>
+    <p class="camp-p">O nosso campeonato comunit&aacute;rio inclusivo re&uacute;ne equipas femininas e masculinas de bairros e aldeias de Sofala &mdash; incluindo zonas remotas onde o futebol feminino e o futebol inclusivo eram impens&aacute;veis.</p>
+  </div>
+  <div class="camp-eq rv d1">
+    <div class="camp-eq-item">
+      <div class="camp-eq-n">10</div>
+      <div class="camp-eq-l">Equipas<br>Femininas</div>
+    </div>
+    <div class="camp-eq-item">
+      <div class="camp-eq-n">10</div>
+      <div class="camp-eq-l">Equipas<br>Masculinas</div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLZ -->
+<section id="skillz" aria-labelledby="skillz-h">
+  <div class="skillz-inner">
+    <div class="skillz-img rv">
+      <img src="foto-fut-skillz.jpg" loading="lazy" alt="Abordagem SKILLZ &mdash; futebol e vida" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="skillz-img-fb" aria-hidden="true">&#9917;</div>
+      <div class="skillz-logo-txt" aria-hidden="true">SKILLZ</div>
+      <div class="skillz-pills" aria-hidden="true">
+        <span class="skillz-pill">Futebol &harr; Sa&uacute;de</span>
+        <span class="skillz-pill">Futebol &harr; Escola</span>
+        <span class="skillz-pill">Futebol &harr; G&eacute;nero</span>
+        <span class="skillz-pill">Futebol &harr; HIV/SIDA</span>
+        <span class="skillz-pill">Futebol &harr; Comunidade</span>
+      </div>
+    </div>
+    <div class="skillz-txt">
+      <span class="skillz-lbl">Metodologia Global Adaptada</span>
+      <h2 class="skillz-h2" id="skillz-h">A Abordagem <em>SKILLZ</em>:<br>Futebol como Linguagem de Mudan&ccedil;a</h2>
+      <p class="skillz-p">SKILLZ &eacute; uma cultura, uma mentalidade e um conjunto de ferramentas para que mentores se conectem com jovens usando o desporto como plataforma de transforma&ccedil;&atilde;o. A ADEMO adoptou e adaptou esta metodologia &agrave; realidade de Sofala &mdash; criando conex&otilde;es simples e poderosas entre o futebol e a vida.</p>
+      <div class="skillz-highlight">&ldquo;SKILLZ permite que os jovens tenham conversas significativas e relevantes sobre as suas vidas &mdash; e os desafia a serem agentes de mudan&ccedil;a nas suas comunidades. N&atilde;o &eacute; apenas futebol: &eacute; uma escola de vida.&rdquo;</div>
+      <div class="skillz-objetivos">
+        <div class="skillz-obj"><span class="skillz-obj-ico">&#127891;</span><div class="skillz-obj-txt"><strong>Permanecer na escola</strong> &mdash; combater o abandono escolar motivando jovens atrav&eacute;s do desporto.</div></div>
+        <div class="skillz-obj"><span class="skillz-obj-ico">&#128137;</span><div class="skillz-obj-txt"><strong>Preven&ccedil;&atilde;o do HIV/SIDA</strong> &mdash; informa&ccedil;&atilde;o e acesso a servi&ccedil;os de sa&uacute;de atrav&eacute;s dos treinadores.</div></div>
+        <div class="skillz-obj"><span class="skillz-obj-ico">&#9792;&#65039;</span><div class="skillz-obj-txt"><strong>Evitar gravidezes indesejadas</strong> &mdash; e uni&otilde;es precoces que interrompem o percurso escolar.</div></div>
+        <div class="skillz-obj"><span class="skillz-obj-ico">&#9892;</span><div class="skillz-obj-txt"><strong>Igualdade de g&eacute;nero</strong> &mdash; questionar normas e promover respeito m&uacute;tuo dentro e fora do campo.</div></div>
+        <div class="skillz-obj"><span class="skillz-obj-ico">&#127775;</span><div class="skillz-obj-txt"><strong>Agentes de mudan&ccedil;a</strong> &mdash; cada jovem &eacute; desafiado a impactar positivamente a sua comunidade.</div></div>
+        <div class="skillz-obj"><span class="skillz-obj-ico">&#127973;</span><div class="skillz-obj-txt"><strong>Acesso a servi&ccedil;os de sa&uacute;de</strong> &mdash; usando a plataforma do futebol para chegar onde a sa&uacute;de n&atilde;o chega.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREINADORAS MULHERES -->
+<section id="treinadoras" aria-labelledby="trei-h">
+  <div class="trei-txt">
+    <span class="lbl rv">Uma Decis&atilde;o Estrat&eacute;gica</span>
+    <h2 class="trei-h2 rv d1" id="trei-h">Treinamos Mulheres para<br><em>Serem Treinadoras Comunit&aacute;rias</em></h2>
+    <p class="trei-p rv d1">A ADEMO tomou uma decis&atilde;o estrat&eacute;gica que parece simples mas &eacute; revolucion&aacute;ria: treinar mulheres das comunidades para serem treinadoras de futebol. N&atilde;o por modismo &mdash; mas porque percebemos que &eacute; a &uacute;nica forma de garantir que as raparigas possam participar.</p>
+    <div class="trei-insight rv d2">
+      <span class="trei-insight-ico" aria-hidden="true">&#128161;</span>
+      <div class="trei-insight-txt">&ldquo;Sabemos por experi&ecirc;ncia que muitos pais e encarregados de educa&ccedil;&atilde;o n&atilde;o aceitam que as suas filhas sejam treinadas por um treinador homem. Uma treinadora mulher remove essa barreira &mdash; e as raparigas passam a jogar.&rdquo;</div>
+    </div>
+    <div class="trei-feats rv d2">
+      <div class="trei-feat">
+        <span class="trei-feat-ico" aria-hidden="true">&#127891;</span>
+        <div class="trei-feat-txt"><strong>Forma&ccedil;&atilde;o t&eacute;cnica e metodol&oacute;gica</strong> &mdash; as treinadoras recebem forma&ccedil;&atilde;o em t&eacute;cnicas de futebol, metodologia SKILLZ, prote&ccedil;&atilde;o da crian&ccedil;a e g&eacute;nero.</div>
+      </div>
+      <div class="trei-feat">
+        <span class="trei-feat-ico" aria-hidden="true">&#128101;</span>
+        <div class="trei-feat-txt"><strong>Mulheres da pr&oacute;pria comunidade</strong> &mdash; recrutamos treinadoras que j&aacute; pertencem &agrave;s comunidades, que conhecem as fam&iacute;lias e s&atilde;o respeitadas localmente.</div>
+      </div>
+      <div class="trei-feat">
+        <span class="trei-feat-ico" aria-hidden="true">&#9855;</span>
+        <div class="trei-feat-txt"><strong>Inclus&atilde;o de raparigas com defici&ecirc;ncia</strong> &mdash; as treinadoras s&atilde;o especificamente formadas para adaptar as sess&otilde;es e incluir raparigas com diferentes tipos de defici&ecirc;ncia.</div>
+      </div>
+      <div class="trei-feat">
+        <span class="trei-feat-ico" aria-hidden="true">&#127775;</span>
+        <div class="trei-feat-txt"><strong>Modelos de papel reais</strong> &mdash; uma treinadora mulher activa muda a narrativa na comunidade: se ela pode treinar, as raparigas podem jogar &mdash; e podem ambicionar mais.</div>
+      </div>
+    </div>
+    <div class="rv d3"><a href="/cdn-cgi/l/email-protection#a1c0c5c4ccceced3c6e1c6ccc0c8cd8fc2cecc" class="btn-ac">Tornar-se Parceiro <span class="arr">&#8594;</span></a></div>
+  </div>
+  <div class="trei-img rv d1">
+    <img src="foto-fut-treinadora.jpg" loading="lazy" alt="Treinadora comunit&aacute;ria formada pela ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="trei-img-fb" aria-hidden="true">&#9917;</div>
+    <div class="trei-badge" aria-hidden="true">
+      <span class="trei-badge-n">&#9917;</span>
+      <span class="trei-badge-l">Treinadoras comunit&aacute;rias activas</span>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPEONATO DETALHES -->
+<section id="camp-detalhe" aria-labelledby="camp-h">
+  <div class="camp-hd rv">
+    <span class="lbl">O Campeonato</span>
+    <h2 id="camp-h">Um Campeonato que <em>Vai &agrave;s Zonas Remotas</em></h2>
+    <p>As equipas s&atilde;o intencionalmente identificadas e recrutadas nas zonas mais recondidas de Sofala &mdash; onde os tabus sobre mulheres e pessoas com defici&ecirc;ncia a jogar futebol s&atilde;o mais fortes, e onde o impacto de uma equipa local &eacute; mais profundo.</p>
+  </div>
+  <div class="camp-grid">
+    <article class="camp-card rv">
+      <div class="camp-card-img-wrap">
+        <img class="camp-card-img" src="foto-fut-campo.jpg" loading="lazy" alt="Jogo do campeonato comunit&aacute;rio" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="camp-card-img-fb" style="background:linear-gradient(135deg,#3a8a3a,#1a4a1a);" aria-hidden="true">&#127944;</div>
+      </div>
+      <div class="camp-card-body">
+        <div class="camp-card-n">Futebol Feminino</div>
+        <h3 class="camp-card-h3">10 Equipas Femininas<br>de Zonas Remotas</h3>
+        <p class="camp-card-p">As 10 equipas femininas representam bairros e aldeias onde o futebol feminino era proibido ou fortemente desencorajado. Cada equipa &eacute; um acto de resist&ecirc;ncia e de mudan&ccedil;a cultural. Uma rapariga no campo &eacute; uma rapariga que n&atilde;o casou cedo, que n&atilde;o abandonou a escola, que diz ao mundo que existe e que tem voz.</p>
+        <span class="camp-card-tag">&#9792;&#65039; Quebrar Tabus</span>
+      </div>
+    </article>
+    <article class="camp-card rv d1">
+      <div class="camp-card-img-wrap">
+        <img class="camp-card-img" src="foto-fut-masculino.jpg" loading="lazy" alt="Equipa masculina inclusiva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="camp-card-img-fb" style="background:linear-gradient(135deg,#2a7a2a,#0a3a0a);" aria-hidden="true">&#9917;</div>
+      </div>
+      <div class="camp-card-body">
+        <div class="camp-card-n">Futebol Inclusivo Masculino</div>
+        <h3 class="camp-card-h3">10 Equipas Masculinas<br>com Inclus&atilde;o Garantida</h3>
+        <p class="camp-card-p">As equipas masculinas integram jovens com e sem defici&ecirc;ncia &mdash; com regras adaptadas que garantem a participa&ccedil;&atilde;o efectiva de todos. Os jovens aprendem no campo o que &eacute; dif&iacute;cil ensinar em sala: respeito, coopera&ccedil;&atilde;o, e que a defici&ecirc;ncia de um colega n&atilde;o o torna menos valioso para a equipa.</p>
+        <span class="camp-card-tag">&#9851; Inclus&atilde;o Real</span>
+      </div>
+    </article>
+    <article class="camp-card rv d2">
+      <div class="camp-card-img-wrap">
+        <img class="camp-card-img" src="foto-fut-bairro.jpg" loading="lazy" alt="Equipa do bairro &mdash; sentido de perten&ccedil;a" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="camp-card-img-fb" style="background:linear-gradient(135deg,#3a6a2a,#1a3a10);" aria-hidden="true">&#127968;</div>
+      </div>
+      <div class="camp-card-body">
+        <div class="camp-card-n">Identidade Comunit&aacute;ria</div>
+        <h3 class="camp-card-h3">A Equipa &eacute; do Bairro &mdash;<br>e Isso Muda Tudo</h3>
+        <p class="camp-card-p">Quando a equipa &eacute; do bairro, cria-se um sentido de perten&ccedil;a que vai muito al&eacute;m do futebol. A comunidade acompanha, torce, protege. Os pais que n&atilde;o queriam que as filhas jogassem passam a querer que a sua equipa ganhe. A mudan&ccedil;a começa por a&iacute;.</p>
+        <span class="camp-card-tag">&#127968; Coes&atilde;o Social</span>
+      </div>
+    </article>
+    <article class="camp-card rv d3">
+      <div class="camp-card-img-wrap">
+        <img class="camp-card-img" src="foto-fut-lideranca.jpg" loading="lazy" alt="L&iacute;deres comunit&aacute;rios capacitados" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="camp-card-img-fb" style="background:linear-gradient(135deg,#4a7a2a,#1a4a10);" aria-hidden="true">&#127775;</div>
+      </div>
+      <div class="camp-card-body">
+        <div class="camp-card-n">Sensibiliza&ccedil;&atilde;o e Lideran&ccedil;a</div>
+        <h3 class="camp-card-h3">L&iacute;deres Comunit&aacute;rios<br>Capacitados para a Mudan&ccedil;a</h3>
+        <p class="camp-card-p">Sensibilizamos e capacitamos l&iacute;deres comunit&aacute;rios em mat&eacute;rias de defici&ecirc;ncia, g&eacute;nero e desporto &mdash; porque a mudan&ccedil;a cultural durad&oacute;ura s&oacute; acontece quando as pessoas de autoridade na comunidade a legitimam e a apoiam activamente.</p>
+        <span class="camp-card-tag">&#127775; Lideran&ccedil;a Activa</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- JOGO COMO PLATAFORMA -->
+<section id="jogo-plataforma" aria-labelledby="jp-h">
+  <div class="jp-hd rv">
+    <span class="lbl-gold">No Dia do Jogo</span>
+    <h2 id="jp-h">O Campo de Futebol como <em>Sala de Aula a C&eacute;u Aberto</em></h2>
+    <p>Os dias de jogo s&atilde;o muito mais do que competição. As nossas activistas aproveitam cada momento &mdash; antes, durante e ap&oacute;s o jogo &mdash; para sensibilizar, distribuir materiais e ligar o futebol &agrave;s quest&otilde;es que mais importam na vida dos jovens.</p>
+  </div>
+  <div class="jp-campo">
+    <div class="jp-item rv">
+      <div class="jp-item-ico" aria-hidden="true">&#128137;</div>
+      <h4 class="jp-item-h4">Preven&ccedil;&atilde;o do HIV/SIDA</h4>
+      <p class="jp-item-p">Distribui&ccedil;&atilde;o de preservativos, panfletos e informa&ccedil;&atilde;o sobre testes e tratamento &mdash; com abordagem adaptada ao contexto cultural local.</p>
+      <span class="jp-tag">Panfletos + Dist. de insumos</span>
+    </div>
+    <div class="jp-item rv d1">
+      <div class="jp-item-ico" aria-hidden="true">&#129307;</div>
+      <h4 class="jp-item-h4">Fair Play e Respeito</h4>
+      <p class="jp-item-p">Cartazes e mensagens sobre fair play que conectam o respeito no campo ao respeito na vida: pelas mulheres, pelas pessoas com defici&ecirc;ncia, pelos diferentes.</p>
+      <span class="jp-tag">Cartazes + Mensagens</span>
+    </div>
+    <div class="jp-item rv d2">
+      <div class="jp-item-ico" aria-hidden="true">&#128137;</div>
+      <h4 class="jp-item-h4">Sa&uacute;de Sexual e Reprodutiva</h4>
+      <p class="jp-item-p">Informa&ccedil;&atilde;o sobre SSR dirigida a rapazes e raparigas &mdash; incluindo preven&ccedil;&atilde;o de gravidezes indesejadas, uni&otilde;es precoces e direitos reprodutivos.</p>
+      <span class="jp-tag">Folhetos + Sess&otilde;es</span>
+    </div>
+    <div class="jp-item rv">
+      <div class="jp-item-ico" aria-hidden="true">&#128684;</div>
+      <h4 class="jp-item-h4">Preven&ccedil;&atilde;o do Consumo de Drogas</h4>
+      <p class="jp-item-p">Mensagens directas sobre os riscos das drogas para jovens atletas &mdash; usando a identidade de desportista como ancora positiva para decis&otilde;es saud&aacute;veis.</p>
+      <span class="jp-tag">Sensibiliza&ccedil;&atilde;o em Campo</span>
+    </div>
+    <div class="jp-item rv d1">
+      <div class="jp-item-ico" aria-hidden="true">&#9892;</div>
+      <h4 class="jp-item-h4">Igualdade de G&eacute;nero</h4>
+      <p class="jp-item-p">O pr&oacute;prio facto de raparigas e mulheres jogarem &eacute; j&aacute; uma mensagem. As activistas refor&ccedil;am com cartazes, di&aacute;logos e role-plays sobre normas de g&eacute;nero.</p>
+      <span class="jp-tag">Role-plays + Cartazes</span>
+    </div>
+    <div class="jp-item rv d2">
+      <div class="jp-item-ico" aria-hidden="true">&#127891;</div>
+      <h4 class="jp-item-h4">Fique na Escola!</h4>
+      <p class="jp-item-h4" style="font-family:'DM Sans',sans-serif;font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.65;margin-top:-.2rem;">Mensagens directas e conversas individuais que ligam o sucesso no desporto ao sucesso na escola &mdash; porque as duas coisas caminham juntas.</p>
+      <span class="jp-tag">Conversa Individual</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROTECAO CRIANCAS E ESCOLA -->
+<section id="criancas" aria-labelledby="cri-h">
+  <div class="cri-img rv">
+    <img src="foto-fut-criancas.jpg" loading="lazy" alt="Crian&ccedil;as e jovens no programa SKILLZ" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="cri-img-fb" aria-hidden="true">&#127891;</div>
+    <div class="cri-img-badge" aria-hidden="true">&#9888;&#65039;<br>Prot.<br>Crian&ccedil;a</div>
+  </div>
+  <div class="cri-txt">
+    <span class="lbl rv">Prote&ccedil;&atilde;o &amp; Educa&ccedil;&atilde;o</span>
+    <h2 class="cri-h2 rv d1" id="cri-h">N&atilde;o Deixamos<br><em>Nenhuma Crian&ccedil;a para Tr&aacute;s</em></h2>
+    <p class="cri-p rv d1">Em Mo&ccedil;ambique, existem crian&ccedil;as que vivem para o futebol &mdash; e que, sem interven&ccedil;&atilde;o, abandonam a escola para jogar. A ADEMO actua directamente neste fen&oacute;meno, usando os pr&oacute;prios clubes como porta de entrada para identificar estas crian&ccedil;as e referenciar.</p>
+    <div class="cri-alerta rv d2">
+      <span class="cri-alerta-ico" aria-hidden="true">&#9888;&#65039;</span>
+      <div class="cri-alerta-txt">Em Mo&ccedil;ambique, <strong>muitas crian&ccedil;as abandonam a escola para jogar futebol</strong> &mdash; pensando que o futebol &eacute; o seu bilhete para uma vida melhor, sem perceber que educa&ccedil;&atilde;o e desporto podem e devem andar juntos.</div>
+    </div>
+    <div class="cri-acoes rv d2">
+      <div class="cri-acao">
+        <span class="cri-acao-ico" aria-hidden="true">&#128269;</span>
+        <div class="cri-acao-txt"><strong>Identificamos nos clubes</strong> &mdash; as nossas activistas visitam regularmente os clubes comunit&aacute;rios para identificar jovens em risco de abandono escolar.</div>
+      </div>
+      <div class="cri-acao">
+        <span class="cri-acao-ico" aria-hidden="true">&#128203;</span>
+        <div class="cri-acao-txt"><strong>Referenciamos para apoio</strong> &mdash; cada caso identificado &eacute; referenciado para acompanhamento escolar, apoio familiar e, quando necess&aacute;rio, apoio psicossocial.</div>
+      </div>
+      <div class="cri-acao">
+        <span class="cri-acao-ico" aria-hidden="true">&#127891;</span>
+        <div class="cri-acao-txt"><strong>Treinadores como mentores escolares</strong> &mdash; formamos os treinadores para que incentivem activamente os seus jogadores a n&atilde;o desistir da escola, usando o futebol como motiva&ccedil;&atilde;o.</div>
+      </div>
+      <div class="cri-acao">
+        <span class="cri-acao-ico" aria-hidden="true">&#128141;</span>
+        <div class="cri-acao-txt"><strong>Forma&ccedil;&atilde;o em prote&ccedil;&atilde;o da crian&ccedil;a</strong> &mdash; todos os treinadores do campeonato s&atilde;o formados em mat&eacute;rias de prote&ccedil;&atilde;o da crian&ccedil;a, sinaliza&ccedil;&atilde;o e referencia&ccedil;&atilde;o de casos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASAMENTO PREMATURO -->
+<section id="casamento" aria-labelledby="cas-h">
+  <div class="cas-inner">
+    <div class="cas-txt rv">
+      <span class="lbl" style="color:var(--ac-lt)">Futebol contra o Casamento Prematuro</span>
+      <h2 class="cas-h2" id="cas-h">Uma Rapariga que Joga<br><em>N&atilde;o Casa Cedo</em></h2>
+      <p class="cas-p">O casamento prematuro &eacute; uma das maiores amea&ccedil;as ao desenvolvimento das raparigas em Mo&ccedil;ambique. A ADEMO usa o futebol como ferramenta de preven&ccedil;&atilde;o activa &mdash; criando alternativas, redes de apoio e narrativas de vida diferentes daquela que a tradi&ccedil;&atilde;o impõe.</p>
+      <blockquote class="cas-quote">&ldquo;Quando uma rapariga est&aacute; no campo, tem um lugar onde pertence, uma equipa que a valoriza e um calendário de jogos que lhe d&aacute; raz&otilde;es para continuar na escola. O casamento prematuro compete com isso &mdash; e perde.&rdquo;</blockquote>
+      <div class="cas-razoes rv d1">
+        <div class="cas-razao">
+          <span class="cas-razao-ico" aria-hidden="true">&#128101;</span>
+          <div class="cas-razao-txt"><strong>Sentido de perten&ccedil;a</strong> &mdash; uma rapariga com equipa, treinadora e colegas tem uma rede social que compensa a press&atilde;o familiar para casar cedo.</div>
+        </div>
+        <div class="cas-razao">
+          <span class="cas-razao-ico" aria-hidden="true">&#127775;</span>
+          <div class="cas-razao-txt"><strong>Autoestima e lideran&ccedil;a</strong> &mdash; o futebol desenvolve confian&ccedil;a e capacidade de decis&atilde;o que tornam as raparigas mais capazes de dizer n&atilde;o a uni&otilde;es que n&atilde;o querem.</div>
+        </div>
+        <div class="cas-razao">
+          <span class="cas-razao-ico" aria-hidden="true">&#128161;</span>
+          <div class="cas-razao-txt"><strong>Mudan&ccedil;a da narrativa comunit&aacute;ria</strong> &mdash; quando a comunidade torce pela equipa feminina, a rapariga deixa de ser vista apenas como futura esposa e passa a ser vista como atleta e l&iacute;der.</div>
+        </div>
+        <div class="cas-razao">
+          <span class="cas-razao-ico" aria-hidden="true">&#128141;</span>
+          <div class="cas-razao-txt"><strong>Mensagens directas nos jogos</strong> &mdash; as activistas usam os dias de jogo para abordar especificamente o tema do casamento prematuro com raparigas, pais e l&iacute;deres.</div>
+        </div>
+      </div>
+    </div>
+    <div class="cas-img rv d1">
+      <img src="foto-fut-casamento.jpg" loading="lazy" alt="Raparigas no campo de futebol como alternativa ao casamento prematuro" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="cas-img-fb" aria-hidden="true">&#9917;</div>
+    </div>
+  </div>
+</section>
+
+<!-- COESAO SOCIAL -->
+<section id="coesao" aria-labelledby="coe-h">
+  <div class="coe-hd rv">
+    <span class="lbl">Impacto Comunit&aacute;rio</span>
+    <h2 id="coe-h">Quando a Equipa &eacute; do Bairro,<br><em>a Comunidade Une-se</em></h2>
+    <p>As equipas s&atilde;o identificadas em zonas remotas onde ainda h&aacute; muitos tabus sobre mulheres e pessoas com defici&ecirc;ncia a jogar futebol. Quando a equipa &eacute; do bairro, isso cria um sentido de perten&ccedil;a que refor&ccedil;a a coes&atilde;o social e muda mentalidades de dentro para fora.</p>
+  </div>
+  <div class="coe-bairro rv">
+    <p class="coe-bairro-q">&ldquo;Nos momentos de jogo, as nossas activistas aproveitam o futebol para promover boas pr&aacute;ticas &mdash; sensibilizando em campo e distribuindo material sobre fair play, preven&ccedil;&atilde;o do HIV, sa&uacute;de sexual e reprodutiva, e preven&ccedil;&atilde;o do consumo de drogas.&rdquo;</p>
+    <div class="coe-bairro-src">ADEMO &middot; Futebol Inclusivo em Sofala</div>
+  </div>
+  <div class="coe-grid">
+    <div class="coe-item rv">
+      <div class="coe-item-ico" aria-hidden="true">&#127775;</div>
+      <h3 class="coe-item-h3">Quebrar Tabus nas Zonas Mais Remotas</h3>
+      <p class="coe-item-p">As equipas s&atilde;o intencionalmente identificadas nas &aacute;reas onde os tabus s&atilde;o mais r&iacute;gidos. Ver a equipa do pr&oacute;prio bairro ganhar muda a percep&ccedil;&atilde;o muito mais r&aacute;pido do que qualquer campanha de sensibiliza&ccedil;&atilde;o abstracta.</p>
+    </div>
+    <div class="coe-item rv d1">
+      <div class="coe-item-ico" aria-hidden="true">&#127968;</div>
+      <h3 class="coe-item-h3">Sentido de Perten&ccedil;a e Coes&atilde;o Social</h3>
+      <p class="coe-item-p">Quando a equipa &eacute; do bairro, a comunidade acompanha, torce e protege. Esse sentido colectivo de orgulho &eacute; um cimento social que fortalece a comunidade muito al&eacute;m do campo de futebol.</p>
+    </div>
+    <div class="coe-item rv d2">
+      <div class="coe-item-ico" aria-hidden="true">&#128101;</div>
+      <h3 class="coe-item-h3">L&iacute;deres Comunit&aacute;rios como Aliados</h3>
+      <p class="coe-item-p">Capacitamos l&iacute;deres comunit&aacute;rios em mat&eacute;rias de defici&ecirc;ncia, g&eacute;nero e desporto &mdash; para que sejam aliados activos da inclus&atilde;o e n&atilde;o obst&aacute;culos, usando a sua autoridade para legitimar a participa&ccedil;&atilde;o de todos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NUMEROS -->
+<section id="nums" aria-labelledby="nums-h">
+  <div class="nums-hd rv">
+    <span class="lbl-gold">Impacto Mensur&aacute;vel</span>
+    <h2 id="nums-h">O Futebol Inclusivo <em>em N&uacute;meros</em></h2>
+  </div>
+  <div class="ngrid">
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">&#9917;</div>
+      <div class="nit-n" data-target="20" data-suffix="">20</div>
+      <div class="nit-l">Equipas no campeonato<br>(10 fem. + 10 masc.)</div>
+    </div>
+    <div class="nit rv d1">
+      <div class="nit-ico" aria-hidden="true">&#9792;&#65039;</div>
+      <div class="nit-n" data-target="480" data-suffix="+">480+</div>
+      <div class="nit-l">Desportistas incluídos<br>no programa</div>
+    </div>
+    <div class="nit rv d2">
+      <div class="nit-ico" aria-hidden="true">&#127891;</div>
+      <div class="nit-n" data-target="95" data-suffix="%">95%</div>
+      <div class="nit-l">Das crian&ccedil;as referenciadas<br>que regressaram &agrave; escola</div>
+    </div>
+    <div class="nit rv d3">
+      <div class="nit-ico" aria-hidden="true">&#127775;</div>
+      <div class="nit-n" data-target="6" data-suffix="">6</div>
+      <div class="nit-l">Distritos de Sofala<br>cobertos pelo programa</div>
+    </div>
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">&#128101;</div>
+      <div class="nit-n" data-target="35" data-suffix=" anos">35</div>
+      <div class="nit-l">De experi&ecirc;ncia ADEMO<br>em inclus&atilde;o social</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" aria-labelledby="dep-h">
+  <div class="dep-hd rv">
+    <span class="lbl">Vozes do Campo</span>
+    <h2 id="dep-h">Hist&oacute;rias que <em>o Futebol Tornou Poss&iacute;veis</em></h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card rv">
+      <p class="dep-quote">O meu pai n&atilde;o me deixava treinar porque o treinador era homem. Quando a ADEMO trouxe a Dona F&aacute;tima como treinadora, ele deixou. Hoje sou capit&atilde; da equipa do bairro e o meu pai &eacute; o maior adepto.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">S</div>
+        <div><div class="dep-name">Sof&iacute;a M.</div><div class="dep-role">Jogadora &middot; Nhamatanda, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d1">
+      <p class="dep-quote">Vi um miudo no clube que chegava ao treino com fome e com o caderno por preencher. Fiz o que a ADEMO me ensinou: falei com ele, falei com os pais, refenciei para apoio. Hoje ele joga futebol E vai &agrave; escola. Esse &eacute; o objetivo.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">A</div>
+        <div><div class="dep-name">Armando C.</div><div class="dep-role">Treinador comunit&aacute;rio &middot; Beira, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d2">
+      <p class="dep-quote">Eu era l&iacute;der comunit&aacute;rio e achava que futebol feminino era coisa de mulheres sem respeito. A forma&ccedil;&atilde;o da ADEMO mudou-me. Agora fui eu que convenci os outros pais a deixar as filhas jogar. A equipa do nosso bairro &eacute; motivo de orgulho.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">M</div>
+        <div><div class="dep-name">Manuel D.</div><div class="dep-role">L&iacute;der comunit&aacute;rio &middot; Dondo, Sofala</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" aria-labelledby="gal-h">
+  <div class="gal-hd rv">
+    <div><span class="lbl-gold">Galeria</span><h2 id="gal-h">Futebol Inclusivo <em>em Imagens</em></h2></div>
+  </div>
+  <div class="ggrid rv d1">
+    <div class="gitem" data-label="Campeonato Comunit&aacute;rio &middot; Sofala">
+      <img src="foto-fut-campo.jpg" loading="lazy" alt="Jogo do campeonato inclusivo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#9917;</div>
+    </div>
+    <div class="gitem" data-label="Treinadoras Comunit&aacute;rias">
+      <img src="foto-fut-treinadora.jpg" loading="lazy" alt="Treinadora comunit&aacute;ria em ac&ccedil;&atilde;o" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#9792;&#65039;</div>
+    </div>
+    <div class="gitem" data-label="Abordagem SKILLZ">
+      <img src="foto-fut-skillz.jpg" loading="lazy" alt="Sess&atilde;o SKILLZ com jovens" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127775;</div>
+    </div>
+    <div class="gitem" data-label="Sensibiliza&ccedil;&atilde;o em Campo">
+      <img src="foto-fut-sensibilizacao.jpg" loading="lazy" alt="Activistas a sensibilizar durante o jogo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#128141;</div>
+    </div>
+    <div class="gitem" data-label="Futebol Feminino &middot; Zonas Remotas">
+      <img src="foto-fut-feminino.jpg" loading="lazy" alt="Equipa feminina de zona remota" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127944;</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final" aria-label="Apoiar futebol inclusivo">
+  <span class="cta-lbl rv">Fa&ccedil;a a Diferen&ccedil;a</span>
+  <h2 class="cta-h2 rv d1">O Campo &eacute; de Todas e de Todos.<br><em>Apoie Esse Direito.</em></h2>
+  <p class="cta-p rv d2">Com o seu apoio, criamos mais equipas nas zonas mais remotas, formamos mais treinadoras comunit&aacute;rias, organizamos mais campanhas de sensibiliza&ccedil;&atilde;o nos jogos e garantimos que cada rapariga e cada jovem com defici&ecirc;ncia em Sofala tenha um lugar no campo &mdash; e no futuro.</p>
+  <div class="cta-btns rv d3">
+    <a href="/cdn-cgi/l/email-protection#badbdedfd7d5d5c8ddfaddd7dbd3d694d9d5d7" class="btn-white">Apoiar este Programa <span class="arr">&#8594;</span></a>
+    <a href="transparencia.html" class="btn-ghost">Ver Relat&oacute;rios de Impacto</a>
+  </div>
+</section>
+
+<!-- NAV AREAS -->
+<nav id="nav-areas" aria-label="Outras &aacute;reas">
+  <span class="na-hd">Explorar Outras &Aacute;reas</span>
+  <div class="na-grid">
+    <a href="saude.html" class="na-item"><span class="na-ico">&#127973;</span><span class="na-lbl">Sa&uacute;de Sexual</span></a>
+    <a href="educacao.html" class="na-item"><span class="na-ico">&#128218;</span><span class="na-lbl">Educa&ccedil;&atilde;o</span></a>
+    <a href="reabilitacao.html" class="na-item"><span class="na-ico">&#9851;</span><span class="na-lbl">Reabilita&ccedil;&atilde;o</span></a>
+    <a href="genero.html" class="na-item"><span class="na-ico">&#9892;</span><span class="na-lbl">G&eacute;nero</span></a>
+    <a href="futebol.html" class="na-item active" aria-current="page"><span class="na-ico">&#9917;</span><span class="na-lbl">Futebol Inclusivo</span></a>
+  </div>
+</nav>
+</main>
+
+<footer role="contentinfo">
+  <div class="ftgrid">
+    <div>
+      <div class="ftnm">ADEMO</div>
+      <p class="ftdc">Associa&ccedil;&atilde;o dos Deficientes Mo&ccedil;ambicanos &mdash; desde 1990, promovendo dignidade, direitos e inclus&atilde;o em todo o pa&iacute;s.</p>
+      <div class="ftsoc">
+        <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="ftsi" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="ftsi" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="/cdn-cgi/l/email-protection#462722232b2929342106212b272f2a6825292b" class="ftsi" aria-label="E-mail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <nav class="ftcol"><h4>Navega&ccedil;&atilde;o</h4><a href="index.html">Home</a><a href="sobre.html">Sobre N&oacute;s</a><a href="index.html#areas">&Aacute;reas</a><a href="transparencia.html">Transpar&ecirc;ncia</a><a href="index.html#contactos">Contactos</a></nav>
+    <nav class="ftcol"><h4>O Que Fazemos</h4><a href="saude.html">Sa&uacute;de</a><a href="educacao.html">Educa&ccedil;&atilde;o</a><a href="reabilitacao.html">Reabilita&ccedil;&atilde;o</a><a href="genero.html">G&eacute;nero</a><a href="futebol.html">Futebol</a><a href="climatica.html">Clima</a></nav>
+    <div class="ftcol"><h4>Contacto</h4><a href="/cdn-cgi/l/email-protection#badbdedfd7d5d5c8ddfaddd7dbd3d694d9d5d7"><span class="__cf_email__" data-cfemail="1b7a7f7e767474697c5b7c767a727735787476">[email&#160;protected]</span></a><a href="tel:+258849371782">(+258) 849 371 782</a><a href="https://www.ademosofala.site" target="_blank">www.ademosofala.site</a></div>
+  </div>
+  <div class="ftbot">
+    <span>&copy; 2025 <span class="ftgo">ADEMO</span>. Todos os direitos reservados.</span>
+    <span>Feito com dedica&ccedil;&atilde;o para um Mo&ccedil;ambique inclusivo</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){var h=document.getElementById('hdr');function s(){h.classList.toggle('s',scrollY>60);h.classList.toggle('t',scrollY<=60);}window.addEventListener('scroll',s,{passive:true});s();})();
+(function(){var hbg=document.querySelector('.hbg'),nav=document.getElementById('mainnav');if(!hbg||!nav)return;hbg.addEventListener('click',function(){var o=hbg.getAttribute('aria-expanded')==='true';hbg.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';});});})();
+(function(){var bg=document.getElementById('phbg');if(!bg)return;bg.classList.add('loaded');window.addEventListener('scroll',function(){bg.style.transform='translateY('+scrollY*.22+'px) scale(1.04)';},{passive:true});})();
+(function(){if(!('IntersectionObserver' in window))return;document.body.classList.add('js-rdy');var obs=new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});})();
+(function(){function run(el){var tgt=parseInt(el.dataset.target)||0,sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*tgt).toLocale

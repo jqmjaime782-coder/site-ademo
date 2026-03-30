@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre Nós — ADEMO · Associação dos Deficientes Moçambicanos</title>
+<meta name="description" content="Conheça a ADEMO — fundada em 1989, promovemos a inclusão e dignidade das pessoas com deficiência em Moçambique há mais de 35 anos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CC0000;--red-dk:#a00000;
+  --gold:#C9993A;--gold-lt:#e5c07a;--gold-dim:rgba(201,153,58,.18);
+  --dark:#1A1008;--dark2:#2d1f0e;
+  --text:#1e1408;--muted:#5c4e38;
+  --white:#fff;--cream:#F8F3EC;--hh:80px;
+}
+html{font-size:18px;scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.75;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.skip{position:absolute;top:-120px;left:1rem;background:var(--red);color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:9999;transition:top .2s;}
+.skip:focus{top:1rem;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+
+/* ══ HEADER ══ */
+#hdr{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--hh);display:flex;align-items:center;padding:0 5vw;transition:background .4s,box-shadow .4s;}
+#hdr.t{background:transparent;}
+#hdr.s{background:rgba(26,16,8,.97);box-shadow:0 2px 28px rgba(0,0,0,.45);backdrop-filter:blur(14px);}
+.hin{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.logo{display:flex;align-items:center;gap:.85rem;}
+.logo-img{height:46px;width:auto;object-fit:contain;flex-shrink:0;}
+.logo-fall{display:none;width:46px;height:46px;border-radius:50%;background:var(--red);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;flex-shrink:0;}
+.logo-w{display:flex;flex-direction:column;line-height:1.1;justify-content:center;gap:.1rem;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;letter-spacing:.08em;}
+.logo-t{font-size:.54rem;color:var(--gold-lt);letter-spacing:.16em;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:1.6rem;}
+nav>a,.dd>a{color:rgba(255,255,255,.8);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:2px;transition:color .3s;}
+nav>a::after,.dd>a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav>a:hover,.dd>a:hover{color:#fff;}
+nav>a:hover::after,.dd>a:hover::after{width:100%;}
+.dd{position:relative;}
+.ddm{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--dark);border:1px solid var(--gold-dim);min-width:240px;padding:.5rem 0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
+.dd:hover .ddm,.dd:focus-within .ddm{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.ddm a{display:block;padding:.55rem 1.3rem;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.7);text-transform:uppercase;transition:color .2s,background .2s;}
+.ddm a:hover{color:var(--gold-lt);background:rgba(201,153,58,.08);}
+.navcta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.25rem;border-radius:2px;transition:background .3s!important;}
+.navcta:hover{background:var(--red-dk)!important;}
+.navcta::after{display:none!important;}
+.hbg{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:1001;}
+.hbg span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.hbg[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hbg[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* ══ UTILS ══ */
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--red);margin-bottom:.85rem;display:block;}
+.lbl-gold{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem;display:block;}
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease;}
+.js-rdy .rv{opacity:0;transform:translateY(22px);}
+.js-rdy .rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.15s;}.d2{transition-delay:.3s;}.d3{transition-delay:.45s;}
+.arr{display:inline-block;transition:transform .3s;}
+.btn-r{display:inline-flex;align-items:center;gap:.6rem;background:var(--red);color:#fff;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:500;transition:background .3s,transform .2s;}
+.btn-r:hover{background:var(--red-dk);transform:translateY(-2px);}
+.btn-r:hover .arr{transform:translateX(5px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.1);}
+
+/* ══ HERO ══ */
+#ph{position:relative;height:88vh;min-height:580px;display:flex;align-items:flex-end;overflow:hidden;background:#1a1008;}
+.ph-bg{position:absolute;inset:0;background-image:url('foto-sobre-hero.jpg');background-size:cover;background-position:center 30%;transform:scale(1.04);transition:transform 10s ease;}
+.ph-bg.loaded{transform:scale(1);}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,16,8,.05) 0%,rgba(26,16,8,.18) 35%,rgba(26,16,8,.8) 60%,rgba(26,16,8,.97) 100%);}
+.ph-accent{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red) 0%,var(--gold) 50%,var(--red-dk) 100%);z-index:3;}
+.ph-body{position:relative;z-index:2;padding:calc(var(--hh) + 1rem) 5vw 5.5rem;width:100%;display:flex;flex-direction:column;justify-content:flex-end;min-height:inherit;}
+.ph-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.8vw,3rem);font-weight:300;color:#fff;line-height:1.08;letter-spacing:-.02em;max-width:820px;margin-bottom:1.2rem;}
+.ph-h1 em{font-style:italic;color:var(--gold-lt);}
+.ph-lead{font-size:clamp(.9rem,1.2vw,1rem);color:rgba(255,255,255,.65);max-width:620px;line-height:1.85;}
+/* Faixa datas */
+.ph-datas{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;}
+.ph-data{background:rgba(255,255,255,.07);border:1px solid rgba(201,153,58,.25);border-radius:4px;padding:.55rem 1rem;display:flex;flex-direction:column;gap:.1rem;}
+.ph-data-n{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;color:var(--gold-lt);line-height:1;}
+.ph-data-l{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+
+/* ══ IDENTIDADE JURÍDICA ══ */
+#identidade{
+  background:var(--white);
+  padding:7rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;
+}
+.idf-img{position:relative;}
+.idf-img img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px 120px 20px 120px;box-shadow:0 36px 80px rgba(26,16,8,.18);transition:border-radius .7s;display:block;}
+.idf-img img:hover{border-radius:120px 20px 120px 20px;}
+.idf-img-fb{display:none;width:100%;aspect-ratio:4/5;border-radius:20px 120px 20px 120px;background:linear-gradient(145deg,#8a2000,#3a0800);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+/* Crache de fundação */
+.idf-badge{position:absolute;top:-1rem;right:-1rem;width:110px;height:110px;border-radius:50%;background:var(--red);box-shadow:0 8px 28px rgba(204,0,0,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:2;}
+.idf-badge-n{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;line-height:1;}
+.idf-badge-l{font-size:.42rem;letter-spacing:.12em;text-transform:uppercase;opacity:.8;text-align:center;}
+.idf-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.idf-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.idf-h2 em{font-style:italic;color:var(--red);}
+.idf-p{font-size:1rem;color:var(--muted);line-height:1.88;}
+/* Dados jurídicos */
+.idf-dados{display:flex;flex-direction:column;gap:.6rem;}
+.idf-dado{display:flex;align-items:flex-start;gap:.9rem;padding:.85rem 1rem;border-radius:6px;background:var(--cream);border-left:3px solid var(--red);}
+.idf-dado-ico{font-size:1.1rem;flex-shrink:0;line-height:1.5;}
+.idf-dado-body{display:flex;flex-direction:column;gap:.1rem;}
+.idf-dado-lbl{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+.idf-dado-val{font-size:.92rem;color:var(--text);line-height:1.55;}
+
+/* ══ MISSÃO VISÃO VALORES ══ */
+#mvv{
+  background:linear-gradient(160deg,#1a0a04 0%,#2a1408 100%);
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#mvv::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,153,58,.1) 0%,transparent 68%);pointer-events:none;}
+#mvv::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,153,58,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,153,58,.025) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;}
+.mvv-hd{text-align:center;max-width:640px;margin:0 auto 4.5rem;position:relative;z-index:1;}
+.mvv-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.mvv-hd h2 em{font-style:italic;color:var(--gold-lt);}
+.mvv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;position:relative;z-index:1;}
+/* Card Missão */
+.mvv-card{border-radius:12px;padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.2rem;position:relative;overflow:hidden;}
+.mvv-card.missao{background:linear-gradient(145deg,rgba(204,0,0,.15),rgba(204,0,0,.05));border:1px solid rgba(204,0,0,.25);}
+.mvv-card.visao{background:linear-gradient(145deg,rgba(201,153,58,.12),rgba(201,153,58,.04));border:1px solid rgba(201,153,58,.22);}
+.mvv-card.valores{background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);}
+.mvv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.mvv-card.missao::before{background:var(--red);}
+.mvv-card.visao::before{background:var(--gold);}
+.mvv-card.valores::before{background:rgba(255,255,255,.4);}
+.mvv-ico{font-size:2.4rem;line-height:1;}
+.mvv-titulo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--cream);}
+.mvv-txt{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.82;}
+/* Lista de valores */
+.valores-lista{display:flex;flex-direction:column;gap:.5rem;margin-top:.3rem;}
+.vl{display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;color:rgba(255,255,255,.52);line-height:1.55;}
+.vl-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-lt);flex-shrink:0;margin-top:.5rem;}
+.vl strong{color:rgba(255,255,255,.82);}
+
+/* ══ HISTÓRIA LINHA DO TEMPO ══ */
+#historia{background:var(--cream);padding:7rem 5vw;}
+.hist-hd{max-width:680px;margin:0 auto 4.5rem;text-align:center;}
+.hist-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.1;color:var(--dark);}
+.hist-hd h2 em{font-style:italic;color:var(--red);}
+.hist-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.85rem;}
+/* Linha do tempo */
+.timeline{position:relative;max-width:820px;margin:0 auto;}
+.timeline::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--red),var(--gold),var(--red));opacity:.25;}
+/* Layout lado a lado: timeline + caixa imagem */
+.hist-inner{display:grid;grid-template-columns:1fr 340px;gap:4rem;align-items:start;}
+.hist-img-box{position:sticky;top:calc(var(--hh) + 2rem);}
+.hist-img-upload{
+  width:100%;aspect-ratio:3/4;
+  border:2px dashed rgba(204,0,0,.3);
+  border-radius:12px;
+  background:var(--white);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.8rem;cursor:pointer;overflow:hidden;position:relative;
+  transition:border-color .3s,background .3s;
+}
+.hist-img-upload:hover{border-color:var(--red);background:rgba(204,0,0,.02);}
+.hist-img-upload img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;border-radius:10px;}
+.hist-img-upload img.loaded{display:block;}
+.hist-img-placeholder{display:flex;flex-direction:column;align-items:center;gap:.6rem;pointer-events:none;}
+.hip-ico{font-size:2.4rem;opacity:.3;}
+.hip-txt{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;line-height:1.5;}
+.hist-img-upload input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.hist-img-caption{margin-top:.7rem;font-size:.72rem;color:var(--muted);text-align:center;font-style:italic;}
+.tl-item{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-bottom:2.8rem;align-items:start;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-left{text-align:right;padding-right:2.2rem;}
+.tl-right{text-align:left;padding-left:2.2rem;}
+.tl-center{display:flex;flex-direction:column;align-items:center;gap:.3rem;flex-shrink:0;}
+.tl-dot{width:44px;height:44px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:.75rem;font-weight:600;flex-shrink:0;box-shadow:0 4px 16px rgba(204,0,0,.35);letter-spacing:.02em;text-align:center;line-height:1.2;}
+.tl-line{width:2px;flex:1;background:rgba(204,0,0,.15);min-height:20px;}
+.tl-ano{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--red);line-height:1;}
+.tl-titulo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--dark);line-height:1.2;margin-bottom:.3rem;}
+.tl-desc{font-size:.84rem;color:var(--muted);line-height:1.65;}
+/* Items alternados */
+.tl-item:nth-child(even) .tl-left{order:3;text-align:left;padding-right:0;padding-left:2.2rem;}
+.tl-item:nth-child(even) .tl-right{order:1;text-align:right;padding-left:0;padding-right:2.2rem;}
+.tl-item:nth-child(even) .tl-center{order:2;}
+
+/* ══ DELEGAÇÕES ══ */
+#delegacoes{
+  background:var(--dark);
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#delegacoes::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,153,58,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,153,58,.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;}
+#delegacoes::after{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,153,58,.08) 0%,transparent 68%);pointer-events:none;}
+.del-hd{text-align:center;max-width:660px;margin:0 auto 3.5rem;position:relative;z-index:1;}
+.del-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.del-hd h2 em{font-style:italic;color:var(--gold-lt);}
+.del-hd p{font-size:.97rem;color:rgba(255,255,255,.5);line-height:1.82;margin-top:.85rem;}
+/* Sede + delegações grid */
+.del-sede{
+  background:linear-gradient(135deg,var(--red),var(--red-dk));
+  border-radius:12px;padding:2rem 2.2rem;
+  display:flex;align-items:flex-start;gap:1.4rem;
+  margin-bottom:1.5rem;position:relative;z-index:1;
+  max-width:900px;margin-left:auto;margin-right:auto;
+}
+.del-sede-ico{font-size:2.2rem;flex-shrink:0;line-height:1.2;}
+.del-sede-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#fff;font-weight:400;margin-bottom:.4rem;}
+.del-sede-desc{font-size:.88rem;color:rgba(255,255,255,.72);line-height:1.65;}
+.del-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.del-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,153,58,.14);border-radius:8px;padding:1.4rem 1.2rem;text-align:center;transition:background .3s,border-color .3s,transform .3s;}
+.del-card:hover{background:rgba(201,153,58,.07);border-color:rgba(201,153,58,.32);transform:translateY(-4px);}
+.del-card-ico{font-size:1.6rem;margin-bottom:.5rem;}
+.del-card-prov{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-lt);font-weight:400;line-height:1.2;margin-bottom:.2rem;}
+.del-card-desc{font-size:.72rem;color:rgba(255,255,255,.38);letter-spacing:.06em;text-transform:uppercase;}
+/* Banner cobertura nacional */
+.del-banner{
+  background:rgba(201,153,58,.08);
+  border:1px solid rgba(201,153,58,.2);
+  border-radius:8px;padding:1.4rem 2rem;
+  display:flex;align-items:center;gap:1.2rem;
+  max-width:900px;margin:1.5rem auto 0;
+  position:relative;z-index:1;
+}
+.del-banner-ico{font-size:1.8rem;flex-shrink:0;}
+.del-banner-txt{font-size:.92rem;color:rgba(255,255,255,.6);line-height:1.65;}
+.del-banner-txt strong{color:var(--gold-lt);}
+
+/* ══ ESTRUTURA ORGÂNICA ══ */
+#estrutura{background:var(--white);padding:7rem 5vw;}
+.est-hd{max-width:660px;margin:0 auto 4rem;text-align:center;}
+.est-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.1;color:var(--dark);}
+.est-hd h2 em{font-style:italic;color:var(--red);}
+.est-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.85rem;}
+/* 3 órgãos */
+.est-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;max-width:1000px;margin:0 auto;}
+.orgao{border-radius:12px;overflow:hidden;border:1px solid rgba(26,16,8,.1);transition:box-shadow .35s,transform .35s;}
+.orgao:hover{box-shadow:0 16px 50px rgba(26,16,8,.1);transform:translateY(-5px);}
+.orgao-header{padding:1.6rem 1.8rem;display:flex;align-items:center;gap:.9rem;}
+.orgao.assembleia .orgao-header{background:var(--red);}
+.orgao.fiscal .orgao-header{background:var(--dark2);}
+.orgao.direcao .orgao-header{background:linear-gradient(135deg,#8a4a00,#5a2800);}
+.orgao-ico{font-size:1.8rem;flex-shrink:0;line-height:1;}
+.orgao-titulo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:#fff;line-height:1.2;}
+.orgao-subtitulo{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.15rem;}
+.orgao-membros{padding:1.4rem 1.8rem;background:var(--cream);display:flex;flex-direction:column;}
+.orgao-membro{display:flex;align-items:center;gap:.9rem;padding:.75rem 0;border-bottom:1px solid rgba(26,16,8,.07);}
+.orgao-membro:last-child{border-bottom:none;padding-bottom:0;}
+.orgao-membro:first-child{padding-top:0;}
+.om-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:#fff;flex-shrink:0;}
+.orgao.assembleia .om-avatar{background:var(--red);}
+.orgao.fiscal .om-avatar{background:var(--dark2);}
+.orgao.direcao .om-avatar{background:#8a4a00;}
+.om-cargo{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.1rem;}
+.om-nome{font-size:.88rem;color:var(--text);font-style:italic;font-family:'Cormorant Garamond',serif;}
+
+/* ══ PARCERIAS E FILIAÇÕES ══ */
+#filiacoes{
+  background:var(--cream);
+  padding:6rem 5vw;
+}
+.fil-hd{max-width:660px;margin:0 auto 3rem;text-align:center;}
+.fil-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.1;color:var(--dark);}
+.fil-hd h2 em{font-style:italic;color:var(--red);}
+.fil-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:860px;margin:0 auto;}
+.fil-card{background:var(--white);border-radius:8px;padding:1.5rem 1.4rem;display:flex;align-items:flex-start;gap:.9rem;border-left:3px solid var(--red);transition:box-shadow .3s,transform .3s;}
+.fil-card:hover{box-shadow:0 10px 32px rgba(26,16,8,.09);transform:translateX(4px);}
+.fil-ico{font-size:1.4rem;flex-shrink:0;line-height:1.3;}
+.fil-body{display:flex;flex-direction:column;gap:.2rem;}
+.fil-nome{font-size:.9rem;font-weight:600;color:var(--dark);}
+.fil-desc{font-size:.78rem;color:var(--muted);line-height:1.55;}
+
+/* ══ NÚMEROS ══ */
+#nums{
+  background:linear-gradient(160deg,#1a0a04 0%,#2a1408 100%);
+  padding:6rem 5vw;position:relative;overflow:hidden;
+}
+#nums::before{content:'';position:absolute;top:-80px;right:-80px;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(201,153,58,.1) 0%,transparent 68%);pointer-events:none;}
+.nums-hd{text-align:center;margin-bottom:4rem;}
+.nums-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.nums-hd h2 em{font-style:italic;color:var(--gold-lt);}
+.ngrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.nit{background:rgba(26,10,4,.85);padding:2.8rem 1rem;text-align:center;position:relative;transition:background .35s;}
+.nit:hover{background:rgba(201,153,58,.08);}
+.nit::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--gold-lt);transform:scaleX(0);transition:transform .45s;}
+.nit:hover::after{transform:scaleX(1);}
+.nit-ico{width:44px;height:44px;border-radius:50%;background:rgba(201,153,58,.08);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;font-size:1.4rem;}
+.nit-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.8vw,3.2rem);font-weight:300;color:var(--gold-lt);line-height:1;letter-spacing:-.02em;}
+.nit-l{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.5rem;line-height:1.55;}
+
+/* ══ DEPOIMENTOS / RECONHECIMENTOS ══ */
+#reconhecimentos{background:var(--dark2);padding:6rem 5vw;}
+.rec-hd{max-width:560px;margin-bottom:3rem;}
+.rec-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.15;color:var(--cream);}
+.rec-hd h2 em{font-style:italic;color:var(--gold-lt);}
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.rc{background:rgba(255,255,255,.04);border-radius:8px;padding:2rem 1.8rem;border-left:4px solid var(--red);display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s,transform .3s;}
+.rc:hover{box-shadow:0 12px 36px rgba(0,0,0,.3);transform:translateY(-5px);}
+.rc-q{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:var(--cream);line-height:1.6;font-weight:300;}
+.rc-q::before{content:'\201C';font-size:2.4rem;color:var(--gold-lt);line-height:.35;display:block;margin-bottom:.35rem;font-style:normal;}
+.rc-au{display:flex;align-items:center;gap:.8rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);}
+.rc-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--red-dk));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;flex-shrink:0;}
+.rc-name{font-size:.85rem;font-weight:500;color:var(--cream);}
+.rc-role{font-size:.72rem;color:rgba(255,255,255,.45);}
+
+/* ══ CTA ══ */
+#cta-final{
+  background:linear-gradient(145deg,var(--red) 0%,var(--red-dk) 50%,#2a0808 100%);
+  padding:8rem 5vw;text-align:center;
+  position:relative;overflow:hidden;
+}
+#cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+#cta-final::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta-lbl{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1rem;display:block;}
+.cta-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:300;color:#fff;line-height:1.1;margin-bottom:1.3rem;}
+.cta-h2 em{font-style:italic;color:rgba(255,255,255,.72);}
+.cta-p{font-size:1rem;color:rgba(255,255,255,.65);max-width:580px;margin:0 auto 2.8rem;line-height:1.85;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark);padding:4rem 5vw 2rem;border-top:1px solid rgba(201,153,58,.08);}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.ftnm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:.65rem;}
+.ftdc{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ftcol h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.ftcol a{display:block;font-size:.85rem;color:rgba(255,255,255,.42);margin-bottom:.48rem;transition:color .2s;}
+.ftcol a:hover{color:rgba(255,255,255,.8);}
+.ftsoc{display:flex;gap:.6rem;margin-top:1.4rem;}
+.ftsi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.ftsi:hover{background:var(--red);}
+.ftsi svg{width:14px;height:14px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ftsi:hover svg{stroke:#fff;}
+.ftbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.8rem;color:rgba(255,255,255,.22);}
+.ftgo{color:var(--gold);}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .hist-inner{grid-template-columns:1fr 280px;gap:2.5rem;}
+}
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  .del-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:900px){
+  #identidade{grid-template-columns:1fr;gap:3rem;}.idf-img{max-width:440px;margin:0 auto;}
+  .mvv-grid{grid-template-columns:1fr;}
+  .est-grid{grid-template-columns:1fr;}
+  .fil-grid{grid-template-columns:1fr 1fr;}
+  .rec-grid{grid-template-columns:1fr;}
+  .ftgrid{grid-template-columns:1fr 1fr;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  /* Timeline mobile */
+  .hist-inner{grid-template-columns:1fr;}.hist-img-box{position:static;max-width:440px;margin:2.5rem auto 0;}
+  .tl-item{grid-template-columns:44px 1fr;grid-template-rows:auto auto;}
+  .tl-left{display:none;}
+  .tl-right{padding-left:1.5rem;text-align:left;}
+  .tl-center{flex-direction:row;align-items:flex-start;}
+  .tl-line{display:none;}
+  .tl-item:nth-child(even) .tl-left{display:none;}
+  .tl-item:nth-child(even) .tl-right{order:2;text-align:left;padding-right:0;padding-left:1.5rem;}
+  .tl-item:nth-child(even) .tl-center{order:1;}
+}
+@media(max-width:768px){
+  .hbg{display:flex;}
+  nav.desk{position:fixed;inset:0;background:var(--dark);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.18,1);z-index:999;padding:2rem 8vw;}
+  nav.desk.open{transform:translateX(0);}
+  nav.desk>a,.desk .dd>a{font-size:1.2rem;}
+  .ddm{position:static;opacity:1;pointer-events:all;transform:none;background:transparent;border:none;padding:0;}
+  .ddm a{padding:.35rem 0;font-size:.9rem;}
+  .ftgrid{grid-template-columns:1fr;gap:2rem;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-ghost{justify-content:center;}
+  #ph{height:auto;min-height:auto;}
+  .ph-body{padding-bottom:3.5rem;}
+  .ph-datas{gap:.6rem;}
+  .fil-grid{grid-template-columns:1fr;}
+  .del-grid{grid-template-columns:1fr 1fr;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:480px){
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .del-grid{grid-template-columns:1fr;}
+  .ph-datas{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar para o conteúdo principal</a>
+
+<header id="hdr" class="s" role="banner">
+<div class="hin">
+  <a href="index.html" class="logo" aria-label="ADEMO — Página Principal">
+    <img class="logo-img" src="logo-ademo.png" alt="Logótipo ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="logo-fall" aria-hidden="true">A</div>
+    <div class="logo-w"><span class="logo-n">ADEMO</span><span class="logo-t">Moçambique · Desde 1990</span></div>
+  </a>
+  <button class="hbg" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainnav"><span></span><span></span><span></span></button>
+  <nav id="mainnav" class="desk" role="navigation" aria-label="Menu principal">
+    <a href="index.html">Home</a>
+    <a href="sobre.html" aria-current="page">Sobre Nós</a>
+    <div class="dd">
+      <a href="index.html#areas" aria-haspopup="true">Áreas ▾</a>
+      <div class="ddm" role="menu">
+        <a href="saude.html" role="menuitem">Saúde Sexual e Reprodutiva</a>
+        <a href="educacao.html" role="menuitem">Educação Inclusiva</a>
+        <a href="reabilitacao.html" role="menuitem">Reabilitação</a>
+        <a href="genero.html" role="menuitem">Equidade de Género</a>
+        <a href="futebol.html" role="menuitem">Futebol Inclusivo</a>
+        <a href="climatica.html" role="menuitem">Resiliência Climática</a>
+        <a href="economico.html" role="menuitem">Empoderamento Económico</a>
+        <a href="cultura.html" role="menuitem">Teatro &amp; Cultura</a>
+      </div>
+    </div>
+    <a href="transparencia.html">Transparência</a>
+    <a href="index.html#contactos">Contactos</a>
+    <a href="mailto:ademoorg@gmail.com" class="navcta">Apoie-nos</a>
+  </nav>
+</div>
+</header>
+
+<main id="main">
+
+<!-- ═══ HERO ═══ -->
+<section id="ph" aria-label="Sobre a ADEMO">
+  <div class="ph-accent" aria-hidden="true"></div>
+  <div class="ph-bg" id="phbg"></div>
+  <div class="ph-ov"></div>
+  <div class="ph-body">
+    <h1 class="ph-h1">Mais de 35 Anos a Defender<br>a Dignidade de <em>Cada Pessoa<br>com Deficiência.</em></h1>
+    <p class="ph-lead">A ADEMO é uma das mais antigas e respeitadas organizações de pessoas com deficiência de Moçambique — fundada em 1989, registada em 1990, e presente em todo o território nacional com uma missão que nunca mudou: inclusão, dignidade e direitos para todos.</p>
+    <div class="ph-datas">
+      <div class="ph-data"><span class="ph-data-n">1989</span><span class="ph-data-l">Fundação</span></div>
+      <div class="ph-data"><span class="ph-data-n">1990</span><span class="ph-data-l">Registo oficial</span></div>
+      <div class="ph-data"><span class="ph-data-n">Nº 6038</span><span class="ph-data-l">Número de registo</span></div>
+      <div class="ph-data"><span class="ph-data-n">35+</span><span class="ph-data-l">Anos de serviço</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ IDENTIDADE JURÍDICA ═══ -->
+<section id="identidade" aria-labelledby="idf-h">
+  <div class="idf-img rv">
+    <img src="foto-sobre-assembleia.jpg" loading="lazy" alt="ADEMO — Assembleia Geral Constituinte de 1989" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="idf-img-fb" aria-hidden="true">🏛️</div>
+    <div class="idf-badge" aria-hidden="true">
+      <span class="idf-badge-n">1989</span>
+      <span class="idf-badge-l">Fundação</span>
+    </div>
+  </div>
+  <div class="idf-txt">
+    <span class="lbl rv">Identidade Jurídica</span>
+    <h2 class="idf-h2 rv d1" id="idf-h">Uma Organização Fundada pela<br><em>Força das Próprias PcD</em></h2>
+    <p class="idf-p rv d1">A ADEMO — Associação dos Deficientes Moçambicanos é uma Organização Não-Governamental de carácter social e sem fins lucrativos, com personalidade jurídica e plena autonomia administrativa, financeira e patrimonial. Foi fundada em 18 de novembro de 1989, durante uma Assembleia Geral Constituinte histórica, por pessoas com deficiência que decidiram tomar o seu destino nas próprias mãos.</p>
+    <div class="idf-dados rv d2">
+      <div class="idf-dado">
+        <span class="idf-dado-ico" aria-hidden="true">📅</span>
+        <div class="idf-dado-body">
+          <div class="idf-dado-lbl">Data de Fundação</div>
+          <div class="idf-dado-val">18 de Novembro de 1989 — Assembleia Geral Constituinte</div>
+        </div>
+      </div>
+      <div class="idf-dado">
+        <span class="idf-dado-ico" aria-hidden="true">📋</span>
+        <div class="idf-dado-body">
+          <div class="idf-dado-lbl">Registo Oficial</div>
+          <div class="idf-dado-val">Nº 6038 · Boletim da República Nº 18, III Série — 02/05/1990</div>
+        </div>
+      </div>
+      <div class="idf-dado">
+        <span class="idf-dado-ico" aria-hidden="true">🏛️</span>
+        <div class="idf-dado-body">
+          <div class="idf-dado-lbl">Sede Nacional</div>
+          <div class="idf-dado-val">Cidade de Maputo, Moçambique</div>
+        </div>
+      </div>
+      <div class="idf-dado">
+        <span class="idf-dado-ico" aria-hidden="true">📍</span>
+        <div class="idf-dado-body">
+          <div class="idf-dado-lbl">Delegação de Sofala</div>
+          <div class="idf-dado-val">Estrada Nacional Nº 6, ao lado da CERMOQUE · Bairro Alto da Manga, Casa Nº 227 · Beira, Sofala</div>
+        </div>
+      </div>
+      <div class="idf-dado">
+        <span class="idf-dado-ico" aria-hidden="true">⚖️</span>
+        <div class="idf-dado-body">
+          <div class="idf-dado-lbl">Natureza Jurídica</div>
+          <div class="idf-dado-val">ONG · Carácter social · Sem fins lucrativos · Autonomia administrativa, financeira e patrimonial</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MISSÃO, VISÃO, VALORES ═══ -->
+<section id="mvv" aria-labelledby="mvv-h">
+  <div class="mvv-hd rv">
+    <span class="lbl-gold">Identidade Organizacional</span>
+    <h2 id="mvv-h">O que nos <em>move, orienta e define</em></h2>
+  </div>
+  <div class="mvv-grid">
+    <div class="mvv-card missao rv">
+      <div class="mvv-ico" aria-hidden="true">🎯</div>
+      <div class="mvv-titulo">Missão</div>
+      <div class="mvv-txt">Promover a inclusão social, os direitos humanos e a melhoria da qualidade de vida das pessoas com deficiência em Moçambique — defendendo a sua participação plena, activa e em igualdade de condições em todos os domínios da vida social, económica, cultural e política.</div>
+    </div>
+    <div class="mvv-card visao rv d1">
+      <div class="mvv-ico" aria-hidden="true">🌟</div>
+      <div class="mvv-titulo">Visão</div>
+      <div class="mvv-txt">Uma sociedade moçambicana inclusiva, justa e plural, onde cada pessoa com deficiência vive com plena dignidade, exerce os seus direitos sem barreiras e participa activamente nos processos de tomada de decisão que afectam a sua vida e a sua comunidade.</div>
+    </div>
+    <div class="mvv-card valores rv d2">
+      <div class="mvv-ico" aria-hidden="true">⚖️</div>
+      <div class="mvv-titulo">Valores</div>
+      <div class="valores-lista">
+        <div class="vl"><span class="vl-dot"></span><div><strong>Dignidade humana</strong> — cada pessoa vale infinitamente, independentemente da sua condição.</div></div>
+        <div class="vl"><span class="vl-dot"></span><div><strong>Inclusão</strong> — ninguém deve ser deixado para trás em nenhum espaço ou processo.</div></div>
+        <div class="vl"><span class="vl-dot"></span><div><strong>Transparência</strong> — gestão ética, responsável e prestação pública de contas.</div></div>
+        <div class="vl"><span class="vl-dot"></span><div><strong>Participação</strong> — as PcD como autoras das soluções para os seus problemas.</div></div>
+        <div class="vl"><span class="vl-dot"></span><div><strong>Solidariedade</strong> — unidade entre pessoas com deficiência e comunidades aliadas.</div></div>
+        <div class="vl"><span class="vl-dot"></span><div><strong>Excelência</strong> — compromisso com a qualidade em tudo o que fazemos.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HISTÓRIA — LINHA DO TEMPO ═══ -->
+<section id="historia" aria-labelledby="hist-h">
+  <div class="hist-hd rv">
+    <span class="lbl">Mais de Três Décadas de Luta</span>
+    <h2 id="hist-h">A Nossa <em>História</em></h2>
+    <p>Da Assembleia Geral Constituinte de 1989 ao presente — uma trajectória de persistência, crescimento e impacto real na vida de milhares de pessoas com deficiência em Moçambique.</p>
+  </div>
+  <div class="hist-inner">
+  <div class="timeline">
+    <div class="tl-item rv">
+      <div class="tl-left">
+        <div class="tl-ano">1989</div>
+        <div class="tl-titulo">Fundação da ADEMO</div>
+        <div class="tl-desc">Em 18 de novembro, a Assembleia Geral Constituinte marca o nascimento da ADEMO — fundada por pessoas com deficiência determinadas a defender os seus próprios direitos em Moçambique.</div>
+      </div>
+      <div class="tl-center"><div class="tl-dot">89</div><div class="tl-line"></div></div>
+      <div class="tl-right"></div>
+    </div>
+    <div class="tl-item rv d1">
+      <div class="tl-left"></div>
+      <div class="tl-center"><div class="tl-dot">90</div><div class="tl-line"></div></div>
+      <div class="tl-right">
+        <div class="tl-ano">1990</div>
+        <div class="tl-titulo">Reconhecimento Oficial</div>
+        <div class="tl-desc">Registo sob o nº 6038, publicado no Boletim da República nº 18, III Série, em 02 de Maio de 1990. A ADEMO torna-se uma pessoa jurídica reconhecida pelo Estado moçambicano.</div>
+      </div>
+    </div>
+    <div class="tl-item rv">
+      <div class="tl-left">
+        <div class="tl-ano">1990s</div>
+        <div class="tl-titulo">Expansão Nacional</div>
+        <div class="tl-desc">Abertura de delegações em várias províncias, alcançando pessoas com deficiência em todo o território nacional — do norte ao sul, do litoral ao interior de Moçambique.</div>
+      </div>
+      <div class="tl-center"><div class="tl-dot">90s</div><div class="tl-line"></div></div>
+      <div class="tl-right"></div>
+    </div>
+    <div class="tl-item rv d1">
+      <div class="tl-left"></div>
+      <div class="tl-center"><div class="tl-dot">00s</div><div class="tl-line"></div></div>
+      <div class="tl-right">
+        <div class="tl-ano">2000s</div>
+        <div class="tl-titulo">Programas Integrados</div>
+        <div class="tl-desc">Desenvolvimento de programas integrados de saúde, educação inclusiva, reabilitação e género — tornando a ADEMO uma organização de referência para parceiros internacionais e o Estado moçambicano.</div>
+      </div>
+    </div>
+    <div class="tl-item rv">
+      <div class="tl-left">
+        <div class="tl-ano">2019</div>
+        <div class="tl-titulo">Teatro e Clima</div>
+        <div class="tl-desc">Lançamento do programa de teatro participativo comunitário e das primeiras respostas humanitárias aos ciclones — a ADEMO expande o seu mandato para incluir cultura e resiliência climática.</div>
+      </div>
+      <div class="tl-center"><div class="tl-dot">19</div><div class="tl-line"></div></div>
+      <div class="tl-right"></div>
+    </div>
+    <div class="tl-item rv d1">
+      <div class="tl-left"></div>
+      <div class="tl-center"><div class="tl-dot">Hoje</div></div>
+      <div class="tl-right">
+        <div class="tl-ano">Hoje</div>
+        <div class="tl-titulo">35+ Anos de Impacto</div>
+        <div class="tl-desc">A ADEMO actua em 8 áreas programáticas, com presença em todo o território nacional, parcerias com UNICEF, OMS, USAID, União Europeia, UNFPA e Banco Mundial — e uma equipa comprometida com a inclusão total.</div>
+      </div>
+    </div>
+  </div><!-- fim .timeline -->
+
+  <!-- Caixa de imagem lateral -->
+  <div class="hist-img-box rv d1">
+    <label class="hist-img-upload" aria-label="Adicionar fotografia da história da ADEMO">
+      <img id="hist-photo" alt="Fotografia histórica da ADEMO" src="">
+      <div class="hist-img-placeholder">
+        <span class="hip-ico" aria-hidden="true">📷</span>
+        <span class="hip-txt">Clique para<br>adicionar uma imagem<br>da história da ADEMO</span>
+      </div>
+      <input type="file" accept="image/*" aria-label="Seleccionar imagem">
+    </label>
+    <div class="hist-img-caption">Fotografia histórica · ADEMO desde 1989</div>
+  </div>
+
+  </div><!-- fim .hist-inner -->
+</section>
+
+<!-- ═══ DELEGAÇÕES ═══ -->
+<section id="delegacoes" aria-labelledby="del-h">
+  <div class="del-hd rv">
+    <span class="lbl-gold">Cobertura Nacional</span>
+    <h2 id="del-h">Presentes em Todo o<br><em>Território Nacional</em></h2>
+    <p>A ADEMO tem delegações em todo o Moçambique — garantindo que pessoas com deficiência em qualquer ponto do país têm acesso aos nossos serviços, advocacia e apoio.</p>
+  </div>
+  <div class="del-sede rv">
+    <span class="del-sede-ico" aria-hidden="true">🏛️</span>
+    <div>
+      <div class="del-sede-title">Sede Nacional — Maputo</div>
+      <div class="del-sede-desc">A sede da ADEMO está localizada na Cidade de Maputo, capital de Moçambique — de onde coordena todos os programas nacionais, a advocacia junto do Governo e as relações com parceiros internacionais.</div>
+    </div>
+  </div>
+  <div class="del-grid">
+    <div class="del-card rv">
+      <div class="del-card-ico" aria-hidden="true">🌊</div>
+      <div class="del-card-prov">Sofala · Beira</div>
+      <div class="del-card-desc">Delegação principal</div>
+    </div>
+    <div class="del-card rv d1">
+      <div class="del-card-ico" aria-hidden="true">🌿</div>
+      <div class="del-card-prov">Niassa</div>
+      <div class="del-card-desc">Norte do país</div>
+    </div>
+    <div class="del-card rv d2">
+      <div class="del-card-ico" aria-hidden="true">🏔️</div>
+      <div class="del-card-prov">Manica</div>
+      <div class="del-card-desc">Centro interior</div>
+    </div>
+    <div class="del-card rv d3">
+      <div class="del-card-ico" aria-hidden="true">🌅</div>
+      <div class="del-card-prov">Nampula</div>
+      <div class="del-card-desc">Norte do país</div>
+    </div>
+    <div class="del-card rv">
+      <div class="del-card-ico" aria-hidden="true">🌾</div>
+      <div class="del-card-prov">Zambézia</div>
+      <div class="del-card-desc">Centro norte</div>
+    </div>
+    <div class="del-card rv d1">
+      <div class="del-card-ico" aria-hidden="true">🏞️</div>
+      <div class="del-card-prov">Tete</div>
+      <div class="del-card-desc">Centro oeste</div>
+    </div>
+    <div class="del-card rv d2">
+      <div class="del-card-ico" aria-hidden="true">🌴</div>
+      <div class="del-card-prov">Inhambane</div>
+      <div class="del-card-desc">Sul do país</div>
+    </div>
+    <div class="del-card rv d3">
+      <div class="del-card-ico" aria-hidden="true">🦁</div>
+      <div class="del-card-prov">Gaza</div>
+      <div class="del-card-desc">Sul do país</div>
+    </div>
+  </div>
+  <div class="del-banner rv d1">
+    <span class="del-banner-ico" aria-hidden="true">🗺️</span>
+    <div class="del-banner-txt"><strong>Cobertura Nacional Total</strong> — A ADEMO está presente em todas as províncias de Moçambique, garantindo que nenhuma pessoa com deficiência fica isolada sem acesso a apoio, advocacia e serviços de inclusão.</div>
+  </div>
+</section>
+
+<!-- ═══ ESTRUTURA ORGÂNICA ═══ -->
+<section id="estrutura" aria-labelledby="est-h">
+  <div class="est-hd rv">
+    <span class="lbl">Governação e Liderança</span>
+    <h2 id="est-h">Estrutura <em>Orgânica</em></h2>
+    <p>A ADEMO é governada por três órgãos distintos e complementares, que garantem transparência, fiscalização e liderança estratégica — com mandatos claros e responsabilidades bem definidas.</p>
+  </div>
+  <div class="est-grid">
+    <!-- Mesa da Assembleia -->
+    <div class="orgao assembleia rv">
+      <div class="orgao-header">
+        <span class="orgao-ico" aria-hidden="true">🏛️</span>
+        <div>
+          <div class="orgao-titulo">Mesa da Assembleia</div>
+          <div class="orgao-subtitulo">Órgão soberano da associação</div>
+        </div>
+      </div>
+      <div class="orgao-membros">
+        <div class="orgao-membro">
+          <div class="om-avatar" aria-hidden="true">P</div>
+          <div>
+            <div class="om-cargo">Presidente da Assembleia</div>
+            <div class="om-nome">Ali Apito</div>
+          </div>
+        </div>
+        <div class="orgao-membro">
+          <div class="om-avatar" aria-hidden="true">VP</div>
+          <div>
+            <div class="om-cargo">Vice-Presidente</div>
+            <div class="om-nome">Armando Conduane</div>
+          </div>
+        </div>
+        <div class="orgao-membro">
+          <div class="om-avatar" aria-hidden="true">S</div>
+          <div>
+            <div class="om-cargo">Secretária</div>
+            <div class="om-nome">Engelina Folige</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Conselho Fiscal -->
+    <div class="orgao fiscal rv d1">
+      <div class="orgao-header">
+        <span class="orgao-ico" aria-hidden="true">🔍</span>
+        <div>
+          <div class="orgao-titulo">Conselho Fiscal</div>
+          <div class="orgao-subtitulo">Órgão de fiscalização e controlo</div>
+        </div>
+      </div>
+      <div class="orgao-membros">
+        <div class="orgao-membro">
+          <div class="om-avatar" aria-hidden="true">P</div>
+          <div>
+            <div class="om-cargo">Presidente</div>
+            <div class="om-nome">Alexandre Banze</div>
+          </div>
+        </div>
+        <div class="orgao-membro">
+          <div class="om-avatar" aria-hidden="true">VP</div>
+          <div>
+            <div class="om-cargo">Vice-Presidente</div>
+            <div class="om-nome">Nelson Faride Manesse</div>
+          </div>
+        </div>
+        <div class="orgao-membro">
+          <div class="om-avatar" aria-hidden="true">S</div>
+          <div>
+            <div class="om-cargo">Secretária</div>
+            <div class="om-nome">Engelina Folige</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Conselho de Direção -->
+    <div class="orgao direcao rv d2">
+      <div class="orgao-header">
+        <span class="orgao-ico" aria-hidden="true">⭐</span>
+        <div>
+          <div class="orgao-titulo">Conselho de Direcção</div>
+          <div class="orgao-subtitulo">Órgão executivo e estratégico</div>
+        </div>
+      </div>
+      <div class="orgao-membros">
+        <div class="orgao-membro">
+          <div class="om-avatar" aria-hidden="true">P</div>
+          <div>
+            <div class="om-cargo">Presidente</div>
+            <div class="om-nome">António Nhamtumbo</div>
+          </div>
+        </div>
+        <div class="orgao-membro">
+          <div class="om-avatar" aria-hidden="true">VP</div>
+          <div>
+            <div class="om-cargo">Vice-Presidente</div>
+            <div class="om-nome">Suzete Lúcia Simbine</div>
+          </div>
+        </div>
+        <div class="orgao-membro">
+          <div class="om-avatar" aria-hidden="true">S</div>
+          <div>
+            <div class="om-cargo">Secretário</div>
+            <div class="om-nome">Samo Fernando Chauque</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FILIAÇÕES E PARCERIAS ═══ -->
+<section id="filiacoes" aria-labelledby="fil-h">
+  <div class="fil-hd rv">
+    <span class="lbl">Redes e Alianças</span>
+    <h2 id="fil-h">Filiações e <em>Parcerias Estratégicas</em></h2>
+  </div>
+    <div class="fil-grid">
+    <div class="fil-card rv">
+      <span class="fil-ico" aria-hidden="true">💡</span>
+      <div class="fil-body">
+        <div class="fil-nome">Light for the World</div>
+        <div class="fil-desc">Parceiro internacional em programas de inclusão, reabilitação e direitos das pessoas com deficiência em Moçambique.</div>
+      </div>
+    </div>
+    <div class="fil-card rv d1">
+      <span class="fil-ico" aria-hidden="true">🌐</span>
+      <div class="fil-body">
+        <div class="fil-nome">Commonwealth Foundation</div>
+        <div class="fil-desc">Apoio ao fortalecimento da sociedade civil e à participação das PcD nos processos de tomada de decisão.</div>
+      </div>
+    </div>
+    <div class="fil-card rv d2">
+      <span class="fil-ico" aria-hidden="true">🇦🇹</span>
+      <div class="fil-body">
+        <div class="fil-nome">Cooperação Austríaca</div>
+        <div class="fil-desc">Financiamento de programas de desenvolvimento inclusivo e capacitação organizacional da ADEMO.</div>
+      </div>
+    </div>
+    <div class="fil-card rv">
+      <span class="fil-ico" aria-hidden="true">🌍</span>
+      <div class="fil-body">
+        <div class="fil-nome">ONU Turismo</div>
+        <div class="fil-desc">Parceria no desenvolvimento do turismo inclusivo e sustentável em Sofala, com PcD como agentes activos do sector.</div>
+      </div>
+    </div>
+    <div class="fil-card rv d1">
+      <span class="fil-ico" aria-hidden="true">⚽</span>
+      <div class="fil-body">
+        <div class="fil-nome">FIFA Foundation</div>
+        <div class="fil-desc">Apoio ao programa de futebol inclusivo — usando o desporto como ferramenta de inclusão social e empoderamento.</div>
+      </div>
+    </div>
+    <div class="fil-card rv d2">
+      <span class="fil-ico" aria-hidden="true">📚</span>
+      <div class="fil-body">
+        <div class="fil-nome">Better World Books</div>
+        <div class="fil-desc">Parceiro em programas de literacia e educação inclusiva — apoiando o acesso a livros e materiais didácticos adaptados.</div>
+      </div>
+    </div>
+    <div class="fil-card rv">
+      <span class="fil-ico" aria-hidden="true">🇺🇸</span>
+      <div class="fil-body">
+        <div class="fil-nome">USAID</div>
+        <div class="fil-desc">Financiamento de programas de empoderamento económico, género e inclusão financeira para mulheres e jovens com deficiência.</div>
+      </div>
+    </div>
+    <div class="fil-card rv d1">
+      <span class="fil-ico" aria-hidden="true">🤝</span>
+      <div class="fil-body">
+        <div class="fil-nome">FAMOD</div>
+        <div class="fil-desc">Fórum das Associações Moçambicanas de e para Pessoas com Deficiência — rede nacional de organizações de PcD.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NÚMEROS ═══ -->
+<section id="nums" aria-labelledby="nums-h">
+  <div class="nums-hd rv">
+    <span class="lbl-gold">35 Anos de Impacto</span>
+    <h2 id="nums-h">A ADEMO <em>em Números</em></h2>
+  </div>
+  <div class="ngrid">
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">📅</div>
+      <div class="nit-n" data-target="35" data-suffix="+">35+</div>
+      <div class="nit-l">Anos de actividade<br>ininterrupta</div>
+    </div>
+    <div class="nit rv d1">
+      <div class="nit-ico" aria-hidden="true">🗺️</div>
+      <div class="nit-n" data-target="10" data-suffix="">10</div>
+      <div class="nit-l">Províncias com<br>presença activa</div>
+    </div>
+    <div class="nit rv d2">
+      <div class="nit-ico" aria-hidden="true">📋</div>
+      <div class="nit-n" data-target="8" data-suffix="">8</div>
+      <div class="nit-l">Áreas programáticas<br>em simultâneo</div>
+    </div>
+    <div class="nit rv d3">
+      <div class="nit-ico" aria-hidden="true">👥</div>
+      <div class="nit-n" data-target="15000" data-suffix="+">15.000+</div>
+      <div class="nit-l">Pessoas alcançadas<br>anualmente</div>
+    </div>
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">🤝</div>
+      <div class="nit-n" data-target="6" data-suffix="">6</div>
+      <div class="nit-l">Parceiros<br>internacionais</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RECONHECIMENTOS ═══ -->
+<section id="reconhecimentos" aria-labelledby="rec-h">
+  <div class="rec-hd rv">
+    <span class="lbl-gold">Vozes sobre a ADEMO</span>
+    <h2 id="rec-h">O que Dizem de <em>Nós</em></h2>
+  </div>
+  <div class="rec-grid">
+    <div class="rc rv">
+      <p class="rc-q">A ADEMO é uma das organizações mais sérias e comprometidas com os direitos das pessoas com deficiência em Moçambique. A sua capacidade de chegar às comunidades mais remotas e de integrar os mais vulneráveis é verdadeiramente notável.</p>
+      <div class="rc-au">
+        <div class="rc-av" aria-hidden="true">U</div>
+        <div><div class="rc-name">Representação UNICEF</div><div class="rc-role">Parceiro institucional · Moçambique</div></div>
+      </div>
+    </div>
+    <div class="rc rv d1">
+      <p class="rc-q">Trabalhar com a ADEMO é trabalhar com pessoas que conhecem a realidade das PcD por dentro — porque são elas próprias. Isso faz toda a diferença na qualidade e relevância dos programas que implementam em Sofala.</p>
+      <div class="rc-au">
+        <div class="rc-av" aria-hidden="true">P</div>
+        <div><div class="rc-name">Parceiro Internacional</div><div class="rc-role">Organização humanitária · Beira</div></div>
+      </div>
+    </div>
+    <div class="rc rv d2">
+      <p class="rc-q">A ADEMO mudou a minha vida e a da minha família. Antes da associação, pensávamos que a deficiência era um destino sem saída. A ADEMO mostrou-nos que há direitos, há luta, há comunidade — e que não estamos sós.</p>
+      <div class="rc-au">
+        <div class="rc-av" aria-hidden="true">B</div>
+        <div><div class="rc-name">Beneficiária ADEMO</div><div class="rc-role">Membro da associação · Sofala</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section id="cta-final" aria-label="Juntar-se à ADEMO">
+  <div class="cta-inner">
+    <span class="cta-lbl rv">35 Anos e Contando</span>
+    <h2 class="cta-h2 rv d1">A Nossa Luta Continua.<br><em>Junte-se a Nós.</em></h2>
+    <p class="cta-p rv d2">A ADEMO não é apenas uma organização — é um movimento. Um movimento de pessoas com deficiência que decidiram que a sua dignidade não está em negociação. Seja parceiro, voluntário ou doador — e faça parte desta história de transformação.</p>
+    <div class="cta-btns rv d3">
+      <a href="mailto:ademoorg@gmail.com" class="btn-r">Contactar a ADEMO <span class="arr">→</span></a>
+      <a href="transparencia.html" class="btn-ghost">Ver Relatórios</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer role="contentinfo">
+  <div class="ftgrid">
+    <div>
+      <div class="ftnm">ADEMO</div>
+      <p class="ftdc">Associação dos Deficientes Moçambicanos — desde 1989, promovendo dignidade, direitos e inclusão em todo o país.</p>
+      <div class="ftsoc">
+        <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="ftsi" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="ftsi" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="mailto:ademoorg@gmail.com" class="ftsi" aria-label="E-mail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <nav class="ftcol"><h4>Navegação</h4><a href="index.html">Home</a><a href="sobre.html">Sobre Nós</a><a href="index.html#areas">Áreas</a><a href="transparencia.html">Transparência</a><a href="index.html#contactos">Contactos</a></nav>
+    <nav class="ftcol"><h4>O Que Fazemos</h4><a href="saude.html">Saúde</a><a href="educacao.html">Educação</a><a href="reabilitacao.html">Reabilitação</a><a href="genero.html">Género</a><a href="futebol.html">Futebol</a><a href="climatica.html">Clima</a></nav>
+    <div class="ftcol"><h4>Contacto</h4><a href="mailto:ademoorg@gmail.com">ademoorg@gmail.com</a><a href="tel:+258849371782">(+258) 849 371 782</a><a href="https://www.ademosofala.site" target="_blank">www.ademosofala.site</a></div>
+  </div>
+  <div class="ftbot">
+    <span>© 2025 <span class="ftgo">ADEMO</span>. Todos os direitos reservados.</span>
+    <span>Feito com dedicação para um Moçambique inclusivo</span>
+  </div>
+</footer>
+
+<script>
+(function(){var h=document.getElementById('hdr');function s(){h.classList.toggle('s',scrollY>60);h.classList.toggle('t',scrollY<=60);}window.addEventListener('scroll',s,{passive:true});s();})();
+(function(){var hbg=document.querySelector('.hbg'),nav=document.getElementById('mainnav');if(!hbg||!nav)return;hbg.addEventListener('click',function(){var o=hbg.getAttribute('aria-expanded')==='true';hbg.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';});});})();
+(function(){var bg=document.getElementById('phbg');if(!bg)return;bg.classList.add('loaded');window.addEventListener('scroll',function(){bg.style.transform='translateY('+scrollY*.22+'px) scale(1.04)';},{passive:true});})();
+(function(){if(!('IntersectionObserver' in window))return;document.body.classList.add('js-rdy');var obs=new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});})();
+(function(){var inp=document.querySelector('.hist-img-upload input[type=file]');if(!inp)return;inp.addEventListener('change',function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(e){var img=document.getElementById('hist-photo');var ph=document.querySelector('.hist-img-placeholder');img.src=e.target.result;img.classList.add('loaded');if(ph)ph.style.display='none';};r.readAsDataURL(f);});})();var tgt=parseInt(el.dataset.target)||0,sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);var v=Math.floor(e*tgt);el.textContent=(tgt>=1000?v.toLocaleString('pt-PT'):v)+sfx;if(p<1)requestAnimationFrame(step);else el.textContent=(tgt>=1000?tgt.toLocaleString('pt-PT'):tgt)+sfx;}requestAnimationFrame(step);}document.querySelectorAll('[data-target]').forEach(function(el){new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){run(e.target);o.unobserve(e.target);}});},{threshold:.5}).observe(el);});})();
+</script>
+</body>
+</html>

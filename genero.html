@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equidade de G&eacute;nero &mdash; ADEMO</title>
+<meta name="description" content="A ADEMO combate a viol&ecirc;ncia baseada no g&eacute;nero e promove o empoderamento de mulheres e raparigas com defici&ecirc;ncia em Sofala, Mo&ccedil;ambique. 13 espa&ccedil;os seguros criados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CC0000;--red-dk:#a00000;
+  --gold:#C9993A;--gold-lt:#e5c07a;--gold-dim:rgba(201,153,58,.18);
+  --dark:#1A1008;--dark2:#2d1f0e;
+  --text:#1e1408;--muted:#5c4e38;
+  --white:#fff;--cream:#F8F3EC;--hh:80px;
+  /* GENERO: magenta-rosa institucional — poder feminino */
+  --ac:#9b1a6b;--ac-dk:#7a1254;--ac-lt:#f0a0d0;--ac-pale:rgba(155,26,107,.1);
+  --ac2:#c0392b;/* vermelho urgencia VBG */
+}
+html{font-size:18px;scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.75;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.skip{position:absolute;top:-120px;left:1rem;background:var(--red);color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:9999;transition:top .2s;font-size:.85rem;}
+.skip:focus{top:1rem;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+
+/* HEADER */
+#hdr{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--hh);display:flex;align-items:center;padding:0 5vw;transition:background .4s,box-shadow .4s;}
+#hdr.t{background:transparent;}
+#hdr.s{background:rgba(26,16,8,.97);box-shadow:0 2px 28px rgba(0,0,0,.45);backdrop-filter:blur(14px);}
+.hin{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.logo{display:flex;align-items:center;gap:.65rem;}
+.logo-img{height:46px;width:auto;object-fit:contain;flex-shrink:0;}
+.logo-fall{display:none;width:46px;height:46px;border-radius:50%;background:var(--red);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;flex-shrink:0;}
+.logo-w{display:flex;flex-direction:column;line-height:1.1;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;letter-spacing:.08em;}
+.logo-t{font-size:.54rem;color:var(--gold-lt);letter-spacing:.16em;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:1.6rem;}
+nav>a,.dd>a{color:rgba(255,255,255,.8);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:2px;transition:color .3s;}
+nav>a::after,.dd>a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav>a:hover,.dd>a:hover{color:#fff;}
+nav>a:hover::after,.dd>a:hover::after{width:100%;}
+.dd{position:relative;}
+.ddm{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--dark);border:1px solid var(--gold-dim);min-width:240px;padding:.5rem 0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
+.dd:hover .ddm,.dd:focus-within .ddm{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.ddm a{display:block;padding:.55rem 1.3rem;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.7);text-transform:uppercase;transition:color .2s,background .2s;}
+.ddm a:hover{color:var(--gold-lt);background:rgba(201,153,58,.08);}
+.navcta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.25rem;border-radius:2px;transition:background .3s!important;}
+.navcta:hover{background:var(--red-dk)!important;}
+.navcta::after{display:none!important;}
+.hbg{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:1001;}
+.hbg span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.hbg[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hbg[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* UTILS */
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac);margin-bottom:.85rem;display:block;}
+.lbl-gold{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem;display:block;}
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease;}
+.js-rdy .rv{opacity:0;transform:translateY(22px);}
+.js-rdy .rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.15s;}.d2{transition-delay:.3s;}.d3{transition-delay:.45s;}
+.arr{display:inline-block;transition:transform .3s;}
+.btn-ac{display:inline-flex;align-items:center;gap:.6rem;background:var(--ac);color:#fff;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:500;transition:background .3s,transform .2s;}
+.btn-ac:hover{background:var(--ac-dk);transform:translateY(-2px);}
+.btn-ac:hover .arr{transform:translateX(5px);}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--ac);padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:600;transition:background .3s,transform .2s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,border-color .3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+
+/* ══ HERO ══ */
+#ph{position:relative;height:88vh;min-height:580px;display:flex;align-items:flex-end;overflow:hidden;background:#2a0820;}
+.ph-bg{position:absolute;inset:0;background-image:url('foto-gen-hero.jpg');background-size:cover;background-position:center 30%;transform:scale(1.04);transition:transform 9s ease;}
+.ph-bg.loaded{transform:scale(1);}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,8,32,.12) 0%,rgba(42,8,32,.2) 38%,rgba(42,8,32,.80) 62%,rgba(42,8,32,.97) 100%);}
+.ph-accent{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ac) 0%,var(--gold) 100%);z-index:3;}
+.ph-body{position:relative;z-index:2;padding:calc(var(--hh) + 3rem) 5vw 5rem;width:100%;}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.6rem;flex-wrap:wrap;}
+.breadcrumb a{color:rgba(255,255,255,.45);transition:color .2s;}
+.breadcrumb a:hover{color:var(--gold-lt);}
+.breadcrumb span{color:rgba(255,255,255,.22);}
+.breadcrumb strong{color:var(--ac-lt);}
+.ph-tag{display:inline-flex;align-items:center;gap:.55rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ac-lt);border:1px solid rgba(240,160,208,.3);padding:.35rem .9rem;border-radius:2px;margin-bottom:1.1rem;}
+.ph-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--ac-lt);flex-shrink:0;}
+.ph-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5.5vw,3.8rem);font-weight:300;color:#fff;line-height:1.08;letter-spacing:-.02em;max-width:800px;margin-bottom:1.1rem;}
+.ph-h1 em{font-style:italic;color:var(--ac-lt);}
+.ph-lead{font-size:clamp(.92rem,1.3vw,1rem);color:rgba(255,255,255,.68);max-width:620px;line-height:1.82;}
+
+/* ══ FAIXA DUPLA BARREIRA ══ */
+#barreira{
+  background:linear-gradient(135deg,#2a0820 0%,#1a0d14 100%);
+  padding:5rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4vw;align-items:center;
+}
+.barr-txt{display:flex;flex-direction:column;gap:1.2rem;}
+.barr-lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac-lt);display:block;margin-bottom:.4rem;}
+.barr-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.4rem);font-weight:300;color:#fff;line-height:1.15;}
+.barr-h2 em{font-style:italic;color:var(--ac-lt);}
+.barr-p{font-size:.97rem;color:rgba(255,255,255,.58);line-height:1.85;}
+.barr-quote{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-style:italic;color:rgba(255,255,255,.78);border-left:3px solid var(--ac-lt);padding-left:1.2rem;line-height:1.55;}
+/* Cards das duas barreiras */
+.barr-cards{display:flex;flex-direction:column;gap:1rem;}
+.barr-card{background:rgba(255,255,255,.05);border:1px solid rgba(240,160,208,.15);border-radius:8px;padding:1.4rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:background .3s,border-color .3s,transform .3s;}
+.barr-card:hover{background:rgba(155,26,107,.1);border-color:rgba(240,160,208,.35);transform:translateX(6px);}
+.barr-card-ico{font-size:2rem;flex-shrink:0;line-height:1;}
+.barr-card-body{display:flex;flex-direction:column;gap:.3rem;}
+.barr-card-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--cream);line-height:1.2;}
+.barr-card-desc{font-size:.85rem;color:rgba(255,255,255,.5);line-height:1.65;}
+
+/* ══ ESPACOS SEGUROS — SECAO PROTAGONISTA ══ */
+#espacos{
+  background:var(--white);
+  padding:7rem 5vw;
+}
+.esp-hd{text-align:center;max-width:700px;margin:0 auto 4rem;}
+.esp-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.1;color:var(--dark);}
+.esp-hd h2 em{font-style:italic;color:var(--ac);}
+.esp-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.8rem;}
+/* O numero 13 em destaque absoluto */
+.esp-13{
+  display:flex;align-items:center;justify-content:center;gap:3vw;
+  background:var(--ac);
+  border-radius:16px;
+  padding:3.5rem 4vw;
+  margin-bottom:4rem;
+  flex-wrap:wrap;
+  position:relative;overflow:hidden;
+}
+.esp-13::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.06);pointer-events:none;}
+.esp-13-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(6rem,12vw,10rem);
+  font-weight:300;color:#fff;
+  line-height:1;letter-spacing:-.04em;
+  flex-shrink:0;
+}
+.esp-13-body{display:flex;flex-direction:column;gap:.8rem;max-width:420px;}
+.esp-13-lbl{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+.esp-13-titulo{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.8vw,2rem);color:#fff;font-weight:300;line-height:1.2;}
+.esp-13-titulo em{font-style:italic;color:rgba(255,255,255,.78);}
+.esp-13-desc{font-size:.95rem;color:rgba(255,255,255,.68);line-height:1.75;}
+/* Grid das caracteristicas dos espacos seguros */
+.esp-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.esp-feat{border:1px solid rgba(155,26,107,.14);border-radius:8px;padding:1.8rem 1.6rem;display:flex;flex-direction:column;gap:.8rem;transition:box-shadow .3s,transform .3s,border-color .3s,background .3s;}
+.esp-feat:hover{box-shadow:0 12px 40px rgba(155,26,107,.12);transform:translateY(-5px);border-color:rgba(155,26,107,.3);background:var(--ac-pale);}
+.esp-feat-ico{font-size:2rem;line-height:1;}
+.esp-feat-h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--dark);line-height:1.2;}
+.esp-feat-p{font-size:.9rem;color:var(--muted);line-height:1.72;}
+
+/* ══ VBG — VIOLENCIA BASEADA NO GENERO (urgente) ══ */
+#vbg{
+  background:#1a0310;
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#vbg::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#c0392b,var(--ac),var(--gold));}
+#vbg::after{content:'';position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(155,26,107,.1) 0%,transparent 70%);pointer-events:none;}
+.vbg-inner{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:start;}
+.vbg-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.vbg-alerta{
+  display:flex;align-items:flex-start;gap:1rem;
+  background:rgba(192,57,43,.12);
+  border:1px solid rgba(192,57,43,.4);
+  border-radius:8px;padding:1.2rem 1.4rem;
+}
+.vbg-alerta-ico{font-size:1.6rem;flex-shrink:0;line-height:1.2;}
+.vbg-alerta-txt{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.68;}
+.vbg-alerta-txt strong{color:#ff8080;}
+.vbg-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.vbg-h2 em{font-style:italic;color:var(--ac-lt);}
+.vbg-p{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.87;}
+.vbg-highlight{background:rgba(155,26,107,.1);border-left:3px solid var(--ac-lt);padding:1.2rem 1.4rem;border-radius:0 6px 6px 0;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:rgba(255,255,255,.75);line-height:1.55;}
+/* Servicos VBG */
+.vbg-services{display:flex;flex-direction:column;gap:.9rem;}
+.vbg-svc{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(240,160,208,.12);
+  border-radius:8px;padding:1.3rem 1.4rem;
+  display:flex;align-items:flex-start;gap:1rem;
+  transition:background .3s,border-color .3s,transform .3s;
+}
+.vbg-svc:hover{background:rgba(155,26,107,.1);border-color:rgba(240,160,208,.3);transform:translateX(6px);}
+.vbg-svc-ico{font-size:1.5rem;flex-shrink:0;line-height:1.2;}
+.vbg-svc-body{display:flex;flex-direction:column;gap:.2rem;}
+.vbg-svc-title{font-size:.9rem;font-weight:600;color:var(--cream);}
+.vbg-svc-desc{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.65;}
+/* Stats VBG */
+.vbg-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.5rem;}
+.vbg-stat{background:rgba(255,255,255,.04);border:1px solid rgba(240,160,208,.14);border-radius:8px;padding:1.5rem 1.2rem;text-align:center;transition:background .3s,transform .3s;}
+.vbg-stat:hover{background:rgba(155,26,107,.1);transform:translateY(-3px);}
+.vbg-sn{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--ac-lt);line-height:1;}
+.vbg-sl{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:.3rem;line-height:1.4;}
+.vbg-img{display:flex;flex-direction:column;gap:1rem;}
+.vbg-img img{width:100%;border-radius:10px;object-fit:cover;display:block;box-shadow:0 20px 50px rgba(0,0,0,.45);}
+.vbg-img img:first-child{aspect-ratio:4/3;}
+.vbg-img img:last-child{aspect-ratio:16/7;}
+.vbg-img-fb{width:100%;aspect-ratio:4/3;border-radius:10px;background:linear-gradient(145deg,#4a1030,#1a0310);display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:.18;color:#fff;}
+
+/* ══ FORMACAO MENTORES — 3 DIAS ══ */
+#formacao{background:var(--cream);padding:7rem 5vw;}
+.form-hd{max-width:700px;margin-bottom:4rem;}
+.form-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.1;color:var(--dark);}
+.form-hd h2 em{font-style:italic;color:var(--ac);}
+.form-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.8rem;}
+/* Badge de programa */
+.form-badge-row{display:flex;align-items:center;gap:1.5rem;margin-bottom:3rem;flex-wrap:wrap;}
+.form-badge{background:var(--ac);color:#fff;border-radius:8px;padding:1rem 1.5rem;display:flex;align-items:center;gap:.8rem;flex-shrink:0;}
+.form-badge-ico{font-size:1.5rem;}
+.form-badge-txt{display:flex;flex-direction:column;}
+.form-badge-n{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;line-height:1;}
+.form-badge-l{font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);}
+.form-badge-sep{width:1px;height:50px;background:rgba(155,26,107,.2);}
+.form-badge-desc{font-size:.9rem;color:var(--muted);line-height:1.65;flex:1;}
+/* 3 dias — cards grandes */
+.dias-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.dia-card{
+  background:var(--white);
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid rgba(155,26,107,.1);
+  display:flex;flex-direction:column;
+  transition:box-shadow .4s,transform .4s,border-color .4s;
+  position:relative;
+}
+.dia-card:hover{box-shadow:0 20px 56px rgba(155,26,107,.15);transform:translateY(-8px);border-color:rgba(155,26,107,.3);}
+/* Cabecalho do dia — colorido */
+.dia-header{
+  padding:2rem 1.8rem 1.5rem;
+  display:flex;flex-direction:column;gap:.5rem;
+  position:relative;overflow:hidden;
+}
+.dia-1 .dia-header{background:linear-gradient(135deg,var(--ac) 0%,#c0397a 100%);}
+.dia-2 .dia-header{background:linear-gradient(135deg,#7a1254 0%,var(--ac) 100%);}
+.dia-3 .dia-header{background:linear-gradient(135deg,#2a0820 0%,#7a1254 100%);}
+.dia-header::after{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.08);}
+.dia-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(255,255,255,.22);line-height:1;position:absolute;top:.8rem;right:1.4rem;}
+.dia-lbl{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65);}
+.dia-titulo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:#fff;font-weight:400;line-height:1.2;position:relative;z-index:1;}
+.dia-foto-wrap{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0;}
+.dia-foto{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+.dia-card:hover .dia-foto{transform:scale(1.05);}
+.dia-foto-fb{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.2;}
+.dia-1 .dia-foto-fb{background:linear-gradient(135deg,#e8a0c8,#c06080);}
+.dia-2 .dia-foto-fb{background:linear-gradient(135deg,#d880b8,#a04070);}
+.dia-3 .dia-foto-fb{background:linear-gradient(135deg,#c860a0,#803060);}
+.dia-body{padding:1.6rem 1.8rem 2rem;display:flex;flex-direction:column;gap:.9rem;flex:1;}
+.dia-items{display:flex;flex-direction:column;gap:.6rem;}
+.dia-item{display:flex;align-items:flex-start;gap:.7rem;}
+.dia-item-dot{width:7px;height:7px;border-radius:50%;background:var(--ac);flex-shrink:0;margin-top:.5rem;}
+.dia-item-txt{font-size:.9rem;color:var(--muted);line-height:1.65;}
+.dia-item-txt strong{color:var(--dark);}
+/* Tags de competencia */
+.dia-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem;}
+.dia-tag{background:var(--ac-pale);color:var(--ac);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px;}
+
+/* ══ NORMAS DE GENERO — secao destaque ══ */
+#normas{
+  background:var(--white);
+  padding:7rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5vw;align-items:center;
+}
+.nor-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.nor-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.nor-h2 em{font-style:italic;color:var(--ac);}
+.nor-p{font-size:1rem;color:var(--muted);line-height:1.87;}
+.nor-highlight{background:var(--ac-pale);border-left:3px solid var(--ac);padding:1.1rem 1.4rem;border-radius:0 6px 6px 0;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dark);line-height:1.55;}
+/* Indicadores das sessoes de normas */
+.nor-indicators{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.5rem;}
+.nor-ind{background:var(--cream);border-radius:8px;padding:1.4rem 1.2rem;text-align:center;border-bottom:3px solid var(--ac);transition:transform .3s,box-shadow .3s;}
+.nor-ind:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(155,26,107,.1);}
+.nor-ind-n{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--ac);line-height:1;}
+.nor-ind-l{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;line-height:1.4;}
+/* Foto organica */
+.nor-img{position:relative;}
+.nor-img img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:120px 16px 120px 16px;box-shadow:0 32px 80px rgba(155,26,107,.18);transition:border-radius .7s;}
+.nor-img img:hover{border-radius:16px 120px 16px 120px;}
+.nor-img-fb{display:none;width:100%;aspect-ratio:3/4;border-radius:120px 16px 120px 16px;background:linear-gradient(145deg,#c878b0,#7a1254);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+.nor-badge{position:absolute;bottom:-1rem;right:-1rem;background:var(--ac);color:#fff;width:110px;height:110px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(155,26,107,.45);font-family:'Cormorant Garamond',serif;z-index:2;}
+.nor-badge-n{font-size:1.8rem;font-weight:600;line-height:1;}
+.nor-badge-l{font-size:.34rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;text-align:center;padding:0 .4rem;margin-top:.1rem;line-height:1.3;}
+
+/* ══ LIDERANCA COMUNITARIA ══ */
+#lideranca{
+  background:linear-gradient(135deg,var(--ac) 0%,#6a0a48 100%);
+  padding:6rem 5vw;
+  position:relative;overflow:hidden;
+}
+#lideranca::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+.lid-inner{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.lid-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.lid-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:#fff;line-height:1.12;}
+.lid-h2 em{font-style:italic;color:rgba(255,255,255,.78);}
+.lid-p{font-size:.97rem;color:rgba(255,255,255,.62);line-height:1.87;}
+.lid-highlight{background:rgba(255,255,255,.1);border-left:3px solid rgba(255,255,255,.5);padding:1.2rem 1.4rem;border-radius:0 6px 6px 0;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:#fff;line-height:1.55;}
+/* Conquistas de lideranca */
+.lid-achievements{display:flex;flex-direction:column;gap:.75rem;margin-top:.4rem;}
+.lid-ach{display:flex;align-items:flex-start;gap:.9rem;background:rgba(255,255,255,.08);border-radius:6px;padding:.9rem 1.1rem;border:1px solid rgba(255,255,255,.12);transition:background .3s,transform .3s;}
+.lid-ach:hover{background:rgba(255,255,255,.14);transform:translateX(5px);}
+.lid-ach-ico{font-size:1.3rem;flex-shrink:0;line-height:1.4;}
+.lid-ach-txt{font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.6;}
+.lid-ach-txt strong{color:#fff;}
+/* Foto lideranca */
+.lid-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 24px 60px rgba(0,0,0,.35);display:block;}
+.lid-img-fb{width:100%;aspect-ratio:4/3;border-radius:12px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+
+/* ══ NUMEROS ══ */
+#nums{background:var(--dark);padding:6rem 5vw;position:relative;overflow:hidden;}
+#nums::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(155,26,107,.15) 0%,transparent 70%);pointer-events:none;}
+.nums-hd{text-align:center;margin-bottom:4rem;}
+.nums-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.nums-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ngrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.nit{background:var(--dark);padding:2.5rem 1.2rem;text-align:center;position:relative;transition:background .3s;}
+.nit:hover{background:rgba(155,26,107,.1);}
+.nit::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--ac);transform:scaleX(0);transition:transform .4s;}
+.nit:hover::after{transform:scaleX(1);}
+.nit-ico{width:40px;height:40px;border-radius:50%;background:rgba(240,160,208,.08);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;font-size:1.2rem;}
+.nit-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3rem);font-weight:300;color:var(--ac-lt);line-height:1;letter-spacing:-.02em;}
+.nit-l{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:.5rem;line-height:1.5;}
+
+/* ══ DEPOIMENTOS ══ */
+#depoimentos{background:var(--cream);padding:6rem 5vw;}
+.dep-hd{max-width:560px;margin-bottom:3rem;}
+.dep-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.15;color:var(--dark);}
+.dep-hd h2 em{font-style:italic;color:var(--ac);}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.dep-card{background:var(--white);border-radius:8px;padding:2rem 1.8rem;border-top:4px solid var(--ac);display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s,transform .3s;}
+.dep-card:hover{box-shadow:0 12px 36px rgba(155,26,107,.1);transform:translateY(-4px);}
+.dep-quote{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dark);line-height:1.58;font-weight:300;}
+.dep-quote::before{content:'\201C';font-size:2.2rem;color:var(--ac);line-height:.4;display:block;margin-bottom:.3rem;font-style:normal;}
+.dep-author{display:flex;align-items:center;gap:.8rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(0,0,0,.07);}
+.dep-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac-dk));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;flex-shrink:0;}
+.dep-name{font-size:.85rem;font-weight:500;color:var(--dark);}
+.dep-role{font-size:.72rem;color:var(--muted);letter-spacing:.04em;}
+
+/* ══ GALERIA ══ */
+#galeria{background:var(--dark2);padding:5rem 5vw;}
+.gal-hd{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.gal-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:var(--cream);}
+.gal-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ggrid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:220px 220px;gap:.6rem;}
+.gitem{overflow:hidden;border-radius:4px;background:#1a0820;position:relative;}
+.gitem:first-child{grid-row:span 2;}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.gitem:hover img{transform:scale(1.07);}
+.gfb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.15;color:#fff;}
+.gitem::after{content:attr(data-label);position:absolute;inset:0;background:rgba(155,26,107,.78);color:#fff;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;text-align:center;padding:1rem;}
+.gitem:hover::after{opacity:1;}
+
+/* ══ CTA FINAL ══ */
+#cta-final{background:linear-gradient(135deg,var(--ac) 0%,var(--ac-dk) 100%);padding:7rem 5vw;text-align:center;position:relative;overflow:hidden;}
+#cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+.cta-lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1rem;display:block;}
+.cta-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.12;margin-bottom:1.2rem;}
+.cta-h2 em{font-style:italic;color:rgba(255,255,255,.75);}
+.cta-p{font-size:1rem;color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 2.5rem;line-height:1.82;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
+
+/* ══ NAV AREAS ══ */
+#nav-areas{background:var(--dark);padding:4rem 5vw;}
+.na-hd{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;}
+.na-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;}
+.na-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;transition:background .3s,border-color .3s,transform .3s;}
+.na-item:hover{background:rgba(255,255,255,.09);border-color:rgba(201,153,58,.3);transform:translateY(-3px);}
+.na-item.active{background:rgba(155,26,107,.15);border-color:rgba(155,26,107,.45);}
+.na-ico{font-size:1.4rem;line-height:1;}
+.na-lbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.3;}
+.na-item:hover .na-lbl,.na-item.active .na-lbl{color:rgba(255,255,255,.8);}
+.na-item.active .na-lbl{color:var(--ac-lt);}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark);padding:4rem 5vw 2rem;border-top:1px solid rgba(201,153,58,.08);}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.ftnm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:.65rem;}
+.ftdc{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ftcol h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.ftcol a{display:block;font-size:.85rem;color:rgba(255,255,255,.42);margin-bottom:.48rem;transition:color .2s;}
+.ftcol a:hover{color:rgba(255,255,255,.8);}
+.ftsoc{display:flex;gap:.6rem;margin-top:1.4rem;}
+.ftsi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.ftsi:hover{background:var(--red);}
+.ftsi svg{width:14px;height:14px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ftsi:hover svg{stroke:#fff;}
+.ftbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.8rem;color:rgba(255,255,255,.22);}
+.ftgo{color:var(--gold);}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  #barreira{grid-template-columns:1fr;}.barr-txt{max-width:640px;}
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  .esp-feats{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:900px){
+  .dias-grid{grid-template-columns:1fr;}
+  #normas{grid-template-columns:1fr;gap:3rem;}.nor-img{max-width:420px;margin:0 auto;}
+  .lid-inner{grid-template-columns:1fr;gap:3rem;}
+  .vbg-inner{grid-template-columns:1fr;gap:3rem;}
+  .dep-grid{grid-template-columns:1fr;}
+  .ggrid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}.gitem:first-child{grid-row:auto;}
+  .ftgrid{grid-template-columns:1fr 1fr;}
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  .na-grid{grid-template-columns:repeat(3,1fr);}
+  .esp-feats{grid-template-columns:1fr;}
+  .nor-indicators{grid-template-columns:1fr 1fr;}
+  .vbg-stats{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .hbg{display:flex;}
+  nav.desk{position:fixed;inset:0;background:var(--dark);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.18,1);z-index:999;padding:2rem 8vw;}
+  nav.desk.open{transform:translateX(0);}
+  nav.desk>a,.desk .dd>a{font-size:1.2rem;}
+  .ddm{position:static;opacity:1;pointer-events:all;transform:none;background:transparent;border:none;padding:0;}
+  .ddm a{padding:.35rem 0;font-size:.9rem;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .ggrid{grid-template-columns:1fr;}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .ftgrid{grid-template-columns:1fr;gap:2rem;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-white,.btn-ghost{justify-content:center;}
+  #ph{height:auto;min-height:auto;}
+  .ph-body{padding-top:calc(var(--hh) + 2rem);padding-bottom:3.5rem;}
+  .esp-13{flex-direction:column;text-align:center;}
+  .esp-13-num{font-size:6rem;}
+}
+@media(max-width:480px){
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .nor-indicators{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar para o conte&uacute;do principal</a>
+
+<header id="hdr" class="s" role="banner">
+<div class="hin">
+  <a href="index.html" class="logo" aria-label="ADEMO &mdash; P&aacute;gina Principal">
+    <img class="logo-img" src="logo-ademo.png" alt="Log&oacute;tipo ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="logo-fall" aria-hidden="true">A</div>
+    <div class="logo-w"><span class="logo-n">ADEMO</span><span class="logo-t">Mo&ccedil;ambique &middot; Desde 1990</span></div>
+  </a>
+  <button class="hbg" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainnav"><span></span><span></span><span></span></button>
+  <nav id="mainnav" class="desk" role="navigation" aria-label="Menu principal">
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre N&oacute;s</a>
+    <div class="dd">
+      <a href="index.html#areas" aria-haspopup="true">&Aacute;reas &#9660;</a>
+      <div class="ddm" role="menu">
+        <a href="saude.html" role="menuitem">Sa&uacute;de Sexual e Reprodutiva</a>
+        <a href="educacao.html" role="menuitem">Educa&ccedil;&atilde;o Inclusiva</a>
+        <a href="reabilitacao.html" role="menuitem">Reabilita&ccedil;&atilde;o</a>
+        <a href="genero.html" role="menuitem" aria-current="page">Equidade de G&eacute;nero</a>
+        <a href="futebol.html" role="menuitem">Futebol Inclusivo</a>
+        <a href="climatica.html" role="menuitem">Resili&ecirc;ncia Clim&aacute;tica</a>
+      </div>
+    </div>
+    <a href="transparencia.html">Transpar&ecirc;ncia</a>
+    <a href="index.html#contactos">Contactos</a>
+    <a href="/cdn-cgi/l/email-protection#bedfdadbd3d1d1ccd9fed9d3dfd7d290ddd1d3" class="navcta">Apoie-nos</a>
+  </nav>
+</div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section id="ph" aria-label="Equidade de G&eacute;nero ADEMO">
+  <div class="ph-accent"></div>
+  <div class="ph-bg" id="phbg"></div>
+  <div class="ph-ov"></div>
+  <div class="ph-body">
+    <nav class="breadcrumb" aria-label="Localiza&ccedil;&atilde;o">
+      <a href="index.html">ADEMO</a><span>/</span>
+      <a href="index.html#areas">&Aacute;reas</a><span>/</span>
+      <strong>Equidade de G&eacute;nero</strong>
+    </nav>
+    <div class="ph-tag">G&eacute;nero &amp; Defici&ecirc;ncia &middot; Sofala</div>
+    <h1 class="ph-h1">Equidade de G&eacute;nero:<br><em>Voz, Vez e Poder para Todas</em></h1>
+    <p class="ph-lead">Mulheres e raparigas com defici&ecirc;ncia enfrentam uma dupla barreira &mdash; a defici&ecirc;ncia e o g&eacute;nero &mdash; que as torna particularmente vulner&aacute;veis &agrave; viol&ecirc;ncia e &agrave; exclus&atilde;o. A ADEMO age para mudar isso, de forma radical e sustent&aacute;vel, em Sofala.</p>
+  </div>
+</section>
+
+<!-- DUPLA BARREIRA -->
+<section id="barreira" aria-labelledby="barr-h">
+  <div class="barr-txt rv">
+    <span class="barr-lbl">A Realidade que Enfrentamos</span>
+    <h2 class="barr-h2" id="barr-h">A <em>Dupla Barreira</em> que nenhuma Mulher<br>Deveria Enfrentar Sozinha</h2>
+    <p class="barr-p">Em Mo&ccedil;ambique, ser mulher j&aacute; &eacute; um factor de vulnerabilidade. Ser mulher <em>e</em> ter uma defici&ecirc;ncia &eacute; enfrentar duas camadas sobrepostas de discrimina&ccedil;&atilde;o, exclus&atilde;o e viol&ecirc;ncia &mdash; simultaneamente e sem rede de prote&ccedil;&atilde;o.</p>
+    <blockquote class="barr-quote">&ldquo;Uma mulher com defici&ecirc;ncia que sofre viol&ecirc;ncia dificilmente consegue fugir, dificilmente &eacute; acreditada, e raramente encontra um sistema preparado para a proteger. A ADEMO existe para mudar exactamente isso.&rdquo;</blockquote>
+  </div>
+  <div class="barr-cards rv d1">
+    <div class="barr-card">
+      <div class="barr-card-ico" aria-hidden="true">&#9792;&#65039;</div>
+      <div class="barr-card-body">
+        <div class="barr-card-title">Barreira de G&eacute;nero</div>
+        <div class="barr-card-desc">Normas culturais patriarcais que limitam a mobilidade, a decis&atilde;o e a voz das mulheres na vida familiar e comunit&aacute;ria. Acesso restrito a recursos, educa&ccedil;&atilde;o e oportunidades econ&oacute;micas.</div>
+      </div>
+    </div>
+    <div class="barr-card">
+      <div class="barr-card-ico" aria-hidden="true">&#9855;</div>
+      <div class="barr-card-body">
+        <div class="barr-card-title">Barreira da Defici&ecirc;ncia</div>
+        <div class="barr-card-desc">Estigma, invisibilidade social, depend&ecirc;ncia f&iacute;sica e inacessibilidade de servi&ccedil;os que isolam as pessoas com defici&ecirc;ncia e as tornam alvos preferenciais de abuso e explora&ccedil;&atilde;o.</div>
+      </div>
+    </div>
+    <div class="barr-card">
+      <div class="barr-card-ico" aria-hidden="true">&#9888;&#65039;</div>
+      <div class="barr-card-body">
+        <div class="barr-card-title">O Resultado: Vulnerabilidade Extrema</div>
+        <div class="barr-card-desc">Estudos indicam que mulheres com defici&ecirc;ncia t&ecirc;m at&eacute; <strong style="color:#f0a0d0;">2 a 10 vezes mais probabilidade</strong> de sofrer viol&ecirc;ncia baseada no g&eacute;nero do que mulheres sem defici&ecirc;ncia.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 ESPACOS SEGUROS -->
+<section id="espacos" aria-labelledby="esp-h">
+  <div class="esp-hd rv">
+    <span class="lbl">Uma Conquista Hist&oacute;rica</span>
+    <h2 id="esp-h">Espa&ccedil;os Seguros para <em>Pessoas com Defici&ecirc;ncia</em></h2>
+    <p>Criar um espa&ccedil;o seguro &eacute; muito mais do que construir uma sala &mdash; &eacute; criar um ambiente f&iacute;sico, social e emocional onde cada pessoa com defici&ecirc;ncia pode existir, falar e ser protegida sem medo.</p>
+  </div>
+  <!-- NUMERO 13 EM DESTAQUE ABSOLUTO -->
+  <div class="esp-13 rv" role="figure" aria-label="13 espa&ccedil;os seguros criados">
+    <div class="esp-13-num" aria-hidden="true">13</div>
+    <div class="esp-13-body">
+      <div class="esp-13-lbl">Conquista hist&oacute;rica &middot; Sofala, Mo&ccedil;ambique</div>
+      <div class="esp-13-titulo">Espa&ccedil;os Seguros <em>criados e operacionais</em><br>para Pessoas com Defici&ecirc;ncia</div>
+      <div class="esp-13-desc">Treze espa&ccedil;os f&iacute;sicos acess&iacute;veis, equipados e geridos por equipas treinadas pela ADEMO &mdash; onde mulheres, homens, raparigas e rapazes com defici&ecirc;ncia encontram prote&ccedil;&atilde;o, apoio psicossocial, atendimento VBG e uma comunidade que os acolhe incondicionalmente.</div>
+    </div>
+  </div>
+  <div class="esp-feats">
+    <div class="esp-feat rv">
+      <div class="esp-feat-ico" aria-hidden="true">&#127968;</div>
+      <h3 class="esp-feat-h3">Infraestrutura Acess&iacute;vel</h3>
+      <p class="esp-feat-p">Cada espa&ccedil;o seguro &eacute; concebido com acessibilidade como requisito obrigat&oacute;rio &mdash; rampas, sinaliza&ccedil;&atilde;o inclusiva, mobili&aacute;rio adapt&aacute;vel e sanit&aacute;rios acess&iacute;veis para pessoas com diferentes tipos de defici&ecirc;ncia.</p>
+    </div>
+    <div class="esp-feat rv d1">
+      <div class="esp-feat-ico" aria-hidden="true">&#128101;</div>
+      <h3 class="esp-feat-h3">Equipas Treinadas</h3>
+      <p class="esp-feat-p">Cada espa&ccedil;o &eacute; gerido por uma equipa de facilitadores treinados pela ADEMO em gest&atilde;o de casos VBG, prote&ccedil;&atilde;o &agrave; crian&ccedil;a, apoio psicossocial e inclus&atilde;o de pessoas com defici&ecirc;ncia.</p>
+    </div>
+    <div class="esp-feat rv d2">
+      <div class="esp-feat-ico" aria-hidden="true">&#128203;</div>
+      <h3 class="esp-feat-h3">Diagn&oacute;stico Comunit&aacute;rio</h3>
+      <p class="esp-feat-p">Cada espa&ccedil;o nasceu de um processo de diagn&oacute;stico comunit&aacute;rio participativo &mdash; onde as pr&oacute;prias pessoas com defici&ecirc;ncia identificaram as suas necessidades e ajudaram a desenhar a resposta.</p>
+    </div>
+    <div class="esp-feat rv">
+      <div class="esp-feat-ico" aria-hidden="true">&#128222;</div>
+      <h3 class="esp-feat-h3">Referenciamento Integrado</h3>
+      <p class="esp-feat-p">Os espa&ccedil;os seguros est&atilde;o integrados numa rede de referenciamento com servi&ccedil;os de sa&uacute;de, pol&iacute;cia, tribunais e organizações da sociedade civil &mdash; garantindo uma resposta coordenada e eficaz.</p>
+    </div>
+    <div class="esp-feat rv d1">
+      <div class="esp-feat-ico" aria-hidden="true">&#129302;</div>
+      <h3 class="esp-feat-h3">Apoio Psicossocial</h3>
+      <p class="esp-feat-p">Servi&ccedil;os de apoio psicossocial para crian&ccedil;as, adolescentes e adultos sobreviventes de VBG &mdash; incluindo acompanhamento individual, grupos de apoio entre pares e actividades de reconstru&ccedil;&atilde;o da auto-estima.</p>
+    </div>
+    <div class="esp-feat rv d2">
+      <div class="esp-feat-ico" aria-hidden="true">&#127758;</div>
+      <h3 class="esp-feat-h3">Cobertura Geogr&aacute;fica</h3>
+      <p class="esp-feat-p">Os 13 espa&ccedil;os est&atilde;o distribu&iacute;dos pelos distritos mais vulner&aacute;veis de Sofala &mdash; priorizando as comunidades rurais e peri-urbanas onde o acesso a servi&ccedil;os de prote&ccedil;&atilde;o &eacute; mais limitado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VBG SECAO URGENTE -->
+<section id="vbg" aria-labelledby="vbg-h">
+  <div class="vbg-inner">
+    <div class="vbg-txt rv">
+      <div class="vbg-alerta">
+        <div class="vbg-alerta-ico" aria-hidden="true">&#9888;&#65039;</div>
+        <div class="vbg-alerta-txt"><strong>Viol&ecirc;ncia Baseada no G&eacute;nero (VBG)</strong> &mdash; uma emerg&ecirc;ncia silenciosa que afecta desproporcionalmente mulheres e raparigas com defici&ecirc;ncia em todo o Moçambique.</div>
+      </div>
+      <h2 class="vbg-h2" id="vbg-h">Prote&ccedil;&atilde;o &agrave; Crian&ccedil;a e<br><em>Resposta &agrave; Viol&ecirc;ncia de G&eacute;nero</em></h2>
+      <p class="vbg-p">A ADEMO oferece servi&ccedil;os remotos e presenciais de gest&atilde;o de casos de prote&ccedil;&atilde;o &agrave; crian&ccedil;a e VBG &mdash; com uma abordagem centrada na sobrevivente, confidencial, acess&iacute;vel e sensível &agrave;s necessidades espec&iacute;ficas de pessoas com diferentes tipos de defici&ecirc;ncia.</p>
+      <div class="vbg-highlight">&ldquo;Uma crian&ccedil;a com defici&ecirc;ncia que sofre abuso raramente tem voz para denunciar. O nosso trabalho come&ccedil;a por garantir que essa voz exista e que algu&eacute;m est&aacute; l&aacute; para ouvi-la.&rdquo;</div>
+      <div class="vbg-services">
+        <div class="vbg-svc">
+          <div class="vbg-svc-ico" aria-hidden="true">&#128222;</div>
+          <div class="vbg-svc-body">
+            <div class="vbg-svc-title">Gest&atilde;o Remota de Casos</div>
+            <div class="vbg-svc-desc">Linha de apoio e gest&atilde;o de casos &agrave; dist&acirc;ncia para comunidades rurais sem acesso f&iacute;sico a servi&ccedil;os &mdash; com protocolos adaptados para pessoas com defici&ecirc;ncia auditiva, visual e intelectual.</div>
+          </div>
+        </div>
+        <div class="vbg-svc">
+          <div class="vbg-svc-ico" aria-hidden="true">&#129302;</div>
+          <div class="vbg-svc-body">
+            <div class="vbg-svc-title">Apoio Psicossocial a Crian&ccedil;as e Adolescentes</div>
+            <div class="vbg-svc-desc">Interven&ccedil;&atilde;o psicossocial especializada para crian&ccedil;as e adolescentes com defici&ecirc;ncia expostas a viol&ecirc;ncia &mdash; com m&eacute;todos adapt&aacute;veis &agrave; comunica&ccedil;&atilde;o de cada benefici&aacute;rio.</div>
+          </div>
+        </div>
+        <div class="vbg-svc">
+          <div class="vbg-svc-ico" aria-hidden="true">&#9878;&#65039;</div>
+          <div class="vbg-svc-body">
+            <div class="vbg-svc-title">Referenciamento Multi-Sectorial</div>
+            <div class="vbg-svc-desc">Encaminhamento para servi&ccedil;os de sa&uacute;de, prot&ecirc;ncia social, assistência jur&iacute;dica e abrigos &mdash; garantindo que a pessoa com defici&ecirc;ncia tenha acesso efectivo e n&atilde;o apenas formal a esses servi&ccedil;os.</div>
+          </div>
+        </div>
+        <div class="vbg-svc">
+          <div class="vbg-svc-ico" aria-hidden="true">&#128101;</div>
+          <div class="vbg-svc-body">
+            <div class="vbg-svc-title">Forma&ccedil;&atilde;o de Actores Locais</div>
+            <div class="vbg-svc-desc">Capacita&ccedil;&atilde;o de l&iacute;deres comunit&aacute;rios, professores, profissionais de sa&uacute;de e agentes de prote&ccedil;&atilde;o social na identifica&ccedil;&atilde;o, referencia&ccedil;&atilde;o e apoio a casos de VBG envolvendo pessoas com defici&ecirc;ncia.</div>
+          </div>
+        </div>
+      </div>
+      <div class="vbg-stats rv d1">
+        <div class="vbg-stat"><div class="vbg-sn">13</div><div class="vbg-sl">Espa&ccedil;os seguros<br>operacionais</div></div>
+        <div class="vbg-stat"><div class="vbg-sn">100%</div><div class="vbg-sl">Servi&ccedil;os acess&iacute;veis<br>a PcD</div></div>
+      </div>
+    </div>
+    <div class="vbg-img rv d1">
+      <img src="foto-gen-vbg.jpg" loading="lazy" alt="Sess&atilde;o de apoio psicossocial VBG" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="vbg-img-fb" aria-hidden="true">&#129302;</div>
+      <img src="foto-gen-espaco.jpg" loading="lazy" alt="Espa&ccedil;o seguro ADEMO" onerror="this.style.display='none';" style="margin-top:0;">
+    </div>
+  </div>
+</section>
+
+<!-- FORMACAO MENTORES — 3 DIAS -->
+<section id="formacao" aria-labelledby="form-h">
+  <div class="form-hd rv">
+    <span class="lbl">Programa de Forma&ccedil;&atilde;o</span>
+    <h2 id="form-h">Forma&ccedil;&atilde;o de Mentores e Mentoras:<br><em>Preven&ccedil;&atilde;o, Mitiga&ccedil;&atilde;o e Resposta &agrave; VBG</em></h2>
+    <p>A ADEMO form&aacute; l&iacute;deres comunit&aacute;rios como mentores e mentoras de preven&ccedil;&atilde;o da VBG &mdash; capacitando-os ao longo de 3 dias intensivos para transformar as suas comunidades em ambientes mais seguros e mais justos para todas as pessoas com defici&ecirc;ncia.</p>
+  </div>
+  <div class="form-badge-row rv">
+    <div class="form-badge">
+      <div class="form-badge-ico" aria-hidden="true">&#128197;</div>
+      <div class="form-badge-txt">
+        <div class="form-badge-n">3 Dias</div>
+        <div class="form-badge-l">Forma&ccedil;&atilde;o intensiva</div>
+      </div>
+    </div>
+    <div class="form-badge-sep" aria-hidden="true"></div>
+    <div class="form-badge-desc">Um programa de forma&ccedil;&atilde;o rigoroso, progressivo e pr&aacute;tico que transforma membros da comunidade em agentes activos de preven&ccedil;&atilde;o e resposta &agrave; VBG &mdash; com compet&ecirc;ncias espec&iacute;ficas para proteger pessoas com defici&ecirc;ncia.</div>
+  </div>
+  <div class="dias-grid">
+
+    <!-- DIA 1 -->
+    <article class="dia-card dia-1 rv">
+      <div class="dia-header">
+        <div class="dia-lbl">Forma&ccedil;&atilde;o VBG &middot; Dia Um</div>
+        <h3 class="dia-titulo">Estabelecimento de Espa&ccedil;os Seguros</h3>
+        <div class="dia-num" aria-hidden="true">1</div>
+      </div>
+      <div class="dia-foto-wrap">
+        <img class="dia-foto" src="foto-gen-dia1.jpg" loading="lazy" alt="Dia 1 da forma&ccedil;&atilde;o VBG" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="dia-foto-fb" aria-hidden="true">&#127968;</div>
+      </div>
+      <div class="dia-body">
+        <div class="dia-items">
+          <div class="dia-item">
+            <div class="dia-item-dot" aria-hidden="true"></div>
+            <div class="dia-item-txt"><strong>Diagn&oacute;stico Comunit&aacute;rio Participativo</strong> &mdash; mapeamento das necessidades locais, identifica&ccedil;&atilde;o de grupos mais vulner&aacute;veis e an&aacute;lise dos riscos espec&iacute;ficos para pessoas com defici&ecirc;ncia.</div>
+          </div>
+          <div class="dia-item">
+            <div class="dia-item-dot" aria-hidden="true"></div>
+            <div class="dia-item-txt"><strong>Infraestrutura Acess&iacute;vel</strong> &mdash; crit&eacute;rios m&iacute;nimos de acessibilidade para um espa&ccedil;o seguro: rampas, sinaliza&ccedil;&atilde;o inclusiva, comunica&ccedil;&atilde;o adaptada, sanit&aacute;rios e mobili&aacute;rio.</div>
+          </div>
+          <div class="dia-item">
+            <div class="dia-item-dot" aria-hidden="true"></div>
+            <div class="dia-item-txt"><strong>Recrutamento e Perfil das Equipas</strong> &mdash; crit&eacute;rios de selec&ccedil;&atilde;o de facilitadores, pap&eacute;is e responsabilidades, e gest&atilde;o segura de informa&ccedil;&atilde;o confidencial.</div>
+          </div>
+        </div>
+        <div class="dia-tags">
+          <span class="dia-tag">Diagn&oacute;stico</span><span class="dia-tag">Acessibilidade</span><span class="dia-tag">Equipas</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- DIA 2 -->
+    <article class="dia-card dia-2 rv d1">
+      <div class="dia-header">
+        <div class="dia-lbl">Forma&ccedil;&atilde;o VBG &middot; Dia Dois</div>
+        <h3 class="dia-titulo">Facilita&ccedil;&atilde;o de Sess&otilde;es Inclusivas</h3>
+        <div class="dia-num" aria-hidden="true">2</div>
+      </div>
+      <div class="dia-foto-wrap">
+        <img class="dia-foto" src="foto-gen-dia2.jpg" loading="lazy" alt="Dia 2 da forma&ccedil;&atilde;o VBG" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="dia-foto-fb" aria-hidden="true">&#128101;</div>
+      </div>
+      <div class="dia-body">
+        <div class="dia-items">
+          <div class="dia-item">
+            <div class="dia-item-dot" aria-hidden="true"></div>
+            <div class="dia-item-txt"><strong>T&eacute;cnicas de Facilita&ccedil;&atilde;o Transformadora</strong> &mdash; m&eacute;todos que questionam normas de g&eacute;nero prejudiciais, promovem o di&aacute;logo e criam espa&ccedil;o para que todas as vozes &mdash; incluindo as de pessoas com defici&ecirc;ncia &mdash; sejam ouvidas.</div>
+          </div>
+          <div class="dia-item">
+            <div class="dia-item-dot" aria-hidden="true"></div>
+            <div class="dia-item-txt"><strong>Sensibilidade ao G&eacute;nero e &agrave; Defici&ecirc;ncia</strong> &mdash; como conduzir sess&otilde;es sem reproduzir estere&oacute;tipos, como adaptar linguagem e materiais, e como garantir a participa&ccedil;&atilde;o plena de pessoas com diferentes necessidades.</div>
+          </div>
+          <div class="dia-item">
+            <div class="dia-item-dot" aria-hidden="true"></div>
+            <div class="dia-item-txt"><strong>Adapta&ccedil;&otilde;es Espec&iacute;ficas para Raparigas com Defici&ecirc;ncia</strong> &mdash; abordagens especializadas para crian&ccedil;as e adolescentes com defici&ecirc;ncia visual, auditiva, intelectual e motora.</div>
+          </div>
+        </div>
+        <div class="dia-tags">
+          <span class="dia-tag">Facilita&ccedil;&atilde;o</span><span class="dia-tag">G&eacute;nero</span><span class="dia-tag">Inclus&atilde;o</span><span class="dia-tag">Raparigas PcD</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- DIA 3 -->
+    <article class="dia-card dia-3 rv d2">
+      <div class="dia-header">
+        <div class="dia-lbl">Forma&ccedil;&atilde;o VBG &middot; Dia Tr&ecirc;s</div>
+        <h3 class="dia-titulo">Mobiliza&ccedil;&atilde;o, Referencia&ccedil;&atilde;o e Planos de Ac&ccedil;&atilde;o</h3>
+        <div class="dia-num" aria-hidden="true">3</div>
+      </div>
+      <div class="dia-foto-wrap">
+        <img class="dia-foto" src="foto-gen-dia3.jpg" loading="lazy" alt="Dia 3 da forma&ccedil;&atilde;o VBG" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="dia-foto-fb" aria-hidden="true">&#127760;</div>
+      </div>
+      <div class="dia-body">
+        <div class="dia-items">
+          <div class="dia-item">
+            <div class="dia-item-dot" aria-hidden="true"></div>
+            <div class="dia-item-txt"><strong>Mobiliza&ccedil;&atilde;o Comunit&aacute;ria</strong> &mdash; estrat&eacute;gias para envolver l&iacute;deres tradicionais, religi&ocirc;sos e comunit&aacute;rios na preven&ccedil;&atilde;o da VBG &mdash; transformando aliados em agentes de mudan&ccedil;a.</div>
+          </div>
+          <div class="dia-item">
+            <div class="dia-item-dot" aria-hidden="true"></div>
+            <div class="dia-item-txt"><strong>Referencia&ccedil;&atilde;o e Monitoria</strong> &mdash; como identificar um caso de VBG, como referenciar com segurança e confidencialidade, e como monitorar o percurso da sobrevivente nos servi&ccedil;os.</div>
+          </div>
+          <div class="dia-item">
+            <div class="dia-item-dot" aria-hidden="true"></div>
+            <div class="dia-item-txt"><strong>Elabora&ccedil;&atilde;o de Planos de Ac&ccedil;&atilde;o Comunit&aacute;rios</strong> &mdash; cada participante sai com um plano concreto, realista e calendarizado para implementar na sua pr&oacute;pria comunidade.</div>
+          </div>
+        </div>
+        <div class="dia-tags">
+          <span class="dia-tag">Mobiliza&ccedil;&atilde;o</span><span class="dia-tag">Referencia&ccedil;&atilde;o</span><span class="dia-tag">Monitoria</span><span class="dia-tag">Plano de Ac&ccedil;&atilde;o</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- NORMAS DE GENERO -->
+<section id="normas" aria-labelledby="nor-h">
+  <div class="nor-img rv">
+    <img src="foto-gen-normas.jpg" loading="lazy" alt="Sess&atilde;o sobre normas de g&eacute;nero com pessoas com defici&ecirc;ncia" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="nor-img-fb" aria-hidden="true">&#9892;</div>
+    <div class="nor-badge" aria-hidden="true">
+      <span class="nor-badge-n">&#10003;</span>
+      <span class="nor-badge-l">Mulheres e homens com defici&ecirc;ncia formados</span>
+    </div>
+  </div>
+  <div class="nor-txt">
+    <span class="lbl rv">Sess&otilde;es de Transforma&ccedil;&atilde;o</span>
+    <h2 class="nor-h2 rv d1" id="nor-h">Normas de G&eacute;nero:<br><em>Questionar para Transformar</em></h2>
+    <p class="nor-p rv d1">As normas de g&eacute;nero prejudiciais &mdash; aquelas que definem o que &eacute; &ldquo;suposto&rdquo; ser uma mulher ou um homem &mdash; s&atilde;o uma das ra&iacute;zes mais profundas da viol&ecirc;ncia e da desigualdade. A ADEMO desenvolve sess&otilde;es de grupo espec&iacute;ficas para pessoas com defici&ecirc;ncia que questionam estas normas de forma cr&iacute;tica, participativa e inclusiva.</p>
+    <p class="nor-p rv d2">As sess&otilde;es s&atilde;o adaptadas para garantir a participa&ccedil;&atilde;o plena de pessoas com diferentes tipos de defici&ecirc;ncia &mdash; utilizando imagens, hist&oacute;rias, encena&ccedil;&otilde;es e din&acirc;micas que n&atilde;o dependem exclusivamente da leitura ou da fala.</p>
+    <div class="nor-highlight rv d2">&ldquo;Quando uma mulher com defici&ecirc;ncia percebe que o que lhe fizeram n&atilde;o foi destino nem merecimento &mdash; foi uma norma cultural que pode e deve ser mudada &mdash; algo dentro dela desperta para sempre.&rdquo;</div>
+    <div class="nor-indicators rv d3">
+      <div class="nor-ind"><div class="nor-ind-n">&#8734;</div><div class="nor-ind-l">Mulheres com defici&ecirc;ncia que completaram sess&otilde;es</div></div>
+      <div class="nor-ind"><div class="nor-ind-n">&#8734;</div><div class="nor-ind-l">Homens com defici&ecirc;ncia que completaram sess&otilde;es</div></div>
+      <div class="nor-ind"><div class="nor-ind-n">13</div><div class="nor-ind-l">Espa&ccedil;os seguros onde decorrem as sess&otilde;es</div></div>
+      <div class="nor-ind"><div class="nor-ind-n">3</div><div class="nor-ind-l">Dias de forma&ccedil;&atilde;o de mentores e mentoras</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIDERANCA COMUNITARIA -->
+<section id="lideranca" aria-labelledby="lid-h">
+  <div class="lid-inner">
+    <div class="lid-txt rv">
+      <span class="lbl" style="color:rgba(255,255,255,.6)">Impacto na Comunidade</span>
+      <h2 class="lid-h2" id="lid-h">Forma&ccedil;&atilde;o que <em>Refor&ccedil;a a Lideran&ccedil;a Comunit&aacute;ria</em></h2>
+      <p class="lid-p">A forma&ccedil;&atilde;o de mentores e mentoras da ADEMO n&atilde;o produz apenas conhecimento &mdash; produz l&iacute;deres. Cada participante regressa &agrave; sua comunidade equipado para mobilizar, proteger e transformar. A preven&ccedil;&atilde;o da VBG torna-se uma responsabilidade colectiva, n&atilde;o apenas institucional.</p>
+      <div class="lid-highlight">&ldquo;A forma&ccedil;&atilde;o sobre preven&ccedil;&atilde;o da VBG refor&ccedil;a a lideran&ccedil;a comunit&aacute;ria &mdash; criando agentes de mudan&ccedil;a que actuam como multiplicadores de uma cultura de prote&ccedil;&atilde;o, respeito e inclus&atilde;o.&rdquo;</div>
+      <div class="lid-achievements rv d1">
+        <div class="lid-ach">
+          <span class="lid-ach-ico" aria-hidden="true">&#127775;</span>
+          <div class="lid-ach-txt"><strong>Mentores activados nas comunidades</strong> &mdash; cada mentor forma pelo menos 15 pessoas na sua comunidade nos 3 meses ap&oacute;s a forma&ccedil;&atilde;o.</div>
+        </div>
+        <div class="lid-ach">
+          <span class="lid-ach-ico" aria-hidden="true">&#128101;</span>
+          <div class="lid-ach-txt"><strong>Redes de Preven&ccedil;&atilde;o Comunit&aacute;rias</strong> &mdash; grupos de l&iacute;deres locais que se auto-organizam para monitorar e responder a situações de risco nas suas comunidades.</div>
+        </div>
+        <div class="lid-ach">
+          <span class="lid-ach-ico" aria-hidden="true">&#128203;</span>
+          <div class="lid-ach-txt"><strong>Planos de Ac&ccedil;&atilde;o implementados</strong> &mdash; cada comunidade sai da forma&ccedil;&atilde;o com um plano concreto, calend&aacute;rio e respons&aacute;veis definidos para os 6 meses seguintes.</div>
+        </div>
+        <div class="lid-ach">
+          <span class="lid-ach-ico" aria-hidden="true">&#9878;&#65039;</span>
+          <div class="lid-ach-txt"><strong>Alian&ccedil;as com l&iacute;deres tradicionais e religiosos</strong> &mdash; para que a preven&ccedil;&atilde;o da VBG seja legitimada pelas estruturas de autoridade que as comunidades j&aacute; reconhecem.</div>
+        </div>
+      </div>
+    </div>
+    <div class="lid-img rv d1">
+      <img src="foto-gen-lideranca.jpg" loading="lazy" alt="L&iacute;deres comunit&aacute;rios formados pela ADEMO em preven&ccedil;&atilde;o VBG" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="lid-img-fb" aria-hidden="true">&#127775;</div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMEROS -->
+<section id="nums" aria-labelledby="nums-h">
+  <div class="nums-hd rv">
+    <span class="lbl-gold">Resultados Mensur&aacute;veis</span>
+    <h2 id="nums-h">Impacto <em>em N&uacute;meros</em></h2>
+  </div>
+  <div class="ngrid">
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">&#127968;</div>
+      <div class="nit-n" data-target="13" data-suffix="">13</div>
+      <div class="nit-l">Espa&ccedil;os seguros<br>criados e operacionais</div>
+    </div>
+    <div class="nit rv d1">
+      <div class="nit-ico" aria-hidden="true">&#128101;</div>
+      <div class="nit-n" data-target="750" data-suffix="+">750+</div>
+      <div class="nit-l">Mulheres e homens com<br>defici&ecirc;ncia nas sess&otilde;es</div>
+    </div>
+    <div class="nit rv d2">
+      <div class="nit-ico" aria-hidden="true">&#127775;</div>
+      <div class="nit-n" data-target="3" data-suffix=" dias">3</div>
+      <div class="nit-l">De forma&ccedil;&atilde;o intensiva<br>de mentores e mentoras</div>
+    </div>
+    <div class="nit rv d3">
+      <div class="nit-ico" aria-hidden="true">&#129302;</div>
+      <div class="nit-n" data-target="480" data-suffix="+">480+</div>
+      <div class="nit-l">Casos VBG acompanhados<br>com gest&atilde;o integrada</div>
+    </div>
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">&#127760;</div>
+      <div class="nit-n" data-target="6" data-suffix="">6</div>
+      <div class="nit-l">Distritos de Sofala<br>com cobertura activa</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" aria-labelledby="dep-h">
+  <div class="dep-hd rv">
+    <span class="lbl">Vozes que Importam</span>
+    <h2 id="dep-h">Hist&oacute;rias de <em>Coragem e Transforma&ccedil;&atilde;o</em></h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card rv">
+      <p class="dep-quote">Durante anos sofri em sil&ecirc;ncio. Achava que era normal, que era o meu destino por ser como sou. No espa&ccedil;o seguro da ADEMO percebi que n&atilde;o. Hoje sou mentora e ajudo outras mulheres a perceber o mesmo.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">A</div>
+        <div><div class="dep-name">Amina S.</div><div class="dep-role">Sobrevivente e mentora &middot; Buzi, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d1">
+      <p class="dep-quote">Como lder comunit&aacute;rio, achava que a viol&ecirc;ncia doméstica era um assunto de fam&iacute;lia. A forma&ccedil;&atilde;o da ADEMO mudou a minha perspectiva completamente. Hoje actuo activamente na preven&ccedil;&atilde;o e encorajo outros homens a fazer o mesmo.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">M</div>
+        <div><div class="dep-name">Manuel C.</div><div class="dep-role">L&iacute;der comunit&aacute;rio &middot; Nhamatanda, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d2">
+      <p class="dep-quote">A minha filha com defici&ecirc;ncia intelectual foi abusada e n&atilde;o sabia como dizer. A equipa da ADEMO comunicou com ela de uma forma que eu nunca tinha visto &mdash; com imagens e paciência. Ela foi finalmente ouvida.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">F</div>
+        <div><div class="dep-name">Fatima R.</div><div class="dep-role">M&atilde;e de sobrevivente &middot; Beira, Sofala</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" aria-labelledby="gal-h">
+  <div class="gal-hd rv">
+    <div><span class="lbl-gold">Galeria</span><h2 id="gal-h">G&eacute;nero e Inclus&atilde;o <em>em Imagens</em></h2></div>
+  </div>
+  <div class="ggrid rv d1">
+    <div class="gitem" data-label="Espa&ccedil;os Seguros &middot; Sofala">
+      <img src="foto-gen-espaco.jpg" loading="lazy" alt="Espa&ccedil;o seguro ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127968;</div>
+    </div>
+    <div class="gitem" data-label="Forma&ccedil;&atilde;o VBG &middot; Dia 1">
+      <img src="foto-gen-dia1.jpg" loading="lazy" alt="Forma&ccedil;&atilde;o dia 1 &mdash; espa&ccedil;os seguros" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#128197;</div>
+    </div>
+    <div class="gitem" data-label="Sess&otilde;es de G&eacute;nero">
+      <img src="foto-gen-normas.jpg" loading="lazy" alt="Sess&otilde;es de normas de g&eacute;nero" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#9892;</div>
+    </div>
+    <div class="gitem" data-label="Lideran&ccedil;a Comunit&aacute;ria">
+      <img src="foto-gen-lideranca.jpg" loading="lazy" alt="L&iacute;deres comunit&aacute;rios formados" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127775;</div>
+    </div>
+    <div class="gitem" data-label="Apoio Psicossocial VBG">
+      <img src="foto-gen-vbg.jpg" loading="lazy" alt="Apoio psicossocial VBG" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#129302;</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final" aria-label="Apoiar o programa de g&eacute;nero">
+  <span class="cta-lbl rv">Fa&ccedil;a a Diferen&ccedil;a</span>
+  <h2 class="cta-h2 rv d1">Toda Mulher com Defici&ecirc;ncia<br><em>Merece Viver Sem Medo</em></h2>
+  <p class="cta-p rv d2">Com o seu apoio, criamos mais espa&ccedil;os seguros, formamos mais mentores, acompanhamos mais sobreviventes de VBG e construimos comunidades onde nenhuma mulher ou rapariga com defici&ecirc;ncia &eacute; deixada para tr&aacute;s ou esquecida na sua dor.</p>
+  <div class="cta-btns rv d3">
+    <a href="/cdn-cgi/l/email-protection#f8999c9d9597978a9fb89f95999194d69b9795" class="btn-white">Apoiar Este Programa <span class="arr">&#8594;</span></a>
+    <a href="transparencia.html" class="btn-ghost">Ver Relat&oacute;rios de Impacto</a>
+  </div>
+</section>
+
+<!-- NAV AREAS -->
+<nav id="nav-areas" aria-label="Outras &aacute;reas">
+  <span class="na-hd">Explorar Outras &Aacute;reas</span>
+  <div class="na-grid">
+    <a href="saude.html" class="na-item"><span class="na-ico">&#127973;</span><span class="na-lbl">Sa&uacute;de Sexual</span></a>
+    <a href="educacao.html" class="na-item"><span class="na-ico">&#128218;</span><span class="na-lbl">Educa&ccedil;&atilde;o Inclusiva</span></a>
+    <a href="reabilitacao.html" class="na-item"><span class="na-ico">&#9851;</span><span class="na-lbl">Reabilita&ccedil;&atilde;o</span></a>
+    <a href="genero.html" class="na-item active" aria-current="page"><span class="na-ico">&#9892;</span><span class="na-lbl">Equidade de G&eacute;nero</span></a>
+    <a href="futebol.html" class="na-item"><span class="na-ico">&#9917;</span><span class="na-lbl">Futebol Inclusivo</span></a>
+  </div>
+</nav>
+</main>
+
+<footer role="contentinfo">
+  <div class="ftgrid">
+    <div>
+      <div class="ftnm">ADEMO</div>
+      <p class="ftdc">Associa&ccedil;&atilde;o dos Deficientes Mo&ccedil;ambicanos &mdash; desde 1990, promovendo dignidade, direitos e inclus&atilde;o em todo o pa&iacute;s.</p>
+      <div class="ftsoc">
+        <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="ftsi" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="ftsi" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="/cdn-cgi/l/email-protection#066762636b6969746146616b676f6a2865696b" class="ftsi" aria-label="E-mail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <nav class="ftcol"><h4>Navega&ccedil;&atilde;o</h4><a href="index.html">Home</a><a href="sobre.html">Sobre N&oacute;s</a><a href="index.html#areas">&Aacute;reas</a><a href="transparencia.html">Transpar&ecirc;ncia</a><a href="index.html#contactos">Contactos</a></nav>
+    <nav class="ftcol"><h4>O Que Fazemos</h4><a href="saude.html">Sa&uacute;de</a><a href="educacao.html">Educa&ccedil;&atilde;o</a><a href="reabilitacao.html">Reabilita&ccedil;&atilde;o</a><a href="genero.html">G&eacute;nero</a><a href="futebol.html">Futebol</a><a href="climatica.html">Clima</a></nav>
+    <div class="ftcol"><h4>Contacto</h4><a href="/cdn-cgi/l/email-protection#4c2d28292123233e2b0c2b212d2520622f2321"><span class="__cf_email__" data-cfemail="4b2a2f2e262424392c0b2c262a222765282426">[email&#160;protected]</span></a><a href="tel:+258849371782">(+258) 849 371 782</a><a href="https://www.ademosofala.site" target="_blank">www.ademosofala.site</a></div>
+  </div>
+  <div class="ftbot">
+    <span>&copy; 2025 <span class="ftgo">ADEMO</span>. Todos os direitos reservados.</span>
+    <span>Feito com dedica&ccedil;&atilde;o para um Mo&ccedil;ambique inclusivo</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){var h=document.getElementById('hdr');function s(){h.classList.toggle('s',scrollY>60);h.classList.toggle('t',scrollY<=60);}window.addEventListener('scroll',s,{passive:true});s();})();
+(function(){var hbg=document.querySelector('.hbg'),nav=document.getElementById('mainnav');if(!hbg||!nav)return;hbg.addEventListener('click',function(){var o=hbg.getAttribute('aria-expanded')==='true';hbg.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';});});})();
+(function(){var bg=document.getElementById('phbg');if(!bg)return;bg.classList.add('loaded');window.addEventListener('scroll',function(){bg.style.transform='translateY('+scrollY*.22+'px) scale(1.04)';},{passive:true});})();
+(function(){if(!('IntersectionObserver' in window))return;document.body.classList.add('js-rdy');var obs=new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});})();
+(function(){function run(el){var tgt=parseInt(el.dataset.target)||0,sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*tgt).toLocaleString('pt-PT')+sfx;if(p<1)requestAnimati

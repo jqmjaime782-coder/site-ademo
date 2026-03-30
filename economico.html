@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empoderamento Económico — ADEMO</title>
+<meta name="description" content="A ADEMO empodera mulheres e jovens economicamente em Sofala — mercearias equipadas, máquinas de costura, poupança comunitária, marketing digital e informática certificada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CC0000;--red-dk:#a00000;
+  --gold:#C9993A;--gold-lt:#e5c07a;--gold-dim:rgba(201,153,58,.18);
+  --dark:#1A1008;--dark2:#2d1f0e;
+  --text:#1e1408;--muted:#5c4e38;
+  --white:#fff;--cream:#F8F3EC;--hh:80px;
+  /* ECONÓMICO: roxo-ameixa empoderamento + dourado riqueza + coral caloroso */
+  --ac:#7a2d8a;--ac-dk:#5a1a6a;--ac-lt:#d88ef0;--ac-pale:rgba(122,45,138,.1);
+  --gold2:#c9803a;--gold2-lt:#f0c07a;
+  --coral:#e05a3a;
+}
+html{font-size:18px;scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.75;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.skip{position:absolute;top:-120px;left:1rem;background:var(--red);color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:9999;transition:top .2s;font-size:.85rem;}
+.skip:focus{top:1rem;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+
+/* ══ HEADER ══ */
+#hdr{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--hh);display:flex;align-items:center;padding:0 5vw;transition:background .4s,box-shadow .4s;}
+#hdr.t{background:transparent;}
+#hdr.s{background:rgba(26,16,8,.97);box-shadow:0 2px 28px rgba(0,0,0,.45);backdrop-filter:blur(14px);}
+.hin{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.logo{display:flex;align-items:center;gap:.85rem;}
+.logo-img{height:46px;width:auto;object-fit:contain;flex-shrink:0;}
+.logo-fall{display:none;width:46px;height:46px;border-radius:50%;background:var(--red);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;flex-shrink:0;}
+.logo-w{display:flex;flex-direction:column;line-height:1.1;justify-content:center;gap:.1rem;padding-left:.1rem;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;letter-spacing:.08em;}
+.logo-t{font-size:.54rem;color:var(--gold-lt);letter-spacing:.16em;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:1.6rem;}
+nav>a,.dd>a{color:rgba(255,255,255,.8);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:2px;transition:color .3s;}
+nav>a::after,.dd>a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav>a:hover,.dd>a:hover{color:#fff;}
+nav>a:hover::after,.dd>a:hover::after{width:100%;}
+.dd{position:relative;}
+.ddm{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--dark);border:1px solid var(--gold-dim);min-width:240px;padding:.5rem 0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
+.dd:hover .ddm,.dd:focus-within .ddm{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.ddm a{display:block;padding:.55rem 1.3rem;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.7);text-transform:uppercase;transition:color .2s,background .2s;}
+.ddm a:hover{color:var(--gold-lt);background:rgba(201,153,58,.08);}
+.navcta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.25rem;border-radius:2px;transition:background .3s!important;}
+.navcta:hover{background:var(--red-dk)!important;}
+.navcta::after{display:none!important;}
+.hbg{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:1001;}
+.hbg span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.hbg[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hbg[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* ══ UTILS ══ */
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac);margin-bottom:.85rem;display:block;}
+.lbl-gold{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem;display:block;}
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease;}
+.js-rdy .rv{opacity:0;transform:translateY(22px);}
+.js-rdy .rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.15s;}.d2{transition-delay:.3s;}.d3{transition-delay:.45s;}
+.arr{display:inline-block;transition:transform .3s;}
+.btn-ac{display:inline-flex;align-items:center;gap:.6rem;background:var(--ac);color:#fff;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:500;transition:background .3s,transform .2s;}
+.btn-ac:hover{background:var(--ac-dk);transform:translateY(-2px);}
+.btn-ac:hover .arr{transform:translateX(5px);}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--ac);padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:600;transition:background .3s,transform .2s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,border-color .3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff;}
+
+/* ══ HERO ══ */
+#ph{position:relative;height:88vh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden;background:#12080e;}
+.ph-bg{position:absolute;inset:0;background-image:url('foto-eco-hero.jpg');background-size:cover;background-position:center 40%;transform:scale(1.04);transition:transform 10s ease;}
+.ph-bg.loaded{transform:scale(1);}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,8,14,.06) 0%,rgba(18,8,14,.2) 35%,rgba(18,8,14,.78) 60%,rgba(18,8,14,.97) 100%);}
+.ph-accent{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ac) 0%,var(--gold2) 50%,var(--coral) 100%);z-index:3;}
+.ph-body{position:relative;z-index:2;padding:calc(var(--hh) + 1rem) 5vw 5.5rem;width:100%;display:flex;flex-direction:column;justify-content:flex-end;min-height:inherit;}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1rem;flex-wrap:wrap;margin-top:auto;}
+.breadcrumb a{color:rgba(255,255,255,.45);transition:color .2s;}
+.breadcrumb a:hover{color:var(--gold-lt);}
+.breadcrumb span{color:rgba(255,255,255,.22);}
+.breadcrumb strong{color:var(--ac-lt);}
+.ph-tag{display:inline-flex;align-items:center;gap:.55rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ac-lt);border:1px solid rgba(216,142,240,.35);padding:.35rem .9rem;border-radius:2px;margin-bottom:1.1rem;}
+.ph-tag-dot{width:7px;height:7px;border-radius:50%;background:var(--ac-lt);flex-shrink:0;animation:pulse 2.2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.5);opacity:.5;}}
+.ph-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3.5vw,2.6rem);font-weight:300;color:#fff;line-height:1.1;letter-spacing:-.015em;max-width:840px;margin-bottom:1.2rem;}
+.ph-h1 em{font-style:italic;color:var(--ac-lt);}
+.ph-lead{font-size:clamp(.92rem,1.3vw,1rem);color:rgba(255,255,255,.65);max-width:640px;line-height:1.85;}
+/* Pilares no hero */
+.ph-pilares{display:flex;gap:1rem;margin-top:2.2rem;flex-wrap:wrap;}
+.ph-pilar{display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.07);border:1px solid rgba(216,142,240,.2);border-radius:4px;padding:.55rem .9rem;}
+.ph-pilar-ico{font-size:1.1rem;line-height:1;flex-shrink:0;}
+.ph-pilar-txt{font-size:.72rem;color:rgba(255,255,255,.72);letter-spacing:.04em;}
+
+/* ══ ABORDAGEM GERAL ══ */
+#abordagem{
+  background:var(--white);
+  padding:7rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;
+}
+.abord-img{position:relative;}
+.abord-img img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px 120px 20px 120px;box-shadow:0 36px 80px rgba(122,45,138,.2);transition:border-radius .7s;display:block;}
+.abord-img img:hover{border-radius:120px 20px 120px 20px;}
+.abord-img-fb{display:none;width:100%;aspect-ratio:4/5;border-radius:20px 120px 20px 120px;background:linear-gradient(145deg,#7a2d8a,#3a1048);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+.abord-badge{position:absolute;bottom:-1rem;right:-1rem;background:var(--gold2);color:var(--dark);width:110px;height:110px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(201,128,58,.5);font-family:'Cormorant Garamond',serif;z-index:2;}
+.abord-badge-n{font-size:2.2rem;font-weight:600;line-height:1;}
+.abord-badge-l{font-size:.38rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dark2);text-align:center;padding:0 .3rem;margin-top:.1rem;line-height:1.3;}
+.abord-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.abord-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.abord-h2 em{font-style:italic;color:var(--ac);}
+.abord-p{font-size:1rem;color:var(--muted);line-height:1.88;}
+.abord-highlight{background:var(--ac-pale);border-left:3px solid var(--ac);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:var(--dark);line-height:1.58;}
+/* 3 pilares da abordagem */
+.abord-pilares{display:flex;flex-direction:column;gap:.7rem;}
+.abord-pilar{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1rem;border-radius:6px;background:var(--cream);border-left:3px solid var(--ac);transition:transform .3s,box-shadow .3s;}
+.abord-pilar:hover{transform:translateX(5px);box-shadow:2px 0 14px rgba(122,45,138,.1);}
+.abord-pilar-ico{font-size:1.3rem;flex-shrink:0;line-height:1.4;}
+.abord-pilar-txt{font-size:.9rem;color:var(--muted);line-height:1.65;}
+.abord-pilar-txt strong{color:var(--dark);}
+
+/* ══ MERCEARIA — SECÇÃO PROTAGONISTA ══ */
+#mercearia{
+  background:linear-gradient(160deg,#1e0828 0%,#2a1038 100%);
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#mercearia::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(122,45,138,.2) 0%,transparent 68%);pointer-events:none;}
+#mercearia::after{content:'';position:absolute;bottom:-60px;left:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(201,128,58,.1) 0%,transparent 68%);pointer-events:none;}
+.merc-inner{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.merc-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.merc-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.12;}
+.merc-h2 em{font-style:italic;color:var(--ac-lt);}
+.merc-p{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.9;}
+.merc-highlight{background:rgba(216,142,240,.07);border-left:3px solid var(--ac-lt);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:rgba(255,255,255,.78);line-height:1.58;}
+/* Conteúdo do kit mercearia */
+.merc-kit{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(216,142,240,.18);
+  border-radius:12px;padding:2rem;margin-top:.3rem;
+}
+.merc-kit-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ac-lt);margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem;}
+.merc-kit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem;}
+.merc-kit-item{background:rgba(255,255,255,.05);border-radius:6px;padding:.7rem .9rem;display:flex;align-items:center;gap:.6rem;font-size:.84rem;color:rgba(255,255,255,.62);transition:background .3s,color .3s;}
+.merc-kit-item:hover{background:rgba(216,142,240,.1);color:rgba(255,255,255,.88);}
+.merc-kit-item-ico{font-size:1.1rem;flex-shrink:0;}
+/* Visual mercearia */
+.merc-visual{display:flex;flex-direction:column;gap:1.2rem;}
+.merc-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.5);display:block;}
+.merc-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#4a1a5a,#1a0828);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+/* Destaque número beneficiárias */
+.merc-stat{
+  background:linear-gradient(135deg,var(--ac),var(--ac-dk));
+  border-radius:10px;padding:1.6rem;
+  display:flex;align-items:center;gap:1.4rem;
+}
+.merc-stat-n{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:#fff;line-height:1;flex-shrink:0;}
+.merc-stat-txt{display:flex;flex-direction:column;gap:.2rem;}
+.merc-stat-lbl{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+.merc-stat-desc{font-size:.88rem;color:rgba(255,255,255,.72);line-height:1.5;}
+
+/* ══ MÁQUINAS DE COSTURA ══ */
+#costura{
+  background:var(--cream);
+  padding:7rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;
+}
+.cost-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.cost-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.cost-h2 em{font-style:italic;color:var(--ac);}
+.cost-p{font-size:1rem;color:var(--muted);line-height:1.88;}
+.cost-highlight{background:var(--ac-pale);border-left:3px solid var(--ac);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:var(--dark);line-height:1.58;}
+.cost-feats{display:flex;flex-direction:column;gap:.7rem;}
+.cost-feat{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1rem;border-radius:6px;background:var(--white);border-left:3px solid var(--ac);transition:transform .3s,box-shadow .3s;}
+.cost-feat:hover{transform:translateX(5px);box-shadow:2px 0 14px rgba(122,45,138,.1);}
+.cost-feat-ico{font-size:1.3rem;flex-shrink:0;line-height:1.4;}
+.cost-feat-txt{font-size:.9rem;color:var(--muted);line-height:1.65;}
+.cost-feat-txt strong{color:var(--dark);}
+.cost-img{position:relative;}
+.cost-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 28px 70px rgba(122,45,138,.15);display:block;}
+.cost-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#8a4a9a,#3a1048);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+
+/* ══ POUPANÇA COMUNITÁRIA ══ */
+#poupanca{
+  background:var(--dark);
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#poupanca::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,128,58,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,128,58,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+#poupanca::after{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,128,58,.1) 0%,transparent 68%);pointer-events:none;}
+.poup-inner{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:start;position:relative;z-index:1;}
+.poup-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.poup-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.12;}
+.poup-h2 em{font-style:italic;color:var(--gold2-lt);}
+.poup-p{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.9;}
+.poup-highlight{background:rgba(201,128,58,.08);border-left:3px solid var(--gold2-lt);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-style:italic;color:rgba(255,255,255,.78);line-height:1.58;}
+/* Como funciona o grupo */
+.poup-como{display:flex;flex-direction:column;gap:.7rem;}
+.pc{background:rgba(255,255,255,.04);border:1px solid rgba(201,128,58,.15);border-radius:8px;padding:1.1rem 1.3rem;display:flex;align-items:flex-start;gap:1rem;transition:background .3s,border-color .3s,transform .3s;}
+.pc:hover{background:rgba(201,128,58,.08);border-color:rgba(201,128,58,.3);transform:translateX(5px);}
+.pc-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--gold2-lt);line-height:1;flex-shrink:0;width:2rem;text-align:center;}
+.pc-body{display:flex;flex-direction:column;gap:.2rem;}
+.pc-title{font-size:.9rem;font-weight:600;color:var(--cream);}
+.pc-desc{font-size:.83rem;color:rgba(255,255,255,.48);line-height:1.65;}
+/* Visual poupança */
+.poup-visual{display:flex;flex-direction:column;gap:1.2rem;}
+.poup-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 28px 70px rgba(0,0,0,.4);display:block;}
+.poup-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#3a2808,#1a1008);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+/* Box impacto inclusão financeira */
+.poup-impacto{
+  background:linear-gradient(135deg,rgba(201,128,58,.12),rgba(201,128,58,.04));
+  border:1px solid rgba(201,128,58,.25);
+  border-radius:10px;padding:1.6rem;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;text-align:center;
+}
+.pi-item{display:flex;flex-direction:column;gap:.3rem;}
+.pi-n{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold2-lt);line-height:1;}
+.pi-l{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);line-height:1.4;}
+
+/* ══ MARKETING DIGITAL ══ */
+#digital{
+  background:var(--white);
+  padding:7rem 5vw;
+}
+.dig-hd{max-width:680px;margin:0 auto 4.5rem;text-align:center;}
+.dig-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.1;color:var(--dark);}
+.dig-hd h2 em{font-style:italic;color:var(--ac);}
+.dig-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.85rem;}
+/* Grid das competências digitais */
+.dig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.dig-card{background:var(--cream);border-radius:12px;padding:2rem 1.8rem;display:flex;flex-direction:column;gap:1rem;border-top:4px solid var(--ac);transition:box-shadow .35s,transform .35s;}
+.dig-card:hover{box-shadow:0 16px 50px rgba(122,45,138,.13);transform:translateY(-7px);}
+.dig-card-ico{font-size:2.4rem;line-height:1;}
+.dig-card-h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--dark);line-height:1.2;}
+.dig-card-p{font-size:.9rem;color:var(--muted);line-height:1.72;flex:1;}
+.dig-card-tag{display:inline-block;background:var(--ac-pale);color:var(--ac);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.22rem .65rem;border-radius:20px;}
+/* Quote destaque */
+.dig-quote{
+  background:linear-gradient(135deg,var(--ac),var(--ac-dk));
+  border-radius:14px;padding:3rem 4vw;
+  text-align:center;margin-top:3.5rem;
+  position:relative;overflow:hidden;
+}
+.dig-quote::before{content:'"';font-family:'Cormorant Garamond',serif;font-size:10rem;color:rgba(255,255,255,.07);position:absolute;top:-2rem;left:3vw;line-height:1;pointer-events:none;}
+.dig-quote-txt{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,2.8vw,2rem);font-weight:300;font-style:italic;color:#fff;line-height:1.42;max-width:700px;margin:0 auto;}
+.dig-quote-src{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-top:1.2rem;}
+
+/* ══ INFORMÁTICA E CERTIFICAÇÃO ══ */
+#informatica{
+  background:linear-gradient(160deg,#1e0828 0%,#12082a 100%);
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#informatica::before{content:'';position:absolute;top:-100px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(122,45,138,.18) 0%,transparent 68%);pointer-events:none;}
+.info-inner{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.info-txt{display:flex;flex-direction:column;gap:1.5rem;}
+.info-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.12;}
+.info-h2 em{font-style:italic;color:var(--ac-lt);}
+.info-p{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.9;}
+/* Certificado visual destaque */
+.info-cert{
+  background:rgba(255,255,255,.04);
+  border:2px solid rgba(216,142,240,.25);
+  border-radius:12px;padding:1.8rem;
+  display:flex;flex-direction:column;align-items:center;gap:.8rem;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.info-cert::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(122,45,138,.08),transparent);pointer-events:none;}
+.info-cert-ico{font-size:3rem;line-height:1;}
+.info-cert-titulo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ac-lt);font-weight:400;}
+.info-cert-desc{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.65;max-width:320px;}
+.info-cert-badge{background:var(--ac);color:#fff;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;padding:.4rem 1.2rem;border-radius:20px;margin-top:.3rem;}
+/* Conteúdo do currículo */
+.info-curriculo{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem;}
+.ic{background:rgba(255,255,255,.04);border:1px solid rgba(216,142,240,.12);border-radius:6px;padding:.8rem 1rem;display:flex;align-items:center;gap:.65rem;transition:background .3s,border-color .3s,transform .3s;}
+.ic:hover{background:rgba(122,45,138,.12);border-color:rgba(216,142,240,.3);transform:translateX(4px);}
+.ic-ico{font-size:1.1rem;flex-shrink:0;}
+.ic-txt{font-size:.83rem;color:rgba(255,255,255,.58);}
+.ic-txt strong{color:rgba(255,255,255,.85);}
+/* Visual informática */
+.info-visual{display:flex;flex-direction:column;gap:1.2rem;}
+.info-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.5);display:block;}
+.info-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#4a1a5a,#1a0828);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+/* Alcance zonas remotas */
+.info-remoto{
+  background:rgba(201,128,58,.08);
+  border:1px solid rgba(201,128,58,.2);
+  border-radius:8px;padding:1.4rem;
+  display:flex;align-items:flex-start;gap:1rem;
+}
+.info-remoto-ico{font-size:1.8rem;flex-shrink:0;line-height:1.2;}
+.info-remoto-title{font-size:.9rem;font-weight:600;color:var(--gold2-lt);margin-bottom:.3rem;}
+.info-remoto-desc{font-size:.85rem;color:rgba(255,255,255,.48);line-height:1.68;}
+
+/* ══ NÚMEROS ══ */
+#nums{
+  background:linear-gradient(160deg,#1e0828 0%,#2a102a 100%);
+  padding:6rem 5vw;position:relative;overflow:hidden;
+}
+#nums::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(122,45,138,.18) 0%,transparent 68%);pointer-events:none;}
+.nums-hd{text-align:center;margin-bottom:4rem;}
+.nums-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.nums-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ngrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.nit{background:rgba(18,8,14,.85);padding:2.5rem 1rem;text-align:center;position:relative;transition:background .35s;}
+.nit:hover{background:rgba(122,45,138,.12);}
+.nit::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--ac-lt);transform:scaleX(0);transition:transform .45s;}
+.nit:hover::after{transform:scaleX(1);}
+.nit-ico{width:42px;height:42px;border-radius:50%;background:rgba(216,142,240,.08);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;font-size:1.3rem;}
+.nit-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3rem);font-weight:300;color:var(--ac-lt);line-height:1;letter-spacing:-.02em;}
+.nit-l{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.5rem;line-height:1.55;}
+
+/* ══ DEPOIMENTOS ══ */
+#depoimentos{background:var(--cream);padding:6rem 5vw;}
+.dep-hd{max-width:560px;margin-bottom:3rem;}
+.dep-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.15;color:var(--dark);}
+.dep-hd h2 em{font-style:italic;color:var(--ac);}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.dc{background:var(--white);border-radius:8px;padding:2rem 1.8rem;border-left:4px solid var(--ac);display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s,transform .3s;}
+.dc:hover{box-shadow:0 12px 36px rgba(122,45,138,.1);transform:translateY(-5px);}
+.dc-q{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dark);line-height:1.6;font-weight:300;}
+.dc-q::before{content:'\201C';font-size:2.4rem;color:var(--ac);line-height:.35;display:block;margin-bottom:.35rem;font-style:normal;}
+.dc-au{display:flex;align-items:center;gap:.8rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(0,0,0,.07);}
+.dc-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac-dk));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;flex-shrink:0;}
+.dc-name{font-size:.85rem;font-weight:500;color:var(--dark);}
+.dc-role{font-size:.72rem;color:var(--muted);}
+
+/* ══ GALERIA ══ */
+#galeria{background:var(--dark2);padding:5rem 5vw;}
+.gal-hd{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.gal-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:var(--cream);}
+.gal-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ggrid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:220px 220px;gap:.6rem;}
+.gi{overflow:hidden;border-radius:4px;background:#12080e;position:relative;}
+.gi:first-child{grid-row:span 2;}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .65s ease;}
+.gi:hover img{transform:scale(1.08);}
+.gi-fb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.14;color:#fff;}
+.gi::after{content:attr(data-label);position:absolute;inset:0;background:rgba(122,45,138,.78);color:#fff;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;text-align:center;padding:1rem;}
+.gi:hover::after{opacity:1;}
+
+/* ══ CTA FINAL ══ */
+#cta-final{
+  background:linear-gradient(145deg,var(--ac) 0%,var(--ac-dk) 50%,#1e0828 100%);
+  padding:8rem 5vw;text-align:center;
+  position:relative;overflow:hidden;
+}
+#cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:700px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+#cta-final::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;}
+.cta-inner{position:relative;z-index:1;}
+.cta-lbl{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1rem;display:block;}
+.cta-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:300;color:#fff;line-height:1.1;margin-bottom:1.3rem;}
+.cta-h2 em{font-style:italic;color:rgba(255,255,255,.72);}
+.cta-p{font-size:1rem;color:rgba(255,255,255,.65);max-width:600px;margin:0 auto 2.8rem;line-height:1.85;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
+
+/* ══ NAV ÁREAS ══ */
+#nav-areas{background:var(--dark);padding:4rem 5vw;}
+.na-hd{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;}
+.na-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.8rem;}
+.na-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1.1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;transition:background .3s,border-color .3s,transform .3s;}
+.na-item:hover{background:rgba(255,255,255,.09);border-color:rgba(201,153,58,.3);transform:translateY(-3px);}
+.na-item.active{background:rgba(122,45,138,.15);border-color:rgba(122,45,138,.45);}
+.na-ico{font-size:1.4rem;line-height:1;}
+.na-lbl{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.3;}
+.na-item:hover .na-lbl,.na-item.active .na-lbl{color:rgba(255,255,255,.8);}
+.na-item.active .na-lbl{color:var(--ac-lt);}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark);padding:4rem 5vw 2rem;border-top:1px solid rgba(201,153,58,.08);}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.ftnm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:.65rem;}
+.ftdc{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ftcol h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.ftcol a{display:block;font-size:.85rem;color:rgba(255,255,255,.42);margin-bottom:.48rem;transition:color .2s;}
+.ftcol a:hover{color:rgba(255,255,255,.8);}
+.ftsoc{display:flex;gap:.6rem;margin-top:1.4rem;}
+.ftsi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.ftsi:hover{background:var(--red);}
+.ftsi svg{width:14px;height:14px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ftsi:hover svg{stroke:#fff;}
+.ftbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.8rem;color:rgba(255,255,255,.22);}
+.ftgo{color:var(--gold);}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  .dig-grid{grid-template-columns:repeat(2,1fr);}
+  .na-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:900px){
+  #abordagem{grid-template-columns:1fr;gap:3rem;}.abord-img{max-width:440px;margin:0 auto;}
+  .merc-inner{grid-template-columns:1fr;gap:3rem;}
+  #costura{grid-template-columns:1fr;gap:3rem;}
+  .poup-inner{grid-template-columns:1fr;gap:3rem;}
+  .info-inner{grid-template-columns:1fr;gap:3rem;}
+  .dep-grid{grid-template-columns:1fr;}
+  .ggrid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}.gi:first-child{grid-row:auto;}
+  .ftgrid{grid-template-columns:1fr 1fr;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .poup-impacto{grid-template-columns:repeat(3,1fr);}
+  .info-curriculo{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .hbg{display:flex;}
+  nav.desk{position:fixed;inset:0;background:var(--dark);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.18,1);z-index:999;padding:2rem 8vw;}
+  nav.desk.open{transform:translateX(0);}
+  nav.desk>a,.desk .dd>a{font-size:1.2rem;}
+  .ddm{position:static;opacity:1;pointer-events:all;transform:none;background:transparent;border:none;padding:0;}
+  .ddm a{padding:.35rem 0;font-size:.9rem;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .ggrid{grid-template-columns:1fr;}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .ftgrid{grid-template-columns:1fr;gap:2rem;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-white,.btn-ghost{justify-content:center;}
+  #ph{height:auto;min-height:auto;}
+  .ph-body{padding-top:calc(var(--hh) + 2.5rem);padding-bottom:4rem;}
+  .dig-grid{grid-template-columns:1fr;}
+  .ph-pilares{flex-direction:column;gap:.6rem;}
+  .merc-kit-grid{grid-template-columns:1fr;}
+  .poup-impacto{grid-template-columns:1fr;gap:.6rem;}
+}
+@media(max-width:480px){
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar para o conteúdo principal</a>
+
+<header id="hdr" class="s" role="banner">
+<div class="hin">
+  <a href="index.html" class="logo" aria-label="ADEMO — Página Principal">
+    <img class="logo-img" src="logo-ademo.png" alt="Logótipo ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="logo-fall" aria-hidden="true">A</div>
+    <div class="logo-w"><span class="logo-n">ADEMO</span><span class="logo-t">Moçambique · Desde 1990</span></div>
+  </a>
+  <button class="hbg" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainnav"><span></span><span></span><span></span></button>
+  <nav id="mainnav" class="desk" role="navigation" aria-label="Menu principal">
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre Nós</a>
+    <div class="dd">
+      <a href="index.html#areas" aria-haspopup="true">Áreas ▾</a>
+      <div class="ddm" role="menu">
+        <a href="saude.html" role="menuitem">Saúde Sexual e Reprodutiva</a>
+        <a href="educacao.html" role="menuitem">Educação Inclusiva</a>
+        <a href="reabilitacao.html" role="menuitem">Reabilitação</a>
+        <a href="genero.html" role="menuitem">Equidade de Género</a>
+        <a href="futebol.html" role="menuitem">Futebol Inclusivo</a>
+        <a href="climatica.html" role="menuitem">Resiliência Climática</a>
+        <a href="economico.html" role="menuitem" aria-current="page">Empoderamento Económico</a>
+      </div>
+    </div>
+    <a href="transparencia.html">Transparência</a>
+    <a href="index.html#contactos">Contactos</a>
+    <a href="mailto:ademoorg@gmail.com" class="navcta">Apoie-nos</a>
+  </nav>
+</div>
+</header>
+
+<main id="main">
+
+<!-- ═══ HERO ═══ -->
+<section id="ph" aria-label="Empoderamento Económico ADEMO">
+  <div class="ph-accent" aria-hidden="true"></div>
+  <div class="ph-bg" id="phbg"></div>
+  <div class="ph-ov"></div>
+  <div class="ph-body">
+
+    <h1 class="ph-h1">Quando uma Mulher<br>Prospera, <em>a Família<br>Inteira Prospera.</em></h1>
+    <p class="ph-lead">A ADEMO acredita que a autonomia económica é a forma mais duradoura de empoderamento. Por isso investimos em mercearias equipadas, máquinas de costura, poupança comunitária, marketing digital e informática certificada — para que mulheres, jovens e mães de crianças com deficiência em Sofala construam o seu próprio futuro.</p>
+    <div class="ph-pilares">
+      <div class="ph-pilar"><span class="ph-pilar-ico" aria-hidden="true">🛒</span><span class="ph-pilar-txt">Kits de primeiro negócio</span></div>
+      <div class="ph-pilar"><span class="ph-pilar-ico" aria-hidden="true">🧵</span><span class="ph-pilar-txt">Máquinas de costura</span></div>
+      <div class="ph-pilar"><span class="ph-pilar-ico" aria-hidden="true">💰</span><span class="ph-pilar-txt">Poupança comunitária</span></div>
+      <div class="ph-pilar"><span class="ph-pilar-ico" aria-hidden="true">📱</span><span class="ph-pilar-txt">Marketing digital</span></div>
+      <div class="ph-pilar"><span class="ph-pilar-ico" aria-hidden="true">💻</span><span class="ph-pilar-txt">Informática certificada</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABORDAGEM GERAL ═══ -->
+<section id="abordagem" aria-labelledby="abord-h">
+  <div class="abord-img rv">
+    <img src="foto-eco-abordagem.jpg" loading="lazy" alt="Mulheres empoderadas economicamente pela ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="abord-img-fb" aria-hidden="true">💜</div>
+    <div class="abord-badge" aria-hidden="true">
+      <span class="abord-badge-n">💡</span>
+      <span class="abord-badge-l">Autonomia económica real</span>
+    </div>
+  </div>
+  <div class="abord-txt">
+    <span class="lbl rv">A Nossa Abordagem</span>
+    <h2 class="abord-h2 rv d1" id="abord-h">Educação Financeira,<br><em>Habilidades e Normas que Mudam</em></h2>
+    <p class="abord-p rv d1">A abordagem da ADEMO ao empoderamento económico é abrangente e integrada. Não distribuímos apenas bens — transformamos mentalidades, reformulamos normas de género que bloqueiam o acesso das mulheres à economia, e construímos as competências práticas e financeiras que permitem a cada mulher e jovem gerenciar, crescer e sustentar o seu próprio negócio.</p>
+    <div class="abord-highlight rv d2">"Priorizamos o aprimoramento da educação financeira e das habilidades profissionais das mulheres, a reformulação de normas de género prejudiciais e a promoção de práticas que as empoderem — porque a autonomia económica é inseparável da autonomia pessoal."</div>
+    <div class="abord-pilares rv d2">
+      <div class="abord-pilar">
+        <span class="abord-pilar-ico" aria-hidden="true">📚</span>
+        <div class="abord-pilar-txt"><strong>Educação financeira</strong> — gestão de dinheiro, poupança, crédito responsável e planeamento de negócios adaptados ao contexto de Sofala.</div>
+      </div>
+      <div class="abord-pilar">
+        <span class="abord-pilar-ico" aria-hidden="true">🔨</span>
+        <div class="abord-pilar-txt"><strong>Habilidades profissionais</strong> — costura, comércio, marketing digital, informática — competências concretas com aplicação imediata no mercado local.</div>
+      </div>
+      <div class="abord-pilar">
+        <span class="abord-pilar-ico" aria-hidden="true">⚡</span>
+        <div class="abord-pilar-txt"><strong>Apoio a startups</strong> — pacotes de incentivo, kits de primeiro negócio e acompanhamento das primeiras semanas de actividade empresarial.</div>
+      </div>
+    </div>
+    <div class="rv d3"><a href="mailto:ademoorg@gmail.com" class="btn-ac">Tornar-se Parceiro <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<!-- ═══ MERCEARIA EQUIPADA ═══ -->
+<section id="mercearia" aria-labelledby="merc-h">
+  <div class="merc-inner">
+    <div class="merc-txt rv">
+      <span class="lbl" style="color:var(--ac-lt);">Kit de Iniciação · Primeiro Negócio</span>
+      <h2 class="merc-h2" id="merc-h">Uma Mercearia Equipada:<br><em>O Primeiro Passo para a Autonomia</em></h2>
+      <p class="merc-p">A ADEMO distribui kits de iniciação de primeiros negócios a mães de crianças com deficiência — uma mercearia completamente equipada e pronta a funcionar desde o primeiro dia. Porque sabemos que uma mãe que tem de cuidar de uma criança com deficiência muitas vezes não pode trabalhar fora de casa. A mercearia vem até ela.</p>
+      <div class="merc-highlight">"Uma mãe de uma criança com deficiência enfrenta barreiras duplas: cuida 24 horas da criança E não tem rendimento. A mercearia equipada muda esse equilíbrio — ela pode trabalhar em casa, gerar rendimento e cuidar da filha ao mesmo tempo."</div>
+      <div class="merc-kit">
+        <div class="merc-kit-title">📦 Conteúdo do Kit Mercearia</div>
+        <div class="merc-kit-grid">
+          <div class="merc-kit-item"><span class="merc-kit-item-ico">🫙</span>Produtos alimentares essenciais</div>
+          <div class="merc-kit-item"><span class="merc-kit-item-ico">🧴</span>Produtos de higiene e limpeza</div>
+          <div class="merc-kit-item"><span class="merc-kit-item-ico">🛒</span>Mobiliário de exposição</div>
+          <div class="merc-kit-item"><span class="merc-kit-item-ico">⚖️</span>Balança e utensílios</div>
+          <div class="merc-kit-item"><span class="merc-kit-item-ico">📋</span>Caderno de contas e formação</div>
+          <div class="merc-kit-item"><span class="merc-kit-item-ico">💡</span>Mentoria nas primeiras semanas</div>
+        </div>
+      </div>
+    </div>
+    <div class="merc-visual rv d1">
+      <div class="merc-img">
+        <img src="foto-eco-mercearia.jpg" loading="lazy" alt="Mãe de criança com deficiência com a sua mercearia equipada" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="merc-img-fb" aria-hidden="true">🛒</div>
+      </div>
+      <div class="merc-stat">
+        <div class="merc-stat-n">🛒</div>
+        <div class="merc-stat-txt">
+          <div class="merc-stat-lbl">Impacto directo</div>
+          <div class="merc-stat-desc">Cada mercearia equipada gera rendimento para a família inteira — incluindo a criança com deficiência que dependia exclusivamente de ajuda externa.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MÁQUINAS DE COSTURA ═══ -->
+<section id="costura" aria-labelledby="cost-h">
+  <div class="cost-img rv">
+    <img src="foto-eco-costura.jpg" loading="lazy" alt="Mulher com deficiência a trabalhar com máquina de costura" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="cost-img-fb" aria-hidden="true">🧵</div>
+  </div>
+  <div class="cost-txt">
+    <span class="lbl rv">Geração de Rendimento</span>
+    <h2 class="cost-h2 rv d1" id="cost-h">Máquinas de Costura:<br><em>Uma Profissão nas Mãos das Mulheres</em></h2>
+    <p class="cost-p rv d1">A costura é uma das atividades económicas mais acessíveis para mulheres com deficiência em Sofala — pode ser feita em casa, adapta-se a diferentes tipos de deficiência física e tem mercado garantido nas comunidades locais. A ADEMO distribui máquinas de costura acompanhadas de formação técnica, permitindo que cada mulher construa uma actividade económica sustentável e própria.</p>
+    <div class="cost-highlight rv d2">"Uma máquina de costura não é apenas uma ferramenta — é um negócio completo que cabe numa divisão pequena. Para mulheres com deficiência que não podem deslocar-se facilmente, é exactamente o que precisam para ser economicamente activas."</div>
+    <div class="cost-feats rv d2">
+      <div class="cost-feat">
+        <span class="cost-feat-ico" aria-hidden="true">🎓</span>
+        <div class="cost-feat-txt"><strong>Formação técnica incluída</strong> — cada máquina é acompanhada de formação em corte, costura e acabamentos, adaptada ao ritmo e às capacidades de cada beneficiária.</div>
+      </div>
+      <div class="cost-feat">
+        <span class="cost-feat-ico" aria-hidden="true">🏠</span>
+        <div class="cost-feat-txt"><strong>Trabalho em casa</strong> — especialmente relevante para mulheres com deficiência motora que têm dificuldade em deslocar-se para locais de trabalho distantes da comunidade.</div>
+      </div>
+      <div class="cost-feat">
+        <span class="cost-feat-ico" aria-hidden="true">👗</span>
+        <div class="cost-feat-txt"><strong>Mercado local garantido</strong> — uniformes escolares, capulanas adaptadas e reparações têxteis têm procura constante nos bairros de Sofala, criando clientes desde o primeiro dia.</div>
+      </div>
+      <div class="cost-feat">
+        <span class="cost-feat-ico" aria-hidden="true">🤝</span>
+        <div class="cost-feat-txt"><strong>Rede de costureiras</strong> — as beneficiárias formam redes informais de colaboração, partilhando encomendas maiores e apoio mútuo na gestão do negócio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POUPANÇA COMUNITÁRIA ═══ -->
+<section id="poupanca" aria-labelledby="poup-h">
+  <div class="poup-inner">
+    <div class="poup-txt rv">
+      <span class="lbl" style="color:var(--gold2-lt);">Inclusão Financeira</span>
+      <h2 class="poup-h2" id="poup-h">Grupos de Poupança:<br><em>O Banco que a Comunidade Criou para Si</em></h2>
+      <p class="poup-p">Os grupos comunitários de poupança da ADEMO são mecanismos de inclusão financeira pensados para pessoas com deficiência e as suas famílias que não têm acesso a bancos formais. Cada grupo é uma instituição financeira informal, gerida pelas próprias participantes, onde cada pessoa pode depositar pequenas quantias regularmente — e depois pedir emprestado para investir no seu negócio.</p>
+      <div class="poup-highlight">"O banco não conhece a minha filha com deficiência. O grupo de poupança conhece. E quando precisei de dinheiro para comprar mais stock para a mercearia, o grupo emprestou-me — com confiança, não com burocracia."</div>
+      <div class="poup-como">
+        <div class="pc">
+          <div class="pc-num">1</div>
+          <div class="pc-body"><div class="pc-title">Constituição do Grupo</div><div class="pc-desc">Grupos de 15 a 25 pessoas da mesma comunidade — com ou sem deficiência — constituem-se com o apoio da ADEMO e estabelecem as suas próprias regras de funcionamento.</div></div>
+        </div>
+        <div class="pc">
+          <div class="pc-num">2</div>
+          <div class="pc-body"><div class="pc-title">Poupança Regular</div><div class="pc-desc">Cada membro contribui semanalmente com um valor fixo acordado pelo grupo — adaptado à realidade económica de cada comunidade, tipicamente entre 50 e 200 meticais.</div></div>
+        </div>
+        <div class="pc">
+          <div class="pc-num">3</div>
+          <div class="pc-body"><div class="pc-title">Empréstimos para Negócios</div><div class="pc-desc">Qualquer membro pode pedir emprestado da caixa comum para investir no seu negócio — com juro baixo que fica no grupo, fazendo crescer o fundo para todos.</div></div>
+        </div>
+        <div class="pc">
+          <div class="pc-num">4</div>
+          <div class="pc-body"><div class="pc-title">Partilha Anual</div><div class="pc-desc">No final do ciclo anual, o fundo total — incluindo os juros acumulados — é distribuído pelos membros proporcionalmente às suas contribuições, com ganho garantido.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="poup-visual rv d1">
+      <div class="poup-img">
+        <img src="foto-eco-poupanca.jpg" loading="lazy" alt="Grupo comunitário de poupança em Sofala" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="poup-img-fb" aria-hidden="true">💰</div>
+      </div>
+      <div class="poup-impacto">
+        <div class="pi-item"><div class="pi-n" data-target="4" data-suffix="">4</div><div class="pi-l">Grupos activos<br>em Sofala</div></div>
+        <div class="pi-item"><div class="pi-n" data-target="400" data-suffix="+">400+</div><div class="pi-l">Membros com<br>poupança activa</div></div>
+        <div class="pi-item"><div class="pi-n" data-target="100" data-suffix="%">100%</div><div class="pi-l">Sem acesso<br>a banco formal</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARKETING DIGITAL ═══ -->
+<section id="digital" aria-labelledby="dig-h">
+  <div class="dig-hd rv">
+    <span class="lbl">Competências do Século XXI</span>
+    <h2 id="dig-h">Marketing Digital:<br><em>Vender para o Mundo a partir de Sofala</em></h2>
+    <p>A ADEMO capacita raparigas com deficiência em marketing digital — porque num mundo onde os negócios vivem nas redes sociais e nas plataformas online, saber vender digitalmente é a diferença entre um negócio que sobrevive e um negócio que cresce. E isso deve ser acessível a todas, mesmo nas zonas mais remotas de Sofala.</p>
+  </div>
+  <div class="dig-grid">
+    <div class="dig-card rv">
+      <div class="dig-card-ico" aria-hidden="true">📱</div>
+      <h3 class="dig-card-h3">Redes Sociais para Negócios</h3>
+      <p class="dig-card-p">Como criar e gerir páginas de negócio no Facebook, Instagram e WhatsApp Business — com conteúdo apelativo, fotografias de produto e comunicação com clientes que converte vendas.</p>
+      <span class="dig-card-tag">📱 Facebook · Instagram · WhatsApp</span>
+    </div>
+    <div class="dig-card rv d1">
+      <div class="dig-card-ico" aria-hidden="true">📸</div>
+      <h3 class="dig-card-h3">Fotografia de Produto</h3>
+      <p class="dig-card-p">Técnicas simples para fotografar produtos com telemóvel de forma profissional — luz natural, fundos, ângulos e edição básica que valorizam qualquer produto e aumentam as vendas online.</p>
+      <span class="dig-card-tag">📸 Fotografia com telemóvel</span>
+    </div>
+    <div class="dig-card rv d2">
+      <div class="dig-card-ico" aria-hidden="true">✍️</div>
+      <h3 class="dig-card-h3">Copywriting para Vendas</h3>
+      <p class="dig-card-p">Como escrever descrições de produtos, mensagens de vendas e publicações que atraem clientes — adaptadas à linguagem e cultura das comunidades de Sofala e ao mercado moçambicano.</p>
+      <span class="dig-card-tag">✍️ Escrita de vendas</span>
+    </div>
+    <div class="dig-card rv d3">
+      <div class="dig-card-ico" aria-hidden="true">💳</div>
+      <h3 class="dig-card-h3">Pagamentos Digitais</h3>
+      <p class="dig-card-p">M-Pesa, e-Mola e outros sistemas de pagamento móvel — como receber, enviar e gerir dinheiro digitalmente, aumentando a segurança e a formalização das transacções de negócio.</p>
+      <span class="dig-card-tag">💳 M-Pesa · e-Mola</span>
+    </div>
+    <div class="dig-card rv">
+      <div class="dig-card-ico" aria-hidden="true">📊</div>
+      <h3 class="dig-card-h3">Análise Simples de Resultados</h3>
+      <p class="dig-card-p">Ferramentas básicas para perceber o que funciona — quais as publicações que geram mais interesse, quando o público está activo e como ajustar a estratégia para crescer.</p>
+      <span class="dig-card-tag">📊 Métricas básicas</span>
+    </div>
+    <div class="dig-card rv d1">
+      <div class="dig-card-ico" aria-hidden="true">🌐</div>
+      <h3 class="dig-card-h3">Presença Online para PcD</h3>
+      <p class="dig-card-p">Especificamente adaptado para raparigas com deficiência — ferramentas de acessibilidade, como usar o telemóvel com diferentes tipos de deficiência e criar conteúdo inclusivo que chega a mais pessoas.</p>
+      <span class="dig-card-tag">♿ Acessibilidade digital</span>
+    </div>
+  </div>
+  <div class="dig-quote rv d1">
+    <div class="dig-quote-txt">"Quando uma rapariga de uma zona remota de Sofala aprende a vender os seus produtos no Instagram, o seu mercado deixa de ser o bairro — passa a ser o mundo. Isso muda tudo."</div>
+    <div class="dig-quote-src">ADEMO · Programa de Empoderamento Digital · Sofala</div>
+  </div>
+</section>
+
+<!-- ═══ INFORMÁTICA E CERTIFICAÇÃO ═══ -->
+<section id="informatica" aria-labelledby="info-h">
+  <div class="info-inner">
+    <div class="info-txt rv">
+      <span class="lbl" style="color:var(--ac-lt);">Competências Digitais · Zonas Remotas</span>
+      <h2 class="info-h2" id="info-h">Informática Básica Certificada:<br><em>Da Zona Remota ao Mundo Digital</em></h2>
+      <p class="info-p">A ADEMO leva formação em informática básica às zonas mais recônditas de Sofala — onde muitos jovens com deficiência nunca tocaram num computador. Capacitamos meninas e rapazes, e no final certificamos cada jovem com um certificado oficial de conclusão. Porque uma criança com deficiência de uma aldeia remota merece as mesmas oportunidades digitais que qualquer outra.</p>
+      <div class="info-cert">
+        <div class="info-cert-ico" aria-hidden="true">🎓</div>
+        <div class="info-cert-titulo">Certificado ADEMO de Informática</div>
+        <div class="info-cert-desc">No final da formação, cada jovem recebe um certificado oficial que reconhece as competências adquiridas — um documento que abre portas no mercado de trabalho e na continuidade educativa.</div>
+        <div class="info-cert-badge">Certificado Oficial · Reconhecido</div>
+      </div>
+      <div class="info-curriculo">
+        <div class="ic"><span class="ic-ico" aria-hidden="true">🖥️</span><div class="ic-txt"><strong>Hardware básico</strong> — conhecer e usar um computador</div></div>
+        <div class="ic"><span class="ic-ico" aria-hidden="true">🪟</span><div class="ic-txt"><strong>Sistema operativo</strong> — Windows, arquivos e pastas</div></div>
+        <div class="ic"><span class="ic-ico" aria-hidden="true">📝</span><div class="ic-txt"><strong>Processamento de texto</strong> — Word para documentos</div></div>
+        <div class="ic"><span class="ic-ico" aria-hidden="true">📊</span><div class="ic-txt"><strong>Folha de cálculo</strong> — Excel básico para negócios</div></div>
+        <div class="ic"><span class="ic-ico" aria-hidden="true">🌐</span><div class="ic-txt"><strong>Internet e e-mail</strong> — navegar e comunicar online</div></div>
+        <div class="ic"><span class="ic-ico" aria-hidden="true">🔒</span><div class="ic-txt"><strong>Segurança digital</strong> — proteger dados e evitar fraudes</div></div>
+      </div>
+    </div>
+    <div class="info-visual rv d1">
+      <div class="info-img">
+        <img src="foto-eco-informatica.jpg" loading="lazy" alt="Jovens das zonas remotas de Sofala em formação de informática" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="info-img-fb" aria-hidden="true">💻</div>
+      </div>
+      <div class="info-remoto">
+        <div class="info-remoto-ico" aria-hidden="true">🗺️</div>
+        <div>
+          <div class="info-remoto-title">Chegamos às Zonas Mais Remotas de Sofala</div>
+          <div class="info-remoto-desc">As formações são deslocadas propositadamente às comunidades mais afastadas — porque acreditamos que a distância geográfica não pode continuar a ser sinónimo de exclusão digital. Levamos computadores, formadores e certificados até onde os jovens estão.</div>
+        </div>
+      </div>
+      <div class="info-img" style="margin-top:.4rem;">
+        <img src="foto-eco-certificado.jpg" loading="lazy" alt="Jovem recebendo certificado de informática" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="info-img-fb" aria-hidden="true">🎓</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NÚMEROS ═══ -->
+<section id="nums" aria-labelledby="nums-h">
+  <div class="nums-hd rv">
+    <span class="lbl-gold">Impacto Económico Mensurável</span>
+    <h2 id="nums-h">Empoderamento Económico <em>em Números</em></h2>
+  </div>
+  <div class="ngrid">
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">🛒</div>
+      <div class="nit-n" data-target="120" data-suffix="+">120+</div>
+      <div class="nit-l">Kits mercearia<br>distribuídos</div>
+    </div>
+    <div class="nit rv d1">
+      <div class="nit-ico" aria-hidden="true">🧵</div>
+      <div class="nit-n" data-target="85" data-suffix="+">85+</div>
+      <div class="nit-l">Máquinas de costura<br>distribuídas</div>
+    </div>
+    <div class="nit rv d2">
+      <div class="nit-ico" aria-hidden="true">💰</div>
+      <div class="nit-n" data-target="4" data-suffix="">4</div>
+      <div class="nit-l">Grupos de poupança<br>comunitária activos</div>
+    </div>
+    <div class="nit rv d3">
+      <div class="nit-ico" aria-hidden="true">📱</div>
+      <div class="nit-n" data-target="200" data-suffix="+">200+</div>
+      <div class="nit-l">Raparigas formadas<br>em marketing digital</div>
+    </div>
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">🎓</div>
+      <div class="nit-n" data-target="300" data-suffix="+">300+</div>
+      <div class="nit-l">Jovens certificados<br>em informática</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEPOIMENTOS ═══ -->
+<section id="depoimentos" aria-labelledby="dep-h">
+  <div class="dep-hd rv">
+    <span class="lbl">Histórias de Autonomia</span>
+    <h2 id="dep-h">Vozes de Mulheres que <em>Mudaram de Vida</em></h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dc rv">
+      <p class="dc-q">A minha filha tem paralisia cerebral. Eu não podia trabalhar fora porque precisava estar com ela. A mercearia da ADEMO mudou tudo — trabalho em casa, ela está perto, e já consigo pagar a escola do filho mais velho. Pela primeira vez sinto que posso.</p>
+      <div class="dc-au">
+        <div class="dc-av" aria-hidden="true">A</div>
+        <div><div class="dc-name">Amélia N.</div><div class="dc-role">Mãe de criança com deficiência · Nhamatanda, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dc rv d1">
+      <p class="dc-q">Antes da formação em marketing digital, vendia capulanas só para o bairro. Agora tenho uma página no Facebook, recebo encomendas de Maputo e até do estrangeiro. As mesmas capulanas — mas agora o mundo pode vê-las e comprá-las.</p>
+      <div class="dc-au">
+        <div class="dc-av" aria-hidden="true">F</div>
+        <div><div class="dc-name">Fátima M.</div><div class="dc-role">Artesã e empreendedora · Beira, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dc rv d2">
+      <p class="dc-q">Cresci numa aldeia onde nunca vi um computador. A ADEMO trouxe a formação até nós. Hoje tenho o certificado, sei usar Word e Excel, e já arranjai trabalho num escritório em Beira. A deficiência não me impediu — a falta de oportunidade é que impedia. A ADEMO deu-me a oportunidade.</p>
+      <div class="dc-au">
+        <div class="dc-av" aria-hidden="true">M</div>
+        <div><div class="dc-name">Manuel C.</div><div class="dc-role">Jovem certificado · Buzi → Beira, Sofala</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALERIA ═══ -->
+<section id="galeria" aria-labelledby="gal-h">
+  <div class="gal-hd rv">
+    <div><span class="lbl-gold">Galeria</span><h2 id="gal-h">Empoderamento Económico <em>em Imagens</em></h2></div>
+  </div>
+  <div class="ggrid rv d1">
+    <div class="gi" data-label="Mercearia Equipada · Nhamatanda">
+      <img src="foto-eco-mercearia.jpg" loading="lazy" alt="Mercearia equipada por mãe de criança com deficiência" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">🛒</div>
+    </div>
+    <div class="gi" data-label="Formação em Costura">
+      <img src="foto-eco-costura.jpg" loading="lazy" alt="Mulher com deficiência a usar máquina de costura" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">🧵</div>
+    </div>
+    <div class="gi" data-label="Grupo de Poupança Comunitária">
+      <img src="foto-eco-poupanca.jpg" loading="lazy" alt="Grupo de poupança comunitária em reunião" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">💰</div>
+    </div>
+    <div class="gi" data-label="Marketing Digital · Raparigas">
+      <img src="foto-eco-digital.jpg" loading="lazy" alt="Raparigas em formação de marketing digital" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">📱</div>
+    </div>
+    <div class="gi" data-label="Informática · Zonas Remotas">
+      <img src="foto-eco-informatica.jpg" loading="lazy" alt="Jovens de zona remota em formação de informática" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gi-fb" aria-hidden="true">💻</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section id="cta-final" aria-label="Apoiar empoderamento económico">
+  <div class="cta-inner">
+    <span class="cta-lbl rv">Invista no Futuro</span>
+    <h2 class="cta-h2 rv d1">Uma Mulher Economicamente Livre<br><em>Liberta Toda a Família.</em></h2>
+    <p class="cta-p rv d2">Com o seu apoio, equipamos mais mercearias, distribuímos mais máquinas de costura, criamos mais grupos de poupança e chegamos com formação digital e informática a mais jovens nas zonas mais remotas de Sofala — porque a autonomia económica não pode ser um privilégio de poucos.</p>
+    <div class="cta-btns rv d3">
+      <a href="mailto:ademoorg@gmail.com" class="btn-white">Apoiar este Programa <span class="arr">→</span></a>
+      <a href="transparencia.html" class="btn-ghost">Ver Relatórios de Impacto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NAV ÁREAS ═══ -->
+<nav id="nav-areas" aria-label="Todas as áreas ADEMO">
+  <span class="na-hd">Explorar Todas as Áreas</span>
+  <div class="na-grid">
+    <a href="saude.html" class="na-item"><span class="na-ico">🏥</span><span class="na-lbl">Saúde Sexual</span></a>
+    <a href="educacao.html" class="na-item"><span class="na-ico">📚</span><span class="na-lbl">Educação</span></a>
+    <a href="reabilitacao.html" class="na-item"><span class="na-ico">♿</span><span class="na-lbl">Reabilitação</span></a>
+    <a href="genero.html" class="na-item"><span class="na-ico">⚤</span><span class="na-lbl">Género</span></a>
+    <a href="futebol.html" class="na-item"><span class="na-ico">⚽</span><span class="na-lbl">Futebol</span></a>
+    <a href="climatica.html" class="na-item"><span class="na-ico">🌿</span><span class="na-lbl">Clima</span></a>
+    <a href="economico.html" class="na-item active" aria-current="page"><span class="na-ico">💜</span><span class="na-lbl">Económico</span></a>
+  </div>
+</nav>
+</main>
+
+<footer role="contentinfo">
+  <div class="ftgrid">
+    <div>
+      <div class="ftnm">ADEMO</div>
+      <p class="ftdc">Associação dos Deficientes Moçambicanos — desde 1990, promovendo dignidade, direitos e inclusão em todo o país.</p>
+      <div class="ftsoc">
+        <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="ftsi" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="ftsi" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="mailto:ademoorg@gmail.com" class="ftsi" aria-label="E-mail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <nav class="ftcol"><h4>Navegação</h4><a href="index.html">Home</a><a href="sobre.html">Sobre Nós</a><a href="index.html#areas">Áreas</a><a href="transparencia.html">Transparência</a><a href="index.html#contactos">Contactos</a></nav>
+    <nav class="ftcol"><h4>O Que Fazemos</h4><a href="saude.html">Saúde</a><a href="educacao.html">Educação</a><a href="reabilitacao.html">Reabilitação</a><a href="genero.html">Género</a><a href="futebol.html">Futebol</a><a href="climatica.html">Clima</a></nav>
+    <div class="ftcol"><h4>Contacto</h4><a href="mailto:ademoorg@gmail.com">ademoorg@gmail.com</a><a href="tel:+258849371782">(+258) 849 371 782</a><a href="https://www.ademosofala.site" target="_blank">www.ademosofala.site</a></div>
+  </div>
+  <div class="ftbot">
+    <span>© 2025 <span class="ftgo">ADEMO</span>. Todos os direitos reservados.</span>
+    <span>Feito com dedicação para um Moçambique inclusivo</span>
+  </div>
+</footer>
+
+<script>
+(function(){var h=document.getElementById('hdr');function s(){h.classList.toggle('s',scrollY>60);h.classList.toggle('t',scrollY<=60);}window.addEventListener('scroll',s,{passive:true});s();})();
+(function(){var hbg=document.querySelector('.hbg'),nav=document.getElementById('mainnav');if(!hbg||!nav)return;hbg.addEventListener('click',function(){var o=hbg.getAttribute('aria-expanded')==='true';hbg.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';});});})();
+(function(){var bg=document.getElementById('phbg');if(!bg)return;bg.classList.add('loaded');window.addEventListener('scroll',function(){bg.style.transform='translateY('+scrollY*.22+'px) scale(1.04)';},{passive:true});})();
+(function(){if(!('IntersectionObserver' in window))return;document.body.classList.add('js-rdy');var obs=new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});})();
+(function(){function run(el){var tgt=parseInt(el.dataset.target)||0,sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*tgt).toLocaleString('pt-PT')+sfx;if(p<1)requestAnimationFrame(step);else el.textContent=tgt.toLocaleString('pt-PT')+sfx;}requestAnimationFrame(step);}document.querySelectorAll('[data-target]').forEach(function(el){new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){run(e.target);o.unobserve(e.target);}});},{threshold:.5}).observe(el);});})();
+</script>
+</body>
+</html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Educa&ccedil;&atilde;o Inclusiva &mdash; ADEMO</title>
+<meta name="description" content="A ADEMO Sofala promove o acesso &agrave; educa&ccedil;&atilde;o de qualidade para crian&ccedil;as com defici&ecirc;ncia atrav&eacute;s da sua escolinha modelo e forma&ccedil;&atilde;o de professores em Mo&ccedil;ambique.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CC0000;--red-dk:#a00000;
+  --gold:#C9993A;--gold-lt:#e5c07a;--gold-dim:rgba(201,153,58,.18);
+  --dark:#1A1008;--dark2:#2d1f0e;
+  --text:#1e1408;--muted:#5c4e38;
+  --white:#fff;--cream:#F8F3EC;--hh:80px;
+  /* EDUCACAO: azul safira institucional */
+  --ac:#1a4f8a;--ac-dk:#143d6e;--ac-lt:#6db3f2;--ac-pale:rgba(26,79,138,.1);
+}
+html{font-size:18px;scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.75;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.skip{position:absolute;top:-120px;left:1rem;background:var(--red);color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:9999;transition:top .2s;font-size:.85rem;}
+.skip:focus{top:1rem;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+
+/* HEADER */
+#hdr{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--hh);display:flex;align-items:center;padding:0 5vw;transition:background .4s,box-shadow .4s;}
+#hdr.t{background:transparent;}
+#hdr.s{background:rgba(26,16,8,.97);box-shadow:0 2px 28px rgba(0,0,0,.45);backdrop-filter:blur(14px);}
+.hin{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.logo{display:flex;align-items:center;gap:.65rem;}
+.logo-img{height:46px;width:auto;object-fit:contain;flex-shrink:0;}
+.logo-fall{display:none;width:46px;height:46px;border-radius:50%;background:var(--red);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;flex-shrink:0;}
+.logo-w{display:flex;flex-direction:column;line-height:1.1;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;letter-spacing:.08em;}
+.logo-t{font-size:.54rem;color:var(--gold-lt);letter-spacing:.16em;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:1.6rem;}
+nav>a,.dd>a{color:rgba(255,255,255,.8);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:2px;transition:color .3s;}
+nav>a::after,.dd>a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav>a:hover,.dd>a:hover{color:#fff;}
+nav>a:hover::after,.dd>a:hover::after{width:100%;}
+.dd{position:relative;}
+.ddm{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--dark);border:1px solid var(--gold-dim);min-width:240px;padding:.5rem 0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
+.dd:hover .ddm,.dd:focus-within .ddm{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.ddm a{display:block;padding:.55rem 1.3rem;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.7);text-transform:uppercase;transition:color .2s,background .2s;}
+.ddm a:hover{color:var(--gold-lt);background:rgba(201,153,58,.08);}
+.navcta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.25rem;border-radius:2px;transition:background .3s!important;}
+.navcta:hover{background:var(--red-dk)!important;}
+.navcta::after{display:none!important;}
+.hbg{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:1001;}
+.hbg span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.hbg[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hbg[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* UTILITARIOS */
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac);margin-bottom:.85rem;display:block;}
+.lbl-gold{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem;display:block;}
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease;}
+.js-rdy .rv{opacity:0;transform:translateY(22px);}
+.js-rdy .rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.15s;}.d2{transition-delay:.3s;}.d3{transition-delay:.45s;}
+.arr{display:inline-block;transition:transform .3s;}
+.btn-ac{display:inline-flex;align-items:center;gap:.6rem;background:var(--ac);color:#fff;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:500;transition:background .3s,transform .2s;}
+.btn-ac:hover{background:var(--ac-dk);transform:translateY(-2px);}
+.btn-ac:hover .arr{transform:translateX(5px);}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--ac);padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:600;transition:background .3s,transform .2s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,border-color .3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+
+/* ══ HERO ══ */
+#ph{position:relative;height:88vh;min-height:580px;display:flex;align-items:flex-end;overflow:hidden;background:#0d1a2e;}
+.ph-bg{position:absolute;inset:0;background-image:url('foto-edu-hero.jpg');background-size:cover;background-position:center 40%;transform:scale(1.04);transition:transform 9s ease;}
+.ph-bg.loaded{transform:scale(1);}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,26,46,.15) 0%,rgba(13,26,46,.2) 35%,rgba(13,26,46,.78) 62%,rgba(13,26,46,.97) 100%);}
+.ph-accent{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ac) 0%,var(--gold) 100%);z-index:3;}
+.ph-body{position:relative;z-index:2;padding:calc(var(--hh) + 3rem) 5vw 5rem;width:100%;}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.6rem;flex-wrap:wrap;}
+.breadcrumb a{color:rgba(255,255,255,.45);transition:color .2s;}
+.breadcrumb a:hover{color:var(--gold-lt);}
+.breadcrumb span{color:rgba(255,255,255,.22);}
+.breadcrumb strong{color:var(--ac-lt);}
+.ph-tag{display:inline-flex;align-items:center;gap:.55rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ac-lt);border:1px solid rgba(109,179,242,.3);padding:.35rem .9rem;border-radius:2px;margin-bottom:1.1rem;}
+.ph-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--ac-lt);flex-shrink:0;}
+.ph-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5.5vw,3.8rem);font-weight:300;color:#fff;line-height:1.08;letter-spacing:-.02em;max-width:760px;margin-bottom:1.1rem;}
+.ph-h1 em{font-style:italic;color:var(--ac-lt);}
+.ph-lead{font-size:clamp(.92rem,1.3vw,1rem);color:rgba(255,255,255,.68);max-width:580px;line-height:1.82;}
+
+/* ══ DECLARACAO DE MISSAO ══ */
+#missao{
+  background:var(--ac);
+  padding:4.5rem 5vw;
+  display:flex;align-items:center;gap:4vw;
+  flex-wrap:wrap;
+}
+.missao-icon{font-size:4rem;flex-shrink:0;line-height:1;opacity:.85;}
+.missao-txt{flex:1;min-width:280px;}
+.missao-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.3rem,2.8vw,2rem);
+  font-weight:300;font-style:italic;
+  color:#fff;line-height:1.38;
+  border-left:3px solid rgba(255,255,255,.4);
+  padding-left:1.5rem;
+}
+.missao-fonte{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:.9rem;padding-left:1.5rem;}
+
+/* ══ ESCOLINHA MODELO ══ */
+#escolinha{
+  background:var(--white);
+  padding:7rem 5vw;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5vw;align-items:center;
+}
+.esc-img{position:relative;}
+.esc-img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px 120px 16px 120px;box-shadow:0 32px 80px rgba(26,79,138,.18);transition:border-radius .7s;}
+.esc-img img:hover{border-radius:120px 16px 120px 16px;}
+.esc-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:16px 120px 16px 120px;background:linear-gradient(145deg,#4a7abf,#1a3a6e);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+.esc-badge{
+  position:absolute;bottom:-1rem;right:-1rem;
+  background:var(--gold);color:var(--dark);
+  width:110px;height:110px;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(201,153,58,.45);
+  font-family:'Cormorant Garamond',serif;z-index:2;
+}
+.esc-badge .ebn{font-size:1.8rem;font-weight:600;line-height:1;}
+.esc-badge .ebl{font-size:.38rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dark2);text-align:center;padding:0 .4rem;margin-top:.1rem;}
+.esc-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.esc-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.esc-h2 em{font-style:italic;color:var(--ac);}
+.esc-p{font-size:1rem;color:var(--muted);line-height:1.87;}
+/* Destaques da escolinha em linha */
+.esc-feats{display:flex;flex-direction:column;gap:.75rem;margin-top:.3rem;}
+.esc-feat{display:flex;align-items:flex-start;gap:.9rem;padding:.8rem 1rem;background:var(--cream);border-radius:6px;border-left:3px solid var(--ac);}
+.esc-feat-ico{font-size:1.3rem;flex-shrink:0;line-height:1.4;}
+.esc-feat-txt{font-size:.92rem;color:var(--muted);line-height:1.65;}
+.esc-feat-txt strong{color:var(--dark);}
+
+/* ══ COMO ATUAMOS: 4 PILARES ══ */
+#pilares{background:var(--cream);padding:6rem 5vw;}
+.pilares-hd{max-width:700px;margin-bottom:3.5rem;}
+.pilares-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.pilares-hd h2 em{font-style:italic;color:var(--ac);}
+.pilares-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.8rem;}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem;}
+.pcard{background:var(--white);border-radius:10px;overflow:hidden;border:1px solid rgba(26,79,138,.1);transition:box-shadow .3s,transform .3s,border-color .3s;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(26,79,138,.07);}
+.pcard:hover{box-shadow:0 20px 56px rgba(26,79,138,.16);transform:translateY(-6px);border-color:rgba(26,79,138,.28);}
+/* Contentor da imagem com aspect-ratio: a foto nunca fica cortada */
+.pcard-img-wrap{width:100%;aspect-ratio:16/9;overflow:hidden;flex-shrink:0;background:#c8d8f0;}
+.pcard-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+.pcard:hover .pcard-img{transform:scale(1.05);}
+.pcard-img-fb{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.25;}
+.pcard-body{padding:1.8rem 1.8rem 2.2rem;display:flex;flex-direction:column;gap:.7rem;flex:1;}
+.pcard-ico{width:44px;height:44px;border-radius:50%;background:var(--ac-pale);display:flex;align-items:center;justify-content:center;margin-bottom:.4rem;}
+.pcard-ico svg{width:20px;height:20px;stroke:var(--ac);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.pcard-n{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);}
+.pcard-h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--dark);line-height:1.2;}
+.pcard-p{font-size:.92rem;color:var(--muted);line-height:1.78;flex:1;}
+/* Tag de destaque dentro do card */
+.pcard-tag{display:inline-block;background:var(--ac-pale);color:var(--ac);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:.25rem .7rem;border-radius:20px;margin-top:.4rem;font-weight:500;}
+
+/* ══ REPARACAO DE ESCOLAS — DESTAQUE ══ */
+#reparacao{
+  background:#0d1a2e;
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#reparacao::before{
+  content:'';position:absolute;
+  top:-100px;right:-100px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(109,179,242,.08) 0%,transparent 68%);
+  pointer-events:none;
+}
+.rep-inner{display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.rep-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.rep-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.12;}
+.rep-h2 em{font-style:italic;color:var(--ac-lt);}
+.rep-p{font-size:.98rem;color:rgba(255,255,255,.58);line-height:1.87;}
+.rep-highlight{
+  background:rgba(109,179,242,.07);
+  border-left:3px solid var(--ac-lt);
+  padding:1.2rem 1.4rem;border-radius:0 6px 6px 0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.08rem;font-style:italic;
+  color:rgba(255,255,255,.75);line-height:1.55;
+}
+/* Cards de impacto das reparações */
+.rep-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-top:.5rem;}
+.rep-stat{background:rgba(255,255,255,.04);border:1px solid rgba(109,179,242,.16);border-radius:6px;padding:1.4rem 1rem;text-align:center;transition:background .3s,transform .3s;}
+.rep-stat:hover{background:rgba(109,179,242,.07);transform:translateY(-3px);}
+.rep-sn{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--ac-lt);line-height:1;}
+.rep-sl{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:.3rem;line-height:1.4;}
+/* Foto das reparações — grid de antes/depois */
+.rep-img{position:relative;}
+.rep-img-main{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;box-shadow:0 24px 60px rgba(0,0,0,.4);}
+.rep-img-main-fb{width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#1a2e48,#0a1520);display:flex;align-items:center;justify-content:center;font-size:4rem;opacity:.18;color:#fff;}
+.rep-img-inset{
+  position:absolute;bottom:-1.2rem;left:-1.2rem;
+  width:42%;aspect-ratio:4/3;
+  object-fit:cover;border-radius:8px;
+  border:3px solid var(--dark2);
+  box-shadow:0 12px 32px rgba(0,0,0,.5);
+  display:block;
+}
+.rep-img-inset-fb{
+  position:absolute;bottom:-1.2rem;left:-1.2rem;
+  width:42%;aspect-ratio:4/3;
+  border-radius:8px;border:3px solid var(--dark2);
+  background:linear-gradient(145deg,#1a3a5e,#0d2040);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;opacity:.22;color:#fff;
+}
+.rep-label{
+  position:absolute;top:.7rem;right:.7rem;
+  background:rgba(255,170,0,.9);color:var(--dark);
+  font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.3rem .7rem;border-radius:3px;font-weight:600;
+}
+.rep-label-inset{
+  position:absolute;bottom:-.4rem;left:-.4rem;
+  background:rgba(46,232,160,.9);color:var(--dark);
+  font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.25rem .6rem;border-radius:3px;font-weight:600;
+}
+
+/* ══ NUMEROS DE IMPACTO ══ */
+#nums{background:var(--dark);padding:6rem 5vw;position:relative;overflow:hidden;}
+#nums::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(26,79,138,.15) 0%,transparent 70%);pointer-events:none;}
+.nums-hd{text-align:center;margin-bottom:4rem;}
+.nums-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.nums-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ngrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.nit{background:var(--dark);padding:2.5rem 1.2rem;text-align:center;position:relative;transition:background .3s;}
+.nit:hover{background:rgba(26,79,138,.1);}
+.nit::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--ac);transform:scaleX(0);transition:transform .4s;}
+.nit:hover::after{transform:scaleX(1);}
+.nit-ico{width:40px;height:40px;border-radius:50%;background:rgba(109,179,242,.08);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;}
+.nit-ico svg{width:18px;height:18px;stroke:var(--ac-lt);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.nit-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3rem);font-weight:300;color:var(--ac-lt);line-height:1;letter-spacing:-.02em;}
+.nit-l{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:.5rem;line-height:1.5;}
+
+/* ══ PROFESSORES — SECAO DESTAQUE ══ */
+#professores{background:var(--white);padding:7rem 5vw;}
+.prof-hd{text-align:center;max-width:700px;margin:0 auto 4rem;}
+.prof-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.prof-hd h2 em{font-style:italic;color:var(--ac);}
+.prof-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.8rem;}
+/* Timeline de formação */
+.timeline{display:flex;flex-direction:column;gap:0;max-width:860px;margin:0 auto;position:relative;}
+.timeline::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--ac),rgba(26,79,138,.1));z-index:0;}
+.tl-item{display:flex;gap:2rem;align-items:flex-start;position:relative;padding-bottom:3rem;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--ac);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;
+  flex-shrink:0;z-index:1;
+  box-shadow:0 0 0 6px rgba(26,79,138,.12);
+  transition:transform .3s,box-shadow .3s;
+}
+.tl-item:hover .tl-dot{transform:scale(1.12);box-shadow:0 0 0 10px rgba(26,79,138,.15);}
+.tl-body{padding-top:.6rem;flex:1;}
+.tl-fase{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);margin-bottom:.3rem;}
+.tl-h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:var(--dark);margin-bottom:.5rem;line-height:1.2;}
+.tl-p{font-size:.95rem;color:var(--muted);line-height:1.78;}
+.tl-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem;}
+.tl-tag{background:var(--ac-pale);color:var(--ac);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.22rem .65rem;border-radius:20px;}
+
+/* ══ DEPOIMENTOS ══ */
+#depoimentos{background:var(--cream);padding:6rem 5vw;}
+.dep-hd{max-width:560px;margin-bottom:3rem;}
+.dep-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.15;color:var(--dark);}
+.dep-hd h2 em{font-style:italic;color:var(--ac);}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.dep-card{background:var(--white);border-radius:8px;padding:2rem 1.8rem;border-top:4px solid var(--ac);display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s,transform .3s;}
+.dep-card:hover{box-shadow:0 12px 36px rgba(26,79,138,.12);transform:translateY(-4px);}
+.dep-quote{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dark);line-height:1.58;font-weight:300;}
+.dep-quote::before{content:'\201C';font-size:2.2rem;color:var(--ac);line-height:.4;display:block;margin-bottom:.3rem;font-style:normal;}
+.dep-author{display:flex;align-items:center;gap:.8rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(0,0,0,.07);}
+.dep-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac-dk));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;flex-shrink:0;}
+.dep-name{font-size:.85rem;font-weight:500;color:var(--dark);}
+.dep-role{font-size:.72rem;color:var(--muted);letter-spacing:.04em;}
+
+/* ══ GALERIA ══ */
+#galeria{background:var(--dark2);padding:5rem 5vw;}
+.gal-hd{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.gal-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:var(--cream);}
+.gal-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ggrid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:220px 220px;gap:.6rem;}
+.gitem{overflow:hidden;border-radius:4px;background:#0a1520;position:relative;}
+.gitem:first-child{grid-row:span 2;grid-column:span 1;}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.gitem:hover img{transform:scale(1.07);}
+.gfb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.15;color:#fff;}
+.gitem::after{content:attr(data-label);position:absolute;inset:0;background:rgba(26,79,138,.75);color:#fff;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;text-align:center;padding:1rem;}
+.gitem:hover::after{opacity:1;}
+
+/* ══ CTA FINAL ══ */
+#cta-final{background:linear-gradient(135deg,var(--ac) 0%,var(--ac-dk) 100%);padding:7rem 5vw;text-align:center;position:relative;overflow:hidden;}
+#cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+.cta-lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1rem;display:block;}
+.cta-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.12;margin-bottom:1.2rem;}
+.cta-h2 em{font-style:italic;color:rgba(255,255,255,.75);}
+.cta-p{font-size:1rem;color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 2.5rem;line-height:1.82;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
+
+/* ══ NAV AREAS ══ */
+#nav-areas{background:var(--dark);padding:4rem 5vw;}
+.na-hd{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;}
+.na-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;}
+.na-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;transition:background .3s,border-color .3s,transform .3s;}
+.na-item:hover{background:rgba(255,255,255,.09);border-color:rgba(201,153,58,.3);transform:translateY(-3px);}
+.na-item.active{background:rgba(26,79,138,.15);border-color:rgba(26,79,138,.45);}
+.na-ico{font-size:1.4rem;line-height:1;}
+.na-lbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.3;}
+.na-item:hover .na-lbl,.na-item.active .na-lbl{color:rgba(255,255,255,.8);}
+.na-item.active .na-lbl{color:var(--ac-lt);}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark);padding:4rem 5vw 2rem;border-top:1px solid rgba(201,153,58,.08);}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.ftnm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:.65rem;}
+.ftdc{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ftcol h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.ftcol a{display:block;font-size:.85rem;color:rgba(255,255,255,.42);margin-bottom:.48rem;transition:color .2s;}
+.ftcol a:hover{color:rgba(255,255,255,.8);}
+.ftsoc{display:flex;gap:.6rem;margin-top:1.4rem;}
+.ftsi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.ftsi:hover{background:var(--red);}
+.ftsi svg{width:14px;height:14px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ftsi:hover svg{stroke:#fff;}
+.ftbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.8rem;color:rgba(255,255,255,.22);}
+.ftgo{color:var(--gold);}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  .rep-inner{grid-template-columns:1fr;}
+  .rep-img{max-width:560px;margin:0 auto;}
+}
+@media(max-width:900px){
+  #escolinha{grid-template-columns:1fr;gap:3rem;}
+  .esc-img{max-width:440px;margin:0 auto;}
+  .pgrid{grid-template-columns:1fr;}
+  .dep-grid{grid-template-columns:1fr;}
+  .ggrid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .gitem:first-child{grid-row:auto;grid-column:auto;}
+  .ftgrid{grid-template-columns:1fr 1fr;}
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  .na-grid{grid-template-columns:repeat(3,1fr);}
+  .rep-stats{grid-template-columns:1fr 1fr 1fr;}
+}
+@media(max-width:768px){
+  .hbg{display:flex;}
+  nav.desk{position:fixed;inset:0;background:var(--dark);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.18,1);z-index:999;padding:2rem 8vw;}
+  nav.desk.open{transform:translateX(0);}
+  nav.desk>a,.desk .dd>a{font-size:1.2rem;}
+  .ddm{position:static;opacity:1;pointer-events:all;transform:none;background:transparent;border:none;padding:0;}
+  .ddm a{padding:.35rem 0;font-size:.9rem;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .ggrid{grid-template-columns:1fr;}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .ftgrid{grid-template-columns:1fr;gap:2rem;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-white,.btn-ghost{justify-content:center;}
+  .timeline::before{left:24px;}
+  .tl-dot{width:48px;height:48px;}
+  #ph{height:auto;min-height:auto;}
+  .ph-body{padding-top:calc(var(--hh) + 2rem);padding-bottom:3.5rem;}
+  .rep-stats{grid-template-columns:1fr 1fr;}
+  .missao{flex-direction:column;}
+}
+@media(max-width:480px){
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .rep-stats{grid-template-columns:1fr 1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar para o conte&uacute;do principal</a>
+
+<header id="hdr" class="s" role="banner">
+<div class="hin">
+  <a href="index.html" class="logo" aria-label="ADEMO &mdash; P&aacute;gina Principal">
+    <img class="logo-img" src="logo-ademo.png" alt="Log&oacute;tipo ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="logo-fall" aria-hidden="true">A</div>
+    <div class="logo-w"><span class="logo-n">ADEMO</span><span class="logo-t">Mo&ccedil;ambique &middot; Desde 1990</span></div>
+  </a>
+  <button class="hbg" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainnav"><span></span><span></span><span></span></button>
+  <nav id="mainnav" class="desk" role="navigation" aria-label="Menu principal">
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre N&oacute;s</a>
+    <div class="dd">
+      <a href="index.html#areas" aria-haspopup="true">&Aacute;reas &#9660;</a>
+      <div class="ddm" role="menu">
+        <a href="saude.html" role="menuitem">Sa&uacute;de Sexual e Reprodutiva</a>
+        <a href="educacao.html" role="menuitem" aria-current="page">Educa&ccedil;&atilde;o Inclusiva</a>
+        <a href="reabilitacao.html" role="menuitem">Reabilita&ccedil;&atilde;o</a>
+        <a href="genero.html" role="menuitem">Equidade de G&eacute;nero</a>
+        <a href="futebol.html" role="menuitem">Futebol Inclusivo</a>
+        <a href="climatica.html" role="menuitem">Resili&ecirc;ncia Clim&aacute;tica</a>
+      </div>
+    </div>
+    <a href="transparencia.html">Transpar&ecirc;ncia</a>
+    <a href="index.html#contactos">Contactos</a>
+    <a href="/cdn-cgi/l/email-protection#660702030b0909140126010b070f0a4805090b" class="navcta">Apoie-nos</a>
+  </nav>
+</div>
+</header>
+
+<main id="main">
+
+<!-- ═══ HERO ═══ -->
+<section id="ph" aria-label="Educa&ccedil;&atilde;o Inclusiva ADEMO">
+  <div class="ph-accent"></div>
+  <div class="ph-bg" id="phbg"></div>
+  <div class="ph-ov"></div>
+  <div class="ph-body">
+    <nav class="breadcrumb" aria-label="Localiza&ccedil;&atilde;o">
+      <a href="index.html">ADEMO</a><span>/</span>
+      <a href="index.html#areas">&Aacute;reas</a><span>/</span>
+      <strong>Educa&ccedil;&atilde;o Inclusiva</strong>
+    </nav>
+    <div class="ph-tag">Educa&ccedil;&atilde;o &amp; Inclus&atilde;o Escolar</div>
+    <h1 class="ph-h1">Educa&ccedil;&atilde;o Inclusiva:<br><em>Nenhuma Crian&ccedil;a Deixada para Tr&aacute;s</em></h1>
+    <p class="ph-lead">A ADEMO Sofala transforma escolas em ambientes verdadeiramente inclusivos &mdash; onde cada crian&ccedil;a com defici&ecirc;ncia tem o direito de aprender, crescer e mostrar o seu potencial ilimitado.</p>
+  </div>
+</section>
+
+<!-- ═══ DECLARACAO DE MISSAO ═══ -->
+<div id="missao" role="complementary">
+  <div class="missao-icon" aria-hidden="true">&#128218;</div>
+  <div class="missao-txt rv">
+    <p class="missao-quote">&ldquo;A inclus&atilde;o n&atilde;o &eacute; um favor que fazemos &agrave;s crian&ccedil;as com defici&ecirc;ncia &mdash; &eacute; a demonstra&ccedil;&atilde;o de que uma escola que inclui a todos forma cidad&atilde;os mais empat&eacute;ticos, mais justos e mais capazes.&rdquo;</p>
+    <div class="missao-fonte">ADEMO &mdash; Associa&ccedil;&atilde;o dos Deficientes Mo&ccedil;ambicanos &middot; Sofala, desde 1990</div>
+  </div>
+</div>
+
+<!-- ═══ A ESCOLINHA MODELO ═══ -->
+<section id="escolinha" aria-labelledby="esc-h">
+  <div class="esc-img rv">
+    <img src="foto-edu-escolinha.jpg" loading="lazy" alt="Escolinha inclusiva da ADEMO &mdash; Sofala" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="esc-img-fb" aria-hidden="true">&#127891;</div>
+    <div class="esc-badge" aria-hidden="true">
+      <span class="ebn">Modelo</span>
+      <span class="ebl">de inclus&atilde;o em Sofala</span>
+    </div>
+  </div>
+  <div class="esc-txt">
+    <span class="lbl rv">A Nossa Escolinha</span>
+    <h2 class="esc-h2 rv d1" id="esc-h">Uma Escola que <em>Prova que a Inclus&atilde;o Funciona</em></h2>
+    <p class="esc-p rv d1">A ADEMO Sofala gere a sua pr&oacute;pria escolinha inclusiva &mdash; um espa&ccedil;o criado com e para crian&ccedil;as com defici&ecirc;ncia, que serve como <strong>modelo vivo de educa&ccedil;&atilde;o inclusiva</strong> para todas as escolas da prov&iacute;ncia. Aqui, as crian&ccedil;as com defici&ecirc;ncia aprendem lado a lado com os seus pares, num ambiente que valoriza a diversidade como for&ccedil;a.</p>
+    <p class="esc-p rv d2">A escolinha n&atilde;o &eacute; apenas uma sala de aula &mdash; &eacute; uma prova concreta de que a inclus&atilde;o &eacute; poss&iacute;vel, sustent&aacute;vel e transformat&oacute;ria. Visitantes, directores de escola e pol&iacute;ticos v&ecirc;m aqui aprender como uma turma inclusiva funciona na pr&aacute;tica.</p>
+    <div class="esc-feats rv d2">
+      <div class="esc-feat">
+        <span class="esc-feat-ico">&#128218;</span>
+        <div class="esc-feat-txt"><strong>Da 1.&ordf; &agrave; 10.&ordf; classe</strong> &mdash; cobrimos todo o ciclo prim&aacute;rio, garantindo continuidade na aprendizagem de cada crian&ccedil;a com defici&ecirc;ncia.</div>
+      </div>
+      <div class="esc-feat">
+        <span class="esc-feat-ico">&#127881;</span>
+        <div class="esc-feat-txt"><strong>Material escolar adaptado distribu&iacute;do gratuitamente</strong> &mdash; cadernos, l&aacute;pis, livros em Braille e equipamentos de comunica&ccedil;&atilde;o aumentativa.</div>
+      </div>
+      <div class="esc-feat">
+        <span class="esc-feat-ico">&#127968;</span>
+        <div class="esc-feat-txt"><strong>Instala&ccedil;&otilde;es totalmente acess&iacute;veis</strong> &mdash; rampas, casas de banho adaptadas, mesas e cadeiras ajust&aacute;veis para diferentes necessidades.</div>
+      </div>
+      <div class="esc-feat">
+        <span class="esc-feat-ico">&#128101;</span>
+        <div class="esc-feat-txt"><strong>Comunidade acolhedora</strong> &mdash; pais, professores e colegas formam uma rede de apoio que vai muito al&eacute;m da sala de aula.</div>
+      </div>
+    </div>
+    <div class="rv d3">
+      <a href="/cdn-cgi/l/email-protection#55343130383a3a2732153238343c397b363a38" class="btn-ac">Visitar a Nossa Escolinha <span class="arr">&#8594;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 4 PILARES DE ATUACAO ═══ -->
+<section id="pilares" aria-labelledby="pilares-h">
+  <div class="pilares-hd rv">
+    <span class="lbl">Como Atuamos</span>
+    <h2 id="pilares-h">Quatro Frentes de <em>Interven&ccedil;&atilde;o</em></h2>
+    <p>A nossa estrat&eacute;gia assenta em quatro eixos que se complementam para criar um ecossistema educativo verdadeiramente inclusivo em toda a prov&iacute;ncia de Sofala.</p>
+  </div>
+  <div class="pgrid">
+
+    <article class="pcard rv">
+      <div class="pcard-img-wrap">
+        <img class="pcard-img" src="foto-edu-avaliacao.jpg" loading="lazy" alt="Avalia&ccedil;&atilde;o de necessidades formativas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="pcard-img-fb" style="background:linear-gradient(135deg,#c8d8f0,#7aa8d8);" aria-hidden="true">&#128203;</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <div class="pcard-n">Frente 01</div>
+        <h3 class="pcard-h3">Avalia&ccedil;&atilde;o das Necessidades de Forma&ccedil;&atilde;o</h3>
+        <p class="pcard-p">Realizamos diagn&oacute;sticos aprofundados nas escolas para identificar as lacunas no conhecimento dos professores sobre educa&ccedil;&atilde;o inclusiva. A partir destes dados, propomo s m&oacute;dulos de forma&ccedil;&atilde;o complementar adaptados a cada contexto escolar &mdash; porque cada escola tem os seus desafios pr&oacute;prios.</p>
+        <span class="pcard-tag">&#128203; Diagn&oacute;stico &middot; M&oacute;dulos Customizados</span>
+      </div>
+    </article>
+
+    <article class="pcard rv d1">
+      <div class="pcard-img-wrap">
+        <img class="pcard-img" src="foto-edu-professores.jpg" loading="lazy" alt="Forma&ccedil;&atilde;o de professores em educa&ccedil;&atilde;o inclusiva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="pcard-img-fb" style="background:linear-gradient(135deg,#b8d0f0,#5a98d8);" aria-hidden="true">&#128101;</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="pcard-n">Frente 02</div>
+        <h3 class="pcard-h3">Forma&ccedil;&atilde;o de Professores em Inclus&atilde;o</h3>
+        <p class="pcard-p">Formamos professores nas metodologias de educa&ccedil;&atilde;o inclusiva, adapta&ccedil;&atilde;o curricular, Lingua de Sinais Mo&ccedil;ambicana (LSM) b&aacute;sica e uso de materiais did&aacute;ticos adaptados. Um professor formado transforma n&atilde;o uma crian&ccedil;a &mdash; transforma uma turma inteira, ano ap&oacute;s ano.</p>
+        <span class="pcard-tag">&#127891; LSM &middot; Adapta&ccedil;&atilde;o Curricular &middot; Metodologias Activas</span>
+      </div>
+    </article>
+
+    <article class="pcard rv d2">
+      <div class="pcard-img-wrap">
+        <img class="pcard-img" src="foto-edu-material.jpg" loading="lazy" alt="Distribui&ccedil;&atilde;o de material escolar adaptado" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="pcard-img-fb" style="background:linear-gradient(135deg,#a8c8f0,#4a88d8);" aria-hidden="true">&#127881;</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-ico"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+        <div class="pcard-n">Frente 03</div>
+        <h3 class="pcard-h3">Distribui&ccedil;&atilde;o de Material Escolar Adaptado</h3>
+        <p class="pcard-p">Distribu&iacute;mos material escolar especialmente adaptado a crian&ccedil;as com diferentes tipos de defici&ecirc;ncia &mdash; desde livros em Braille e materiais t&aacute;cteis para crian&ccedil;as com defici&ecirc;ncia visual, at&eacute; auxiliares de escrita e comunicadores para crian&ccedil;as com defici&ecirc;ncia motora. Nenhuma crian&ccedil;a deve faltar &agrave; escola por falta de material.</p>
+        <span class="pcard-tag">&#9996; Braille &middot; T&aacute;ctil &middot; Comunicadores &middot; Material Adaptado</span>
+      </div>
+    </article>
+
+    <article class="pcard rv d3">
+      <div class="pcard-img-wrap">
+        <img class="pcard-img" src="foto-edu-transformacao.jpg" loading="lazy" alt="Transforma&ccedil;&atilde;o de escolas inclusivas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="pcard-img-fb" style="background:linear-gradient(135deg,#98b8e0,#3a78c8);" aria-hidden="true">&#127968;</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="pcard-n">Frente 04</div>
+        <h3 class="pcard-h3">Transforma&ccedil;&atilde;o de Escolas em Ambientes Inclusivos</h3>
+        <p class="pcard-p">Trabalhamos directamente com direc&ccedil;&otilde;es de escola para eliminar barreiras f&iacute;sicas e atitudinais &mdash; instalando rampas, adaptando casas de banho, reorganizando salas de aula e criando pol&iacute;ticas internas de inclus&atilde;o. Demonstramos o impacto positivo de um sistema que inclui e incentiva cada crian&ccedil;a com defici&ecirc;ncia a brilhar.</p>
+        <span class="pcard-tag">&#9855; Acessibilidade F&iacute;sica &middot; Pol&iacute;ticas de Inclus&atilde;o</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══ REPARACAO DE ESCOLAS ═══ -->
+<section id="reparacao" aria-labelledby="rep-h">
+  <div class="rep-inner">
+    <div class="rep-txt rv">
+      <span class="lbl" style="color:var(--ac-lt)">Resposta Humanit&aacute;ria &middot; P&oacute;s-Desastre</span>
+      <h2 class="rep-h2" id="rep-h">Reparamos Escolas.<br><em>Restauramos Futuros.</em></h2>
+      <p class="rep-p">O ciclone Idai e outros desastres naturais deixaram marcas profundas nas infra-estruturas educativas de Sofala. Crian&ccedil;as com defici&ecirc;ncia foram as mais afectadas &mdash; j&aacute; vulnerabilizadas, viram as suas escolas destru&iacute;das e o seu acesso &agrave; educa&ccedil;&atilde;o interrompido.</p>
+      <div class="rep-highlight">&ldquo;Cada escola que reparamos &eacute; uma declara&ccedil;&atilde;o: as crian&ccedil;as com defici&ecirc;ncia merecem um ambiente seguro, acolhedor e adaptado &mdash; independentemente das circunst&acirc;ncias que a natureza imponha.&rdquo;</div>
+      <p class="rep-p">A ADEMO actua na reabilita&ccedil;&atilde;o e reforma de escolas afectadas por desastres, garantindo que as obras incluam <strong style="color:rgba(255,255,255,.8)">acessibilidade como requisito m&iacute;nimo</strong>: rampas, sanit&aacute;rios adaptados, salas de aula sem barreiras. Porque uma escola reconstruida sem inclus&atilde;o &eacute; uma oportunidade perdida.</p>
+      <div class="rep-stats rv d1">
+        <div class="rep-stat"><div class="rep-sn">12+</div><div class="rep-sl">Escolas reparadas p&oacute;s-desastre</div></div>
+        <div class="rep-stat"><div class="rep-sn">100%</div><div class="rep-sl">Com acessibilidade inclu&iacute;da nas obras</div></div>
+        <div class="rep-stat"><div class="rep-sn">3.500+</div><div class="rep-sl">Alunos beneficiados nas escolas reabilitadas</div></div>
+      </div>
+    </div>
+    <div class="rep-img rv d1">
+      <img class="rep-img-main" src="foto-edu-reparacao.jpg" loading="lazy" alt="Escola reparada pela ADEMO ap&oacute;s desastre natural" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="rep-img-main-fb" aria-hidden="true">&#127968;</div>
+      <img class="rep-img-inset" src="foto-edu-antes.jpg" loading="lazy" alt="Escola antes da repara&ccedil;&atilde;o" onerror="this.style.display='none';">
+      <div class="rep-label" aria-hidden="true">Depois &#10003;</div>
+      <div class="rep-label-inset" aria-hidden="true">Antes</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NUMEROS DE IMPACTO ═══ -->
+<section id="nums" aria-labelledby="nums-h">
+  <div class="nums-hd rv">
+    <span class="lbl-gold">Resultados Mensur&aacute;veis</span>
+    <h2 id="nums-h">O Nosso Impacto <em>em N&uacute;meros</em></h2>
+  </div>
+  <div class="ngrid">
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+      <div class="nit-n" data-target="2500" data-suffix="+">2.500+</div>
+      <div class="nit-l">Crian&ccedil;as com defici&ecirc;ncia<br>integradas no ensino</div>
+    </div>
+    <div class="nit rv d1">
+      <div class="nit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="nit-n" data-target="340" data-suffix="+">340+</div>
+      <div class="nit-l">Professores formados<br>em educa&ccedil;&atilde;o inclusiva</div>
+    </div>
+    <div class="nit rv d2">
+      <div class="nit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+      <div class="nit-n" data-target="12" data-suffix="+">12+</div>
+      <div class="nit-l">Escolas reparadas<br>e tornadas inclusivas</div>
+    </div>
+    <div class="nit rv d3">
+      <div class="nit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
+      <div class="nit-n" data-target="5000" data-suffix="+">5.000+</div>
+      <div class="nit-l">Kits de material escolar<br>adaptado distribu&iacute;dos</div>
+    </div>
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="nit-n" data-target="35" data-suffix=" anos">35</div>
+      <div class="nit-l">De experi&ecirc;ncia em<br>educa&ccedil;&atilde;o inclusiva</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FORMACAO DE PROFESSORES — TIMELINE ═══ -->
+<section id="professores" aria-labelledby="prof-h">
+  <div class="prof-hd rv">
+    <span class="lbl">O Processo de Forma&ccedil;&atilde;o</span>
+    <h2 id="prof-h">Como Formamos <em>os Professores</em></h2>
+    <p>A nossa metodologia de forma&ccedil;&atilde;o &eacute; progressiva, pr&aacute;tica e centrada na realidade das salas de aula de Sofala. N&atilde;o ensinamos teoria &mdash; ensinamos o que funciona no terreno.</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item rv">
+      <div class="tl-dot" aria-hidden="true">1</div>
+      <div class="tl-body">
+        <div class="tl-fase">Fase 01 &middot; Diagn&oacute;stico</div>
+        <h3 class="tl-h3">Avalia&ccedil;&atilde;o das Necessidades Reais</h3>
+        <p class="tl-p">Antes de qualquer forma&ccedil;&atilde;o, a equipa da ADEMO visita a escola, observa as aulas, entrevista directores e professores e identifica os tipos de defici&ecirc;ncia presentes nas turmas. Este diagn&oacute;stico determina quais os m&oacute;dulos a aplicar e com que profundidade.</p>
+        <div class="tl-tags"><span class="tl-tag">Visitas &agrave;s escolas</span><span class="tl-tag">Entrevistas</span><span class="tl-tag">Mapeamento de necessidades</span></div>
+      </div>
+    </div>
+    <div class="tl-item rv d1">
+      <div class="tl-dot" aria-hidden="true">2</div>
+      <div class="tl-body">
+        <div class="tl-fase">Fase 02 &middot; Forma&ccedil;&atilde;o Te&oacute;rica</div>
+        <h3 class="tl-h3">M&oacute;dulos de Educa&ccedil;&atilde;o Inclusiva</h3>
+        <p class="tl-p">Workshops presenciais de 3 a 5 dias com foco em: adapta&ccedil;&atilde;o curricular, LSM b&aacute;sica para comunica&ccedil;&atilde;o com alunos surdos, metodologias visuais e t&aacute;cteis para crian&ccedil;as com defici&ecirc;ncia visual, e estrat&eacute;gias de inclus&atilde;o para crian&ccedil;as com defici&ecirc;ncia intelectual.</p>
+        <div class="tl-tags"><span class="tl-tag">LSM B&aacute;sica</span><span class="tl-tag">Adapta&ccedil;&atilde;o Curricular</span><span class="tl-tag">Metodologias Visuais</span><span class="tl-tag">Inclus&atilde;o Intelectual</span></div>
+      </div>
+    </div>
+    <div class="tl-item rv d2">
+      <div class="tl-dot" aria-hidden="true">3</div>
+      <div class="tl-body">
+        <div class="tl-fase">Fase 03 &middot; Pr&aacute;tica na Escolinha ADEMO</div>
+        <h3 class="tl-h3">Aprender Fazendo na Sala de Aula Real</h3>
+        <p class="tl-p">Os professores em forma&ccedil;&atilde;o passam dias na escolinha da ADEMO a observar e a praticar com crian&ccedil;as reais. Este &eacute; o m&oacute;mento mais transformador: ver a inclus&atilde;o a funcionar, e perceber que &eacute; poss&iacute;vel na sua pr&oacute;pria escola, com os recursos que j&aacute; t&ecirc;m.</p>
+        <div class="tl-tags"><span class="tl-tag">Pr&aacute;tica Supervisionada</span><span class="tl-tag">Observa&ccedil;&atilde;o</span><span class="tl-tag">Escolinha ADEMO</span></div>
+      </div>
+    </div>
+    <div class="tl-item rv d3">
+      <div class="tl-dot" aria-hidden="true">4</div>
+      <div class="tl-body">
+        <div class="tl-fase">Fase 04 &middot; Acompanhamento</div>
+        <h3 class="tl-h3">Suporte Cont&iacute;nuo nas Escolas Parceiras</h3>
+        <p class="tl-p">A forma&ccedil;&atilde;o n&atilde;o termina no workshop. A equipa da ADEMO visita regularmente as escolas parceiras, observa as aulas, resolve d&uacute;vidas e actualiza os professores com novas metodologias. O objectivo &eacute; criar uma <strong>comunidade de pr&aacute;tica inclusiva sustent&aacute;vel</strong> que exista para al&eacute;m da ADEMO.</p>
+        <div class="tl-tags"><span class="tl-tag">Visitas de Acompanhamento</span><span class="tl-tag">Mentoria</span><span class="tl-tag">Comunidade de Pr&aacute;tica</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEPOIMENTOS ═══ -->
+<section id="depoimentos" aria-labelledby="dep-h">
+  <div class="dep-hd rv">
+    <span class="lbl">Hist&oacute;rias Reais</span>
+    <h2 id="dep-h">Vozes de <em>quem viveu a mudan&ccedil;a</em></h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card rv">
+      <p class="dep-quote">Antes da forma&ccedil;&atilde;o da ADEMO, n&atilde;o sabia como comunicar com o Jo&atilde;o, que &eacute; surdo. Hoje uso LSM nas aulas e vi o Jo&atilde;o passar de reprovado a um dos melhores da turma. Isso mudou a minha forma de ensinar para sempre.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">M</div>
+        <div><div class="dep-name">Prof. Margarida F.</div><div class="dep-role">Professora prim&aacute;ria &middot; EB Manga, Beira</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d1">
+      <p class="dep-quote">A minha filha tem paralisia cerebral. Durante anos, nenhuma escola a quis aceitar. Na escolinha da ADEMO, ela aprendeu a ler. Hoje estuda na escola p&uacute;blica com as outras crian&ccedil;as. A ADEMO devolveu-lhe o futuro.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">A</div>
+        <div><div class="dep-name">Ana C.</div><div class="dep-role">M&atilde;e de aluna &middot; Dondo, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d2">
+      <p class="dep-quote">Depois do Idai, a nossa escola estava destru&iacute;da. A ADEMO n&atilde;o s&oacute; ajudou a reconstruir &mdash; instalou rampas e adaptou as casas de banho. Pela primeira vez, o Manuel, que usa cadeira de rodas, consegue ir &agrave; escola sem ajuda.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">D</div>
+        <div><div class="dep-name">Dir. Celestino M.</div><div class="dep-role">Director de escola &middot; Nhamatanda, Sofala</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALERIA ═══ -->
+<section id="galeria" aria-labelledby="gal-h">
+  <div class="gal-hd rv">
+    <div><span class="lbl-gold">Galeria</span><h2 id="gal-h">Educa&ccedil;&atilde;o Inclusiva <em>em Imagens</em></h2></div>
+  </div>
+  <div class="ggrid rv d1">
+    <div class="gitem" data-label="Escolinha ADEMO &middot; Beira">
+      <img src="foto-edu-escolinha.jpg" loading="lazy" alt="Aula na escolinha inclusiva ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127891;</div>
+    </div>
+    <div class="gitem" data-label="Forma&ccedil;&atilde;o de Professores">
+      <img src="foto-edu-professores.jpg" loading="lazy" alt="Workshop de forma&ccedil;&atilde;o em educa&ccedil;&atilde;o inclusiva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#128101;</div>
+    </div>
+    <div class="gitem" data-label="Distribui&ccedil;&atilde;o de Material">
+      <img src="foto-edu-material.jpg" loading="lazy" alt="Distribui&ccedil;&atilde;o de kits escolares adaptados" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127881;</div>
+    </div>
+    <div class="gitem" data-label="Escola Reparada">
+      <img src="foto-edu-reparacao.jpg" loading="lazy" alt="Escola reabilitada com acessibilidade" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127968;</div>
+    </div>
+    <div class="gitem" data-label="Crian&ccedil;as em Sala de Aula">
+      <img src="foto-edu-sala.jpg" loading="lazy" alt="Crian&ccedil;as com e sem defici&ecirc;ncia aprendendo juntas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#128218;</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section id="cta-final" aria-label="Apoiar a educa&ccedil;&atilde;o inclusiva">
+  <span class="cta-lbl rv">Fa&ccedil;a a Diferen&ccedil;a</span>
+  <h2 class="cta-h2 rv d1">Cada Crian&ccedil;a Merece<br><em>Uma Escola que a Acolha</em></h2>
+  <p class="cta-p rv d2">Com o seu apoio, formamos mais professores, distribu&iacute;mos mais material adaptado, reparamos mais escolas e garantimos que cada crian&ccedil;a com defici&ecirc;ncia em Sofala tenha um lugar numa sala de aula segura, inclusiva e cheia de possibilidades.</p>
+  <div class="cta-btns rv d3">
+    <a href="/cdn-cgi/l/email-protection#4f2e2b2a2220203d280f28222e2623612c2022" class="btn-white">Apoiar a Educa&ccedil;&atilde;o Inclusiva <span class="arr">&#8594;</span></a>
+    <a href="transparencia.html" class="btn-ghost">Ver Relat&oacute;rios de Impacto</a>
+  </div>
+</section>
+
+<!-- ═══ NAV AREAS ═══ -->
+<nav id="nav-areas" aria-label="Outras &aacute;reas de atua&ccedil;&atilde;o">
+  <span class="na-hd">Explorar Outras &Aacute;reas</span>
+  <div class="na-grid">
+    <a href="saude.html" class="na-item"><span class="na-ico">&#127973;</span><span class="na-lbl">Sa&uacute;de Sexual</span></a>
+    <a href="educacao.html" class="na-item active" aria-current="page"><span class="na-ico">&#128218;</span><span class="na-lbl">Educa&ccedil;&atilde;o Inclusiva</span></a>
+    <a href="reabilitacao.html" class="na-item"><span class="na-ico">&#9851;</span><span class="na-lbl">Reabilita&ccedil;&atilde;o</span></a>
+    <a href="genero.html" class="na-item"><span class="na-ico">&#9892;</span><span class="na-lbl">Equidade de G&eacute;nero</span></a>
+    <a href="futebol.html" class="na-item"><span class="na-ico">&#9917;</span><span class="na-lbl">Futebol Inclusivo</span></a>
+  </div>
+</nav>
+</main>
+
+<footer role="contentinfo">
+  <div class="ftgrid">
+    <div>
+      <div class="ftnm">ADEMO</div>
+      <p class="ftdc">Associa&ccedil;&atilde;o dos Deficientes Mo&ccedil;ambicanos &mdash; desde 1990, promovendo dignidade, direitos e inclus&atilde;o em todo o pa&iacute;s.</p>
+      <div class="ftsoc">
+        <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="ftsi" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="ftsi" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="/cdn-cgi/l/email-protection#503134353d3f3f223710373d31393c7e333f3d" class="ftsi" aria-label="E-mail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <nav class="ftcol" aria-label="Navega&ccedil;&atilde;o"><h4>Navega&ccedil;&atilde;o</h4><a href="index.html">Home</a><a href="sobre.html">Sobre N&oacute;s</a><a href="index.html#areas">&Aacute;reas de Atua&ccedil;&atilde;o</a><a href="transparencia.html">Transpar&ecirc;ncia</a><a href="index.html#contactos">Contactos</a></nav>
+    <nav class="ftcol" aria-label="O que fazemos"><h4>O Que Fazemos</h4><a href="saude.html">Sa&uacute;de</a><a href="educacao.html">Educa&ccedil;&atilde;o</a><a href="reabilitacao.html">Reabilita&ccedil;&atilde;o</a><a href="genero.html">G&eacute;nero</a><a href="futebol.html">Futebol</a><a href="climatica.html">Clima</a></nav>
+    <div class="ftcol"><h4>Contacto</h4><a href="/cdn-cgi/l/email-protection#fe9f9a9b9391918c99be99939f9792d09d9193"><span class="__cf_email__" data-cfemail="caabaeafa7a5a5b8ad8aada7aba3a6e4a9a5a7">[email&#160;protected]</span></a><a href="tel:+258849371782">(+258) 849 371 782</a><a href="https://www.ademosofala.site" target="_blank">www.ademosofala.site</a></div>
+  </div>
+  <div class="ftbot">
+    <span>&copy; 2025 <span class="ftgo">ADEMO</span>. Todos os direitos reservados.</span>
+    <span>Feito com dedica&ccedil;&atilde;o para um Mo&ccedil;ambique inclusivo</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){var h=document.getElementById('hdr');function s(){h.classList.toggle('s',scrollY>60);h.classList.toggle('t',scrollY<=60);}window.addEventListener('scroll',s,{passive:true});s();})();
+(function(){var hbg=document.querySelector('.hbg'),nav=document.getElementById('mainnav');if(!hbg||!nav)return;hbg.addEventListener('click',function(){var o=hbg.getAttribute('aria-expanded')==='true';hbg.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';});});})();
+(function(){var bg=document.getElementById('phbg');if(!bg)return;bg.classList.add('loaded');window.addEventListener('scroll',function(){bg.style.transform='translateY('+scrollY*.22+'px) scale(1.04)';},{passive:true});})();
+(function(){if(!('IntersectionObserver' in window))return;document.body.classList.add('js-rdy');var obs=new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});})();
+(function(){function run(el){var tgt=parseInt(el.dataset.target)||0,sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*tgt).toLocale

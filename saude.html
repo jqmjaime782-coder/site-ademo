@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sa&uacute;de Sexual e Reprodutiva &mdash; ADEMO</title>
+<meta name="description" content="A ADEMO promove o acesso a servi&ccedil;os de sa&uacute;de sexual e reprodutiva, nutri&ccedil;&atilde;o e hortas comunit&aacute;rias para pessoas com defici&ecirc;ncia em Sofala, Mo&ccedil;ambique.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   VARIAVEIS — cor de destaque: verde esmeralda
+   ═══════════════════════════════════════════ */
+:root{
+  --red:#CC0000;--red-dk:#a00000;
+  --gold:#C9993A;--gold-lt:#e5c07a;--gold-dim:rgba(201,153,58,.18);
+  --dark:#1A1008;--dark2:#2d1f0e;
+  --text:#1e1408;--muted:#5c4e38;
+  --white:#fff;--cream:#F8F3EC;--hh:80px;
+  --ac:#1a7a52;--ac-dk:#145e3e;--ac-lt:#2ee8a0;--ac-pale:rgba(26,122,82,.1);
+}
+html{font-size:18px;scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.75;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.skip{position:absolute;top:-120px;left:1rem;background:var(--red);color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:9999;transition:top .2s;font-size:.85rem;}
+.skip:focus{top:1rem;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+
+/* ── HEADER ── */
+#hdr{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--hh);display:flex;align-items:center;padding:0 5vw;transition:background .4s,box-shadow .4s;}
+#hdr.t{background:transparent;}
+#hdr.s{background:rgba(26,16,8,.97);box-shadow:0 2px 28px rgba(0,0,0,.45);backdrop-filter:blur(14px);}
+.hin{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.logo{display:flex;align-items:center;gap:.65rem;}
+.logo-img{height:46px;width:auto;object-fit:contain;flex-shrink:0;}
+.logo-fall{display:none;width:46px;height:46px;border-radius:50%;background:var(--red);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;flex-shrink:0;}
+.logo-w{display:flex;flex-direction:column;line-height:1.1;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;letter-spacing:.08em;}
+.logo-t{font-size:.54rem;color:var(--gold-lt);letter-spacing:.16em;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:1.6rem;}
+nav>a,.dd>a{color:rgba(255,255,255,.8);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:2px;transition:color .3s;}
+nav>a::after,.dd>a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav>a:hover,.dd>a:hover{color:#fff;}
+nav>a:hover::after,.dd>a:hover::after{width:100%;}
+.dd{position:relative;}
+.ddm{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--dark);border:1px solid var(--gold-dim);min-width:240px;padding:.5rem 0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
+.dd:hover .ddm,.dd:focus-within .ddm{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.ddm a{display:block;padding:.55rem 1.3rem;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.7);text-transform:uppercase;transition:color .2s,background .2s;}
+.ddm a:hover{color:var(--gold-lt);background:rgba(201,153,58,.08);}
+.navcta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.25rem;border-radius:2px;transition:background .3s!important;}
+.navcta:hover{background:var(--red-dk)!important;}
+.navcta::after{display:none!important;}
+.hbg{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:1001;}
+.hbg span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.hbg[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hbg[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* ── UTILITARIOS ── */
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac);margin-bottom:.85rem;display:block;}
+.lbl-gold{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem;display:block;}
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease;}
+.js-rdy .rv{opacity:0;transform:translateY(22px);}
+.js-rdy .rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.15s;}.d2{transition-delay:.3s;}.d3{transition-delay:.45s;}
+.arr{display:inline-block;transition:transform .3s;}
+.btn-ac{display:inline-flex;align-items:center;gap:.6rem;background:var(--ac);color:#fff;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:500;transition:background .3s,transform .2s;}
+.btn-ac:hover{background:var(--ac-dk);transform:translateY(-2px);}
+.btn-ac:hover .arr{transform:translateX(5px);}
+.btn-out{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid var(--ac);color:var(--ac);padding:.8rem 1.8rem;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,color .3s;}
+.btn-out:hover{background:var(--ac);color:#fff;}
+
+/* ══════════════════════════════════════════════
+   HERO INTERNO — CORRECAO DEFINITIVA:
+   O titulo fica na metade inferior do hero,
+   com padding-top:var(--hh) na sobreposicao
+   do header fixo garantido via pt no .ph-body.
+   O texto NUNCA chega ao topo — safe-area
+   de calc(var(--hh) + 2rem) no topo do hero.
+   ══════════════════════════════════════════════ */
+#ph{
+  position:relative;
+  height:88vh;
+  min-height:580px;
+  display:flex;
+  align-items:flex-end;   /* ancora o conteudo NA BASE */
+  overflow:hidden;
+  background:#071a10;
+}
+.ph-bg{
+  position:absolute;inset:0;
+  background-image:url('foto-saude-hero.jpg');
+  background-size:cover;
+  background-position:center 35%;
+  transform:scale(1.04);
+  transition:transform 9s ease;
+}
+.ph-bg.loaded{transform:scale(1);}
+/* Gradiente: transparente em cima, escuro em baixo */
+.ph-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(7,26,16,.15) 0%,
+    rgba(7,26,16,.18) 35%,
+    rgba(7,26,16,.75) 62%,
+    rgba(7,26,16,.96) 100%
+  );
+}
+/* Barra accent no TOPO */
+.ph-accent{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ac) 0%,var(--gold) 100%);z-index:3;}
+/* Conteudo na base — padding-bottom generoso,
+   padding-top garante que nunca sobe para a nav */
+.ph-body{
+  position:relative;z-index:2;
+  padding:calc(var(--hh) + 3rem) 5vw 5rem;
+  width:100%;
+}
+/* BREADCRUMB */
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1.6rem;flex-wrap:wrap;}
+.breadcrumb a{color:rgba(255,255,255,.45);transition:color .2s;}
+.breadcrumb a:hover{color:var(--gold-lt);}
+.breadcrumb span{color:rgba(255,255,255,.22);}
+.breadcrumb strong{color:var(--ac-lt);}
+/* TAG */
+.ph-tag{display:inline-flex;align-items:center;gap:.55rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ac-lt);border:1px solid rgba(46,232,160,.3);padding:.35rem .9rem;border-radius:2px;margin-bottom:1.1rem;}
+.ph-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--ac-lt);flex-shrink:0;}
+.ph-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5.5vw,3.8rem);font-weight:300;color:#fff;line-height:1.08;letter-spacing:-.02em;max-width:720px;margin-bottom:1.1rem;}
+.ph-h1 em{font-style:italic;color:var(--ac-lt);}
+.ph-lead{font-size:clamp(.92rem,1.3vw,1rem);color:rgba(255,255,255,.68);max-width:560px;line-height:1.82;}
+
+/* ── INTRO ── */
+#intro{background:var(--white);padding:6rem 5vw;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.intro-txt{display:flex;flex-direction:column;gap:1.3rem;}
+.intro-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.intro-h2 em{font-style:italic;color:var(--ac);}
+.intro-p{font-size:1rem;color:var(--muted);line-height:1.87;}
+.intro-img{position:relative;}
+.intro-img img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:120px 16px 120px 16px;box-shadow:0 32px 80px rgba(26,122,82,.18);transition:border-radius .7s;}
+.intro-img img:hover{border-radius:16px 120px 16px 120px;}
+.intro-img-fb{display:none;width:100%;aspect-ratio:3/4;border-radius:120px 16px 120px 16px;background:linear-gradient(145deg,#2a8a60,#0d4a2e);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.18;color:#fff;}
+.intro-badge{position:absolute;bottom:-1rem;left:-1rem;background:var(--ac);color:#fff;width:90px;height:90px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(26,122,82,.45);font-family:'Cormorant Garamond',serif;z-index:2;}
+.intro-badge .ibn{font-size:1.5rem;font-weight:600;line-height:1;}
+.intro-badge .ibl{font-size:.36rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;text-align:center;padding:0 .4rem;}
+
+/* ── PILARES ── */
+#pilares{background:var(--cream);padding:6rem 5vw;}
+.pilares-hd{max-width:640px;margin-bottom:3.5rem;}
+.pilares-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.pilares-hd h2 em{font-style:italic;color:var(--ac);}
+.pilares-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.8rem;}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.pcard{background:var(--white);border-radius:8px;overflow:hidden;border:1px solid rgba(26,122,82,.1);transition:box-shadow .3s,transform .3s,border-color .3s;}
+.pcard:hover{box-shadow:0 16px 48px rgba(26,122,82,.14);transform:translateY(-6px);border-color:rgba(26,122,82,.3);}
+.pcard-img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .55s ease;}
+.pcard:hover .pcard-img{transform:scale(1.04);}
+.pcard-img-fb{width:100%;height:200px;background:linear-gradient(135deg,#c8ddd4,#7ab8a0);display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.3;}
+.pcard-body{padding:1.8rem 1.6rem 2rem;}
+.pcard-ico{width:44px;height:44px;border-radius:50%;background:var(--ac-pale);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+.pcard-ico svg{width:20px;height:20px;stroke:var(--ac);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.pcard-n{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);margin-bottom:.5rem;}
+.pcard-h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--dark);line-height:1.2;margin-bottom:.6rem;}
+.pcard-p{font-size:.92rem;color:var(--muted);line-height:1.78;}
+
+/* ══════════════════════════════════════════
+   NUTRICAO & HORTAS COMUNITARIAS
+   Fundo escuro esmeralda — secao de destaque
+   Grid 2 col: texto (esq) | cards (dir)
+   ══════════════════════════════════════════ */
+#nutricao{
+  background:#0d2018;
+  padding:7rem 5vw;
+  position:relative;overflow:hidden;
+}
+#nutricao::before{
+  content:'';position:absolute;
+  bottom:-100px;left:-100px;
+  width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(46,232,160,.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.nut-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:5vw;align-items:start;}
+.nut-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.nut-icon{font-size:3.2rem;line-height:1;margin-bottom:.2rem;}
+.nut-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--cream);line-height:1.12;}
+.nut-h2 em{font-style:italic;color:var(--ac-lt);}
+.nut-p{font-size:.98rem;color:rgba(255,255,255,.58);line-height:1.87;}
+.nut-highlight{
+  background:rgba(46,232,160,.07);
+  border-left:3px solid var(--ac-lt);
+  padding:1.2rem 1.4rem;
+  border-radius:0 6px 6px 0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-style:italic;
+  color:rgba(255,255,255,.75);
+  line-height:1.55;
+}
+/* Lista de produtos da horta */
+.nut-produtos{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.3rem;}
+.nut-prod{
+  background:rgba(46,232,160,.09);
+  border:1px solid rgba(46,232,160,.22);
+  border-radius:20px;
+  padding:.3rem .85rem;
+  font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ac-lt);
+}
+/* Cards de impacto da nutricao */
+.nut-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.nut-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(46,232,160,.14);
+  border-radius:8px;padding:1.5rem 1.3rem;
+  display:flex;flex-direction:column;gap:.6rem;
+  transition:background .3s,transform .3s,border-color .3s;
+}
+.nut-card:hover{background:rgba(46,232,160,.07);border-color:rgba(46,232,160,.35);transform:translateY(-4px);}
+.nut-card-img{width:100%;height:140px;object-fit:cover;border-radius:4px;display:block;margin-bottom:.3rem;}
+.nut-card-img-fb{width:100%;height:140px;background:linear-gradient(135deg,#1a4a2e,#0a2518);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.25;color:#fff;margin-bottom:.3rem;}
+.nut-card-h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--cream);font-weight:400;line-height:1.2;}
+.nut-card-p{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.7;}
+/* Stats de nutricao em linha */
+.nut-stats{display:flex;gap:2rem;margin-top:1rem;padding-top:1.2rem;border-top:1px solid rgba(46,232,160,.12);flex-wrap:wrap;}
+.nut-sn{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--ac-lt);line-height:1;}
+.nut-sl{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:.2rem;}
+
+/* ── NUMEROS DE IMPACTO ── */
+#nums{background:var(--dark);padding:6rem 5vw;position:relative;overflow:hidden;}
+#nums::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,82,.12) 0%,transparent 70%);pointer-events:none;}
+.nums-hd{text-align:center;margin-bottom:4rem;}
+.nums-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.nums-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ngrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.nit{background:var(--dark);padding:2.5rem 1.5rem;text-align:center;position:relative;transition:background .3s;}
+.nit:hover{background:rgba(26,122,82,.08);}
+.nit::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--ac);transform:scaleX(0);transition:transform .4s;}
+.nit:hover::after{transform:scaleX(1);}
+.nit-ico{width:40px;height:40px;border-radius:50%;background:rgba(46,232,160,.08);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;}
+.nit-ico svg{width:18px;height:18px;stroke:var(--ac-lt);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.nit-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,3.4rem);font-weight:300;color:var(--ac-lt);line-height:1;letter-spacing:-.02em;}
+.nit-l{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:.5rem;line-height:1.5;}
+
+/* ── DEPOIMENTOS ── */
+#depoimentos{background:var(--white);padding:6rem 5vw;}
+.dep-hd{max-width:560px;margin-bottom:3rem;}
+.dep-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.15;color:var(--dark);}
+.dep-hd h2 em{font-style:italic;color:var(--ac);}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.dep-card{background:var(--cream);border-radius:8px;padding:2rem 1.8rem;border-left:3px solid var(--ac);display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s,transform .3s;}
+.dep-card:hover{box-shadow:0 12px 36px rgba(0,0,0,.08);transform:translateY(-4px);}
+.dep-quote{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dark);line-height:1.58;font-weight:300;}
+.dep-quote::before{content:'\201C';font-size:2.2rem;color:var(--ac);line-height:.4;display:block;margin-bottom:.3rem;font-style:normal;}
+.dep-author{display:flex;align-items:center;gap:.8rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(0,0,0,.07);}
+.dep-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac-dk));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;flex-shrink:0;}
+.dep-name{font-size:.85rem;font-weight:500;color:var(--dark);}
+.dep-role{font-size:.72rem;color:var(--muted);letter-spacing:.04em;}
+
+/* ── GALERIA ── */
+#galeria{background:var(--dark2);padding:5rem 5vw;}
+.gal-hd{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.gal-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.gal-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ggrid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:240px 240px;gap:.6rem;}
+.gitem{overflow:hidden;border-radius:4px;background:#0a1f12;position:relative;}
+.gitem:first-child{grid-row:span 2;}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.gitem:hover img{transform:scale(1.07);}
+.gfb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.15;}
+.gitem::after{content:attr(data-label);position:absolute;inset:0;background:rgba(26,122,82,.72);color:#fff;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;text-align:center;padding:1rem;}
+.gitem:hover::after{opacity:1;}
+
+/* ── CTA FINAL ── */
+#cta-final{background:linear-gradient(135deg,var(--ac) 0%,var(--ac-dk) 100%);padding:7rem 5vw;text-align:center;position:relative;overflow:hidden;}
+#cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+.cta-lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1rem;display:block;}
+.cta-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.12;margin-bottom:1.2rem;}
+.cta-h2 em{font-style:italic;color:rgba(255,255,255,.75);}
+.cta-p{font-size:1rem;color:rgba(255,255,255,.7);max-width:540px;margin:0 auto 2.5rem;line-height:1.82;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--ac);padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:600;transition:background .3s,transform .2s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;padding:.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,border-color .3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+
+/* ── NAV AREAS ── */
+#nav-areas{background:var(--dark);padding:4rem 5vw;}
+.na-hd{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;}
+.na-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;}
+.na-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;transition:background .3s,border-color .3s,transform .3s;}
+.na-item:hover{background:rgba(255,255,255,.09);border-color:rgba(201,153,58,.3);transform:translateY(-3px);}
+.na-item.active{background:rgba(26,122,82,.12);border-color:rgba(26,122,82,.4);}
+.na-ico{font-size:1.4rem;line-height:1;}
+.na-lbl{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.3;}
+.na-item:hover .na-lbl{color:rgba(255,255,255,.8);}
+.na-item.active .na-lbl{color:var(--ac-lt);}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:4rem 5vw 2rem;border-top:1px solid rgba(201,153,58,.08);}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.ftnm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:.65rem;}
+.ftdc{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ftcol h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.ftcol a{display:block;font-size:.85rem;color:rgba(255,255,255,.42);margin-bottom:.48rem;transition:color .2s;}
+.ftcol a:hover{color:rgba(255,255,255,.8);}
+.ftsoc{display:flex;gap:.6rem;margin-top:1.4rem;}
+.ftsi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.ftsi:hover{background:var(--red);}
+.ftsi svg{width:14px;height:14px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ftsi:hover svg{stroke:#fff;}
+.ftbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.8rem;color:rgba(255,255,255,.22);}
+.ftgo{color:var(--gold);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .na-grid{grid-template-columns:repeat(3,1fr);}
+  .nut-inner{grid-template-columns:1fr;}
+}
+@media(max-width:900px){
+  #intro{grid-template-columns:1fr;gap:3rem;}
+  .intro-img{max-width:420px;margin:0 auto;}
+  .pgrid{grid-template-columns:1fr 1fr;}
+  .dep-grid{grid-template-columns:1fr;}
+  .ggrid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .gitem:first-child{grid-row:auto;}
+  .ftgrid{grid-template-columns:1fr 1fr;}
+  .nut-cards{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  .hbg{display:flex;}
+  nav.desk{position:fixed;inset:0;background:var(--dark);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.18,1);z-index:999;padding:2rem 8vw;}
+  nav.desk.open{transform:translateX(0);}
+  nav.desk>a,.desk .dd>a{font-size:1.2rem;}
+  .ddm{position:static;opacity:1;pointer-events:all;transform:none;background:transparent;border:none;padding:0;}
+  .ddm a{padding:.35rem 0;font-size:.9rem;}
+  .pgrid{grid-template-columns:1fr;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .ggrid{grid-template-columns:1fr;}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .ftgrid{grid-template-columns:1fr;gap:2rem;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-white,.btn-ghost{justify-content:center;}
+  .nut-cards{grid-template-columns:1fr;}
+  #ph{height:auto;min-height:auto;}
+  .ph-body{padding-top:calc(var(--hh) + 2rem);padding-bottom:3.5rem;}
+}
+@media(max-width:480px){
+  .ngrid{grid-template-columns:1fr;}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar para o conte&uacute;do principal</a>
+
+<header id="hdr" class="s" role="banner">
+<div class="hin">
+  <a href="index.html" class="logo" aria-label="ADEMO &mdash; P&aacute;gina Principal">
+    <img class="logo-img" src="logo-ademo.png" alt="Log&oacute;tipo ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="logo-fall" aria-hidden="true">A</div>
+    <div class="logo-w"><span class="logo-n">ADEMO</span><span class="logo-t">Mo&ccedil;ambique &middot; Desde 1990</span></div>
+  </a>
+  <button class="hbg" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainnav"><span></span><span></span><span></span></button>
+  <nav id="mainnav" class="desk" role="navigation" aria-label="Menu principal">
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre N&oacute;s</a>
+    <div class="dd">
+      <a href="index.html#areas" aria-haspopup="true">&Aacute;reas &#9660;</a>
+      <div class="ddm" role="menu">
+        <a href="saude.html" role="menuitem" aria-current="page">Sa&uacute;de Sexual e Reprodutiva</a>
+        <a href="educacao.html" role="menuitem">Educa&ccedil;&atilde;o Inclusiva</a>
+        <a href="reabilitacao.html" role="menuitem">Reabilita&ccedil;&atilde;o</a>
+        <a href="genero.html" role="menuitem">Equidade de G&eacute;nero</a>
+        <a href="futebol.html" role="menuitem">Futebol Inclusivo</a>
+        <a href="climatica.html" role="menuitem">Resili&ecirc;ncia Clim&aacute;tica</a>
+      </div>
+    </div>
+    <a href="transparencia.html">Transpar&ecirc;ncia</a>
+    <a href="index.html#contactos">Contactos</a>
+    <a href="/cdn-cgi/l/email-protection#bedfdadbd3d1d1ccd9fed9d3dfd7d290ddd1d3" class="navcta">Apoie-nos</a>
+  </nav>
+</div>
+</header>
+
+<main id="main">
+
+<!-- ═══ HERO: titulo ancorado na base, nunca tapa o header ═══ -->
+<section id="ph" aria-label="Sa&uacute;de Sexual e Reprodutiva">
+  <div class="ph-accent"></div>
+  <div class="ph-bg" id="phbg"></div>
+  <div class="ph-ov"></div>
+  <div class="ph-body">
+    <nav class="breadcrumb" aria-label="Localiza&ccedil;&atilde;o">
+      <a href="index.html">ADEMO</a><span>/</span>
+      <a href="index.html#areas">&Aacute;reas</a><span>/</span>
+      <strong>Sa&uacute;de Sexual e Reprodutiva</strong>
+    </nav>
+    <div class="ph-tag">Sa&uacute;de &amp; Direitos Reprodutivos</div>
+    <h1 class="ph-h1">Sa&uacute;de Sexual e Reprodutiva:<br><em>Dignidade e Acesso para Todas</em></h1>
+    <p class="ph-lead">Garantimos que mulheres e raparigas com defici&ecirc;ncia tenham acesso pleno a servi&ccedil;os de sa&uacute;de sexual e reprodutiva de qualidade &mdash; sem barreiras, sem discrimina&ccedil;&atilde;o, com dignidade.</p>
+  </div>
+</section>
+
+<!-- ═══ INTRODUCAO ═══ -->
+<section id="intro" aria-labelledby="intro-h">
+  <div class="intro-txt">
+    <span class="lbl rv">O Programa</span>
+    <h2 class="intro-h2 rv d1" id="intro-h">Por que a Sa&uacute;de Reprodutiva<br><em>das PcD &eacute; uma Prioridade?</em></h2>
+    <p class="intro-p rv d1">Em Mo&ccedil;ambique, as mulheres e raparigas com defici&ecirc;ncia enfrentam barreiras m&uacute;ltiplas no acesso aos cuidados de sa&uacute;de: instala&ccedil;&otilde;es inacess&iacute;veis, profissionais sem forma&ccedil;&atilde;o em comunica&ccedil;&atilde;o inclusiva e em <strong>L&iacute;ngua de Sinais Mo&ccedil;ambicana (LSM)</strong>, e estigma social profundamente enraizado.</p>
+    <p class="intro-p rv d2">A ADEMO trabalha h&aacute; mais de 35 anos para eliminar estas barreiras &mdash; formando profissionais de sa&uacute;de, mobilizando comunidades e advocando por pol&iacute;ticas p&uacute;blicas que reconhe&ccedil;am os direitos sexuais e reprodutivos das pessoas com defici&ecirc;ncia como direitos humanos fundamentais.</p>
+    <p class="intro-p rv d2">O nosso modelo integra a preven&ccedil;&atilde;o, o atendimento cl&iacute;nico, o apoio psicossocial e a seguran&ccedil;a alimentar &mdash; porque sa&uacute;de plena &eacute; muito mais do que assist&ecirc;ncia m&eacute;dica.</p>
+    <div class="rv d3">
+      <a href="/cdn-cgi/l/email-protection#5e3f3a3b3331312c391e39333f3732703d3133" class="btn-ac">Contactar o Programa <span class="arr">&#8594;</span></a>
+    </div>
+  </div>
+  <div class="intro-img rv d1">
+    <img src="foto-saude-intro.jpg" loading="lazy" alt="Atendimento em sa&uacute;de reprodutiva &mdash; ADEMO Sofala" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="intro-img-fb" aria-hidden="true">&#127973;</div>
+    <div class="intro-badge" aria-hidden="true"><span class="ibn">01</span><span class="ibl">&Aacute;rea de atua&ccedil;&atilde;o</span></div>
+  </div>
+</section>
+
+<!-- ═══ 3 PILARES ═══ -->
+<section id="pilares" aria-labelledby="pilares-h">
+  <div class="pilares-hd rv">
+    <span class="lbl">Como Atuamos</span>
+    <h2 id="pilares-h">Tr&ecirc;s Pilares de <em>Interven&ccedil;&atilde;o</em></h2>
+    <p>A nossa abordagem assenta em tr&ecirc;s eixos complementares que garantem impacto sustent&aacute;vel nas comunidades onde trabalhamos em Sofala.</p>
+  </div>
+  <div class="pgrid">
+
+    <article class="pcard rv">
+      <img class="pcard-img" src="foto-saude-formacao.jpg" loading="lazy" alt="Forma&ccedil;&atilde;o de profissionais em LSM e atendimento inclusivo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="pcard-img-fb" aria-hidden="true">&#127891;</div>
+      <div class="pcard-body">
+        <div class="pcard-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="pcard-n">Pilar 01</div>
+        <h3 class="pcard-h3">Forma&ccedil;&atilde;o em LSM e Atendimento Inclusivo</h3>
+        <p class="pcard-p">Capacitamos m&eacute;dicos, enfermeiros e agentes comunit&aacute;rios em <strong>L&iacute;ngua de Sinais Mo&ccedil;ambicana (LSM)</strong>, comunica&ccedil;&atilde;o aumentativa e atendimento humanizado. Os nossos workshops j&aacute; abrangeram centros de sa&uacute;de em Beira, Dondo e Nhamatanda. Nenhuma mulher deve ser privada de cuidados por n&atilde;o ser ouvida.</p>
+      </div>
+    </article>
+
+    <article class="pcard rv d1">
+      <img class="pcard-img" src="foto-saude-comunidade.jpg" loading="lazy" alt="Mobiliza&ccedil;&atilde;o comunit&aacute;ria e preven&ccedil;&atilde;o" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="pcard-img-fb" aria-hidden="true">&#127968;</div>
+      <div class="pcard-body">
+        <div class="pcard-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="pcard-n">Pilar 02</div>
+        <h3 class="pcard-h3">Mobiliza&ccedil;&atilde;o Comunit&aacute;ria e Preven&ccedil;&atilde;o</h3>
+        <p class="pcard-p">Desenvolvemos campanhas de sensibiliza&ccedil;&atilde;o nas comunidades para combater o estigma e promover o acesso &agrave; preven&ccedil;&atilde;o. Distribu&iacute;mos material informativo em <strong>Braille, pictogramas e formato f&aacute;cil de ler</strong> sobre planeamento familiar, IST e gravidez saud&aacute;vel.</p>
+      </div>
+    </article>
+
+    <article class="pcard rv d2">
+      <img class="pcard-img" src="foto-saude-apoio.jpg" loading="lazy" alt="Apoio psicossocial" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="pcard-img-fb" aria-hidden="true">&#129661;</div>
+      <div class="pcard-body">
+        <div class="pcard-ico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="pcard-n">Pilar 03</div>
+        <h3 class="pcard-h3">Apoio Psicossocial e Acompanhamento</h3>
+        <p class="pcard-p">Oferecemos apoio psicossocial individual e em grupo a mulheres e raparigas com defici&ecirc;ncia que enfrentaram viol&ecirc;ncia, discrimina&ccedil;&atilde;o ou barreiras no acesso &agrave; sa&uacute;de. A nossa equipa actua em parceria com os servi&ccedil;os p&uacute;blicos.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     NUTRICAO & HORTAS COMUNITARIAS
+     Secao de destaque — fundo verde escuro esmeralda
+     Conteudo: texto explicativo + 4 cards (horta, mae,
+     colheita, capacitacao nutricional) + lista de produtos
+     ═══════════════════════════════════════════════════════ -->
+<section id="nutricao" aria-labelledby="nut-h">
+  <div class="nut-inner">
+
+    <!-- Coluna esquerda: contexto e impacto -->
+    <div class="nut-txt rv">
+      <div class="nut-icon">&#127807;</div>
+      <span class="lbl" style="color:var(--ac-lt)">Nutri&ccedil;&atilde;o &amp; Seguran&ccedil;a Alimentar</span>
+      <h2 class="nut-h2" id="nut-h">Hortas Comunit&aacute;rias:<br><em>Combater a Desnutri&ccedil;&atilde;o com as Pr&oacute;prias M&atilde;os</em></h2>
+
+      <p class="nut-p">A desnutri&ccedil;&atilde;o cr&oacute;nica em crian&ccedil;as com defici&ecirc;ncia &eacute; uma realidade silenciosa em Sofala. A ADEMO actua directamente neste problema: trabalhamos lado a lado com as comunidades para transformar pequenos quintais abandonados em <strong style="color:var(--ac-lt)">hortas produtivas de subsist&ecirc;ncia</strong>.</p>
+
+      <div class="nut-highlight">&ldquo;Em vez de deixar crescer capim, capacitamos as fam&iacute;lias a plantar legumes, folhas verdes e ra&iacute;zes nutrientes &mdash; porque a sa&uacute;de come&ccedil;a no prato, e o prato come&ccedil;a no quintal.&rdquo;</div>
+
+      <p class="nut-p">Capacitamos m&atilde;es e cuidadoras a produzir alimentos nutritivos com o espa&ccedil;o que t&ecirc;m dispon&iacute;vel &mdash; mesmo que seja apenas alguns metros quadrados. Ensinamos sobre <strong style="color:rgba(255,255,255,.8)">combina&ccedil;&atilde;o de alimentos, conserva&ccedil;&atilde;o e prepara&ccedil;&atilde;o saud&aacute;vel com pouco dinheiro</strong>, porque saber comer bem n&atilde;o depende de ter muito.</p>
+
+      <div>
+        <div class="lbl" style="color:rgba(255,255,255,.45);margin-bottom:.6rem;">Cultivamos nas hortas</div>
+        <div class="nut-produtos">
+          <span class="nut-prod">&#129382; Couve</span>
+          <span class="nut-prod">&#129388; Espinafre</span>
+          <span class="nut-prod">&#129365; Cenoura</span>
+          <span class="nut-prod">&#129382; Abacate</span>
+          <span class="nut-prod">&#127813; Tomate</span>
+          <span class="nut-prod">&#127814; Cebola</span>
+          <span class="nut-prod">&#129360; Feij&atilde;o</span>
+          <span class="nut-prod">&#127815; Pimento</span>
+          <span class="nut-prod">&#129361; Mandioca</span>
+          <span class="nut-prod">&#127834; Amendoim</span>
+        </div>
+      </div>
+
+      <div class="nut-stats">
+        <div class="nut-stat"><div class="nut-sn">120+</div><div class="nut-sl">Fam&iacute;lias com<br>horta activa</div></div>
+        <div class="nut-stat"><div class="nut-sn">85%</div><div class="nut-sl">Redu&ccedil;&atilde;o de<br>inseguran&ccedil;a alimentar</div></div>
+        <div class="nut-stat"><div class="nut-sn">6</div><div class="nut-sl">Comunidades<br>abrangidas</div></div>
+      </div>
+    </div>
+
+    <!-- Coluna direita: 4 cards visuais -->
+    <div class="nut-cards rv d1">
+
+      <div class="nut-card">
+        <img class="nut-card-img" src="foto-saude-horta1.jpg" loading="lazy" alt="Horta comunit&aacute;ria da ADEMO em Sofala" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="nut-card-img-fb" aria-hidden="true">&#127807;</div>
+        <h4 class="nut-card-h4">Hortas no Quintal</h4>
+        <p class="nut-card-p">Transformamos espa&ccedil;os abandonados em fontes de alimento nutritivo para toda a fam&iacute;lia.</p>
+      </div>
+
+      <div class="nut-card">
+        <img class="nut-card-img" src="foto-saude-horta2.jpg" loading="lazy" alt="M&atilde;e e crian&ccedil;a com defici&ecirc;ncia na horta" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="nut-card-img-fb" aria-hidden="true">&#128105;</div>
+        <h4 class="nut-card-h4">M&atilde;es Capacitadas</h4>
+        <p class="nut-card-p">Ensinamos a comer bem com pouco dinheiro &mdash; combina&ccedil;&otilde;es nutrientes acess&iacute;veis a todas.</p>
+      </div>
+
+      <div class="nut-card">
+        <img class="nut-card-img" src="foto-saude-horta3.jpg" loading="lazy" alt="Colheita de legumes &mdash; programa de nutri&ccedil;&atilde;o ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="nut-card-img-fb" aria-hidden="true">&#127807;</div>
+        <h4 class="nut-card-h4">Colheita Partilhada</h4>
+        <p class="nut-card-p">O excedente &eacute; partilhado entre viz&iacute;nhos &mdash; fortalecendo v&iacute;nculos comunit&aacute;rios e a seguran&ccedil;a alimentar colectiva.</p>
+      </div>
+
+      <div class="nut-card">
+        <img class="nut-card-img" src="foto-saude-nutricao.jpg" loading="lazy" alt="Sess&atilde;o de capacita&ccedil;&atilde;o em nutri&ccedil;&atilde;o infantil" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="nut-card-img-fb" aria-hidden="true">&#127869;</div>
+        <h4 class="nut-card-h4">Nutri&ccedil;&atilde;o Infantil</h4>
+        <p class="nut-card-p">Sess&otilde;es pr&aacute;ticas de prepara&ccedil;&atilde;o de refei&ccedil;&otilde;es nutritivas adaptadas para crian&ccedil;as com defici&ecirc;ncia.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NUMEROS DE IMPACTO ═══ -->
+<section id="nums" aria-labelledby="nums-h">
+  <div class="nums-hd rv">
+    <span class="lbl-gold">Resultados Mensur&aacute;veis</span>
+    <h2 id="nums-h">Impacto <em>em N&uacute;meros</em></h2>
+  </div>
+  <div class="ngrid">
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="nit-n" data-target="1800" data-suffix="+">1.800+</div>
+      <div class="nit-l">Mulheres atendidas<br>em sa&uacute;de reprodutiva</div>
+    </div>
+    <div class="nit rv d1">
+      <div class="nit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      <div class="nit-n" data-target="152" data-suffix="">152</div>
+      <div class="nit-l">Profissionais capacitados<br>em LSM e inclus&atilde;o</div>
+    </div>
+    <div class="nit rv d2">
+      <div class="nit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="nit-n" data-target="120" data-suffix="+">120+</div>
+      <div class="nit-l">Fam&iacute;lias com<br>horta comunit&aacute;ria activa</div>
+    </div>
+    <div class="nit rv d3">
+      <div class="nit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="nit-n" data-target="98" data-suffix="%">98%</div>
+      <div class="nit-l">Profissionais interessados<br>em mais forma&ccedil;&atilde;o</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DEPOIMENTOS ═══ -->
+<section id="depoimentos" aria-labelledby="dep-h">
+  <div class="dep-hd rv">
+    <span class="lbl">Hist&oacute;rias Reais</span>
+    <h2 id="dep-h">Vozes de <em>quem viveu a mudan&ccedil;a</em></h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card rv">
+      <p class="dep-quote">Antes n&atilde;o conseguia ir ao centro de sa&uacute;de sozinha. As escadas eram intranspon&iacute;veis e os m&eacute;dicos n&atilde;o sabiam comunicar em L&iacute;ngua de Sinais. Com o apoio da ADEMO, hoje sou atendida com dignidade e o m&eacute;dico percebe-me.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">F</div>
+        <div><div class="dep-name">Fatima A.</div><div class="dep-role">Benefici&aacute;ria do programa &middot; Beira</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d1">
+      <p class="dep-quote">A forma&ccedil;&atilde;o em LSM mudou a minha pr&aacute;tica cl&iacute;nica. Aprendi que uma consulta acess&iacute;vel n&atilde;o &eacute; um favor &mdash; &eacute; um direito. Agora toda a minha equipa comunica com as utentes surdas.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">D</div>
+        <div><div class="dep-name">Dr. Carlos M.</div><div class="dep-role">M&eacute;dico de cl&iacute;nica geral &middot; CS Manga</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d2">
+      <p class="dep-quote">No meu quintal s&oacute; crescia capim. Hoje tenho couve, tomate e feij&atilde;o. O meu filho com defici&ecirc;ncia j&aacute; n&atilde;o passa fome e est&aacute; muito mais saud&aacute;vel. Aprendi que com pouco se faz muito.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">G</div>
+        <div><div class="dep-name">Grace N.</div><div class="dep-role">M&atilde;e capacitada &middot; Dondo, Sofala</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALERIA ═══ -->
+<section id="galeria" aria-labelledby="gal-h">
+  <div class="gal-hd rv">
+    <div><span class="lbl-gold">Galeria</span><h2 id="gal-h">O Programa <em>em Imagens</em></h2></div>
+  </div>
+  <div class="ggrid rv d1">
+    <div class="gitem" data-label="Sa&uacute;de Inclusiva &middot; Beira 2024">
+      <img src="foto-saude-galeria.jpg" loading="lazy" alt="Atendimento em sa&uacute;de reprodutiva inclusiva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127973;</div>
+    </div>
+    <div class="gitem" data-label="Forma&ccedil;&atilde;o em LSM">
+      <img src="foto-saude-formacao.jpg" loading="lazy" alt="Forma&ccedil;&atilde;o em L&iacute;ngua de Sinais Mo&ccedil;ambicana" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#9877;</div>
+    </div>
+    <div class="gitem" data-label="Hortas comunit&aacute;rias">
+      <img src="foto-saude-horta1.jpg" loading="lazy" alt="Horta comunit&aacute;ria produtiva" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127807;</div>
+    </div>
+    <div class="gitem" data-label="M&atilde;es e nutri&ccedil;&atilde;o">
+      <img src="foto-saude-horta2.jpg" loading="lazy" alt="M&atilde;e com crian&ccedil;a defici&ecirc;ncia na horta" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#128105;</div>
+    </div>
+    <div class="gitem" data-label="Colheita partilhada">
+      <img src="foto-saude-horta3.jpg" loading="lazy" alt="Colheita de legumes com comunidade" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127807;</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section id="cta-final" aria-label="Apoie o programa">
+  <span class="cta-lbl rv">Fa&ccedil;a a Diferen&ccedil;a</span>
+  <h2 class="cta-h2 rv d1">Ajude-nos a Garantir<br><em>Sa&uacute;de e Nutri&ccedil;&atilde;o com Dignidade</em></h2>
+  <p class="cta-p rv d2">O acesso &agrave; sa&uacute;de sexual e reprodutiva e a seguran&ccedil;a alimentar s&atilde;o direitos humanos. Com o seu apoio, formamos mais profissionais em LSM, chegamos a mais comunidades e plantamos mais hortas que alimentam crian&ccedil;as com defici&ecirc;ncia em Sofala.</p>
+  <div class="cta-btns rv d3">
+    <a href="/cdn-cgi/l/email-protection#c1a0a5a4acaeaeb3a681a6aca0a8adefa2aeac" class="btn-white">Apoiar Este Programa <span class="arr">&#8594;</span></a>
+    <a href="transparencia.html" class="btn-ghost">Ver Relat&oacute;rios de Impacto</a>
+  </div>
+</section>
+
+<!-- ═══ NAV ENTRE AREAS ═══ -->
+<nav id="nav-areas" aria-label="Outras &aacute;reas de atua&ccedil;&atilde;o">
+  <span class="na-hd">Explorar Outras &Aacute;reas</span>
+  <div class="na-grid">
+    <a href="saude.html" class="na-item active" aria-current="page"><span class="na-ico">&#127973;</span><span class="na-lbl">Sa&uacute;de Sexual</span></a>
+    <a href="educacao.html" class="na-item"><span class="na-ico">&#128218;</span><span class="na-lbl">Educa&ccedil;&atilde;o Inclusiva</span></a>
+    <a href="reabilitacao.html" class="na-item"><span class="na-ico">&#9851;</span><span class="na-lbl">Reabilita&ccedil;&atilde;o</span></a>
+    <a href="genero.html" class="na-item"><span class="na-ico">&#9892;</span><span class="na-lbl">Equidade de G&eacute;nero</span></a>
+    <a href="futebol.html" class="na-item"><span class="na-ico">&#9917;</span><span class="na-lbl">Futebol Inclusivo</span></a>
+  </div>
+</nav>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer role="contentinfo">
+  <div class="ftgrid">
+    <div>
+      <div class="ftnm">ADEMO</div>
+      <p class="ftdc">Associa&ccedil;&atilde;o dos Deficientes Mo&ccedil;ambicanos &mdash; desde 1990, promovendo dignidade, direitos e inclus&atilde;o em todo o pa&iacute;s.</p>
+      <div class="ftsoc">
+        <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="ftsi" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="ftsi" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="/cdn-cgi/l/email-protection#721316171f1d1d001532151f131b1e5c111d1f" class="ftsi" aria-label="E-mail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <nav class="ftcol" aria-label="Navega&ccedil;&atilde;o"><h4>Navega&ccedil;&atilde;o</h4><a href="index.html">Home</a><a href="sobre.html">Sobre N&oacute;s</a><a href="index.html#areas">&Aacute;reas de Atua&ccedil;&atilde;o</a><a href="transparencia.html">Transpar&ecirc;ncia</a><a href="index.html#contactos">Contactos</a></nav>
+    <nav class="ftcol" aria-label="O que fazemos"><h4>O Que Fazemos</h4><a href="saude.html">Sa&uacute;de</a><a href="educacao.html">Educa&ccedil;&atilde;o</a><a href="reabilitacao.html">Reabilita&ccedil;&atilde;o</a><a href="genero.html">G&eacute;nero</a><a href="futebol.html">Futebol</a><a href="climatica.html">Clima</a></nav>
+    <div class="ftcol"><h4>Contacto</h4><a href="/cdn-cgi/l/email-protection#15747170787a7a6772557278747c793b767a78"><span class="__cf_email__" data-cfemail="dabbbebfb7b5b5a8bd9abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a><a href="tel:+258849371782">(+258) 849 371 782</a><a href="https://www.ademosofala.site" target="_blank">www.ademosofala.site</a></div>
+  </div>
+  <div class="ftbot">
+    <span>&copy; 2025 <span class="ftgo">ADEMO</span>. Todos os direitos reservados.</span>
+    <span>Feito com dedica&ccedil;&atilde;o para um Mo&ccedil;ambique inclusivo</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){var h=document.getElementById('hdr');function s(){h.classList.toggle('s',scrollY>60);h.classList.toggle('t',scrollY<=60);}window.addEventListener('scroll',s,{passive:true});s();})();
+(function(){var hbg=document.querySelector('.hbg'),nav=document.getElementById('mainnav');if(!hbg||!nav)return;hbg.addEventListener('click',function(){var o=hbg.getAttribute('aria-expanded')==='true';hbg.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';});});})();
+(function(){
+  var bg=document.getElementById('phbg');
+  if(!bg)return;
+  bg.classList.add('loaded');
+  window.addEventListener('scroll',function(){
+    var p=scrollY*.22;
+    bg.style.transform='translateY('+p+'px) scale(1.04)';
+  },{passive:true});
+})();
+(function(){if(!('IntersectionObserver' in window))return;document.body.classList.add('js-rdy');var obs=new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});})();
+(function(){function run(el){var tgt=parseInt(el.dataset.target)||0,sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*tgt).toLocale

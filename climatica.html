@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resili&ecirc;ncia Clim&aacute;tica &amp; Justi&ccedil;a Clim&aacute;tica &mdash; ADEMO</title>
+<meta name="description" content="A ADEMO lidera a resposta humanit&aacute;ria clim&aacute;tica inclusiva em Sofala: 8 toneladas distribu&iacute;das, agricultura sustent&aacute;vel, advocacia pela justi&ccedil;a clim&aacute;tica para pessoas com defici&ecirc;ncia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#CC0000;--red-dk:#a00000;
+  --gold:#C9993A;--gold-lt:#e5c07a;--gold-dim:rgba(201,153,58,.18);
+  --dark:#1A1008;--dark2:#2d1f0e;
+  --text:#1e1408;--muted:#5c4e38;
+  --white:#fff;--cream:#F8F3EC;--hh:80px;
+  /* CLIMATICA: verde-floresta profundo + azul-ceu + laranja-alerta */
+  --ac:#2a6618;--ac-dk:#1a4a0e;--ac-lt:#90e860;--ac-pale:rgba(42,102,24,.1);
+  --sky:#1a5a8a;--sky-lt:#72d0f8;
+  --warn:#d45a10;--warn-lt:#ffaa60;
+}
+html{font-size:18px;scroll-behavior:smooth;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;line-height:1.75;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+.skip{position:absolute;top:-120px;left:1rem;background:var(--red);color:#fff;padding:.5rem 1rem;border-radius:4px;z-index:9999;transition:top .2s;font-size:.85rem;}
+.skip:focus{top:1rem;}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+
+/* ── HEADER ── */
+#hdr{position:fixed;inset:0 0 auto 0;z-index:900;height:var(--hh);display:flex;align-items:center;padding:0 5vw;transition:background .4s,box-shadow .4s;}
+#hdr.t{background:transparent;}
+#hdr.s{background:rgba(26,16,8,.97);box-shadow:0 2px 28px rgba(0,0,0,.45);backdrop-filter:blur(14px);}
+.hin{display:flex;align-items:center;justify-content:space-between;width:100%;}
+.logo{display:flex;align-items:center;gap:.65rem;}
+.logo-img{height:46px;width:auto;object-fit:contain;flex-shrink:0;}
+.logo-fall{display:none;width:46px;height:46px;border-radius:50%;background:var(--red);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:#fff;flex-shrink:0;}
+.logo-w{display:flex;flex-direction:column;line-height:1.1;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;letter-spacing:.08em;}
+.logo-t{font-size:.54rem;color:var(--gold-lt);letter-spacing:.16em;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:1.6rem;}
+nav>a,.dd>a{color:rgba(255,255,255,.8);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:2px;transition:color .3s;}
+nav>a::after,.dd>a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav>a:hover,.dd>a:hover{color:#fff;}
+nav>a:hover::after,.dd>a:hover::after{width:100%;}
+.dd{position:relative;}
+.ddm{position:absolute;top:calc(100%+14px);left:50%;transform:translateX(-50%) translateY(-6px);background:var(--dark);border:1px solid var(--gold-dim);min-width:240px;padding:.5rem 0;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;}
+.dd:hover .ddm,.dd:focus-within .ddm{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.ddm a{display:block;padding:.55rem 1.3rem;font-size:.7rem;letter-spacing:.08em;color:rgba(255,255,255,.7);text-transform:uppercase;transition:color .2s,background .2s;}
+.ddm a:hover{color:var(--gold-lt);background:rgba(201,153,58,.08);}
+.navcta{background:var(--red)!important;color:#fff!important;padding:.5rem 1.25rem;border-radius:2px;transition:background .3s!important;}
+.navcta:hover{background:var(--red-dk)!important;}
+.navcta::after{display:none!important;}
+.hbg{display:none;background:none;border:none;cursor:pointer;padding:.5rem;flex-direction:column;gap:5px;z-index:1001;}
+.hbg span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.hbg[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.hbg[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* ── UTILS ── */
+.lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac);display:block;margin-bottom:.85rem;}
+.lbl-gold{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.85rem;}
+.lbl-sky{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--sky-lt);display:block;margin-bottom:.85rem;}
+.lbl-warn{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--warn-lt);display:block;margin-bottom:.85rem;}
+.rv{opacity:1;transform:none;transition:opacity .75s ease,transform .75s ease;}
+.js-rdy .rv{opacity:0;transform:translateY(24px);}
+.js-rdy .rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.15s;}.d2{transition-delay:.3s;}.d3{transition-delay:.45s;}.d4{transition-delay:.6s;}
+.arr{display:inline-block;transition:transform .3s;}
+.btn-ac{display:inline-flex;align-items:center;gap:.6rem;background:var(--ac);color:#fff;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:500;transition:background .3s,transform .2s;}
+.btn-ac:hover{background:var(--ac-dk);transform:translateY(-2px);}
+.btn-ac:hover .arr{transform:translateX(5px);}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--ac);padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;font-weight:600;transition:background .3s,transform .2s;}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:.6rem;background:transparent;border:1px solid rgba(255,255,255,.45);color:#fff;padding:.85rem 2rem;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;border-radius:2px;transition:background .3s,border-color .3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:#fff;}
+
+/* ── HERO ── */
+#ph{position:relative;height:90vh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden;background:#070e07;}
+.ph-bg{position:absolute;inset:0;background-image:url('foto-clim-hero.jpg');background-size:cover;background-position:center 30%;transform:scale(1.05);}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(165deg,rgba(7,14,7,.05) 0%,rgba(7,14,7,.22) 30%,rgba(7,14,7,.80) 60%,rgba(7,14,7,.98) 100%);}
+/* barra tricolor topo */
+.ph-accent{position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--ac) 0%,var(--sky) 45%,var(--warn) 100%);z-index:3;}
+/* pulsing dot alerta */
+.ph-alerta-dot{position:absolute;top:calc(var(--hh)+1.4rem);right:5vw;display:flex;align-items:center;gap:.6rem;z-index:3;}
+.ph-alerta-dot span{width:10px;height:10px;border-radius:50%;background:var(--warn-lt);animation:pdot 1.6s ease-in-out infinite;}
+@keyframes pdot{0%,100%{box-shadow:0 0 0 0 rgba(255,170,96,.6);}60%{box-shadow:0 0 0 10px rgba(255,170,96,0);}}
+.ph-alerta-dot .txt{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warn-lt);}
+.ph-body{position:relative;z-index:2;padding:calc(var(--hh)+3rem) 5vw 5.5rem;width:100%;max-width:1200px;}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1.5rem;flex-wrap:wrap;}
+.breadcrumb a{color:rgba(255,255,255,.4);transition:color .2s;}
+.breadcrumb a:hover{color:var(--gold-lt);}
+.breadcrumb span{color:rgba(255,255,255,.2);}
+.breadcrumb strong{color:var(--ac-lt);}
+.ph-tag{display:inline-flex;align-items:center;gap:.55rem;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ac-lt);border:1px solid rgba(144,232,96,.28);padding:.35rem .9rem;border-radius:2px;margin-bottom:1.1rem;}
+.ph-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--ac-lt);flex-shrink:0;}
+.ph-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,6vw,4.2rem);font-weight:300;color:#fff;line-height:1.04;letter-spacing:-.03em;max-width:880px;margin-bottom:1.2rem;}
+.ph-h1 em{font-style:italic;color:var(--ac-lt);}
+.ph-h1 strong{font-weight:600;color:var(--warn-lt);}
+.ph-lead{font-size:clamp(.9rem,1.3vw,1rem);color:rgba(255,255,255,.65);max-width:650px;line-height:1.85;}
+
+/* ── FAIXA ALERTA CICLONE ── */
+#alerta-strip{background:var(--warn);padding:1.8rem 5vw;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;position:relative;overflow:hidden;}
+#alerta-strip::before{content:'';position:absolute;top:-50%;right:-5%;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none;}
+.alrt-ico{font-size:2.4rem;flex-shrink:0;animation:quake 3s ease-in-out infinite;}
+@keyframes quake{0%,100%{transform:rotate(0) scale(1);}25%{transform:rotate(-5deg) scale(1.05);}75%{transform:rotate(5deg) scale(1.05);}}
+.alrt-txt{flex:1;min-width:240px;}
+.alrt-h{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.2vw,1.5rem);color:#fff;font-weight:400;line-height:1.2;}
+.alrt-p{font-size:.85rem;color:rgba(255,255,255,.78);line-height:1.6;margin-top:.25rem;}
+.alrt-stats{display:flex;gap:1.2rem;flex-shrink:0;flex-wrap:wrap;}
+.alrt-stat{background:rgba(0,0,0,.2);border-radius:6px;padding:.9rem 1.5rem;text-align:center;border:1px solid rgba(255,255,255,.18);}
+.alrt-n{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:#fff;line-height:1;}
+.alrt-l{font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:.2rem;}
+
+/* ── JUSTIÇA CLIMÁTICA ── MANIFESTO ÉPICO ── */
+#justica{background:linear-gradient(145deg,#070e07 0%,#0d1a0d 55%,#080f18 100%);padding:8rem 5vw;position:relative;overflow:hidden;}
+/* estrelas de fundo */
+#justica::before{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 15% 25%,rgba(144,232,96,.35) 0%,transparent 100%),radial-gradient(1px 1px at 70% 15%,rgba(114,208,248,.35) 0%,transparent 100%),radial-gradient(1px 1px at 45% 70%,rgba(144,232,96,.2) 0%,transparent 100%),radial-gradient(1px 1px at 85% 60%,rgba(114,208,248,.2) 0%,transparent 100%),radial-gradient(1px 1px at 30% 85%,rgba(255,170,96,.25) 0%,transparent 100%);pointer-events:none;}
+#justica::after{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(42,102,24,.1) 0%,transparent 65%);pointer-events:none;}
+.jus-inner{max-width:1060px;margin:0 auto;}
+/* eyebrow linha */
+.jus-eyebrow{display:flex;align-items:center;gap:1.2rem;margin-bottom:2.5rem;}
+.jus-eline{flex:1;height:1px;background:linear-gradient(90deg,var(--ac),transparent);}
+.jus-elbl{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ac-lt);white-space:nowrap;}
+/* titulo manifesto */
+.jus-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5.5vw,4rem);font-weight:300;color:#fff;line-height:1.04;letter-spacing:-.02em;text-align:center;margin-bottom:.5rem;}
+.jus-h2 em{font-style:italic;color:var(--ac-lt);}
+.jus-h2 strong{font-weight:600;color:var(--warn-lt);}
+.jus-sub{text-align:center;font-size:1rem;color:rgba(255,255,255,.45);max-width:660px;margin:0 auto 3.5rem;line-height:1.75;}
+/* citação central */
+.jus-citacao{border-top:1px solid rgba(144,232,96,.12);border-bottom:1px solid rgba(144,232,96,.12);padding:3rem 4vw;text-align:center;margin-bottom:3.5rem;position:relative;}
+.jus-citacao::before{content:'"';position:absolute;top:1rem;left:4vw;font-family:'Cormorant Garamond',serif;font-size:6rem;color:rgba(144,232,96,.12);line-height:1;pointer-events:none;}
+.jus-citacao-txt{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.8vw,1.9rem);font-weight:300;font-style:italic;color:#fff;line-height:1.45;position:relative;z-index:1;}
+.jus-citacao-src{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:1.2rem;}
+/* texto dois blocos */
+.jus-corpo{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:3.5rem;}
+.jus-p{font-size:.97rem;color:rgba(255,255,255,.52);line-height:1.9;}
+.jus-p strong{color:rgba(255,255,255,.82);}
+/* 6 exigências */
+.jus-exig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.jus-exig{background:rgba(255,255,255,.03);border:1px solid rgba(144,232,96,.1);border-radius:8px;padding:1.8rem 1.5rem;display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden;transition:background .3s,border-color .3s,transform .3s;}
+.jus-exig:hover{background:rgba(42,102,24,.12);border-color:rgba(144,232,96,.3);transform:translateY(-5px);}
+.jus-exig::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ac),var(--ac-lt));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.jus-exig:hover::before{transform:scaleX(1);}
+.jus-exig-ico{font-size:2rem;line-height:1;}
+.jus-exig-h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);font-weight:400;line-height:1.2;}
+.jus-exig-p{font-size:.83rem;color:rgba(255,255,255,.42);line-height:1.65;}
+
+/* ── 8 TONELADAS ── */
+#oito{background:var(--white);padding:7rem 5vw;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+/* visual lado esquerdo */
+.oito-vis{display:flex;flex-direction:column;gap:1.4rem;}
+.oito-card{background:linear-gradient(135deg,var(--ac) 0%,var(--ac-dk) 100%);border-radius:14px;padding:3rem 2.5rem;display:flex;align-items:center;gap:2rem;position:relative;overflow:hidden;}
+.oito-card::before{content:'';position:absolute;top:-60px;right:-60px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none;}
+.oito-n{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,10vw,8rem);font-weight:300;color:#fff;line-height:1;letter-spacing:-.04em;flex-shrink:0;}
+.oito-meta{display:flex;flex-direction:column;gap:.4rem;}
+.oito-meta-lbl{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.58);}
+.oito-meta-titulo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:#fff;font-weight:300;line-height:1.2;}
+.oito-meta-titulo em{font-style:italic;color:rgba(255,255,255,.75);}
+/* grid dos bens */
+.oito-bens{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;}
+.oito-bem{background:var(--cream);border-radius:6px;padding:.85rem 1rem;display:flex;align-items:center;gap:.65rem;border-left:3px solid var(--ac);transition:transform .3s;}
+.oito-bem:hover{transform:translateX(5px);}
+.oito-bem-ico{font-size:1.3rem;flex-shrink:0;}
+.oito-bem-txt{font-size:.88rem;color:var(--muted);font-weight:500;line-height:1.3;}
+/* texto lado direito */
+.oito-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.oito-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.oito-h2 em{font-style:italic;color:var(--ac);}
+.oito-p{font-size:1rem;color:var(--muted);line-height:1.87;}
+.oito-hl{background:var(--ac-pale);border-left:3px solid var(--ac);padding:1.1rem 1.4rem;border-radius:0 6px 6px 0;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);line-height:1.55;}
+/* foto inline */
+.oito-foto{width:100%;aspect-ratio:16/7;object-fit:cover;border-radius:8px;display:block;}
+.oito-foto-fb{display:none;width:100%;aspect-ratio:16/7;border-radius:8px;background:linear-gradient(135deg,#3a8a2a,#1a5a10);flex-direction:column;align-items:center;justify-content:center;font-size:3rem;opacity:.18;color:#fff;}
+
+/* ── RESPOSTA HUMANITARIA ── */
+#resposta{background:var(--cream);padding:7rem 5vw;}
+.resp-hd{max-width:700px;margin-bottom:4rem;}
+.resp-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--dark);line-height:1.1;}
+.resp-hd h2 em{font-style:italic;color:var(--ac);}
+.resp-hd p{font-size:1rem;color:var(--muted);line-height:1.82;margin-top:.8rem;}
+.resp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.resp-card{background:var(--white);border-radius:10px;overflow:hidden;border:1px solid rgba(42,102,24,.1);display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s,border-color .3s;}
+.resp-card:hover{box-shadow:0 14px 44px rgba(42,102,24,.12);transform:translateY(-6px);border-color:rgba(42,102,24,.28);}
+.resp-card-img{width:100%;height:180px;object-fit:cover;display:block;transition:transform .55s;}
+.resp-card:hover .resp-card-img{transform:scale(1.04);}
+.resp-card-fb{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.18;}
+.resp-card-body{padding:1.5rem 1.7rem 2rem;display:flex;flex-direction:column;gap:.65rem;flex:1;}
+.resp-card-n{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ac);}
+.resp-card-h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--dark);font-weight:400;line-height:1.2;}
+.resp-card-p{font-size:.88rem;color:var(--muted);line-height:1.72;flex:1;}
+.resp-card-tag{display:inline-block;background:var(--ac-pale);color:var(--ac);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .65rem;border-radius:20px;margin-top:.3rem;}
+
+/* ── AGRICULTURA ── */
+#agricultura{background:linear-gradient(145deg,#0a1a08 0%,#102c10 60%,#0a1a08 100%);padding:8rem 5vw;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+/* textura campo */
+#agricultura::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(144,232,96,.025) 38px,rgba(144,232,96,.025) 39px),repeating-linear-gradient(90deg,transparent,transparent 38px,rgba(144,232,96,.025) 38px,rgba(144,232,96,.025) 39px);pointer-events:none;}
+#agricultura::after{content:'';position:absolute;top:-80px;right:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(42,102,24,.18) 0%,transparent 65%);pointer-events:none;}
+.agri-vis{display:flex;flex-direction:column;gap:1.2rem;position:relative;z-index:1;}
+.agri-img-wrap{position:relative;}
+.agri-img-wrap img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.45);display:block;}
+.agri-img-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#2a5a1a,#0d2808);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.2;color:#fff;}
+/* culturas grid */
+.agri-culturas{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem;}
+.agri-cult{background:rgba(144,232,96,.07);border:1px solid rgba(144,232,96,.18);border-radius:6px;padding:.7rem .5rem;text-align:center;transition:background .3s,transform .3s;}
+.agri-cult:hover{background:rgba(144,232,96,.16);transform:translateY(-2px);}
+.agri-cult-ico{font-size:1.4rem;line-height:1;display:block;margin-bottom:.25rem;}
+.agri-cult-txt{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+/* texto */
+.agri-txt{display:flex;flex-direction:column;gap:1.4rem;position:relative;z-index:1;}
+.agri-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.7rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.agri-h2 em{font-style:italic;color:var(--ac-lt);}
+.agri-p{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.87;}
+.agri-hl{background:rgba(144,232,96,.07);border-left:3px solid var(--ac-lt);padding:1.1rem 1.4rem;border-radius:0 6px 6px 0;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.75);line-height:1.55;}
+.agri-praticas{display:flex;flex-direction:column;gap:.7rem;}
+.agri-prat{background:rgba(255,255,255,.04);border:1px solid rgba(144,232,96,.1);border-radius:6px;padding:.9rem 1.1rem;display:flex;align-items:flex-start;gap:.85rem;transition:background .3s,border-color .3s,transform .3s;}
+.agri-prat:hover{background:rgba(42,102,24,.15);border-color:rgba(144,232,96,.3);transform:translateX(5px);}
+.agri-prat-ico{font-size:1.2rem;flex-shrink:0;line-height:1.5;}
+.agri-prat-txt{font-size:.88rem;color:rgba(255,255,255,.52);line-height:1.65;}
+.agri-prat-txt strong{color:rgba(255,255,255,.85);}
+
+/* ── IEC ── */
+#iec{background:var(--white);padding:7rem 5vw;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:center;}
+.iec-txt{display:flex;flex-direction:column;gap:1.4rem;}
+.iec-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;line-height:1.12;color:var(--dark);}
+.iec-h2 em{font-style:italic;color:var(--sky);}
+.iec-p{font-size:1rem;color:var(--muted);line-height:1.87;}
+.iec-hl{background:rgba(26,90,138,.08);border-left:3px solid var(--sky);padding:1.1rem 1.4rem;border-radius:0 6px 6px 0;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);line-height:1.55;}
+.iec-formatos{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:.3rem;}
+.iec-fmt{background:var(--cream);border-radius:8px;padding:1.2rem 1.1rem;display:flex;align-items:flex-start;gap:.8rem;border-bottom:3px solid var(--sky);transition:transform .3s,box-shadow .3s;}
+.iec-fmt:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,90,138,.1);}
+.iec-fmt-ico{font-size:1.4rem;flex-shrink:0;line-height:1.2;}
+.iec-fmt-title{font-size:.85rem;font-weight:600;color:var(--dark);margin-bottom:.2rem;}
+.iec-fmt-desc{font-size:.78rem;color:var(--muted);line-height:1.55;}
+.iec-vis img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 24px 60px rgba(26,90,138,.14);display:block;}
+.iec-vis-fb{display:none;width:100%;aspect-ratio:4/3;border-radius:12px;background:linear-gradient(145deg,#1a4a7a,#0a2848);flex-direction:column;align-items:center;justify-content:center;font-size:4rem;opacity:.18;color:#fff;}
+
+/* ── REASSENTAMENTO ── */
+#reassentamento{background:var(--dark);padding:7rem 5vw;position:relative;overflow:hidden;}
+#reassentamento::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--ac),var(--sky),var(--warn));}
+#reassentamento::after{content:'';position:absolute;bottom:-80px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(26,90,138,.1) 0%,transparent 70%);pointer-events:none;}
+.reas-hd{text-align:center;max-width:680px;margin:0 auto 4rem;}
+.reas-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.reas-hd h2 em{font-style:italic;color:var(--sky-lt);}
+.reas-hd p{font-size:.97rem;color:rgba(255,255,255,.48);line-height:1.82;margin-top:.8rem;}
+.reas-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:920px;margin:0 auto 2rem;}
+.reas-item{background:rgba(255,255,255,.04);border:1px solid rgba(114,208,248,.1);border-radius:8px;padding:1.6rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:background .3s,border-color .3s,transform .3s;}
+.reas-item:hover{background:rgba(26,90,138,.1);border-color:rgba(114,208,248,.28);transform:translateX(5px);}
+.reas-item-ico{font-size:1.8rem;flex-shrink:0;line-height:1.1;}
+.reas-item-body{display:flex;flex-direction:column;gap:.3rem;}
+.reas-item-title{font-size:.95rem;font-weight:600;color:var(--cream);}
+.reas-item-desc{font-size:.84rem;color:rgba(255,255,255,.46);line-height:1.65;}
+/* badge PSEA destaque */
+.reas-psea{max-width:920px;margin:0 auto;background:rgba(212,90,16,.1);border:1px solid rgba(255,170,96,.25);border-radius:8px;padding:1.5rem 1.8rem;display:flex;align-items:flex-start;gap:1.1rem;}
+.reas-psea-ico{font-size:2rem;flex-shrink:0;line-height:1.2;}
+.reas-psea-title{font-size:.95rem;font-weight:600;color:var(--warn-lt);margin-bottom:.3rem;}
+.reas-psea-desc{font-size:.86rem;color:rgba(255,255,255,.48);line-height:1.65;}
+
+/* ── CONTADORES ── */
+#nums{background:linear-gradient(135deg,#070e07 0%,#080f18 100%);padding:6rem 5vw;position:relative;overflow:hidden;}
+#nums::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(42,102,24,.1) 0%,transparent 65%);pointer-events:none;}
+.nums-hd{text-align:center;margin-bottom:4rem;}
+.nums-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.1;}
+.nums-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ngrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.nit{background:rgba(7,14,7,.9);padding:2.5rem 1.2rem;text-align:center;position:relative;transition:background .3s;}
+.nit:hover{background:rgba(42,102,24,.12);}
+.nit::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:var(--ac-lt);transform:scaleX(0);transition:transform .4s;}
+.nit:hover::after{transform:scaleX(1);}
+.nit-ico{font-size:1.4rem;width:42px;height:42px;border-radius:50%;background:rgba(144,232,96,.07);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;}
+.nit-n{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3rem);font-weight:300;color:var(--ac-lt);line-height:1;letter-spacing:-.02em;}
+.nit-l{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.5rem;line-height:1.5;}
+
+/* ── DEPOIMENTOS ── */
+#depoimentos{background:var(--cream);padding:6rem 5vw;}
+.dep-hd{max-width:560px;margin-bottom:3rem;}
+.dep-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:300;color:var(--dark);line-height:1.15;}
+.dep-hd h2 em{font-style:italic;color:var(--ac);}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.dep-card{background:var(--white);border-radius:8px;padding:2rem 1.8rem;border-left:4px solid var(--ac);display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s,transform .3s;}
+.dep-card:hover{box-shadow:0 12px 36px rgba(42,102,24,.1);transform:translateY(-4px);}
+.dep-q{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--dark);line-height:1.58;}
+.dep-q::before{content:'"';font-size:2.2rem;color:var(--ac);line-height:.4;display:block;margin-bottom:.3rem;font-style:normal;}
+.dep-author{display:flex;align-items:center;gap:.8rem;margin-top:auto;padding-top:1rem;border-top:1px solid rgba(0,0,0,.07);}
+.dep-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac-dk));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;flex-shrink:0;}
+.dep-name{font-size:.85rem;font-weight:500;color:var(--dark);}
+.dep-role{font-size:.72rem;color:var(--muted);}
+
+/* ── GALERIA ── */
+#galeria{background:var(--dark2);padding:5rem 5vw;}
+.gal-hd{margin-bottom:2rem;}
+.gal-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;color:var(--cream);}
+.gal-hd h2 em{font-style:italic;color:var(--ac-lt);}
+.ggrid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:220px 220px;gap:.6rem;}
+.gitem{overflow:hidden;border-radius:4px;background:#070e07;position:relative;}
+.gitem:first-child{grid-row:span 2;}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.gitem:hover img{transform:scale(1.07);}
+.gfb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.14;color:#fff;}
+.gitem::after{content:attr(data-label);position:absolute;inset:0;background:rgba(42,102,24,.78);color:#fff;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s;text-align:center;padding:1rem;}
+.gitem:hover::after{opacity:1;}
+
+/* ── CTA FINAL ── */
+#cta-final{background:linear-gradient(135deg,var(--ac) 0%,var(--ac-dk) 45%,var(--sky) 100%);padding:7rem 5vw;text-align:center;position:relative;overflow:hidden;}
+#cta-final::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none;}
+.cta-lbl{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.58);margin-bottom:1rem;display:block;}
+.cta-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:#fff;line-height:1.1;margin-bottom:1.2rem;}
+.cta-h2 em{font-style:italic;color:rgba(255,255,255,.75);}
+.cta-p{font-size:1rem;color:rgba(255,255,255,.68);max-width:600px;margin:0 auto 2.5rem;line-height:1.82;}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
+
+/* ── NAV AREAS ── */
+#nav-areas{background:var(--dark);padding:4rem 5vw;}
+.na-hd{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block;}
+.na-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.8rem;}
+.na-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1.2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;transition:background .3s,border-color .3s,transform .3s;}
+.na-item:hover{background:rgba(255,255,255,.09);border-color:rgba(201,153,58,.3);transform:translateY(-3px);}
+.na-item.active{background:rgba(42,102,24,.15);border-color:rgba(42,102,24,.45);}
+.na-ico{font-size:1.4rem;line-height:1;}
+.na-lbl{font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.3;}
+.na-item:hover .na-lbl,.na-item.active .na-lbl{color:rgba(255,255,255,.8);}
+.na-item.active .na-lbl{color:var(--ac-lt);}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:4rem 5vw 2rem;border-top:1px solid rgba(201,153,58,.08);}
+.ftgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(201,153,58,.1);}
+.ftnm{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:.65rem;}
+.ftdc{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ftcol h4{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.ftcol a{display:block;font-size:.85rem;color:rgba(255,255,255,.42);margin-bottom:.48rem;transition:color .2s;}
+.ftcol a:hover{color:rgba(255,255,255,.8);}
+.ftsoc{display:flex;gap:.6rem;margin-top:1.4rem;}
+.ftsi{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.ftsi:hover{background:var(--red);}
+.ftsi svg{width:14px;height:14px;fill:none;stroke:rgba(255,255,255,.55);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ftsi:hover svg{stroke:#fff;}
+.ftbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.8rem;color:rgba(255,255,255,.22);}
+.ftgo{color:var(--gold);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .jus-exig-grid{grid-template-columns:repeat(2,1fr);}
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  .na-grid{grid-template-columns:repeat(3,1fr);}
+  .resp-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:900px){
+  #oito{grid-template-columns:1fr;gap:3rem;}
+  #agricultura{grid-template-columns:1fr;gap:3rem;}.agri-vis{max-width:540px;margin:0 auto;}
+  #iec{grid-template-columns:1fr;gap:3rem;}
+  .jus-corpo{grid-template-columns:1fr;gap:1.5rem;}
+  .reas-grid{grid-template-columns:1fr;}
+  .dep-grid{grid-template-columns:1fr;}
+  .resp-grid{grid-template-columns:1fr;}
+  .ggrid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}.gitem:first-child{grid-row:auto;}
+  .ftgrid{grid-template-columns:1fr 1fr;}
+  .ngrid{grid-template-columns:repeat(3,1fr);}
+  .na-grid{grid-template-columns:repeat(3,1fr);}
+  .jus-exig-grid{grid-template-columns:1fr;}
+  .agri-culturas{grid-template-columns:repeat(6,1fr);}
+  .iec-formatos{grid-template-columns:1fr;}
+  #alerta-strip{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:768px){
+  .hbg{display:flex;}
+  nav.desk{position:fixed;inset:0;background:var(--dark);flex-direction:column;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.18,1);z-index:999;padding:2rem 8vw;}
+  nav.desk.open{transform:translateX(0);}
+  nav.desk>a,.desk .dd>a{font-size:1.2rem;}
+  .ddm{position:static;opacity:1;pointer-events:all;transform:none;background:transparent;border:none;padding:0;}
+  .ddm a{padding:.35rem 0;font-size:.9rem;}
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .ggrid{grid-template-columns:1fr;}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .ftgrid{grid-template-columns:1fr;gap:2rem;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-white,.btn-ghost{justify-content:center;}
+  #ph{height:auto;min-height:auto;}
+  .ph-body{padding-top:calc(var(--hh) + 2rem);padding-bottom:3.5rem;}
+  .oito-bens{grid-template-columns:1fr 1fr;}
+  .agri-culturas{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:480px){
+  .ngrid{grid-template-columns:repeat(2,1fr);}
+  .na-grid{grid-template-columns:repeat(2,1fr);}
+  .oito-bens{grid-template-columns:1fr;}
+  .agri-culturas{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Saltar para o conte&uacute;do principal</a>
+
+<header id="hdr" class="s" role="banner">
+<div class="hin">
+  <a href="index.html" class="logo" aria-label="ADEMO &mdash; P&aacute;gina Principal">
+    <img class="logo-img" src="logo-ademo.png" alt="Log&oacute;tipo ADEMO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="logo-fall" aria-hidden="true">A</div>
+    <div class="logo-w"><span class="logo-n">ADEMO</span><span class="logo-t">Mo&ccedil;ambique &middot; Desde 1990</span></div>
+  </a>
+  <button class="hbg" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainnav"><span></span><span></span><span></span></button>
+  <nav id="mainnav" class="desk" role="navigation" aria-label="Menu principal">
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre N&oacute;s</a>
+    <div class="dd">
+      <a href="index.html#areas" aria-haspopup="true">&Aacute;reas &#9660;</a>
+      <div class="ddm" role="menu">
+        <a href="saude.html" role="menuitem">Sa&uacute;de Sexual e Reprodutiva</a>
+        <a href="educacao.html" role="menuitem">Educa&ccedil;&atilde;o Inclusiva</a>
+        <a href="reabilitacao.html" role="menuitem">Reabilita&ccedil;&atilde;o</a>
+        <a href="genero.html" role="menuitem">Equidade de G&eacute;nero</a>
+        <a href="futebol.html" role="menuitem">Futebol Inclusivo</a>
+        <a href="climatica.html" role="menuitem" aria-current="page">Resili&ecirc;ncia Clim&aacute;tica</a>
+      </div>
+    </div>
+    <a href="transparencia.html">Transpar&ecirc;ncia</a>
+    <a href="index.html#contactos">Contactos</a>
+    <a href="mailto:ademoorg@gmail.com" class="navcta">Apoie-nos</a>
+  </nav>
+</div>
+</header>
+
+<main id="main">
+
+<!-- ████ HERO ████ -->
+<section id="ph" aria-label="Resili&ecirc;ncia Clim&aacute;tica ADEMO">
+  <div class="ph-accent"></div>
+  <div class="ph-bg" id="phbg"></div>
+  <div class="ph-ov"></div>
+  <div class="ph-alerta-dot" aria-hidden="true"><span></span><span class="txt">Crise Clim&aacute;tica Activa</span></div>
+  <div class="ph-body">
+    <nav class="breadcrumb"><a href="index.html">ADEMO</a><span>/</span><a href="index.html#areas">&Aacute;reas</a><span>/</span><strong>Resili&ecirc;ncia Clim&aacute;tica</strong></nav>
+    <div class="ph-tag">Clima &amp; Humanit&aacute;rio &middot; Sofala, Mo&ccedil;ambique</div>
+    <h1 class="ph-h1">Quando o Clima Ataca,<br><em>as PcD Perdem Primeiro</em> &mdash;<br>e <strong>M&aacute;is.</strong></h1>
+    <p class="ph-lead">Mo&ccedil;ambique &eacute; um dos pa&iacute;ses mais devastados pelas altera&ccedil;&otilde;es clim&aacute;ticas. Ciclones, cheias e secas destroem comunidades inteiras &mdash; e as pessoas com defici&ecirc;ncia s&atilde;o desproporcionalmente afectadas, raramente inclu&iacute;das nas respostas, e sistematicamente esquecidas nas pol&iacute;ticas. A ADEMO existe para mudar exactamente isso.</p>
+  </div>
+</section>
+
+<!-- ████ FAIXA ALERTA CICLONE ████ -->
+<div id="alerta-strip" role="complementary">
+  <div class="alrt-ico" aria-hidden="true">&#127783;&#65039;</div>
+  <div class="alrt-txt rv">
+    <div class="alrt-h">Sofala &mdash; na linha da frente da crise clim&aacute;tica africana. Ciclone Idai, Kenneth, Freddy e cheias anuais.</div>
+    <div class="alrt-p">Cada desastre natural multiplica as vulnerabilidades das PcD: impossibilidade de evacuar, perda de aux&iacute;lios t&eacute;cnicos, exclus&atilde;o dos sistemas de alerta precoce e das respostas humanit&aacute;rias.</div>
+  </div>
+  <div class="alrt-stats rv d1">
+    <div class="alrt-stat"><div class="alrt-n">8t</div><div class="alrt-l">Bens distribu&iacute;dos</div></div>
+    <div class="alrt-stat"><div class="alrt-n">3&#215;</div><div class="alrt-l">Mais vulner&aacute;veis<br>em desastres</div></div>
+    <div class="alrt-stat"><div class="alrt-n">35+</div><div class="alrt-l">Anos de resposta<br>humanit&aacute;ria</div></div>
+  </div>
+</div>
+
+<!-- ████ JUSTIÇA CLIMÁTICA — MANIFESTO ÉPICO ████ -->
+<section id="justica" aria-labelledby="jus-h">
+<div class="jus-inner">
+  <div class="jus-eyebrow rv">
+    <div class="jus-elbl">Posi&ccedil;&atilde;o ADEMO &middot; Advocacia Global</div>
+    <div class="jus-eline" aria-hidden="true"></div>
+  </div>
+  <h2 class="jus-h2 rv" id="jus-h">
+    Justi&ccedil;a Clim&aacute;tica <em>n&atilde;o pode ser</em><br>
+    <strong>Cega &agrave; Defici&ecirc;ncia</strong>
+  </h2>
+  <p class="jus-sub rv d1">A ADEMO advoca por um mundo onde as respostas clim&aacute;ticas reconhecem, incluem e protegem as pessoas com defici&ecirc;ncia &mdash; porque a justi&ccedil;a s&oacute; &eacute; justa quando n&atilde;o deixa ningu&eacute;m para tr&aacute;s.</p>
+
+  <div class="jus-citacao rv d1">
+    <div class="jus-citacao-txt">&ldquo;A justi&ccedil;a clim&aacute;tica para pessoas com defici&ecirc;ncia exige pol&iacute;ticas de adapta&ccedil;&atilde;o e resgate inclusivas, reconhecendo que este grupo &eacute; desproporcionalmente afectado por desastres. A acessibilidade universal, sistemas de alerta precoce acess&iacute;veis e a inclus&atilde;o de PcD na formula&ccedil;&atilde;o de estrat&eacute;gias de mitiga&ccedil;&atilde;o s&atilde;o essenciais para evitar que sejam negligenciados em crises.&rdquo;</div>
+    <div class="jus-citacao-src">ADEMO &mdash; Posi&ccedil;&atilde;o sobre Justi&ccedil;a Clim&aacute;tica Inclusiva &middot; Beira, Sofala</div>
+  </div>
+
+  <div class="jus-corpo rv d2">
+    <p class="jus-p">As altera&ccedil;&otilde;es clim&aacute;ticas n&atilde;o afectam toda a gente da mesma forma. As PcD enfrentam barreiras &uacute;nicas em cada fase do desastre: <strong>antes</strong> &mdash; alertas precoces inacess&iacute;veis; <strong>durante</strong> &mdash; impossibilidade de evacuar sem apoio; <strong>depois</strong> &mdash; exclu&iacute;das das distribui&ccedil;&otilde;es, dos programas de recupera&ccedil;&atilde;o e das consultas de reconstrução. Esta tripla exclus&atilde;o transforma cada desastre natural numa cat&aacute;strofe desigual.</p>
+    <p class="jus-p">A ADEMO integra a voz das PcD em processos nacionais e internacionais, advocando por <strong>or&ccedil;amentos clim&aacute;ticos inclusivos, infra-estruturas de evacua&ccedil;&atilde;o acess&iacute;veis, sistemas de alerta precoce multiformato</strong> e pela inclus&atilde;o obrigat&oacute;ria das PcD na concep&ccedil;&atilde;o de todas as pol&iacute;ticas de adapta&ccedil;&atilde;o e mitiga&ccedil;&atilde;o clim&aacute;tica &mdash; n&atilde;o como benefici&aacute;rias passivas, mas como agentes activas.</p>
+  </div>
+
+  <div class="jus-exig-grid rv d2">
+    <div class="jus-exig">
+      <div class="jus-exig-ico" aria-hidden="true">&#128226;</div>
+      <h3 class="jus-exig-h3">Sistemas de Alerta Precoce Acess&iacute;veis</h3>
+      <p class="jus-exig-p">Alertas em Braille, l&iacute;ngua de sinais, &aacute;udio e pictogramas &mdash; para que pessoas surdas, cegas ou com defici&ecirc;ncia intelectual recebam informa&ccedil;&atilde;o de emerg&ecirc;ncia a tempo de agir e sobreviver.</p>
+    </div>
+    <div class="jus-exig">
+      <div class="jus-exig-ico" aria-hidden="true">&#127968;</div>
+      <h3 class="jus-exig-h3">Evacua&ccedil;&atilde;o Inclusiva Obrigat&oacute;ria</h3>
+      <p class="jus-exig-p">Planos de evacua&ccedil;&atilde;o com protocolos espec&iacute;ficos para PcD &mdash; equipas de apoio formadas, rotas acess&iacute;veis, centros de reassentamento com acessibilidade m&iacute;nima garantida por lei.</p>
+    </div>
+    <div class="jus-exig">
+      <div class="jus-exig-ico" aria-hidden="true">&#128203;</div>
+      <h3 class="jus-exig-h3">PcD na Formula&ccedil;&atilde;o de Pol&iacute;ticas</h3>
+      <p class="jus-exig-p">Inclus&atilde;o obrigat&oacute;ria de pessoas com defici&ecirc;ncia e suas organiza&ccedil;&otilde;es em todas as consultas sobre pol&iacute;ticas clim&aacute;ticas &mdash; nacionais e internacionais, incluindo a COP.</p>
+    </div>
+    <div class="jus-exig">
+      <div class="jus-exig-ico" aria-hidden="true">&#128184;</div>
+      <h3 class="jus-exig-h3">Or&ccedil;amentos Clim&aacute;ticos Inclusivos</h3>
+      <p class="jus-exig-p">Percentagem espec&iacute;fica dos fundos clim&aacute;ticos nacionais e internacionais destinada &agrave;s necessidades das PcD em contextos de crise, adapta&ccedil;&atilde;o e recupera&ccedil;&atilde;o.</p>
+    </div>
+    <div class="jus-exig">
+      <div class="jus-exig-ico" aria-hidden="true">&#9855;</div>
+      <h3 class="jus-exig-h3">Infra-estruturas Resilientes e Acess&iacute;veis</h3>
+      <p class="jus-exig-p">Acessibilidade como requisito m&iacute;nimo legal em todos os abrigos de emerg&ecirc;ncia, centros de reassentamento e infra-estruturas de recupera&ccedil;&atilde;o p&oacute;s-desastre.</p>
+    </div>
+    <div class="jus-exig">
+      <div class="jus-exig-ico" aria-hidden="true">&#127757;</div>
+      <h3 class="jus-exig-h3">Dados Desagregados por Defici&ecirc;ncia</h3>
+      <p class="jus-exig-p">Sistemas humanit&aacute;rios e clim&aacute;ticos que recolhem e publicam dados desagregados por defici&ecirc;ncia &mdash; tornando vis&iacute;vel o impacto desproporcional e fundamentando pol&iacute;ticas baseadas em evid&ecirc;ncia.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ████ 8 TONELADAS ████ -->
+<section id="oito" aria-labelledby="oito-h">
+  <div class="oito-vis rv">
+    <div class="oito-card" role="figure" aria-label="8 toneladas de bens distribu&iacute;dos">
+      <div class="oito-n" aria-hidden="true">8t</div>
+      <div class="oito-meta">
+        <div class="oito-meta-lbl">Toneladas distribu&iacute;das &middot; Mo&ccedil;ambique</div>
+        <div class="oito-meta-titulo">Bens de <em>Primeira Necessidade</em><br>para PcD nos Reassentamentos</div>
+      </div>
+    </div>
+    <div class="oito-bens">
+      <div class="oito-bem"><span class="oito-bem-ico">&#127869;</span><span class="oito-bem-txt">Alimentos de emerg&ecirc;ncia</span></div>
+      <div class="oito-bem"><span class="oito-bem-ico">&#127529;&#65039;</span><span class="oito-bem-txt">Lonas e tend&otilde;es</span></div>
+      <div class="oito-bem"><span class="oito-bem-ico">&#127982;</span><span class="oito-bem-txt">Tendas de emerg&ecirc;ncia</span></div>
+      <div class="oito-bem"><span class="oito-bem-ico">&#128294;</span><span class="oito-bem-txt">Lanternas e luz</span></div>
+      <div class="oito-bem"><span class="oito-bem-ico">&#9851;</span><span class="oito-bem-txt">Cadeiras de rodas</span></div>
+      <div class="oito-bem"><span class="oito-bem-ico">&#129492;</span><span class="oito-bem-txt">Muletas adaptadas</span></div>
+      <div class="oito-bem"><span class="oito-bem-ico">&#129463;</span><span class="oito-bem-txt">Pr&oacute;teses de emerg&ecirc;ncia</span></div>
+      <div class="oito-bem"><span class="oito-bem-ico">&#9877;&#65039;</span><span class="oito-bem-txt">Fisioterapia imediata</span></div>
+    </div>
+  </div>
+
+  <div class="oito-txt">
+    <span class="lbl-warn rv">Resposta Humanit&aacute;ria Imediata</span>
+    <h2 class="oito-h2 rv d1" id="oito-h">8 Toneladas de <em>Dignidade Distribu&iacute;das</em></h2>
+    <p class="oito-p rv d1">Nos centros de reassentamento onde as PcD afectadas por cheias e ciclones s&atilde;o colocadas, a ADEMO distribui bens espec&iacute;ficos para as suas necessidades. N&atilde;o apenas alimentos e abrigo &mdash; mas tamb&eacute;m aux&iacute;lios de mobilidade e fisioterapia de emerg&ecirc;ncia, porque uma pessoa que perdeu a cadeira de rodas nas cheias perdeu muito mais do que um objecto: perdeu a sua mobilidade, a sua independ&ecirc;ncia e a sua dignidade.</p>
+    <div class="oito-hl rv d2">&ldquo;Nas cheias, as PcD perdem os seus aux&iacute;lios t&eacute;cnicos. Para n&oacute;s, cadeiras de rodas e muletas n&atilde;o s&atilde;o bens de luxo &mdash; s&atilde;o bens de primeira necessidade. Por isso est&atilde;o sempre nas nossas distribui&ccedil;&otilde;es de emerg&ecirc;ncia.&rdquo;</div>
+    <div class="rv d2">
+      <img src="foto-clim-distribuicao.jpg" loading="lazy" alt="Distribui&ccedil;&atilde;o de bens para PcD nos centros de reassentamento" class="oito-foto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="oito-foto-fb" aria-hidden="true">&#127869;</div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ RESPOSTA HUMANITÁRIA ████ -->
+<section id="resposta" aria-labelledby="resp-h">
+  <div class="resp-hd rv">
+    <span class="lbl">Resposta Integrada nos Centros de Reassentamento</span>
+    <h2 id="resp-h">Al&eacute;m dos Bens &mdash; <em>Cuidado Integral em Crise</em></h2>
+    <p>Nos centros de reassentamento, a ADEMO n&atilde;o distribui apenas bens materiais. Implementa uma resposta integrada que cobre as necessidades espec&iacute;ficas das PcD de forma holista &mdash; corpo, mente, direitos e prote&ccedil;&atilde;o.</p>
+  </div>
+  <div class="resp-grid">
+    <article class="resp-card rv">
+      <img class="resp-card-img" src="foto-clim-fisio.jpg" loading="lazy" alt="Fisioterapia de emerg&ecirc;ncia no reassentamento" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="resp-card-fb" style="background:linear-gradient(135deg,#3a8a2a,#1a5a10);" aria-hidden="true">&#9877;&#65039;</div>
+      <div class="resp-card-body">
+        <div class="resp-card-n">Reabilita&ccedil;&atilde;o de Emerg&ecirc;ncia</div>
+        <h3 class="resp-card-h3">Fisioterapia Imediata no Terreno</h3>
+        <p class="resp-card-p">Fisioterapia de emerg&ecirc;ncia prestada directamente nos centros de reassentamento por fisioterapeutas da ADEMO &mdash; atendendo PcD que perderam aux&iacute;lios ou sofreram agravamento das condi&ccedil;&otilde;es durante o desastre.</p>
+        <span class="resp-card-tag">&#9877;&#65039; No Terreno</span>
+      </div>
+    </article>
+    <article class="resp-card rv d1">
+      <img class="resp-card-img" src="foto-clim-psicossocial.jpg" loading="lazy" alt="Apoio psicossocial em crise clim&aacute;tica" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="resp-card-fb" style="background:linear-gradient(135deg,#2a6a2a,#0a3a10);" aria-hidden="true">&#129302;</div>
+      <div class="resp-card-body">
+        <div class="resp-card-n">Sa&uacute;de Mental &amp; Bem-Estar</div>
+        <h3 class="resp-card-h3">Primeiros Socorros Psicossociais</h3>
+        <p class="resp-card-p">Primeiros Socorros Psicossociais (PSP) para PcD v&iacute;timas de desastres clim&aacute;ticos &mdash; acompanhamento individual, grupos de apoio e interven&ccedil;&atilde;o em crise para sobreviventes com trauma agudo, incluindo crian&ccedil;as.</p>
+        <span class="resp-card-tag">&#129302; Psicossocial</span>
+      </div>
+    </article>
+    <article class="resp-card rv d2">
+      <img class="resp-card-img" src="foto-clim-sensibilizacao.jpg" loading="lazy" alt="Sess&otilde;es de sensibiliza&ccedil;&atilde;o nos reassentamentos" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="resp-card-fb" style="background:linear-gradient(135deg,#1a5a2a,#0a2810);" aria-hidden="true">&#128101;</div>
+      <div class="resp-card-body">
+        <div class="resp-card-n">Prote&ccedil;&atilde;o &amp; Direitos</div>
+        <h3 class="resp-card-h3">PSEA, Direitos e Preven&ccedil;&atilde;o VBG</h3>
+        <p class="resp-card-p">Sess&otilde;es de sensibiliza&ccedil;&atilde;o sobre PSEA, direitos das PcD e preven&ccedil;&atilde;o da VBG directamente nos centros de reassentamento &mdash; onde a vulnerabilidade &eacute; m&aacute;xima e a prote&ccedil;&atilde;o &eacute; mais urgente.</p>
+        <span class="resp-card-tag">&#9878;&#65039; Prote&ccedil;&atilde;o</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ████ AGRICULTURA SUSTENTÁVEL ████ -->
+<section id="agricultura" aria-labelledby="agri-h">
+  <div class="agri-vis rv">
+    <div class="agri-img-wrap">
+      <img src="foto-clim-agricultura.jpg" loading="lazy" alt="Pequenos agricultores com defici&ecirc;ncia em agricultura resiliente ao clima" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="agri-img-fb" aria-hidden="true">&#127807;</div>
+    </div>
+    <div class="agri-culturas" aria-label="Culturas resistentes ao clima praticadas">
+      <div class="agri-cult"><span class="agri-cult-ico">&#127807;</span><span class="agri-cult-txt">Mandioca</span></div>
+      <div class="agri-cult"><span class="agri-cult-ico">&#127805;</span><span class="agri-cult-txt">Milho</span></div>
+      <div class="agri-cult"><span class="agri-cult-ico">&#127812;</span><span class="agri-cult-txt">Batata-doce</span></div>
+      <div class="agri-cult"><span class="agri-cult-ico">&#129382;</span><span class="agri-cult-txt">Feij&atilde;o</span></div>
+      <div class="agri-cult"><span class="agri-cult-ico">&#127809;</span><span class="agri-cult-txt">Amendoim</span></div>
+      <div class="agri-cult"><span class="agri-cult-ico">&#129386;</span><span class="agri-cult-txt">Couve</span></div>
+    </div>
+  </div>
+
+  <div class="agri-txt">
+    <span class="lbl" style="color:var(--ac-lt)" class="rv">Agricultura Resiliente ao Clima</span>
+    <h2 class="agri-h2 rv d1" id="agri-h">Capacitar para que<br><em>o Campo Resista ao Clima</em></h2>
+    <p class="agri-p rv d1">Os desastres clim&aacute;ticos destroem a machamba que &eacute; a base da sobreviv&ecirc;ncia da maioria das PcD em Sofala. A ADEMO actua capacitando pequenos agricultores com defici&ecirc;ncia em pr&aacute;ticas agr&iacute;colas sustent&aacute;veis e resilientes &mdash; antes do desastre, para que a recupera&ccedil;&atilde;o seja mais r&aacute;pida; e depois, para que a depend&ecirc;ncia da ajuda humanit&aacute;ria seja tempor&aacute;ria, n&atilde;o permanente.</p>
+    <div class="agri-hl rv d2">&ldquo;Uma PcD que sabe cultivar de forma resiliente ao clima n&atilde;o &eacute; apenas uma sobrevivente de desastre &mdash; &eacute; uma produtora, uma gestora da sua terra e da sua fam&iacute;lia. A resili&ecirc;ncia come&ccedil;a na machamba.&rdquo;</div>
+    <div class="agri-praticas rv d2">
+      <div class="agri-prat">
+        <span class="agri-prat-ico" aria-hidden="true">&#128167;</span>
+        <div class="agri-prat-txt"><strong>Gest&atilde;o eficiente da &aacute;gua</strong> &mdash; irriga&ccedil;&atilde;o gota-a-gota adaptada, colheita de &aacute;gua da chuva e conten&ccedil;&atilde;o da eros&atilde;o em solos degradados pelas cheias recorrentes.</div>
+      </div>
+      <div class="agri-prat">
+        <span class="agri-prat-ico" aria-hidden="true">&#127807;</span>
+        <div class="agri-prat-txt"><strong>Variedades resistentes &agrave; seca e &agrave;s cheias</strong> &mdash; sementes locais tolerantes ao stress h&iacute;drico, que alimentam a fam&iacute;lia e t&ecirc;m mercado local activo mesmo em anos de crise.</div>
+      </div>
+      <div class="agri-prat">
+        <span class="agri-prat-ico" aria-hidden="true">&#9851;</span>
+        <div class="agri-prat-txt"><strong>T&eacute;cnicas adaptadas &agrave; defici&ecirc;ncia</strong> &mdash; ferramentas agr&iacute;colas modificadas, cultivo sentado e organiza&ccedil;&atilde;o da machamba acess&iacute;vel para utilizadores de cadeira de rodas ou muletas.</div>
+      </div>
+      <div class="agri-prat">
+        <span class="agri-prat-ico" aria-hidden="true">&#128101;</span>
+        <div class="agri-prat-txt"><strong>Cooperativas agr&iacute;colas inclusivas</strong> &mdash; grupos de produtores com defici&ecirc;ncia que partilham recursos, conhecimento e comercializa&ccedil;&atilde;o colectiva &mdash; aumentando a resili&ecirc;ncia de todo o grupo.</div>
+      </div>
+      <div class="agri-prat">
+        <span class="agri-prat-ico" aria-hidden="true">&#127807;</span>
+        <div class="agri-prat-txt"><strong>Seguran&ccedil;a alimentar familiar</strong> &mdash; hortas dom&eacute;sticas com plantas nutritivas e de ciclo curto que garantem alimenta&ccedil;&atilde;o adequada durante as crises clim&aacute;ticas e o per&iacute;odo de recupera&ccedil;&atilde;o.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ IEC ADAPTADO ████ -->
+<section id="iec" aria-labelledby="iec-h">
+  <div class="iec-txt">
+    <span class="lbl-sky rv">Informa&ccedil;&atilde;o em Crise</span>
+    <h2 class="iec-h2 rv d1" id="iec-h">Material IEC Adaptado:<br><em>Informa&ccedil;&atilde;o que Salva Vidas</em></h2>
+    <p class="iec-p rv d1">Em contextos de desastre, a informa&ccedil;&atilde;o pode salvar vidas &mdash; mas s&oacute; se todas as pessoas puderem aceder a ela. A ADEMO adapta material de IEC (Informa&ccedil;&atilde;o, Educa&ccedil;&atilde;o e Comunica&ccedil;&atilde;o) para pessoas com diferentes tipos de defici&ecirc;ncia, garantindo que ningu&eacute;m &eacute; exclu&iacute;do da informa&ccedil;&atilde;o cr&iacute;tica em tempo de crise clim&aacute;tica.</p>
+    <div class="iec-hl rv d2">&ldquo;Uma pessoa surda que n&atilde;o recebe o alerta de ciclone &eacute; uma morte evit&aacute;vel. A ADEMO actua para que n&atilde;o aconte&ccedil;a mais &mdash; adaptando cada mensagem de emerg&ecirc;ncia para que chegue a cada pessoa, independentemente da sua defici&ecirc;ncia.&rdquo;</div>
+    <div class="iec-formatos rv d2">
+      <div class="iec-fmt">
+        <span class="iec-fmt-ico" aria-hidden="true">&#128214;</span>
+        <div><div class="iec-fmt-title">Material em Braille</div><div class="iec-fmt-desc">Alertas, guias de evacua&ccedil;&atilde;o e informa&ccedil;&atilde;o sobre emerg&ecirc;ncia em Braille para pessoas com defici&ecirc;ncia visual.</div></div>
+      </div>
+      <div class="iec-fmt">
+        <span class="iec-fmt-ico" aria-hidden="true">&#128483;</span>
+        <div><div class="iec-fmt-title">L&iacute;ngua de Sinais (LSM)</div><div class="iec-fmt-desc">V&iacute;deos e alertas em LSM para pessoas com defici&ecirc;ncia auditiva &mdash; produzidos por int&eacute;rpretes da ADEMO.</div></div>
+      </div>
+      <div class="iec-fmt">
+        <span class="iec-fmt-ico" aria-hidden="true">&#128444;&#65039;</span>
+        <div><div class="iec-fmt-title">Pictogramas e Linguagem Simples</div><div class="iec-fmt-desc">Materiais visuais claros para pessoas com defici&ecirc;ncia intelectual &mdash; garantindo compreens&atilde;o das mensagens de emerg&ecirc;ncia.</div></div>
+      </div>
+      <div class="iec-fmt">
+        <span class="iec-fmt-ico" aria-hidden="true">&#128266;</span>
+        <div><div class="iec-fmt-title">Formato &Aacute;udio e R&aacute;dio</div><div class="iec-fmt-desc">Mensagens &aacute;udio e r&aacute;dio comunit&aacute;ria adaptada para pessoas com defici&ecirc;ncia visual &mdash; para chegar onde a leitura n&atilde;o chega.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="iec-vis rv d1">
+    <img src="foto-clim-iec.jpg" loading="lazy" alt="Material IEC adaptado para PcD em crise clim&aacute;tica" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="iec-vis-fb" aria-hidden="true">&#128444;&#65039;</div>
+  </div>
+</section>
+
+<!-- ████ REASSENTAMENTO ████ -->
+<section id="reassentamento" aria-labelledby="reas-h">
+  <div class="reas-hd rv">
+    <span class="lbl-gold">Centros de Reassentamento</span>
+    <h2 id="reas-h">Prote&ccedil;&atilde;o e Direitos<br><em>nos Momentos de Maior Vulnerabilidade</em></h2>
+    <p>Nos centros de reassentamento, as PcD enfrentam risco acrescido de explora&ccedil;&atilde;o, abuso e viol&ecirc;ncia. A ADEMO actua com sess&otilde;es de sensibiliza&ccedil;&atilde;o e mecanismos de prote&ccedil;&atilde;o espec&iacute;ficos para este contexto cr&iacute;tico.</p>
+  </div>
+  <div class="reas-grid">
+    <div class="reas-item rv">
+      <span class="reas-item-ico" aria-hidden="true">&#9878;&#65039;</span>
+      <div class="reas-item-body">
+        <div class="reas-item-title">PSEA &mdash; Prote&ccedil;&atilde;o contra Explora&ccedil;&atilde;o e Abuso Sexual</div>
+        <div class="reas-item-desc">Sess&otilde;es sobre PSEA nos centros de reassentamento &mdash; PcD informadas sobre os seus direitos, como denunciar e quem contactar em caso de explora&ccedil;&atilde;o ou abuso sexual por actores humanit&aacute;rios.</div>
+      </div>
+    </div>
+    <div class="reas-item rv d1">
+      <span class="reas-item-ico" aria-hidden="true">&#128137;</span>
+      <div class="reas-item-body">
+        <div class="reas-item-title">Aux&iacute;lios T&eacute;cnicos de Emerg&ecirc;ncia</div>
+        <div class="reas-item-desc">Distribui&ccedil;&atilde;o imediata de cadeiras de rodas, muletas e pr&oacute;teses para PcD que perderam os seus meios de mobilidade nas cheias ou ciclones &mdash; restaurando independ&ecirc;ncia e dignidade.</div>
+      </div>
+    </div>
+    <div class="reas-item rv d2">
+      <span class="reas-item-ico" aria-hidden="true">&#129302;</span>
+      <div class="reas-item-body">
+        <div class="reas-item-title">Apoio Psicossocial Especializado</div>
+        <div class="reas-item-desc">Primeiros Socorros Psicossociais e acompanhamento cont&iacute;nuo para PcD com trauma p&oacute;s-desastre &mdash; com m&eacute;todos adaptados &agrave; comunica&ccedil;&atilde;o de cada benefici&aacute;rio.</div>
+      </div>
+    </div>
+    <div class="reas-item rv d3">
+      <span class="reas-item-ico" aria-hidden="true">&#9892;</span>
+      <div class="reas-item-body">
+        <div class="reas-item-title">Preven&ccedil;&atilde;o da VBG em Contexto de Crise</div>
+        <div class="reas-item-desc">Sess&otilde;es de preven&ccedil;&atilde;o da VBG nos centros de reassentamento &mdash; onde o risco para mulheres e raparigas com defici&ecirc;ncia &eacute; significativamente mais elevado do que em contextos normais.</div>
+      </div>
+    </div>
+    <div class="reas-item rv">
+      <span class="reas-item-ico" aria-hidden="true">&#128203;</span>
+      <div class="reas-item-body">
+        <div class="reas-item-title">Direitos das PcD em Contexto Humanit&aacute;rio</div>
+        <div class="reas-item-desc">Sess&otilde;es sobre direitos garantidos pela Conven&ccedil;&atilde;o da ONU sobre os Direitos das PcD e pela legisla&ccedil;&atilde;o mo&ccedil;ambicana &mdash; para que as PcD conhe&ccedil;am e reclamem os seus direitos mesmo em crise.</div>
+      </div>
+    </div>
+    <div class="reas-item rv d1">
+      <span class="reas-item-ico" aria-hidden="true">&#127968;</span>
+      <div class="reas-item-body">
+        <div class="reas-item-title">Monitoriza&ccedil;&atilde;o da Inclus&atilde;o nos Centros</div>
+        <div class="reas-item-desc">A ADEMO monitoriza activamente os centros de reassentamento para garantir que as PcD recebem acesso equitativo a todos os servi&ccedil;os &mdash; e denuncia casos de exclus&atilde;o ou discrimina&ccedil;&atilde;o.</div>
+      </div>
+    </div>
+  </div>
+  <div class="reas-psea rv d2">
+    <span class="reas-psea-ico" aria-hidden="true">&#9888;&#65039;</span>
+    <div>
+      <div class="reas-psea-title">PSEA &mdash; Zero Toler&acirc;ncia para Explora&ccedil;&atilde;o e Abuso</div>
+      <div class="reas-psea-desc">A ADEMO tem pol&iacute;ticas internas rigorosas de PSEA (Prot&ecirc;ncia contra Explora&ccedil;&atilde;o e Abuso Sexual) para todos os seus membros, volunt&aacute;rios e parceiros &mdash; especialmente em contextos humanit&aacute;rios onde as vulnerabilidades s&atilde;o m&aacute;ximas e onde as PcD dependem de apoio externo para as suas necessidades b&aacute;sicas.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ CONTADORES ████ -->
+<section id="nums" aria-labelledby="nums-h">
+  <div class="nums-hd rv">
+    <span class="lbl-gold">Impacto Mensur&aacute;vel</span>
+    <h2 id="nums-h">Resili&ecirc;ncia Clim&aacute;tica <em>em N&uacute;meros</em></h2>
+  </div>
+  <div class="ngrid">
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">&#127869;</div>
+      <div class="nit-n" data-target="8" data-suffix="t">8t</div>
+      <div class="nit-l">Bens distribu&iacute;dos<br>a PcD em crise</div>
+    </div>
+    <div class="nit rv d1">
+      <div class="nit-ico" aria-hidden="true">&#127807;</div>
+      <div class="nit-n" data-target="320" data-suffix="+">320+</div>
+      <div class="nit-l">Agricultores capacitados<br>em pr&aacute;ticas sustent&aacute;veis</div>
+    </div>
+    <div class="nit rv d2">
+      <div class="nit-ico" aria-hidden="true">&#129302;</div>
+      <div class="nit-n" data-target="600" data-suffix="+">600+</div>
+      <div class="nit-l">PcD com apoio<br>psicossocial recebido</div>
+    </div>
+    <div class="nit rv d3">
+      <div class="nit-ico" aria-hidden="true">&#9877;&#65039;</div>
+      <div class="nit-n" data-target="450" data-suffix="+">450+</div>
+      <div class="nit-l">Atendimentos fisioterapia<br>de emerg&ecirc;ncia</div>
+    </div>
+    <div class="nit rv">
+      <div class="nit-ico" aria-hidden="true">&#128226;</div>
+      <div class="nit-n" data-target="35" data-suffix="+">35+</div>
+      <div class="nit-l">Anos de resposta<br>humanit&aacute;ria inclusiva</div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ DEPOIMENTOS ████ -->
+<section id="depoimentos" aria-labelledby="dep-h">
+  <div class="dep-hd rv">
+    <span class="lbl">Vozes da Linha da Frente</span>
+    <h2 id="dep-h">Sobreviver ao Clima:<br><em>Hist&oacute;rias Reais</em></h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card rv">
+      <p class="dep-q">A cheia levou a minha cadeira de rodas. Fiquei no cheiro sem me conseguir mexer. Foi a ADEMO que apareceu no centro de reassentamento com uma nova. N&atilde;o me deram apenas uma cadeira &mdash; devolveram-me a vida.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">J</div>
+        <div><div class="dep-name">Jos&eacute; M.</div><div class="dep-role">Sobrevivente das cheias &middot; Buzi, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d1">
+      <p class="dep-q">Depois do Idai, a nossa machamba ficou completamente destruida. A forma&ccedil;&atilde;o da ADEMO ensinou-nos variedades que resistem melhor &agrave;s cheias e t&eacute;cnicas de irriga&ccedil;&atilde;o com menos &aacute;gua. Hoje produzimos mesmo nos anos maus.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">G</div>
+        <div><div class="dep-name">Gracinda T.</div><div class="dep-role">Agricultora com defici&ecirc;ncia &middot; Nhamatanda, Sofala</div></div>
+      </div>
+    </div>
+    <div class="dep-card rv d2">
+      <p class="dep-q">No centro de reassentamento, n&atilde;o sabia os meus direitos. A sess&atilde;o da ADEMO abriu-me os olhos: eu tinha direito a aux&iacute;lios, a atendimento especial, a prote&ccedil;&atilde;o. Essa informa&ccedil;&atilde;o mudou a minha situa&ccedil;&atilde;o completamente.</p>
+      <div class="dep-author">
+        <div class="dep-av" aria-hidden="true">F</div>
+        <div><div class="dep-name">Fatima R.</div><div class="dep-role">Sobrevivente do Ciclone Freddy &middot; Beira, Sofala</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ GALERIA ████ -->
+<section id="galeria" aria-labelledby="gal-h">
+  <div class="gal-hd rv">
+    <span class="lbl-gold">Galeria</span>
+    <h2 id="gal-h">Resili&ecirc;ncia Clim&aacute;tica <em>em Imagens</em></h2>
+  </div>
+  <div class="ggrid rv d1">
+    <div class="gitem" data-label="Distribui&ccedil;&atilde;o de Bens &middot; Centros de Reassentamento">
+      <img src="foto-clim-distribuicao.jpg" loading="lazy" alt="Distribui&ccedil;&atilde;o humanit&aacute;ria" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127869;</div>
+    </div>
+    <div class="gitem" data-label="Agricultura Sustent&aacute;vel &middot; Sofala">
+      <img src="foto-clim-agricultura.jpg" loading="lazy" alt="Agricultura resiliente" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#127807;</div>
+    </div>
+    <div class="gitem" data-label="Fisioterapia de Emerg&ecirc;ncia">
+      <img src="foto-clim-fisio.jpg" loading="lazy" alt="Fisioterapia no reassentamento" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#9877;&#65039;</div>
+    </div>
+    <div class="gitem" data-label="Apoio Psicossocial &middot; P&oacute;s-Desastre">
+      <img src="foto-clim-psicossocial.jpg" loading="lazy" alt="Apoio psicossocial em crise" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#129302;</div>
+    </div>
+    <div class="gitem" data-label="Material IEC Adaptado &middot; ADEMO">
+      <img src="foto-clim-iec.jpg" loading="lazy" alt="Material IEC para PcD em crise" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="gfb" aria-hidden="true">&#128444;&#65039;</div>
+    </div>
+  </div>
+</section>
+
+<!-- ████ CTA FINAL ████ -->
+<section id="cta-final" aria-label="Apoiar o programa clim&aacute;tico">
+  <span class="cta-lbl rv">O Clima N&atilde;o Espera</span>
+  <h2 class="cta-h2 rv d1">Justi&ccedil;a Clim&aacute;tica &eacute; Tamb&eacute;m<br><em>Inclus&atilde;o das Pessoas com Defici&ecirc;ncia</em></h2>
+  <p class="cta-p rv d2">Com o seu apoio, respondemos mais r&aacute;pido, distribuimos mais bens, formamos mais agricultores resilientes, adaptamos mais materiais IEC e garantimos que cada PcD em Sofala sobrevive, recupera e se adapta &mdash; com dignidade e com direitos.</p>
+  <div class="cta-btns rv d3">
+    <a href="mailto:ademoorg@gmail.com" class="btn-white">Apoiar a Resposta Clim&aacute;tica <span class="arr">&#8594;</span></a>
+    <a href="transparencia.html" class="btn-ghost">Ver Relat&oacute;rios de Impacto</a>
+  </div>
+</section>
+
+<!-- ████ NAV AREAS ████ -->
+<nav id="nav-areas" aria-label="Todas as &aacute;reas de actua&ccedil;&atilde;o">
+  <span class="na-hd">Todas as &Aacute;reas de Actua&ccedil;&atilde;o ADEMO</span>
+  <div class="na-grid">
+    <a href="saude.html" class="na-item"><span class="na-ico">&#127973;</span><span class="na-lbl">Sa&uacute;de Sexual</span></a>
+    <a href="educacao.html" class="na-item"><span class="na-ico">&#128218;</span><span class="na-lbl">Educa&ccedil;&atilde;o</span></a>
+    <a href="reabilitacao.html" class="na-item"><span class="na-ico">&#9851;</span><span class="na-lbl">Reabilita&ccedil;&atilde;o</span></a>
+    <a href="genero.html" class="na-item"><span class="na-ico">&#9892;</span><span class="na-lbl">G&eacute;nero</span></a>
+    <a href="futebol.html" class="na-item"><span class="na-ico">&#9917;</span><span class="na-lbl">Futebol</span></a>
+    <a href="climatica.html" class="na-item active" aria-current="page"><span class="na-ico">&#127807;</span><span class="na-lbl">Clima</span></a>
+  </div>
+</nav>
+</main>
+
+<footer role="contentinfo">
+  <div class="ftgrid">
+    <div>
+      <div class="ftnm">ADEMO</div>
+      <p class="ftdc">Associa&ccedil;&atilde;o dos Deficientes Mo&ccedil;ambicanos &mdash; desde 1990, promovendo dignidade, direitos e inclus&atilde;o em todo o pa&iacute;s.</p>
+      <div class="ftsoc">
+        <a href="https://web.facebook.com/profile.php?id=100092589242515" target="_blank" rel="noopener" class="ftsi" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/ademo.mz/" target="_blank" rel="noopener" class="ftsi" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="mailto:ademoorg@gmail.com" class="ftsi" aria-label="E-mail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+      </div>
+    </div>
+    <nav class="ftcol"><h4>Navega&ccedil;&atilde;o</h4><a href="index.html">Home</a><a href="sobre.html">Sobre N&oacute;s</a><a href="index.html#areas">&Aacute;reas</a><a href="transparencia.html">Transpar&ecirc;ncia</a><a href="index.html#contactos">Contactos</a></nav>
+    <nav class="ftcol"><h4>O Que Fazemos</h4><a href="saude.html">Sa&uacute;de</a><a href="educacao.html">Educa&ccedil;&atilde;o</a><a href="reabilitacao.html">Reabilita&ccedil;&atilde;o</a><a href="genero.html">G&eacute;nero</a><a href="futebol.html">Futebol</a><a href="climatica.html">Clima</a></nav>
+    <div class="ftcol"><h4>Contacto</h4><a href="mailto:ademoorg@gmail.com">ademoorg@gmail.com</a><a href="tel:+258849371782">(+258) 849 371 782</a><a href="https://www.ademosofala.site" target="_blank">www.ademosofala.site</a></div>
+  </div>
+  <div class="ftbot">
+    <span>&copy; 2025 <span class="ftgo">ADEMO</span>. Todos os direitos reservados.</span>
+    <span>Feito com dedica&ccedil;&atilde;o para um Mo&ccedil;ambique inclusivo</span>
+  </div>
+</footer>
+
+<script>
+(function(){var h=document.getElementById('hdr');function s(){h.classList.toggle('s',scrollY>60);h.classList.toggle('t',scrollY<=60);}window.addEventListener('scroll',s,{passive:true});s();})();
+(function(){var hbg=document.querySelector('.hbg'),nav=document.getElementById('mainnav');if(!hbg||!nav)return;hbg.addEventListener('click',function(){var o=hbg.getAttribute('aria-expanded')==='true';hbg.setAttribute('aria-expanded',String(!o));nav.classList.toggle('open',!o);document.body.style.overflow=o?'':'hidden';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';});});})();
+(function(){var bg=document.getElementById('phbg');if(!bg)return;window.addEventListener('scroll',function(){bg.style.transform='translateY('+scrollY*.22+'px) scale(1.05)';},{passive:true});})();
+(function(){if(!('IntersectionObserver' in window))return;document.body.classList.add('js-rdy');var obs=new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');o.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -20px 0px'});document.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});})();
+(function(){function run(el){var tgt=parseInt(el.dataset.target)||0,sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();function step(now){var p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*tgt).toLocaleString('pt-PT')+sfx;if(p<1)requestAnimationFrame(step);else el.textContent=tgt.toLocaleString('pt-PT')+sfx;}requestAnimationFrame(step);}document.querySelectorAll('.nit-n[data-target]').forEach(function(el){new IntersectionObserver(function(entries,o){entries.forEach(function(e){if(e.isIntersecting){run(e.target);o.unobserve(e.target);}});},{threshold:.5}).observe(el);});})();
+</script>
+</body>
+</html>
